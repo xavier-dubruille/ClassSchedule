@@ -3,7 +3,7 @@ import gui.*;
 public class Start {
 
 	/**
-	 * @param args
+	 * ttttttttttttttttttt
 	 */
 	public static void main(String[] args) {
 
