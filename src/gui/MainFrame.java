@@ -8,7 +8,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 		super("Gestion Horraires");
 		
-		setBounds( 100, 100, 800, 600);
+		setBounds( 100, 100, 800, 660);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setJMenuBar(new MyMenuBar());

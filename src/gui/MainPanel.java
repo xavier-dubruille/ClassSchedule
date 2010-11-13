@@ -6,22 +6,26 @@ package gui;
 import javax.swing.*;
 
 /**
- * @author xav
+ * @author 
  *
  */
 public class MainPanel extends JSplitPane {
 	public MainPanel(){
 		super(JSplitPane.VERTICAL_SPLIT);
 		
-		JScrollPane js=new JScrollPane(new CardPanel(),JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		TopPanel top = new TopPanel();
 		
 		JTabbedPane jt=new JTabbedPane(JTabbedPane.TOP);
-		jt.addTab("2TL1", new GenericSchedule());
-		jt.addTab("2TL2", new GenericSchedule());
 		
-		add(js);
+		// ne seront pas cree ainsi; c'est juste des tests
+		jt.addTab("1TL2", new JScrollPane(new DaySchedule()));
+		jt.addTab("2TL1", new JScrollPane(new DaySchedule()));
+		jt.addTab("2TL2", new JScrollPane(new DaySchedule()));
+
+		
+		add(top);
 		add(jt);
-		setDividerLocation(0.5);
+		setDividerLocation(150);
 		
 	
 	}
