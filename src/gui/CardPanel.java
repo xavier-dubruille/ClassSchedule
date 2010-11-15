@@ -10,8 +10,10 @@ import javax.swing.JScrollPane;
 import javax.swing.*;
 
 import javax.swing.plaf.*;
+import model.Card;
+
 /**
- * @author xav
+ * @author 
  *
  */
 public class CardPanel extends JPanel {
@@ -23,11 +25,11 @@ public class CardPanel extends JPanel {
 	}
 	
 
-	public CardPanel(String name) {
+	public CardPanel(Card card) {
 		setMaximumSize(new Dimension(140,50));
 		setPreferredSize(new Dimension(140,50));
 		
-		JLabel j=new JLabel(name);
+		JLabel j=new JLabel(card.getHtmlRepresentation());
 		j.setFont(new Font("Helvetica", Font.PLAIN, 16));
 		
 		add(j);

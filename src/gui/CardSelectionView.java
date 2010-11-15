@@ -21,6 +21,11 @@ public class CardSelectionView extends JPanel {
 		add(jcb);
 		
 	}
-
+	
+	/**
+	 * sans doute qu'elle ne sera pas utile, et 
+	 * que repaint() et updateUI() suffiront..
+	 */
+	public void update(){}
 
 }

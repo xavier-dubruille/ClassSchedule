@@ -6,7 +6,7 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import model.StateFullSchedule;
 /**
  * @author 
  *
@@ -16,7 +16,7 @@ public class MyMenuBar extends JMenuBar {
 	/**
 	 * 
 	 */
-	public MyMenuBar() {
+	public MyMenuBar(StateFullSchedule state, MainPanel mainPanel) {
 
 		// * top menus
 		// * declarations
@@ -38,21 +38,9 @@ public class MyMenuBar extends JMenuBar {
 		// *** end of declaration
 
 
-		csv.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				
-				// on va ouvrir un jdialog qui permetra de choisir 
-				// les fichier csv.
-				
-				//il ne sera sans doute pas cree ici, mais d'ici la..
-				String path[]=new String[3];
-				
-				new GetCsvFilesDialog(path);
-				
-				
-			}
-
-		});
+		// System.out.println("name: "+this.getRootPane());
+		
+		csv.addActionListener(new CsvActionListener(state, mainPanel));
 		new_project.add(csv);
 		// *** end of new_project
 		
@@ -74,6 +62,26 @@ public class MyMenuBar extends JMenuBar {
 		add(edit);
 		add(help);
 		// * end of top menus
+	}
+	
+	/*
+	 * Le listener qui s'occupera de l'item "créer un nouveau projet
+	 * à partir de fichies CSV"
+	 * 
+	 */
+	private class CsvActionListener implements ActionListener{
+		StateFullSchedule state;
+		MainPanel mainPanel;
+		
+		public CsvActionListener(StateFullSchedule state, MainPanel mainPanel){
+			this.state=state;
+			this.mainPanel=mainPanel;
+		}
+		public void actionPerformed(ActionEvent e){
+			new GetCsvFilesDialog(state.getFilesPath());
+			state.update();  //update the model; i.e. the internal data
+			mainPanel.update(); //update the GUI
+		}
 	}
 
 }
