@@ -39,7 +39,7 @@ public class CardPanelView extends JPanel {
 
 		// on rajoute les "cartons"
 		for(Card c : state.getCards().values()){
-			System.out.println(c);
+			// System.out.println(c); //debug
 			this.add(Box.createHorizontalStrut(20));
 			this.add(new CardPanel(c));
 		}

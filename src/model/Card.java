@@ -13,13 +13,22 @@ public class Card {
 	
 	/**
 	 * for tests only !
-	 * @param lesson
-	 * @param teacher
+	 * 
 	 */
 	public Card(){
 		teacher=new Teacher("vroman");
 		lesson = new Lesson("java");
 	}
+	
+	/**
+	 * for tests only !
+	 * 
+	 */
+	public Card(Lesson l){
+		teacher=new Teacher("not set");
+		lesson = l;
+	}
+	
 	
 	public Card(Lesson lesson, Teacher teacher){
 		this.lesson=lesson;
@@ -32,8 +41,12 @@ public class Card {
 		
 	}
 	
+
 	public String getHtmlRepresentation(){
 		return "<html>"+lesson.name+"<br>"+teacher.name+"<html>";
 	}
 
+	public String toString(){
+		return lesson.name+" "+teacher.name;
+	}
 }

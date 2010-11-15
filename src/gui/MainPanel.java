@@ -42,7 +42,7 @@ public class MainPanel extends JSplitPane {
 	}
 	
 	public void update(){
-		System.out.println("update de main panel: "+state.cards);
+		// System.out.println("update de main panel: "+state.cards); //debug
 		top.update();
 		//faudrait aussi updater les onglets
 		

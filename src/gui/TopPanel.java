@@ -44,7 +44,7 @@ public class TopPanel extends JPanel {
 	}
 	
 	public void update(){
-		System.out.println("update de TopPanel: "+state.cards);
+		// System.out.println("update de TopPanel: "+state.cards); //debug
 		cardPanelV.update();
 		cardSelectV.update();
 	}

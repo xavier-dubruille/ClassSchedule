@@ -5,10 +5,13 @@ import java.util.*;
 public class Lesson {
 	String name;
 	Map<Integer,Room> preferedClassRoom;
-	Map<Integer,Teacher> preferedTeachers;
+	Teacher teacher;
+	// Map<Integer,Teacher> preferedTeachers;
+	
+	public Lesson(){}
 	
 	public Lesson(String name){
-		preferedTeachers=new HashMap<Integer,Teacher>();
+		//preferedTeachers=new HashMap<Integer,Teacher>();
 		preferedClassRoom =new HashMap<Integer, Room>();
 		this.name=name;
 	}
@@ -16,13 +19,14 @@ public class Lesson {
 	/*
 	 *  for tests purposes
 	 */
-	public Lesson(String name,Room preferedLocal, Teacher preferedTeacher){
+	public Lesson(String name,Room preferedLocal, Teacher teacher){
 	
-		preferedTeachers=new HashMap<Integer,Teacher>();
-		preferedClassRoom =new HashMap<Integer, Room>();
+		//preferedTeachers=new TreeMap<Integer,Teacher>();
+		preferedClassRoom =new TreeMap<Integer, Room>();
 		
+		this.teacher=teacher;
 		this.name=name;
-		preferedTeachers.put(100, preferedTeacher);
+		//preferedTeachers.put(100, preferedTeacher);
 		preferedClassRoom.put(100, preferedLocal);
 		
 	}
@@ -31,8 +35,9 @@ public class Lesson {
 		preferedClassRoom.put(priority, l);
 	}
 	
-	public void putTeacher(int priority,Teacher t){
-		preferedTeachers.put(priority, t);
+
+	public Teacher getTeacher(){
+		return teacher;
 	}
 	
 }
