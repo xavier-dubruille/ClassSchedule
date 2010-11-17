@@ -1,8 +1,10 @@
 package gui;
 
 import javax.swing.*;
+import javax.swing.filechooser.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
 
 public class GetCsvFilesDialog extends JDialog implements ActionListener{
 
@@ -40,7 +42,7 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		lesson.add(Box.createHorizontalGlue());
 		j.add(lesson);
 
-		
+
 		// second field : the classRooms
 		JPanel classRoom=new JPanel();
 		classRoom.setLayout(new BoxLayout(classRoom,BoxLayout.X_AXIS));
@@ -59,8 +61,8 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		classRoom.add(Box.createHorizontalGlue());
 		j.add(classRoom);
 
-		
-		
+
+
 		// third field : the constrains
 		JPanel constrain=new JPanel();
 		constrain.setLayout(new BoxLayout(constrain,BoxLayout.X_AXIS));
@@ -95,28 +97,55 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 
 	public void actionPerformed(ActionEvent e){
 		JFileChooser jf=new JFileChooser();
-		if (e.getActionCommand().equals("lesson")){
+		int returnVal;
+		
+		javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter(){
+			public boolean accept(File f){
+				return f.getName().endsWith("csv")||f.isDirectory();}
+			public String getDescription(){return "csv files";}
+		};
+		
+		
 
-			jf.showOpenDialog(this);
-			jt_lesson.setText(jf.getSelectedFile().getName());
-		}
-		if (e.getActionCommand().equals("constrain")){
+			if (e.getActionCommand().equals("lesson")){
 
-			jf.showOpenDialog(this);
-			jt_constrain.setText(jf.getSelectedFile().getName());
-		}
-		if (e.getActionCommand().equals("classRoom")){
+				jf.setFileFilter(filter);
+				jf.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				returnVal=jf.showOpenDialog(this);
+				if(returnVal == JFileChooser.APPROVE_OPTION)
+					jt_lesson.setText(jf.getSelectedFile().getPath());
+			}
+			if (e.getActionCommand().equals("constrain")){
 
-			jf.showOpenDialog(this);
-			jt_classRoom.setText(jf.getSelectedFile().getName());
-		}
-		if (e.getActionCommand().equals("create")){
+				jf.resetChoosableFileFilters();
+				jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+				returnVal =jf.showOpenDialog(this);
+				if(returnVal == JFileChooser.APPROVE_OPTION)
+					jt_constrain.setText(jf.getSelectedFile().getPath());
 
-			output[0]=jt_lesson.getText();
-			output[1]=jt_constrain.getText();
-			output[2]=jt_classRoom.getText();
-			
-			this.setVisible(false);
+			}
+			if (e.getActionCommand().equals("classRoom")){
+
+				jf.setFileFilter(filter);
+				jf.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				returnVal =jf.showOpenDialog(this);
+				if(returnVal == JFileChooser.APPROVE_OPTION)
+					jt_classRoom.setText(jf.getSelectedFile().getPath());
+			}
+			if (e.getActionCommand().equals("create")){
+
+				output[0]=jt_lesson.getText();
+				output[1]=jt_constrain.getText();
+				output[2]=jt_classRoom.getText();
+
+				this.setVisible(false);
+			}
 		}
-	}
+	
+
+	private class CsvFileFilter extends javax.swing.filechooser.FileFilter{
+		public boolean accept(File f){return true;}
+		public String getDescription(){return "csv files";}
+	};
+
 }

@@ -36,6 +36,7 @@ public class CardPanel extends JPanel {
 		this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 		this.setBackground(Color.lightGray);
 		this.setDropTarget(new DropTarget());
+		this.setTransferHandler(new CardTransferHandler());
 
 	}
 

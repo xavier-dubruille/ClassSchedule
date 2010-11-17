@@ -3,6 +3,8 @@ package model;
 import java.util.*;
 import java.io.*;
 
+import javax.swing.JOptionPane;
+
 
 
 
@@ -19,6 +21,7 @@ public class StateFullSchedule {
 	Map<String, Student> students;
 
 	String filesPath[];
+	File courses, classRooms, constrains;
 
 
 	/**
@@ -33,7 +36,7 @@ public class StateFullSchedule {
 		students=new TreeMap<String, Student>();
 
 
-		filesPath =new String[4];
+		filesPath =new String[3];
 
 	}
 
@@ -44,16 +47,41 @@ public class StateFullSchedule {
 	 * tout l'état de l'objet à partir des infos dans les fichiers
 	 */
 	public void update(){
-		/* il faudrait p-e vérifier ici (du moins dans cette méthode)
-		 * si les fichiers on changé,
+		
+		// si ce n'est pas la tt première update; il faut fermer les fichiers,
+		// et tout effacer (sauvegarder ?) 
+		
+		/* il faudrait p-e vérifier ici (du moins dans cette méthode) 
+		 * si les fichiers on changé, (par ex ac une somme md5)
 		 * si ils existent, sont dans un format valide, ect */
 
-		if (filesPath == null ||filesPath.length == 0){
-			System.err.println("can't update from files"); //faudra mieu gérer ca..
-			System.exit(-1); 
+		
+		if (filesPath[0] == null || filesPath[0].equals("") ){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du fichier csv contenant les cours",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
+			return;  //faudrait p-e relancer la fenetre de dialogue en cas d'échec.. (de tt facon, faut pas gerer ca ici)
+		}
+		else {
+			courses= new File(filesPath[0]);
+		}
+		
+		if (filesPath[1] == null || filesPath[1].equals("") ){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du fichier csv contenant les locaux",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		else {
+			classRooms= new File(filesPath[1]);
 		}
 
-
+		if (filesPath[2] == null || filesPath[2].equals("") ){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du dossier contenant les fichiers de contraintes",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		else {
+			constrains= new File(filesPath[2]);
+		}
 		try{
 
 			// il y a encore beacoup de cas à prendre en compte..
@@ -72,7 +100,7 @@ public class StateFullSchedule {
 			* 
 			* ***********************************************/
 		
-			Scanner sc=new Scanner(new File(filesPath[0]));
+			Scanner sc=new Scanner(courses);
 			line=sc.next().split(",");
 
 			// Il faudrait initier ces int avec la première ligne, 
