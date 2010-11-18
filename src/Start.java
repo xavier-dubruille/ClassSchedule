@@ -1,4 +1,4 @@
-// voici encore un comentaire de test 4.0
+// voici encore un comentaire de test 5.0
 
 import gui.MainFrame;
 import model.StateFullSchedule;
