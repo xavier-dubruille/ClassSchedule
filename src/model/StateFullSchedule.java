@@ -46,7 +46,7 @@ public class StateFullSchedule {
 	 * cette méthode, une fois écrite devrait mettre à jour
 	 * tout l'état de l'objet à partir des infos dans les fichiers
 	 */
-	public void update(){
+	public void update_from_files(){
 		
 		// si ce n'est pas la tt première update; il faut fermer les fichiers,
 		// et tout effacer (sauvegarder ?) 

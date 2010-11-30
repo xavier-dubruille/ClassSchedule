@@ -28,4 +28,8 @@ public class FrameSchedule extends JFrame {
 
 		setVisible(true);
 	}
+	
+	public void update_from_state(){
+		
+	}
 }

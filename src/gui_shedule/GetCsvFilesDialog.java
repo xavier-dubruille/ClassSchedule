@@ -15,6 +15,8 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		this.output=output;
 		//setPreferredSize(new Dimension(900,800));
 		setMinimumSize(new Dimension(550,190));
+		setSize(new Dimension(550,190));
+		
 		JPanel j=new JPanel();
 		j.setLayout(new BoxLayout(j,BoxLayout.Y_AXIS));
 
@@ -84,7 +86,7 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 
 		j.add(Box.createGlue());
 
-		JButton create=new JButton("créer");
+		JButton create=new JButton("creer");
 		create.setActionCommand("create");
 		create.addActionListener(this);
 		j.add(create);

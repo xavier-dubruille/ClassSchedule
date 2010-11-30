@@ -22,13 +22,11 @@ public class Start {
 		
 		state=new StateFullSchedule();
 		
-		//create empty,not visible Frame
-		fSc=new FrameSchedule();
-		fSe=new FrameSelection(); 
 		
-		bar=new MyMenuBar(state,fSc,fSe);
+		bar=new MyMenuBar(state);
 		fSc=new FrameSchedule(state,bar);
 		fSe=new FrameSelection(state); 
+		bar.setPanels(fSe,fSc);
 		
 
 		// faudrait lancer un thread de "fin d'application" (handHookThread ?)

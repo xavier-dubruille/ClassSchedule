@@ -16,10 +16,16 @@ import gui_selection.FrameSelection;
  */
 public class MyMenuBar extends JMenuBar {
 
+	FrameSchedule fSc;
+	FrameSelection fSe;
 	/**
 	 * 
 	 */
-	public MyMenuBar(StateFullSchedule state, FrameSchedule fSc, FrameSelection fSe) {
+	public MyMenuBar(StateFullSchedule state) {
+
+		//empty panel; has to be updated later
+		fSc= new  FrameSchedule(); 
+		fSe= new FrameSelection();
 
 		// * top menus
 		// * declarations
@@ -37,16 +43,16 @@ public class MyMenuBar extends JMenuBar {
 
 		// *** new_project 
 		// *** declarations
-		JMenuItem csv = new JMenuItem ("à partir de fichiers CSV");
+		JMenuItem csv = new JMenuItem ("A partir de fichiers CSV");
 		// *** end of declaration
 
 
 		// System.out.println("name: "+this.getRootPane());
-		
-		csv.addActionListener(new CsvActionListener(state, mainPanel));
+
+		csv.addActionListener(new CsvActionListener(state));
 		new_project.add(csv);
 		// *** end of new_project
-		
+
 		// ** quit
 		quit.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
@@ -67,6 +73,11 @@ public class MyMenuBar extends JMenuBar {
 		// * end of top menus
 	}
 	
+	public void setPanels(FrameSelection fSe,FrameSchedule fSc){
+		this.fSc=fSc;
+		this.fSe=fSe;
+	}
+
 	/*
 	 * Le listener qui s'occupera de l'item "créer un nouveau projet
 	 * à partir de fichies CSV"
@@ -74,16 +85,17 @@ public class MyMenuBar extends JMenuBar {
 	 */
 	private class CsvActionListener implements ActionListener{
 		StateFullSchedule state;
-		MainPanel mainPanel;
-		
-		public CsvActionListener(StateFullSchedule state, MainPanel mainPanel){
+
+
+		public CsvActionListener(StateFullSchedule state){
 			this.state=state;
-			this.mainPanel=mainPanel;
 		}
+		
 		public void actionPerformed(ActionEvent e){
 			new GetCsvFilesDialog(state.getFilesPath());
-			state.update();  //update the model; i.e. the internal data
-			mainPanel.update(); //update the GUI
+			state.update_from_files();  //update the model; i.e. the internal data
+			fSc.update_from_state(); //update the GUI
+			fSe.update_from_state(); //update the GUI
 		}
 	}
 

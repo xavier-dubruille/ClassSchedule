@@ -1,24 +1,23 @@
 package gui_selection;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.util.*;
 import model.*;
 
-public class DisplayPanel extends JPanel {
+public class DisplayPanel extends JScrollPane{
 
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
-	SortedMap<String,Card_GUI> content_by_courses=new TreeMap<String,Card_GUI>();
+	SortedMap<String,Card_GUI> content_by_courses;
 
+	StateFullSchedule state;
 	public DisplayPanel(StateFullSchedule state){
-
-		// First we create ours sortedMap..
-
-		for(Map.Entry<String,Card> e:state.cards.entrySet()){
-			content_by_courses.put(e.getKey(), new Card_GUI(e.getValue()));
-		}
 		
-		// .. then we print it.
-		printCard();
+		super(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		this.state=state;
+		
+		// initiate all maps..
+		content_by_courses=new TreeMap<String,Card_GUI>();
+		
 	}
 
 
@@ -29,6 +28,28 @@ public class DisplayPanel extends JPanel {
 		}
 	}
 	
+	/*
+	 * default update:
+	 * let's print all the cards..
+	 */
+	public void update_default(){
+		
+		// First we create ours sortedMap..
+
+		for(Map.Entry<String,Card> e:state.cards.entrySet()){
+			content_by_courses.put(e.getKey(), new Card_GUI(e.getValue()));
+		}
+		
+		add(new JLabel("test"));
+		
+		
+		// .. then we print it.
+		printCard();
+		repaint();
+		this.repaint();
+		this.setVisible(true);
+		
+	}
 	
 	/*
 	 * Will update the visible/non visible Card_GUI
