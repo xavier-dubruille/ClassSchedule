@@ -3,12 +3,13 @@
  */
 package gui_shedule;
 
-import gui.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import model.StateFullSchedule;
+import gui_selection.FrameSelection;
+
 /**
  * @author 
  *
@@ -18,7 +19,7 @@ public class MyMenuBar extends JMenuBar {
 	/**
 	 * 
 	 */
-	public MyMenuBar(StateFullSchedule state, MainPanel mainPanel) {
+	public MyMenuBar(StateFullSchedule state, FrameSchedule fSc, FrameSelection fSe) {
 
 		// * top menus
 		// * declarations

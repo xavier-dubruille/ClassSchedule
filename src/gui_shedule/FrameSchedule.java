@@ -7,7 +7,10 @@ import model.StateFullSchedule;
 
 public class FrameSchedule extends JFrame {
 
-	public FrameSchedule(StateFullSchedule state){
+	public FrameSchedule(){
+		//empty, not visible frame
+	}
+	public FrameSchedule(StateFullSchedule state,MyMenuBar bar){
 		super("Gestion Horraires");
 
 		setBounds( 100, 100, 800, 660);
@@ -16,7 +19,7 @@ public class FrameSchedule extends JFrame {
 		OptionView ov=new OptionView(state);
 		MainView mv=new MainView(state);
 
-		setJMenuBar(new MyMenuBar(state, mainPanel));
+		setJMenuBar(bar);
 
 		getContentPane().add(ov);
 		getContentPane().add(mv);

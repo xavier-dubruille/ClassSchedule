@@ -12,6 +12,9 @@ import javax.swing.JSplitPane;
 
 public class FrameSelection extends JFrame {
 
+	public FrameSelection(){
+		//empty, not visible frame..
+	}
 
 	public FrameSelection(StateFullSchedule state) throws HeadlessException {
 		super("Selection"); //faudrait p-e attraper la headLessException ici..
