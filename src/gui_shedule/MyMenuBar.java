@@ -1,7 +1,9 @@
 /**
  * 
  */
-package gui;
+package gui_shedule;
+
+import gui.MainPanel;
 
 import javax.swing.*;
 import java.awt.*;

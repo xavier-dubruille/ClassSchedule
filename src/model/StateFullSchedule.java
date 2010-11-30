@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 
 
 /*
- * Contient de quoi créer un horraire et de 
- * concerver toutes les info le representan.
+ * Contient de quoi creer un horraire et de 
+ * concerver toutes les info le representant.
  */
 public class StateFullSchedule {
 

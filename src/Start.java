@@ -14,7 +14,9 @@ public class Start {
 		
 		
 		StateFullSchedule state=new StateFullSchedule();
-		MainFrame mf=new MainFrame(state);
+		// MainFrame mf=new MainFrame(state); //ancienne version
+		
+		
 
 		// faudrait lancer un thread de "fin d'application" (handHookThread ?)
 		// pour sauvegarder dans un fichier caché l'état et vérifier au démarage

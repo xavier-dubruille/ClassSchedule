@@ -1,5 +1,7 @@
 package gui;
 
+import gui_shedule.MyMenuBar;
+
 import javax.swing.*;
 import java.awt.*;
 import model.StateFullSchedule;

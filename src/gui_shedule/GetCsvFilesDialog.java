@@ -1,4 +1,4 @@
-package gui;
+package gui_shedule;
 
 import javax.swing.*;
 import javax.swing.filechooser.*;

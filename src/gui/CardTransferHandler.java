@@ -13,6 +13,7 @@ public class CardTransferHandler extends TransferHandler {
 		super();
 		draged=new ImageIcon("images/blank.png").getImage();
 	}
+	/*
     public boolean canImport(TransferHandler.TransferSupport info) {
     	
     	System.out.println("canImport");
@@ -22,7 +23,7 @@ public class CardTransferHandler extends TransferHandler {
         }
         return true;
    }
-
+*/
     protected Transferable createTransferable(JComponent c) {
     	System.out.println("transferable");
     	return new StringSelection(exportString(c));
