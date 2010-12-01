@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.util.*;
 import model.*;
 
-public class DisplayPanel extends JScrollPane{
+public class DisplayPanel extends JPanel{
 
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
 	SortedMap<String,Card_GUI> content_by_courses;
@@ -12,7 +12,8 @@ public class DisplayPanel extends JScrollPane{
 	StateFullSchedule state;
 	public DisplayPanel(StateFullSchedule state){
 		
-		super(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		//this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		
 		this.state=state;
 		
 		// initiate all maps..

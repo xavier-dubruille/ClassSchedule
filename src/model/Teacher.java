@@ -4,7 +4,8 @@ import java.util.TreeMap;
 import java.util.Map;
 
 public class Teacher {
-	String name;
+	String firstname;
+	String lastname;
 
 	Map<String, Lesson> lessons;
 	Map<Integer,Room> preferedClassRoom;
@@ -14,19 +15,26 @@ public class Teacher {
 		lessons=new TreeMap<String, Lesson>();
 		preferedClassRoom =new TreeMap<Integer, Room>();
 	}
-	public Teacher(String name){
+	public Teacher(String firstname, String lastname){
 		this();
-		this.name=name;
+		this.firstname=firstname;
+		this.lastname=lastname;
 	}
 	
-	public Teacher(String name, String lesson_id,Lesson lesson){
+	public Teacher(String firstname, String lastname, String lesson_id){
 		this();
-		this.name=name;
-		lessons.put(lesson_id, lesson); 
+		this.firstname=firstname;
+		this.lastname=lastname;
 	}
 	
 	public void putLocal(int priority,Room l){
 		preferedClassRoom.put(priority, l);
+	}
+	
+	public void addCourse(String id, Lesson l){
+		//if (lessons.size()==0)
+		lessons.put(id,l);
+		
 	}
 	
 }

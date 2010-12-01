@@ -16,7 +16,7 @@ public class Card {
 	 * 
 	 */
 	public Card(){
-		teacher=new Teacher("vroman");
+		//teacher=new Teacher("vroman");
 		lesson = new Lesson("java");
 	}
 	
@@ -25,7 +25,7 @@ public class Card {
 	 * 
 	 */
 	public Card(Lesson l){
-		teacher=new Teacher("not set");
+	//	teacher=new Teacher("not set");
 		lesson = l;
 	}
 	
@@ -43,10 +43,10 @@ public class Card {
 	
 
 	public String getHtmlRepresentation(){
-		return "<html>"+lesson.name+"<br>"+teacher.name+"<html>";
+		return "<html>"+lesson.name+"<br>"+teacher.lastname+"<html>";
 	}
 
 	public String toString(){
-		return lesson.name+" "+teacher.name;
+		return lesson.name+" "+teacher.lastname;
 	}
 }

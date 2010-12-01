@@ -47,15 +47,15 @@ public class StateFullSchedule {
 	 * tout l'état de l'objet à partir des infos dans les fichiers
 	 */
 	public void update_from_files(){
-		
+
 		// si ce n'est pas la tt première update; il faut fermer les fichiers,
 		// et tout effacer (sauvegarder ?) 
-		
+
 		/* il faudrait p-e vérifier ici (du moins dans cette méthode) 
 		 * si les fichiers on changé, (par ex ac une somme md5)
 		 * si ils existent, sont dans un format valide, ect */
 
-		
+
 		if (filesPath[0] == null || filesPath[0].equals("") ){
 			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du fichier csv contenant les cours",
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
@@ -64,7 +64,7 @@ public class StateFullSchedule {
 		else {
 			courses= new File(filesPath[0]);
 		}
-		
+
 		if (filesPath[1] == null || filesPath[1].equals("") ){
 			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du fichier csv contenant les locaux",
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
@@ -91,112 +91,201 @@ public class StateFullSchedule {
 			// Puis ca pourait être bien de suposer le séparateur, les ", ect
 
 			//faut p-e déclarer ces trucs avant..
-			String[] line;
-			int course_name, course_year, course_section, course_mode, course_id,
-			coursePeriodFirstSemester,teacher_id,teacher_name; //à continuer..
 
-			/*************************************************
-			* first we start by scanning the file containing the courses
-			* 
-			* ***********************************************/
-		
-			Scanner sc=new Scanner(courses);
-			line=sc.next().split(",");
-
-			// Il faudrait initier ces int avec la première ligne, 
-			// et l'idéal serait qu'il puisse le faire même avec un nom 
-			// approximatif (e.g. sans accents ni majuscules)
-			course_name=4;
-			course_year=1;
-			course_section=0;
-			course_mode=5;
-			course_id=3;
-			coursePeriodFirstSemester=15;
-			teacher_id=7;
-			teacher_name=8;
-			//faudrait enregister les champs restant à titre d'info..
-
-
-
-			while (sc.hasNext()) {
-				
-
-				line=sc.nextLine().split(";");
-								
-				Teacher t; 
-				Lesson l=new Lesson(); // je suis obligé, mais j'aime pas..
-				
-				//now, t and l HAVE TO point to the right object !
-				if (!teachers.containsKey(line[teacher_id])){
-					t=new Teacher(line[teacher_name],line[course_id],l);
-					teachers.put(line[teacher_id], t);
-				}
-				else{
-					t=teachers.get(line[teacher_id]);
-				}
-					
-				
-				if (!lessons.containsKey(line[course_id])){
-					l=new Lesson(line[course_name]); //ne sera evidement pas sufisant
-					lessons.put(line[course_id], l);
-				}
-				else {
-					l=lessons.get(line[course_name]);
-				}
-				
+			//ici on verifie l'extention
+			if(true){
+				readCSV();
 			}
-
-			// il faut bien évidement rajouter ce qui manque..
-
-
+			else
+			{
+				readXLS();
+			}
 
 		}catch(IOException e){
 			System.err.println("can't update; bad/wrong files"); //faudra mieu gérer ca..
 			System.exit(-1); 
 		}
 
+	}
+
+	/*
+	 * Read from CSV files
+	 */
+	private void readCSV() throws IOException{
+
+		String[] line;
+		int[] indexLine;
+		/*
+		 * index 0 = year
+		 * index 1 = name
+		 * index 2 = teacher_firstName
+		 * index 3 = section
+		 * index 4 = courses_id
+		 * index 5 = teacher_id
+		 * index 6 = period
+		 * index 7 = teacher_lastName
+		 * index 8 = group
+		 * index 9 = class/group
+		 */
+
+		/*************************************************
+		 * first we start by scanning the file containing the courses
+		 * 
+		 * ***********************************************/
+
+		Scanner sc=new Scanner(courses);
+		line=sc.next().split(",");
+
+
+		// Il faudrait initier ces int avec la première ligne, 
+		// et l'idéal serait qu'il puisse le faire même avec un nom 
+		// approximatif (e.g. sans accents ni majuscules)
+		indexLine=new int[line.length];
+		putRightIndex(line, indexLine);
+
+		//faudrait enregister les champs restant à titre d'info..
+
+
+
+		while (sc.hasNext()) {
+
+
+			line=sc.nextLine().split(";");
+
+			Teacher t; 
+			Lesson l=new Lesson(); // je suis obligé, mais j'aime pas..
+
+			//now, t and l HAVE TO point to the right object !
+			if (!teachers.containsKey(line[indexLine[5]])){
+				t=new Teacher(line[indexLine[2]],line[indexLine[7]]);
+				teachers.put(line[indexLine[5]], t);
+				
+			}
+			else{
+				t=teachers.get(line[indexLine[5]]);
+			}
+
+			
+			if (!lessons.containsKey(line[indexLine[4]])){
+				l=new Lesson(line[indexLine[1]]); //concatène 1 et L1 dans le group
+				lessons.put(line[indexLine[4]], l);
+			}
+			else {
+				l=lessons.get(line[indexLine[4]]);
+			}
+			
+			// set section, teacher, periods , mode
+			l.setOtherInfo( line[indexLine[0]]+line[indexLine[3]]+line[indexLine[8]], t, line[indexLine[6]],line[indexLine[9]]);
+			
+			t.addCourse(line[indexLine[4]],l);
+			// p-e mettre une reference des prof dans l'objet course
+
+		}
+
+		// il faut bien évidement rajouter ce qui manque..
+
+
+
 
 		/*********************************************
 		 * Let's update all the maps
 		 *********************************************/
-		
+
 		// card map update
 		for (Lesson l: lessons.values()){
 			// faudra en creer n, avec n en fonction du type de cour que c'est.
 			// faire des vérif, ne peut pas etr une mauvaise chose non plus.
-			
+
 			cards.put(l.name, new Card(l)); 
 			//faudrait remplacer par l.getId() et l.getTeacher()
 		}
-		
-		
-		
-		
+
+
+
+
 		// pour des fins de tests uniquement; voici qq valeurs ajoutées manuelment
 		/**
-		String name;
-		name="réso";
-		lessons.put(name, new Lesson(name));
-		name="electronic";
-		lessons.put(name, new Lesson(name));
-		name="java";
-		lessons.put(name, new Lesson(name));
+	String name;
+	name="réso";
+	lessons.put(name, new Lesson(name));
+	name="electronic";
+	lessons.put(name, new Lesson(name));
+	name="java";
+	lessons.put(name, new Lesson(name));
 
-		name="vroman";
-		teachers.put(name, new Teacher(name));
-		name="buterfa";
-		teachers.put(name, new Teacher(name));
+	name="vroman";
+	teachers.put(name, new Teacher(name));
+	name="buterfa";
+	teachers.put(name, new Teacher(name));
 
-		cards.put("réso", new Card(lessons.get("réso"),teachers.get("vroman")));
-		cards.put("electronic", new Card(lessons.get("electronic"),teachers.get("buterfa")));
-		cards.put("java", new Card(lessons.get("java"),teachers.get("vroman")));
-		*/
-		
+	cards.put("réso", new Card(lessons.get("réso"),teachers.get("vroman")));
+	cards.put("electronic", new Card(lessons.get("electronic"),teachers.get("buterfa")));
+	cards.put("java", new Card(lessons.get("java"),teachers.get("vroman")));
+		 */
+
 		//System.out.println(lessons+"\n"+teachers+"\n"+cards); //debug
 		//students
 		//rooms
 
 
+	}
+
+
+	private void readXLS(){}
+
+	private void putRightIndex(String[] line, int[] indexLine){
+		/*
+		 * index 0 = year
+		 * index 1 = name
+		 * index 2 = teacher_firstName
+		 * index 3 = section
+		 * index 4 = courses_id
+		 * index 5 = teacher_id
+		 * index 6 = period
+		 * index 7 = teacher_lastName
+		 * index 8 = group
+		 */
+
+		int choix=1; // choix semestre
+		String sem = "ORCO_NombrePeriodeSemaineSemestre" + choix; 
+		
+		for (int i=0; i<line.length; i++){
+
+			if(line[i].equalsIgnoreCase("année"))
+				indexLine[0]=i;
+
+			else if(line[i].equalsIgnoreCase("Intitulé cours"))
+				indexLine[1]=i;
+
+			else if(line[i].equalsIgnoreCase("Prénom"))
+				indexLine[2]=i;
+
+			else if(line[i].equalsIgnoreCase("nom")){
+				indexLine[7]=i;
+				
+			}
+			else if(line[i].equalsIgnoreCase(sem))
+				indexLine[6]=i;
+			
+			else if(line[i].equalsIgnoreCase("CodeCours"))
+				indexLine[4]=i;
+			
+
+			else if(line[i].equalsIgnoreCase("PERS_Id"))
+				indexLine[5]=i;
+
+
+			else if(line[i].equalsIgnoreCase("groupe"))
+				indexLine[8]=i;
+
+
+			else if(line[i].equalsIgnoreCase("Intitulé Section"))
+				indexLine[3]=i;
+			
+			else if(line[i].equalsIgnoreCase("Mode"))
+				indexLine[9]=i;
+			
+		}
 	}
 
 	public Map<String,Card> getCards(){

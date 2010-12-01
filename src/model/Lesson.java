@@ -4,6 +4,10 @@ import java.util.*;
 
 public class Lesson {
 	String name;
+	String group; //Prochaine version en objet -- nombre etudiants dans un groupe
+	int period; //for the current semester
+	
+	
 	Map<Integer,Room> preferedClassRoom;
 	Teacher teacher;
 	// Map<Integer,Teacher> preferedTeachers;
@@ -30,6 +34,8 @@ public class Lesson {
 		preferedClassRoom.put(100, preferedLocal);
 		
 	}
+	
+	public void  setOtherInfo(String group, Teacher t, String periods, String mode){}
 	
 	public void putLocal(int priority,Room l){
 		preferedClassRoom.put(priority, l);
