@@ -39,7 +39,8 @@ public class OptionPanel extends JPanel {
 		choises_one_panel=new JPanel();
 		choises_one_panel.setLayout(new BoxLayout(choises_one_panel, BoxLayout.Y_AXIS));
 		choises_one_panel.setSize(40, 40); //va faloir chipoter ici..
-	    choises_one_Combo = new JComboBox(chooses[0]);
+	    DefaultComboBoxModel d=new DefaultComboBoxModel(chooses[0]);
+		choises_one_Combo = new JComboBox(d);
 		choises_one_panel.add(new JLabel("Horizontal options"));
 		choises_one_panel.add(choises_one_Combo);
 		
@@ -91,6 +92,8 @@ public class OptionPanel extends JPanel {
 		
 		//chooses[0]=new String[3];
 		chooses[0][0]="prof";
+		
+		
 		choises_one_panel.repaint();
 		choises_one_Combo.repaint();
 		this.repaint();
