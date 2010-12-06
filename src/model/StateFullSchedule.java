@@ -115,18 +115,7 @@ public class StateFullSchedule {
 
 		String[] line;
 		int[] indexLine;
-		/*
-		 * index 0 = year
-		 * index 1 = name
-		 * index 2 = teacher_firstName
-		 * index 3 = section
-		 * index 4 = courses_id
-		 * index 5 = teacher_id
-		 * index 6 = period
-		 * index 7 = teacher_lastName
-		 * index 8 = group
-		 * index 9 = class/group
-		 */
+
 
 		/*************************************************
 		 * first we start by scanning the file containing the courses
@@ -134,7 +123,7 @@ public class StateFullSchedule {
 		 * ***********************************************/
 
 		Scanner sc=new Scanner(courses);
-		line=sc.next().split(",");
+		line=sc.nextLine().split(";");
 
 
 		// Il faudrait initier ces int avec la première ligne, 
@@ -142,20 +131,27 @@ public class StateFullSchedule {
 		// approximatif (e.g. sans accents ni majuscules)
 		indexLine=new int[line.length];
 		putRightIndex(line, indexLine);
-
+	
 		//faudrait enregister les champs restant à titre d'info..
 
-
+		System.out.println(""+line.length+" "+indexLine.length+" -->"+line[0]+":"+line[1]+":"+line[2]);
 
 		while (sc.hasNext()) {
 
 
 			line=sc.nextLine().split(";");
-
+		
+			//System.out.println(""+line.length+" "+indexLine.length);
+			System.out.println("-----------------");
+			for (int i=0; i<9;i++)
+				System.out.print(""+i+":"+line[indexLine[i]]+" ");
+			
+			
+			
 			Teacher t; 
-			Lesson l=new Lesson(); // je suis obligé, mais j'aime pas..
+			Lesson l; 
 
-			//now, t and l HAVE TO point to the right object !
+			//now, t and l HAVE TO point to a correct object !
 			if (!teachers.containsKey(line[indexLine[5]])){
 				t=new Teacher(line[indexLine[2]],line[indexLine[7]]);
 				teachers.put(line[indexLine[5]], t);
@@ -234,9 +230,10 @@ public class StateFullSchedule {
 	private void readXLS(){}
 
 	private void putRightIndex(String[] line, int[] indexLine){
+		
 		/*
 		 * index 0 = year
-		 * index 1 = name
+		 * index 1 = course_name
 		 * index 2 = teacher_firstName
 		 * index 3 = section
 		 * index 4 = courses_id
@@ -244,6 +241,7 @@ public class StateFullSchedule {
 		 * index 6 = period
 		 * index 7 = teacher_lastName
 		 * index 8 = group
+		 * index 9 = class/group
 		 */
 
 		int choix=1; // choix semestre
@@ -251,25 +249,40 @@ public class StateFullSchedule {
 		
 		for (int i=0; i<line.length; i++){
 
-			if(line[i].equalsIgnoreCase("année"))
+			if(line[i].equalsIgnoreCase("année")){
 				indexLine[0]=i;
 
-			else if(line[i].equalsIgnoreCase("Intitulé cours"))
-				indexLine[1]=i;
+				System.out.println("anne "+i+": "+line[i]);
+			}
 
-			else if(line[i].equalsIgnoreCase("Prénom"))
+			else if(line[i].equalsIgnoreCase("Intitulé cours")){
+				indexLine[1]=i;
+				System.out.println("intitule cour: "+i+": "+line[i]);
+			}
+
+			else if(line[i].equalsIgnoreCase("Prénom")){
 				indexLine[2]=i;
+
+				System.out.println("prenom: "+i+": "+line[i]);
+			}
 
 			else if(line[i].equalsIgnoreCase("nom")){
 				indexLine[7]=i;
 				
+
+				System.out.println("nom: "+i+": "+line[i]);
 			}
-			else if(line[i].equalsIgnoreCase(sem))
+			else if(line[i].equalsIgnoreCase(sem)){
 				indexLine[6]=i;
+
+				System.out.println(sem+": "+i+": "+line[i]);
+			}
 			
-			else if(line[i].equalsIgnoreCase("CodeCours"))
+			else if(line[i].equalsIgnoreCase("CodeCours")){
 				indexLine[4]=i;
-			
+
+				System.out.println("CodeCours: "+i+": "+line[i]);
+			}
 
 			else if(line[i].equalsIgnoreCase("PERS_Id"))
 				indexLine[5]=i;

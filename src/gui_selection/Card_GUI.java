@@ -24,9 +24,11 @@ public class Card_GUI extends JPanel {
 		add(j);
 		this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 		this.setBackground(Color.lightGray);
-		this.setDropTarget(new DropTarget());
-		this.setTransferHandler(new CardTransferHandler());
-
+		//this.setDropTarget(new DropTarget());
+		//this.setTransferHandler(new CardTransferHandler());
+		
+		//System.out.println("la carte "+card.getHtmlRepresentation()+" a ete cree");
+		//System.out.println("-------------------------");
 
 	}
 }

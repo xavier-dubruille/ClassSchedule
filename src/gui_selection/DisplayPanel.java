@@ -3,6 +3,7 @@ package gui_selection;
 import javax.swing.*;
 import java.util.*;
 import model.*;
+import java.awt.*;
 
 public class DisplayPanel extends JPanel{
 
@@ -24,9 +25,11 @@ public class DisplayPanel extends JPanel{
 
 	private void printCard(){
 		for(Map.Entry<String,Card_GUI> e:content_by_courses.entrySet()){
-			add(e.getValue());
-			e.getValue().setVisible(true);
+			setLayout(new FlowLayout());
+			add((Card_GUI)e.getValue());
+			((Card_GUI)e.getValue()).setVisible(true);
 		}
+		
 	}
 	
 	/*
@@ -35,20 +38,25 @@ public class DisplayPanel extends JPanel{
 	 */
 	public void update_default(){
 		
+		this.setLayout(new GridLayout());
 		// First we create ours sortedMap..
 
 		for(Map.Entry<String,Card> e:state.cards.entrySet()){
 			content_by_courses.put(e.getKey(), new Card_GUI(e.getValue()));
 		}
 		
-		add(new JLabel("test"));
+		//add(new JLabel("test"));
 		
-		
+		System.out.println("componant number: "+this.getComponentCount());
 		// .. then we print it.
 		printCard();
 		repaint();
 		this.repaint();
 		this.setVisible(true);
+		this.revalidate();
+		this.validate();
+		System.out.println("done adding cards..");
+		System.out.println("componant number: "+this.getComponentCount());
 		
 	}
 	

@@ -43,7 +43,7 @@ public class Card {
 	
 
 	public String getHtmlRepresentation(){
-		return "<html>"+lesson.name+"<br>"+teacher.lastname+"<html>";
+		return "<html>"+lesson.name+"<html>";
 	}
 
 	public String toString(){
