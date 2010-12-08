@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gui_shedule;
+package gui_schedule;
 
 
 import javax.swing.*;

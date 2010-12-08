@@ -1,5 +1,5 @@
 
-import gui_shedule.*;
+import gui_schedule.*;
 import gui_selection.*;
 import model.StateFullSchedule;
 import javax.swing.*;

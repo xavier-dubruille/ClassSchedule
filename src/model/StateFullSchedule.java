@@ -22,6 +22,8 @@ public class StateFullSchedule {
 
 	String filesPath[];
 	File courses, classRooms, constrains;
+	
+	private boolean ready; //will be true when the object is usable
 
 
 	/**
@@ -29,6 +31,7 @@ public class StateFullSchedule {
 	 */
 	public StateFullSchedule(){
 
+		ready=false;
 		lessons=new TreeMap<String, Lesson>();
 		cards=new TreeMap<String, Card>();
 		rooms=new TreeMap<String, Room>();
@@ -134,7 +137,7 @@ public class StateFullSchedule {
 	
 		//faudrait enregister les champs restant à titre d'info..
 
-		System.out.println(""+line.length+" "+indexLine.length+" -->"+line[0]+":"+line[1]+":"+line[2]);
+		//System.out.println(""+line.length+" "+indexLine.length+" -->"+line[0]+":"+line[1]+":"+line[2]);
 
 		while (sc.hasNext()) {
 
@@ -142,9 +145,9 @@ public class StateFullSchedule {
 			line=sc.nextLine().split(";");
 		
 			//System.out.println(""+line.length+" "+indexLine.length);
-			System.out.println("-----------------");
-			for (int i=0; i<9;i++)
-				System.out.print(""+i+":"+line[indexLine[i]]+" ");
+			//System.out.println("-----------------");
+			//for (int i=0; i<9;i++)
+			//	System.out.print(""+i+":"+line[indexLine[i]]+" ");
 			
 			
 			
@@ -192,8 +195,10 @@ public class StateFullSchedule {
 			// faudra en creer n, avec n en fonction du type de cour que c'est.
 			// faire des vérif, ne peut pas etr une mauvaise chose non plus.
 
-			cards.put(l.name, new Card(l)); 
-			//faudrait remplacer par l.getId() et l.getTeacher()
+			// vu que plusieur prof peuvent donner un cours, mais qu'il ne peut 
+			// y avoir qu'un teacher par carton, on devra faire autrement ici..
+			cards.put(l.name, new Card(l,l.getTeacher())); 
+			//faudrait remplacer par l.getId() 
 		}
 
 
@@ -224,7 +229,9 @@ public class StateFullSchedule {
 		//rooms
 
 
+		ready=true;
 	}
+
 
 
 	private void readXLS(){}
@@ -252,36 +259,36 @@ public class StateFullSchedule {
 			if(line[i].equalsIgnoreCase("année")){
 				indexLine[0]=i;
 
-				System.out.println("anne "+i+": "+line[i]);
+				//System.out.println("anne "+i+": "+line[i]);
 			}
 
 			else if(line[i].equalsIgnoreCase("Intitulé cours")){
 				indexLine[1]=i;
-				System.out.println("intitule cour: "+i+": "+line[i]);
+				//System.out.println("intitule cour: "+i+": "+line[i]);
 			}
 
 			else if(line[i].equalsIgnoreCase("Prénom")){
 				indexLine[2]=i;
 
-				System.out.println("prenom: "+i+": "+line[i]);
+				//System.out.println("prenom: "+i+": "+line[i]);
 			}
 
 			else if(line[i].equalsIgnoreCase("nom")){
 				indexLine[7]=i;
 				
 
-				System.out.println("nom: "+i+": "+line[i]);
+				//System.out.println("nom: "+i+": "+line[i]);
 			}
 			else if(line[i].equalsIgnoreCase(sem)){
 				indexLine[6]=i;
 
-				System.out.println(sem+": "+i+": "+line[i]);
+				//System.out.println(sem+": "+i+": "+line[i]);
 			}
 			
 			else if(line[i].equalsIgnoreCase("CodeCours")){
 				indexLine[4]=i;
 
-				System.out.println("CodeCours: "+i+": "+line[i]);
+				//System.out.println("CodeCours: "+i+": "+line[i]);
 			}
 
 			else if(line[i].equalsIgnoreCase("PERS_Id"))
@@ -304,7 +311,17 @@ public class StateFullSchedule {
 	public Map<String,Card> getCards(){
 		return cards;
 	}
+	
+	public Map<String,Teacher> getTeachers(){
+		return teachers;
+	}
 
+	public Map<String,Room> getClassRoom(){
+		return rooms;
+	}
+
+	
+	
 	public void setFilesPath(String filesPath[]){
 		this.filesPath=filesPath;
 	}
@@ -312,6 +329,9 @@ public class StateFullSchedule {
 	public String[] getFilesPath(){
 		return filesPath;
 	}
-
+	
+	public boolean isReady(){
+		return ready;
+	}
 
 }

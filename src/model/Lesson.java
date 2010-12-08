@@ -35,7 +35,9 @@ public class Lesson {
 		
 	}
 	
-	public void  setOtherInfo(String group, Teacher t, String periods, String mode){}
+	public void  setOtherInfo(String group, Teacher t, String periods, String mode){
+		this.teacher=t;
+	}
 	
 	public void putLocal(int priority,Room l){
 		preferedClassRoom.put(priority, l);

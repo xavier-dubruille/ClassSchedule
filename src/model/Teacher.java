@@ -4,27 +4,29 @@ import java.util.TreeMap;
 import java.util.Map;
 
 public class Teacher {
-	String firstname;
-	String lastname;
+	String firstName;
+	String lastName;
 
 	Map<String, Lesson> lessons;
 	Map<Integer,Room> preferedClassRoom;
-	// we have to had a "prefered schedule"
+	// we have to had a "preferred schedule"
 	
 	public Teacher(){
+		firstName="not set";
+		lastName="not set";
 		lessons=new TreeMap<String, Lesson>();
 		preferedClassRoom =new TreeMap<Integer, Room>();
 	}
-	public Teacher(String firstname, String lastname){
+	public Teacher(String firstName, String lastName){
 		this();
-		this.firstname=firstname;
-		this.lastname=lastname;
+		this.firstName=firstName;
+		this.lastName=lastName;
 	}
 	
-	public Teacher(String firstname, String lastname, String lesson_id){
+	public Teacher(String firstName, String lastName, String lesson_id){
 		this();
-		this.firstname=firstname;
-		this.lastname=lastname;
+		this.firstName=firstName;
+		this.lastName=lastName;
 	}
 	
 	public void putLocal(int priority,Room l){
@@ -35,6 +37,14 @@ public class Teacher {
 		//if (lessons.size()==0)
 		lessons.put(id,l);
 		
+	}
+	
+	public String getFirstName(){
+		return firstName;
+	}
+	
+	public String getLastName(){
+		return lastName;
 	}
 	
 }

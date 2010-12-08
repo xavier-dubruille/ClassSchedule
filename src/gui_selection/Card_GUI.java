@@ -13,8 +13,12 @@ import model.Card;
 
 public class Card_GUI extends JPanel {
 
+	private Card card;
 	public Card_GUI(Card card){
+		
 		super();
+		this.card=card;
+		
 		setMaximumSize(new Dimension(140,50));
 		setPreferredSize(new Dimension(140,50));
 
@@ -30,5 +34,13 @@ public class Card_GUI extends JPanel {
 		//System.out.println("la carte "+card.getHtmlRepresentation()+" a ete cree");
 		//System.out.println("-------------------------");
 
+	}
+	
+	public Card getCard(){
+		return card;
+	}
+	
+	public String toSrring(){
+		return card.toString();
 	}
 }

@@ -2,29 +2,33 @@ package gui_selection;
 
 import javax.swing.*;
 import java.util.*;
+
 import model.*;
 import java.awt.*;
 
 public class DisplayPanel extends JPanel{
 
+	SortedMap<String,Card_GUI> gui_cards;
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
-	SortedMap<String,Card_GUI> content_by_courses;
+	
 
 	StateFullSchedule state;
-	public DisplayPanel(StateFullSchedule state){
+	public DisplayPanel(StateFullSchedule state,SortedMap<String,Card_GUI> gui_cards){
+		
+		this.gui_cards=gui_cards;
 		
 		//this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		this.state=state;
 		
 		// initiate all maps..
-		content_by_courses=new TreeMap<String,Card_GUI>();
+		
 		
 	}
 
 
 	private void printCard(){
-		for(Map.Entry<String,Card_GUI> e:content_by_courses.entrySet()){
+		for(Map.Entry<String,Card_GUI> e:gui_cards.entrySet()){
 			setLayout(new FlowLayout());
 			add((Card_GUI)e.getValue());
 			((Card_GUI)e.getValue()).setVisible(true);
@@ -42,7 +46,7 @@ public class DisplayPanel extends JPanel{
 		// First we create ours sortedMap..
 
 		for(Map.Entry<String,Card> e:state.cards.entrySet()){
-			content_by_courses.put(e.getKey(), new Card_GUI(e.getValue()));
+			gui_cards.put(e.getKey(), new Card_GUI(e.getValue()));
 		}
 		
 		//add(new JLabel("test"));
