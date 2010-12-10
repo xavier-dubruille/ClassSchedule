@@ -256,18 +256,18 @@ public class StateFullSchedule {
 		
 		for (int i=0; i<line.length; i++){
 
-			if(line[i].equalsIgnoreCase("annÃ©e")){
+			if(line[i].equalsIgnoreCase("annŽe")){
 				indexLine[0]=i;
 
 				//System.out.println("anne "+i+": "+line[i]);
 			}
 
-			else if(line[i].equalsIgnoreCase("IntitulÃ© cours")){
+			else if(line[i].equalsIgnoreCase("IntitulŽ cours")){
 				indexLine[1]=i;
 				//System.out.println("intitule cour: "+i+": "+line[i]);
 			}
 
-			else if(line[i].equalsIgnoreCase("PrÃ©nom")){
+			else if(line[i].equalsIgnoreCase("PrŽnom")){
 				indexLine[2]=i;
 
 				//System.out.println("prenom: "+i+": "+line[i]);
@@ -299,7 +299,7 @@ public class StateFullSchedule {
 				indexLine[8]=i;
 
 
-			else if(line[i].equalsIgnoreCase("IntitulÃ© Section"))
+			else if(line[i].equalsIgnoreCase("IntitulŽ Section"))
 				indexLine[3]=i;
 			
 			else if(line[i].equalsIgnoreCase("Mode"))
@@ -317,7 +317,7 @@ public class StateFullSchedule {
 	}
 
 	public Map<String,Room> getClassRoom(){
-		return rooms;
+		return rooms; 
 	}
 
 	

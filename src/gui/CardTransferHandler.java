@@ -1,67 +1,123 @@
 package gui;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.datatransfer.*;
+import gui_selection.*;
 
-public class CardTransferHandler extends TransferHandler {
+public class CardTransferHandler extends TransferHandler{
 
-	Image draged;
-            
-	public CardTransferHandler(){
-		super();
-		draged=new ImageIcon("images/blank.png").getImage();
+	private static final DataFlavor flavors[] = { DataFlavor.imageFlavor };
+
+	private Image image;
+
+	public int getSourceActions(JComponent c) {
+		return TransferHandler.MOVE;
 	}
-	/*
-    public boolean canImport(TransferHandler.TransferSupport info) {
-    	
-    	System.out.println("canImport");
-        // Check for String flavor
-        if (!info.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-            return false;
-        }
-        return true;
-   }
-*/
-    protected Transferable createTransferable(JComponent c) {
-    	System.out.println("transferable");
-    	return new StringSelection(exportString(c));
-    }
-    
-    public int getSourceActions(JComponent c) {
-        return TransferHandler.COPY_OR_MOVE;
-    }
-    
 
-    
-    protected void exportDone(JComponent c, Transferable data, int action) {
-        cleanup(c, action == TransferHandler.MOVE);
-    }
+	public boolean canImport(TransferHandler.TransferSupport suport) {
+		if(suport.isDrop())
+			System.out.println("canImport: isDrop");
+		else
+			System.out.println("canImport: is cut/paste !");
+		return true; 
+		/*
+		    if (!(comp instanceof JLabel) && !(comp instanceof AbstractButton)) {
+		      return false;
+		    }
+		    for (int i = 0, n = flavor.length; i < n; i++) {
+		      for (int j = 0, m = flavors.length; j < m; j++) {
+		        if (flavor[i].equals(flavors[j])) {
+		          return true;
+		        }
+		      }
+		    }
+		    return false;*/
+	}
 
-    //Bundle up the selected items in the list
-    //as a single string, for export.
-    protected String exportString(JComponent c) {
-        // JPanel jp = (JPanel)c;
-        
-    	System.out.println("export String");
-        return c.getClass().toString();
-    }
+	//ne devrait pas exister ?
+	protected  void 	exportDone(JComponent source, Transferable data, int action) {
+		System.out.println("export done");
+	}
 
-    //Take the incoming string and wherever there is a
-    //newline, break it into a separate item in the list.
-    protected void importString(JComponent c, String str) {
- 
-        System.out.println(str);
-    }
-    
-    //If the remove argument is true, the drop has been
-    //successful and it's time to remove the selected items 
-    //from the list. If the remove argument is false, it
-    //was a Copy operation and the original list is left
-    //intact.
-    protected void cleanup(JComponent c, boolean remove) {
-     }
-    
+	public Transferable createTransferable(JComponent comp) {
+		// Clear
+		
+		return new StringSelection(((Card_GUI)comp).toSrring());
+		/*image = null;
 
+		    if (comp instanceof JLabel) {
+		      JLabel label = (JLabel) comp;
+		      Icon icon = label.getIcon();
+		      if (icon instanceof ImageIcon) {
+		        image = ((ImageIcon) icon).getImage();
+		        return this;
+		      }
+		    } else if (comp instanceof AbstractButton) {
+		      AbstractButton button = (AbstractButton) comp;
+		      Icon icon = button.getIcon();
+		      if (icon instanceof ImageIcon) {
+		        image = ((ImageIcon) icon).getImage();
+		        return this;
+		      }
+		    }
+		    return null;*/
+	}
+
+	// juste qq tests..
+	public static Action getCopyAction(){
+		System.out.println("copy action");
+		return null;
+	}
+	public static Action getCutAction(){
+		System.out.println("cut action");
+		return null;
+	}
+	public static Action getPasteAction() {
+		System.out.println("paste action");
+		return null;
+	}
+	public boolean importData(JComponent comp, Transferable t) {
+		System.out.println("importData");
+		return true;
+		/*
+			  if (comp instanceof JLabel) {
+		      JLabel label = (JLabel) comp;
+		      if (t.isDataFlavorSupported(flavors[0])) {
+		        try {
+		          image = (Image) t.getTransferData(flavors[0]);
+		          ImageIcon icon = new ImageIcon(image);
+		          label.setIcon(icon);
+		          return true;
+		        } catch (UnsupportedFlavorException ignored) {
+		        } catch (IOException ignored) {
+		        }
+		      }
+		    } else if (comp instanceof AbstractButton) {
+		      AbstractButton button = (AbstractButton) comp;
+		      if (t.isDataFlavorSupported(flavors[0])) {
+		        try {
+		          image = (Image) t.getTransferData(flavors[0]);
+		          ImageIcon icon = new ImageIcon(image);
+		          button.setIcon(icon);
+		          return true;
+		        } catch (UnsupportedFlavorException ignored) {
+		        } catch (IOException ignored) {
+		        }
+		      }
+		    }
+		    return false;
+		 */
+	}
+
+	// Transferable
+
+
+	public DataFlavor[] getTransferDataFlavors() {
+		return flavors;
+	}
+
+	public boolean isDataFlavorSupported(DataFlavor flavor) {
+		return true; // flavors[0].equals(flavor);
+	}
 }

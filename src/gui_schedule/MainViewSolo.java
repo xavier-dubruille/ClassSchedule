@@ -41,6 +41,7 @@ public class MainViewSolo extends JPanel{
 			add(timeBoxes[i]);
 		}
 		
+		
 	}
 	
 	public void setScheduleView(Teacher t){
