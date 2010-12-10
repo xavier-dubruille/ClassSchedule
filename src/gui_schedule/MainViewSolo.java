@@ -1,5 +1,7 @@
 package gui_schedule;
 
+import gui.CardTransferHandler;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -19,6 +21,7 @@ public class MainViewSolo extends JPanel{
 	public MainViewSolo(StateFullSchedule state){
 		this.state=state;
 
+		
 		this.setLayout(new GridLayout(8,7));
 		timeBoxes=new TimeBox[56];
 

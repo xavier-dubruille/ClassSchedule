@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import gui_selection.*;
+import gui_schedule.*;
 
 public class CardTransferHandler extends TransferHandler{
 
@@ -78,7 +79,12 @@ public class CardTransferHandler extends TransferHandler{
 		return null;
 	}
 	public boolean importData(JComponent comp, Transferable t) {
-		System.out.println("importData");
+		try{
+		System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).toString());
+		}
+		catch (Exception e){
+			return false;
+		}
 		return true;
 		/*
 			  if (comp instanceof JLabel) {

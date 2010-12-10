@@ -1,6 +1,7 @@
 package gui_selection;
 
 import gui.CardTransferHandler;
+import gui.GUI_Propreties;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -21,15 +22,18 @@ public class Card_GUI extends JPanel {
 		super();
 		this.card=card;
 
-		setMaximumSize(new Dimension(140,50));
-		setPreferredSize(new Dimension(140,50));
+		setMaximumSize(GUI_Propreties.card_dimension);
+		setMinimumSize(GUI_Propreties.card_dimension);
+		setPreferredSize(GUI_Propreties.card_dimension);
+		setSize(GUI_Propreties.card_dimension);
+		
 
 		JLabel j=new JLabel(card.getHtmlRepresentation());
-		j.setFont(new Font("Helvetica", Font.PLAIN, 12));
+		j.setFont(GUI_Propreties.card_default_font);
 
 		add(j);
-		this.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
-		this.setBackground(Color.lightGray);
+		this.setBorder(GUI_Propreties.card_default_border);
+		this.setBackground(GUI_Propreties.card_default_background);
 		//this.setDropTarget(new DropTarget());
 		this.setTransferHandler(new CardTransferHandler());
 		this.addMouseListener(new MouseAdapter() {

@@ -2,7 +2,6 @@ package gui_selection;
 
 import model.StateFullSchedule;
 
-import gui.MainPanel;
 import gui_schedule.MyMenuBar;
 
 import java.awt.HeadlessException;
