@@ -39,7 +39,7 @@ public class FrameSelection extends JFrame {
 
 
 		//p-e d'autre map, pour simplifier la recherche..
-		SortedMap<String,Card_GUI> gui_cards=new TreeMap<String,Card_GUI>(); 
+		SortedMap<Integer,Card_GUI> gui_cards=new TreeMap<Integer,Card_GUI>(); 
 		
 		dp=new DisplayPanel(state,gui_cards);
 

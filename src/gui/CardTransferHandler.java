@@ -5,22 +5,29 @@ import java.awt.*;
 import java.awt.datatransfer.*;
 import gui_selection.*;
 import gui_schedule.*;
+import model.*;
 
 public class CardTransferHandler extends TransferHandler{
 
-	private static final DataFlavor flavors[] = { DataFlavor.imageFlavor };
+	StateFullSchedule state;
 
-	private Image image;
-
+	public CardTransferHandler(){
+	}
+	
+	public CardTransferHandler(StateFullSchedule state){
+		this.state=state;
+	}
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
 	}
 
 	public boolean canImport(TransferHandler.TransferSupport suport) {
+		/*
 		if(suport.isDrop())
 			System.out.println("canImport: isDrop");
 		else
 			System.out.println("canImport: is cut/paste !");
+		*/
 		return true; 
 		/*
 		    if (!(comp instanceof JLabel) && !(comp instanceof AbstractButton)) {
@@ -36,15 +43,15 @@ public class CardTransferHandler extends TransferHandler{
 		    return false;*/
 	}
 
-	//ne devrait pas exister ?
-	protected  void 	exportDone(JComponent source, Transferable data, int action) {
+	//on mettrait la cardGUI en setvisible false ici?
+	protected  void exportDone(JComponent source, Transferable data, int action) {
 		System.out.println("export done");
 	}
 
 	public Transferable createTransferable(JComponent comp) {
 		// Clear
 		
-		return new StringSelection(((Card_GUI)comp).toSrring());
+		return new StringSelection(""+((Card_GUI)comp).getCard().getCardId());
 		/*image = null;
 
 		    if (comp instanceof JLabel) {
@@ -80,7 +87,8 @@ public class CardTransferHandler extends TransferHandler{
 	}
 	public boolean importData(JComponent comp, Transferable t) {
 		try{
-		System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).toString());
+			state.getCards().get(Integer.parseInt((String)t.getTransferData(DataFlavor.stringFlavor))).setTimePeriod(((TimeBox)comp).getTimePeriod());
+		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
 		}
 		catch (Exception e){
 			return false;
@@ -116,14 +124,5 @@ public class CardTransferHandler extends TransferHandler{
 		 */
 	}
 
-	// Transferable
 
-
-	public DataFlavor[] getTransferDataFlavors() {
-		return flavors;
-	}
-
-	public boolean isDataFlavorSupported(DataFlavor flavor) {
-		return true; // flavors[0].equals(flavor);
-	}
 }

@@ -33,7 +33,11 @@ public class Card_GUI extends JPanel {
 
 		add(j);
 		this.setBorder(GUI_Propreties.card_default_border);
-		this.setBackground(GUI_Propreties.card_default_background);
+		if(card.getTimePeriod()==0)
+			this.setBackground(GUI_Propreties.card_default_background);
+		else
+			this.setBackground(GUI_Propreties.card_color_placed);
+		
 		//this.setDropTarget(new DropTarget());
 		this.setTransferHandler(new CardTransferHandler());
 		this.addMouseListener(new MouseAdapter() {

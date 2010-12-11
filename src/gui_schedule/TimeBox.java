@@ -10,15 +10,20 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import model.*;
 
 public class TimeBox extends JPanel {
 
 	JLabel jl;
 	String name;
+	private int timePeriod;
+	private StateFullSchedule state;
 	
-	TimeBox(String s){
+	TimeBox(String s, int timePeriod,StateFullSchedule state){
 		super();
 
+		this.timePeriod=timePeriod;
+		this.state=state;
 		name=s;
 		setMaximumSize(GUI_Propreties.card_dimension);
 		setMinimumSize(GUI_Propreties.card_dimension);
@@ -34,7 +39,8 @@ public class TimeBox extends JPanel {
 		//this.setDropTarget(new DropTarget());
 		//this.setTransferHandler(new CardTransferHandler());
 
-		this.setTransferHandler(new CardTransferHandler());
+		//il faudrait faire cela seleument sur les bonne cases..
+		this.setTransferHandler(new CardTransferHandler(state));
 
 	}
 	
@@ -46,4 +52,11 @@ public class TimeBox extends JPanel {
 		return "timebox: "+name;
 	}
 
+	public int getTimePeriod(){
+		return timePeriod;
+	}
+	
+	public void setTimePeriod(int timePeriod){
+		this.timePeriod=timePeriod;
+	}
 }

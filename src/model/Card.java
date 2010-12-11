@@ -10,7 +10,8 @@ public class Card {
 	private Teacher teacher;
 	private Lesson lesson;
 	private int smiley; //se sera mieu de creer un enum pour cela
-	int timeBox; // =dp (day,period)
+	private int timePeriod; // =DP (Day,Period)
+	private int cardId;
 	
 	/**
 	 * for tests only !
@@ -34,16 +35,28 @@ public class Card {
 	}
 	*/
 	
-	public Card(Lesson lesson, Teacher teacher){
+	public Card(Lesson lesson, Teacher teacher,int cardId){
 		this.lesson=lesson;
 		this.teacher=teacher;
+		this.cardId=cardId;
 		//System.out.println(teacher.getFirstName());
 		smiley=0;
+		timePeriod=0;
+	}
+	public int getCardId(){
+		return cardId;
 	}
 	
-
+	public void setTimePeriod(int time){
+		timePeriod=time;
+	}
+	
+	public int getTimePeriod(){
+		return timePeriod;
+	}
+	
 	public void update(){
-		
+		System.out.println("attention la methode Card.update() est vide! ");
 	}
 	
 

@@ -15,12 +15,13 @@ import javax.swing.JOptionPane;
 public class StateFullSchedule {
 
 	Map<String, Lesson> lessons;
-	public Map<String, Card> cards;
+	public Map<Integer, Card> cards;
 	Map<String, Room> rooms;
 	Map<String, Teacher> teachers;
 	Map<String, Student> students;
 
 	String filesPath[];
+	String csvDelemiter;
 	File courses, classRooms, constrains;
 	
 	private boolean ready; //will be true when the object is usable
@@ -33,14 +34,14 @@ public class StateFullSchedule {
 
 		ready=false;
 		lessons=new TreeMap<String, Lesson>();
-		cards=new TreeMap<String, Card>();
+		cards=new TreeMap<Integer, Card>();
 		rooms=new TreeMap<String, Room>();
 		teachers=new TreeMap<String, Teacher>();
 		students=new TreeMap<String, Student>();
 
 
 		filesPath =new String[3];
-
+		csvDelemiter=";";
 	}
 
 
@@ -109,6 +110,23 @@ public class StateFullSchedule {
 			System.exit(-1); 
 		}
 
+
+		/*********************************************
+		 * Let's update all the maps
+		 *********************************************/
+
+		// card map update
+		for (Lesson l: lessons.values()){
+			// faudra en creer n, avec n en fonction du type de cour que c'est.
+			// faire des vérif, ne peut pas etr une mauvaise chose non plus.
+
+			// vu que plusieur prof peuvent donner un cours, mais qu'il ne peut 
+			// y avoir qu'un teacher par carton, on devra faire autrement ici..
+	
+			//faudrait remplacer par l.getId() 
+		}
+		
+		// theacher map update
 	}
 
 	/*
@@ -126,7 +144,9 @@ public class StateFullSchedule {
 		 * ***********************************************/
 
 		Scanner sc=new Scanner(courses);
-		line=sc.nextLine().split(";");
+		String firstLine=sc.nextLine();
+		setDelemiter(firstLine);
+		line=firstLine.split(csvDelemiter);
 
 
 		// Il faudrait initier ces int avec la première ligne, 
@@ -139,10 +159,11 @@ public class StateFullSchedule {
 
 		//System.out.println(""+line.length+" "+indexLine.length+" -->"+line[0]+":"+line[1]+":"+line[2]);
 
+		int cardId=0; //i.e. index
 		while (sc.hasNext()) {
 
 
-			line=sc.nextLine().split(";");
+			line=sc.nextLine().split(csvDelemiter);
 		
 			//System.out.println(""+line.length+" "+indexLine.length);
 			//System.out.println("-----------------");
@@ -154,7 +175,7 @@ public class StateFullSchedule {
 			Teacher t; 
 			Lesson l; 
 
-			//now, t and l HAVE TO point to a correct object !
+			//now, t and l HAVE TO point to a correct object, because we will use it
 			if (!teachers.containsKey(line[indexLine[5]])){
 				t=new Teacher(line[indexLine[2]],line[indexLine[7]]);
 				teachers.put(line[indexLine[5]], t);
@@ -178,55 +199,15 @@ public class StateFullSchedule {
 			
 			t.addCourse(line[indexLine[4]],l);
 			// p-e mettre une reference des prof dans l'objet course
-
+			
+			Card card=new Card(l,t,cardId);
+			cards.put(cardId,card); 
+			t.addCard(card);
+			cardId++;
+			
 		}
 
 		// il faut bien évidement rajouter ce qui manque..
-
-
-
-
-		/*********************************************
-		 * Let's update all the maps
-		 *********************************************/
-
-		// card map update
-		for (Lesson l: lessons.values()){
-			// faudra en creer n, avec n en fonction du type de cour que c'est.
-			// faire des vérif, ne peut pas etr une mauvaise chose non plus.
-
-			// vu que plusieur prof peuvent donner un cours, mais qu'il ne peut 
-			// y avoir qu'un teacher par carton, on devra faire autrement ici..
-			cards.put(l.name, new Card(l,l.getTeacher())); 
-			//faudrait remplacer par l.getId() 
-		}
-
-
-
-
-		// pour des fins de tests uniquement; voici qq valeurs ajoutées manuelment
-		/**
-	String name;
-	name="réso";
-	lessons.put(name, new Lesson(name));
-	name="electronic";
-	lessons.put(name, new Lesson(name));
-	name="java";
-	lessons.put(name, new Lesson(name));
-
-	name="vroman";
-	teachers.put(name, new Teacher(name));
-	name="buterfa";
-	teachers.put(name, new Teacher(name));
-
-	cards.put("réso", new Card(lessons.get("réso"),teachers.get("vroman")));
-	cards.put("electronic", new Card(lessons.get("electronic"),teachers.get("buterfa")));
-	cards.put("java", new Card(lessons.get("java"),teachers.get("vroman")));
-		 */
-
-		//System.out.println(lessons+"\n"+teachers+"\n"+cards); //debug
-		//students
-		//rooms
 
 
 		ready=true;
@@ -234,6 +215,13 @@ public class StateFullSchedule {
 
 
 
+	private void setDelemiter(String line){
+		if(line.split(";").length>2)
+			this.csvDelemiter=";";
+		else if(line.split(",").length>2)
+			this.csvDelemiter=",";
+	}
+	
 	private void readXLS(){}
 
 	private void putRightIndex(String[] line, int[] indexLine){
@@ -308,7 +296,7 @@ public class StateFullSchedule {
 		}
 	}
 
-	public Map<String,Card> getCards(){
+	public Map<Integer,Card> getCards(){
 		return cards;
 	}
 	

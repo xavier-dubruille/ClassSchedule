@@ -8,12 +8,12 @@ import java.awt.*;
 
 public class DisplayPanel extends JPanel{
 
-	SortedMap<String,Card_GUI> gui_cards;
+	SortedMap<Integer,Card_GUI> gui_cards;
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
 	
 
 	StateFullSchedule state;
-	public DisplayPanel(StateFullSchedule state,SortedMap<String,Card_GUI> gui_cards){
+	public DisplayPanel(StateFullSchedule state,SortedMap<Integer,Card_GUI> gui_cards){
 		
 		this.gui_cards=gui_cards;
 		
@@ -28,7 +28,7 @@ public class DisplayPanel extends JPanel{
 
 
 	private void printCard(){
-		for(Map.Entry<String,Card_GUI> e:gui_cards.entrySet()){
+		for(Map.Entry<Integer,Card_GUI> e:gui_cards.entrySet()){
 			setLayout(new FlowLayout());
 			add((Card_GUI)e.getValue());
 			((Card_GUI)e.getValue()).setVisible(true);
@@ -45,7 +45,7 @@ public class DisplayPanel extends JPanel{
 		this.setLayout(new GridLayout());
 		// First we create ours sortedMap..
 
-		for(Map.Entry<String,Card> e:state.cards.entrySet()){
+		for(Map.Entry<Integer,Card> e:state.cards.entrySet()){
 			gui_cards.put(e.getKey(), new Card_GUI(e.getValue()));
 		}
 		

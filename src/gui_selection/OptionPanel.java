@@ -14,12 +14,12 @@ public class OptionPanel extends JPanel {
 	String[] Option_teacher;
 	String[] Option_classRoom;
 	JPanel choises_one_panel;
-	SortedMap<String,Card_GUI> gui_cards;
+	SortedMap<Integer,Card_GUI> gui_cards;
 	
 	JComboBox choises_one_Combo,choises_two_Combo,choises_three_Combo;
 	//DefaultComboBoxModel def;
 	
-	public OptionPanel(DisplayPanel dp, StateFullSchedule state, SortedMap<String,Card_GUI> gui_cards){
+	public OptionPanel(DisplayPanel dp, StateFullSchedule state, SortedMap<Integer,Card_GUI> gui_cards){
 		this.state=state;
 		this.gui_cards=gui_cards;
 
