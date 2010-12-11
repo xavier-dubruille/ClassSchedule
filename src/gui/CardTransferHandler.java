@@ -87,7 +87,15 @@ public class CardTransferHandler extends TransferHandler{
 	}
 	public boolean importData(JComponent comp, Transferable t) {
 		try{
-			state.getCards().get(Integer.parseInt((String)t.getTransferData(DataFlavor.stringFlavor))).setTimePeriod(((TimeBox)comp).getTimePeriod());
+			TimeBox timeBox=(TimeBox)comp;
+			int cardId=Integer.parseInt((String)t.getTransferData(DataFlavor.stringFlavor));
+			
+			//place the card state
+			state.getCards().get(cardId).setTimePeriod(timeBox.getTimePeriod());
+			
+			//update the gui timeBox
+			timeBox.getView().updateView();
+			 
 		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
 		}
 		catch (Exception e){

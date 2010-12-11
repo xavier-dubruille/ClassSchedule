@@ -18,12 +18,14 @@ public class TimeBox extends JPanel {
 	String name;
 	private int timePeriod;
 	private StateFullSchedule state;
+	private MainViewSolo view;
 	
-	TimeBox(String s, int timePeriod,StateFullSchedule state){
+	TimeBox(String s, int timePeriod,StateFullSchedule state,MainViewSolo view){
 		super();
 
 		this.timePeriod=timePeriod;
 		this.state=state;
+		this.view=view;
 		name=s;
 		setMaximumSize(GUI_Propreties.card_dimension);
 		setMinimumSize(GUI_Propreties.card_dimension);
@@ -44,6 +46,9 @@ public class TimeBox extends JPanel {
 
 	}
 	
+	public MainViewSolo getView(){
+		return view;
+	}
 	public void setLabel(String s){
 		jl.setText(s);
 	}

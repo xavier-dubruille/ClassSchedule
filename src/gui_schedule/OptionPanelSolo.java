@@ -12,11 +12,12 @@ import javax.swing.JPanel;
 import model.StateFullSchedule;
 import model.Teacher;
 
-public class OptionPanelSolo extends JPanel {
-	StateFullSchedule state;
-	JComboBox teacherCombo;
-	MainViewSolo mvs;
-	String comb[];
+public class OptionPanelSolo extends JPanel  implements ActionListener{
+	private StateFullSchedule state;
+	private JComboBox teacherCombo;
+	private MainViewSolo mvs;
+	private String comb[];
+	private Teacher selectedTeacher;
 	
 	public OptionPanelSolo(StateFullSchedule state,MainViewSolo mvs){
 		this.state=state;
@@ -27,9 +28,41 @@ public class OptionPanelSolo extends JPanel {
 
 
 		teacherCombo=new JComboBox(new String[]{"vide"});
-		teacherCombo.addActionListener(new MyComboListener(mvs));
+		teacherCombo.addActionListener(this);
 		this.add(teacherCombo);
 	}
+	
+	public Teacher getSelectedTeacher(){
+		return selectedTeacher;
+	}
+	public void actionPerformed(ActionEvent e){
+		JComboBox cb = (JComboBox)e.getSource();
+		String SelectedItem = (String)cb.getSelectedItem();
+		//System.out.println(SelectedItem);
+
+		//let's set the main View Panel..
+		selectedTeacher=findTeacher(SelectedItem);
+		mvs.setScheduleView(selectedTeacher);
+	}
+	
+	/*
+	 * return the Teacher corresponding to the selectedItem
+	 */
+	private Teacher findTeacher(String selectedItem){
+		
+		// not very optimized yet.. but it won't make a big difference anyway.
+		
+		
+		for (Teacher t: state.getTeachers().values())
+			if (selectedItem.equalsIgnoreCase(t.getFirstName()+" "+t.getLastName()))
+				return t;
+		
+		// if we're here, well, we haven't found it, and it's wrong..
+		System.err.println("Etrange Etrange.. problem in OptionPanelSolo.findTeacher(..)");
+		System.exit(-3);
+		return new Teacher(); //stupid, but left for compiling reasons..
+	}
+
 
 	public void update_from_state(){
 		if(!state.isReady()){
@@ -45,40 +78,5 @@ public class OptionPanelSolo extends JPanel {
 		this.repaint();		
 	}
 
-	private class MyComboListener implements ActionListener{
-
-
-		MainViewSolo mvs;
-		public MyComboListener(MainViewSolo mvs){
-			this.mvs=mvs;
-		}
-		public void actionPerformed(ActionEvent e){
-			JComboBox cb = (JComboBox)e.getSource();
-			String SelectedItem = (String)cb.getSelectedItem();
-			//System.out.println(SelectedItem);
-
-			//let's set the main View Panel..
-			
-			mvs.setScheduleView(findTeacher(SelectedItem));
-		}
-		
-		/*
-		 * return the Teacher corresponding to the selectedItem
-		 */
-		private Teacher findTeacher(String selectedItem){
-			
-			// not very optimized yet.. but it won't make a big difference anyway.
-			
-			
-			for (Teacher t: state.getTeachers().values())
-				if (selectedItem.equalsIgnoreCase(t.getFirstName()+" "+t.getLastName()))
-					return t;
-			
-			// if we're here, well, we haven't found it, and it's wrong..
-			System.err.println("Etrange Etrange.. problem in OptionPanelSolo.findTeacher(..)");
-			System.exit(-3);
-			return new Teacher(); //stupid, but left for compiling reasons..
-		}
-
-	}
+	
 }

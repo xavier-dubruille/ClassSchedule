@@ -27,7 +27,7 @@ public class OptionPanel extends JPanel {
 		this.setPreferredSize(new Dimension(60,60));
 		
 
-		Option_general=new String[]{"placé","non placé","placé posant problème","tous"};
+		Option_general=new String[]{"place","non place","place posant probleme","tous"};
 		Option_teacher=new String[]{"tous"};
 		Option_classRoom=new String[]{"tous"};
 		
@@ -38,7 +38,7 @@ public class OptionPanel extends JPanel {
 		choises_one_panel.setSize(40, 40); //va faloir chipoter ici..
 		choises_one_Combo = new JComboBox(Option_general);
 		choises_one_Combo.addActionListener(new MyItemListener(0));
-		choises_one_panel.add(new JLabel("Options général"));
+		choises_one_panel.add(new JLabel("Options general"));
 		choises_one_panel.add(choises_one_Combo);
 		
 
@@ -138,8 +138,11 @@ public class OptionPanel extends JPanel {
 				{
 					
 					if(SelectedItem.equalsIgnoreCase(c.getCard().getTeacher().getFirstName()+" "+c.getCard().getTeacher().getLastName())){
-						c.setVisible(false);
+						c.setVisible(true);
+						
 					}
+					else
+						c.setVisible(false);
 					
 				}
 			}		

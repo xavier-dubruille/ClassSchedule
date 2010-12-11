@@ -44,6 +44,7 @@ public class FrameSchedule extends JFrame {
 
 		this.getContentPane().add(jt);
 
+		this.pack();
 		setVisible(true);
 	}
 	
