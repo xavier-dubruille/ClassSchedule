@@ -29,10 +29,7 @@ public class FrameSelection extends JFrame {
 
 	public FrameSelection(StateFullSchedule state) throws HeadlessException {
 		super("Selection"); //faudrait p-e attraper la headLessException ici..
-
-
-		jl=new JList(); //tests
-		jl.add(new JLabel("testeuu"));
+		
 		
 		setBounds( 100, 100, 260, 850);
 		//setDefaultCloseOperation(EXIT_ON_CLOSE); //Exit_on_close n'est sans doute pas ce qu'on veut ici..
@@ -47,7 +44,7 @@ public class FrameSelection extends JFrame {
 		dp.setVisible(true);
 		op=new OptionPanel(dp, state,gui_cards);
 
-		scroll_display=new JScrollPane(dp,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scroll_display=new JScrollPane(dp,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		//scroll_display.add(dp);
 		 dp.setBackground(Color.blue);
 		
@@ -72,10 +69,10 @@ public class FrameSelection extends JFrame {
 		// dp.setAlignmentX(LEFT_ALIGNMENT);
 		
 		dp.repaint();
-		dp.setSize(1000, 800);
-		dp.setPreferredSize(new Dimension(500,500));
-		dp.setMinimumSize(new Dimension(500,500));
-		dp.setMaximumSize(new Dimension(500,500));
+		//dp.setSize(50, 9900);
+		dp.setPreferredSize(new Dimension(50,9900));
+		//dp.setMinimumSize(new Dimension(500,9990));
+		//dp.setMaximumSize(new Dimension(500,9990));
 	
 
 

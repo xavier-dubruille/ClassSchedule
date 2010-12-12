@@ -17,9 +17,12 @@ public class DisplayPanel extends JPanel{
 		
 		this.gui_cards=gui_cards;
 		
+		//this.setPreferredSize(new Dimension(30,9999));
+		
 		//this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		this.state=state;
+		setLayout(new FlowLayout());
 		
 		// initiate all maps..
 		
@@ -29,7 +32,7 @@ public class DisplayPanel extends JPanel{
 
 	private void printCard(){
 		for(Map.Entry<Integer,Card_GUI> e:gui_cards.entrySet()){
-			setLayout(new FlowLayout());
+			//setLayout(new FlowLayout());
 			add((Card_GUI)e.getValue());
 			((Card_GUI)e.getValue()).setVisible(true);
 		}
@@ -42,7 +45,7 @@ public class DisplayPanel extends JPanel{
 	 */
 	public void update_default(){
 		
-		this.setLayout(new GridLayout());
+		//this.setLayout(new GridLayout());
 		// First we create ours sortedMap..
 
 		for(Map.Entry<Integer,Card> e:state.cards.entrySet()){

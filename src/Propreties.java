@@ -11,6 +11,6 @@ import java.awt.*;
  */
 public class Propreties {
 	
-	static Color panelColor=Color.BLUE; //exempl
+
 
 }

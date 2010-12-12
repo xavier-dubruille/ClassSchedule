@@ -39,7 +39,7 @@ public class FrameSchedule extends JFrame {
 
 		// ... and the tabbedPane
 		JTabbedPane jt=new JTabbedPane();
-		jt.addTab("mode normal", soloTab); //faudrait prendre l'autre addTab, avec le tip
+		jt.addTab("mode normal", soloTab); //faudrait prendre l'autre methode addTab(...), avec le parametre tip
 		jt.addTab("mode comparaison", compareTab);
 
 		this.getContentPane().add(jt);

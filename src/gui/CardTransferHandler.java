@@ -45,7 +45,9 @@ public class CardTransferHandler extends TransferHandler{
 
 	//on mettrait la cardGUI en setvisible false ici?
 	protected  void exportDone(JComponent source, Transferable data, int action) {
-		System.out.println("export done");
+		//System.out.println("export done");
+		
+		
 	}
 
 	public Transferable createTransferable(JComponent comp) {
@@ -89,14 +91,20 @@ public class CardTransferHandler extends TransferHandler{
 		try{
 			TimeBox timeBox=(TimeBox)comp;
 			int cardId=Integer.parseInt((String)t.getTransferData(DataFlavor.stringFlavor));
+			Card c=state.getCards().get(cardId);
 			
 			//place the card state
-			state.getCards().get(cardId).setTimePeriod(timeBox.getTimePeriod());
+			c.setTimePeriod(timeBox.getTimePeriod());
 			
 			//update the gui timeBox
 			timeBox.getView().updateView();
-			 
+			
+			//then update the cards selection view
+			
+			
 		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
+			
+			
 		}
 		catch (Exception e){
 			return false;
