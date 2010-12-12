@@ -20,12 +20,11 @@ public class TimeBox extends JPanel {
 	private StateFullSchedule state;
 	private MainViewSolo view;
 	
-	TimeBox(String s, int timePeriod,StateFullSchedule state,MainViewSolo view){
+	/*
+	 * constructor without TransferHandler
+	 */
+	TimeBox(String s){
 		super();
-
-		this.timePeriod=timePeriod;
-		this.state=state;
-		this.view=view;
 		name=s;
 		setMaximumSize(GUI_Propreties.card_dimension);
 		setMinimumSize(GUI_Propreties.card_dimension);
@@ -38,6 +37,14 @@ public class TimeBox extends JPanel {
 		add(jl);
 		this.setBorder(GUI_Propreties.card_default_border);
 		this.setBackground(Color.lightGray);
+	}
+	TimeBox(String s, int timePeriod,StateFullSchedule state,MainViewSolo view){
+		
+		this(s);
+		this.timePeriod=timePeriod;
+		this.state=state;
+		this.view=view;
+
 		//this.setDropTarget(new DropTarget());
 		//this.setTransferHandler(new CardTransferHandler());
 

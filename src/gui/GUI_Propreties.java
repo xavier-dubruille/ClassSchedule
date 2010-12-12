@@ -15,10 +15,10 @@ import javax.swing.border.*;
 public class GUI_Propreties {
 	
 
-	private static int size=160;
+	private static int size=110;
 	private static int ratio=2;
 	
-	public static Dimension card_dimension=new Dimension(160,80);
+	public static Dimension card_dimension=new Dimension(size,size/ratio);
 	public static Color card_default_background=Color.lightGray;
 	public static Color card_color_placed=Color.green;
 	public static Font card_default_font=new Font("Helvetica", Font.PLAIN, 10);

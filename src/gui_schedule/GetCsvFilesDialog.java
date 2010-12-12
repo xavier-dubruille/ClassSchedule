@@ -28,7 +28,9 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		lesson.setLayout(new BoxLayout(lesson,BoxLayout.X_AXIS));
 
 		lesson.add(Box.createHorizontalGlue());
-		lesson.add(new JLabel("Fichier contenant les cours"));
+		JLabel jl=new JLabel("Fichier contenant les cours");
+		//jl.setPreferredSize(12)
+		lesson.add(jl);
 
 		lesson.add(Box.createHorizontalGlue());
 		jt_lesson=new JTextField(20);
