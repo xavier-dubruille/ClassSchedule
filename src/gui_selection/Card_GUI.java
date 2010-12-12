@@ -17,11 +17,13 @@ import model.Card;
 public class Card_GUI extends JPanel {
 
 	private Card card;
-	public Card_GUI(Card card){
+	private DisplayPanel dp;
+	public Card_GUI(Card card, DisplayPanel dp){
 
 		super();
 		this.card=card;
-
+		this.dp=dp;
+		
 		setMaximumSize(GUI_Propreties.card_dimension);
 		setMinimumSize(GUI_Propreties.card_dimension);
 		setPreferredSize(GUI_Propreties.card_dimension);
@@ -67,16 +69,20 @@ public class Card_GUI extends JPanel {
 					//}
 				}
 				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
+
 			}
 		});
 
 		//System.out.println("la carte "+card.getHtmlRepresentation()+" a ete cree");
-		//System.out.println("-------------------------");
-
+		//
 	}
 
 	public Card getCard(){
 		return card;
+	}
+	
+	public DisplayPanel getDisplayPanel(){
+		return dp;
 	}
 
 	public String toSrring(){

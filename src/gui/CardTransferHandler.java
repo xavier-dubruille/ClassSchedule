@@ -9,13 +9,22 @@ import model.*;
 
 public class CardTransferHandler extends TransferHandler{
 
-	StateFullSchedule state;
+	private StateFullSchedule state;
+	private Card_GUI card_gui;
+	private DisplayPanel dp;
 
-	public CardTransferHandler(){
+	/*
+	 * constructor for Card_GUI
+	 */
+	public CardTransferHandler(){	
 	}
 	
-	public CardTransferHandler(StateFullSchedule state){
+	/*
+	 * constructor for TimeBox
+	 */
+	public CardTransferHandler(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;
+		this.dp=dp;
 	}
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
@@ -43,10 +52,27 @@ public class CardTransferHandler extends TransferHandler{
 		    return false;*/
 	}
 
-	//on mettrait la cardGUI en setvisible false ici?
-	protected  void exportDone(JComponent source, Transferable data, int action) {
-		//System.out.println("export done");
+	public  void exportDone(Component j,Transferable t){
+		System.out.println("export done v1");
+	}
+	public  void exportDone(TransferHandler.TransferSupport suport) {
 		
+		System.out.println("export done v2");
+		/*
+		System.out.println("card_gui= "+card_gui);
+		
+		try{
+
+
+			//TimeBox timeBox=(TimeBox)suport.getComponent();
+			//int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
+			card_gui.getDisplayPanel().updateView();
+				
+		}catch (Exception e){
+			System.err.println("Exception in CardTransferHandler.exportDone(..)");
+			e.printStackTrace();
+		}
+		*/
 		
 	}
 
@@ -87,10 +113,12 @@ public class CardTransferHandler extends TransferHandler{
 		System.out.println("paste action");
 		return null;
 	}
-	public boolean importData(JComponent comp, Transferable t) {
+	public boolean importData(TransferHandler.TransferSupport suport) {
 		try{
-			TimeBox timeBox=(TimeBox)comp;
-			int cardId=Integer.parseInt((String)t.getTransferData(DataFlavor.stringFlavor));
+			
+			
+			TimeBox timeBox=(TimeBox)suport.getComponent();
+			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
 			Card c=state.getCards().get(cardId);
 			
 			//place the card state
@@ -99,14 +127,16 @@ public class CardTransferHandler extends TransferHandler{
 			//update the gui timeBox
 			timeBox.getView().updateView();
 			
-			//then update the cards selection view
-			
+			//update the selection view
+			dp.updateStatusCard();
+		
 			
 		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
 			
 			
 		}
 		catch (Exception e){
+			System.err.println("exception..");
 			return false;
 		}
 		return true;

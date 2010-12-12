@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.StateFullSchedule;
 import model.Card;
+import gui_selection.*;
 
 public class MainViewSolo extends JPanel{
 
@@ -19,9 +20,11 @@ public class MainViewSolo extends JPanel{
 	StateFullSchedule state;
 	TimeBox[] timeBoxes;
 	Teacher selectedTeacher;
-
-	public MainViewSolo(StateFullSchedule state){
+	private DisplayPanel dp;
+	
+	public MainViewSolo(StateFullSchedule state,DisplayPanel dp){
 		this.state=state;
+		this.dp=dp;
 
 
 		this.setLayout(new GridLayout(8,7));
@@ -51,6 +54,9 @@ public class MainViewSolo extends JPanel{
 		}
 	}
 
+	public DisplayPanel getDisplayPanel(){
+		return dp;
+	}
 	public void setScheduleView(Teacher t){
 		
 		selectedTeacher=t;

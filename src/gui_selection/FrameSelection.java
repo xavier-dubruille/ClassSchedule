@@ -85,6 +85,10 @@ public class FrameSelection extends JFrame {
 		scroll_display.repaint();
 
 	}
+	
+	public DisplayPanel getDisplayPanel(){
+		return dp;
+	}
 
 
 }

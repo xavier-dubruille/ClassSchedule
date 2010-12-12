@@ -5,6 +5,7 @@ package gui_schedule;
 import javax.swing.*;
 import java.awt.*;
 import model.StateFullSchedule;
+import gui_selection.*;
 
 public class FrameSchedule extends JFrame {
 
@@ -14,7 +15,7 @@ public class FrameSchedule extends JFrame {
 	public FrameSchedule(){
 		//empty, not visible frame
 	}
-	public FrameSchedule(StateFullSchedule state,MyMenuBar bar){
+	public FrameSchedule(StateFullSchedule state,MyMenuBar bar,FrameSelection fs){
 		super("Gestion Horraires");
 
 		setBounds( 100, 100, 800, 660);
@@ -25,7 +26,7 @@ public class FrameSchedule extends JFrame {
 		
 		// first Tab: the solo/normal selection
 		JPanel soloTab=new JPanel(new BorderLayout());
-		MainViewSolo mvs=new MainViewSolo(state);
+		MainViewSolo mvs=new MainViewSolo(state,fs.getDisplayPanel());
 		ops=new OptionPanelSolo(state,mvs);
 		soloTab.add(ops,BorderLayout.NORTH);
 		soloTab.add(mvs,BorderLayout.SOUTH);

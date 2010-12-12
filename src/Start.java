@@ -30,8 +30,9 @@ public class Start {
 		
 		
 		bar=new MyMenuBar(state);
-		fSc=new FrameSchedule(state,bar);
-		fSe=new FrameSelection(state); 
+		
+		fSe=new FrameSelection(state);
+		fSc=new FrameSchedule(state,bar,fSe);
 		bar.setPanels(fSe,fSc);
 		
 

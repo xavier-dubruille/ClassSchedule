@@ -42,7 +42,7 @@ public class TimeBox extends JPanel {
 		//this.setTransferHandler(new CardTransferHandler());
 
 		//il faudrait faire cela seleument sur les bonne cases..
-		this.setTransferHandler(new CardTransferHandler(state));
+		this.setTransferHandler(new CardTransferHandler(state,view.getDisplayPanel()));
 
 	}
 	

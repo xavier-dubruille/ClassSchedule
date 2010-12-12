@@ -27,7 +27,8 @@ public class OptionPanelSolo extends JPanel  implements ActionListener{
 		this.setPreferredSize(new Dimension(140,140));
 
 
-		teacherCombo=new JComboBox(new String[]{"vide"});
+		teacherCombo=new JComboBox();
+		teacherCombo.setPreferredSize(new Dimension(160,27));
 		teacherCombo.addActionListener(this);
 		this.add(teacherCombo);
 	}

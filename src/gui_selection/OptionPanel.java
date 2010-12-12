@@ -10,6 +10,7 @@ import javax.swing.*;
 public class OptionPanel extends JPanel {
 
 	StateFullSchedule state;
+	DisplayPanel dp;
 	String[] Option_general;
 	String[] Option_teacher;
 	String[] Option_classRoom;
@@ -20,6 +21,7 @@ public class OptionPanel extends JPanel {
 	//DefaultComboBoxModel def;
 	
 	public OptionPanel(DisplayPanel dp, StateFullSchedule state, SortedMap<Integer,Card_GUI> gui_cards){
+		this.dp=dp;
 		this.state=state;
 		this.gui_cards=gui_cards;
 
@@ -128,24 +130,15 @@ public class OptionPanel extends JPanel {
 		}
 		public void actionPerformed(ActionEvent e){
 			JComboBox cb = (JComboBox)e.getSource();
-	        String SelectedItem = (String)cb.getSelectedItem();
+	        String selectedItem = (String)cb.getSelectedItem();
 	        //System.out.println(item);
 	        
 	        // foundAndSetvisible(category,SelectedItem,true);
-			if (category==1){
-				int i=0;
-				for (Card_GUI c:gui_cards.values())
-				{
+			if (category==1)
+				dp.updateByTeacherItem(selectedItem);
+			else if(category==0)
+				dp.updateByGeneralItem(selectedItem);
 					
-					if(SelectedItem.equalsIgnoreCase(c.getCard().getTeacher().getFirstName()+" "+c.getCard().getTeacher().getLastName())){
-						c.setVisible(true);
-						
-					}
-					else
-						c.setVisible(false);
-					
-				}
-			}		
 		}
 	}
 }
