@@ -36,22 +36,14 @@ public class MyMenuBar extends JMenuBar {
 
 		// ** file 
 		// ** declarations
-		JMenu new_project = new JMenu ("nouveau");
+		JMenuItem new_project = new JMenuItem ("nouveau");
 		JMenuItem open = new JMenuItem ("ouvrir");
 		JMenuItem quit = new JMenuItem ("quiter");
 		// ** end of declarations
 
-		// *** new_project 
-		// *** declarations
-		JMenuItem csv = new JMenuItem ("A partir de fichiers CSV");
-		// *** end of declaration
-
-
-		// System.out.println("name: "+this.getRootPane());
-
-		csv.addActionListener(new CsvActionListener(state));
-		new_project.add(csv);
-		// *** end of new_project
+		// ** new_project
+		new_project.addActionListener(new CsvActionListener(state));
+		// ** end of new_project
 
 		// ** quit
 		quit.addActionListener(new ActionListener(){
@@ -72,7 +64,7 @@ public class MyMenuBar extends JMenuBar {
 		add(help);
 		// * end of top menus
 	}
-	
+
 	public void setPanels(FrameSelection fSe,FrameSchedule fSc){
 		this.fSc=fSc;
 		this.fSe=fSe;
@@ -90,12 +82,14 @@ public class MyMenuBar extends JMenuBar {
 		public CsvActionListener(StateFullSchedule state){
 			this.state=state;
 		}
-		
-		public void actionPerformed(ActionEvent e){
-			new GetCsvFilesDialog(state.getFilesPath());
-			state.update_from_files();  //update the model; i.e. the internal data
-			fSc.update_from_state(); //update the GUI
-			fSe.update_from_state(); //update the GUI
+
+		public void actionPerformed(ActionEvent ae){
+			GetCsvFilesDialog dialog=new GetCsvFilesDialog(state.getFilesPath());
+			if(state.update_from_files()){ //update the model; i.e. the internal data
+
+				fSc.update_from_state(); //update the GUI
+				fSe.update_from_state(); //update the GUI
+			}
 		}
 	}
 

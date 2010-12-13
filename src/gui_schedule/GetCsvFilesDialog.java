@@ -105,8 +105,8 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		
 		javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter(){
 			public boolean accept(File f){
-				return f.getName().endsWith("csv")||f.isDirectory();}
-			public String getDescription(){return "csv files";}
+				return f.getName().endsWith(".csv")||f.isDirectory()||f.getName().endsWith(".xls");}
+			public String getDescription(){return "fichiers csv et xls";}
 		};
 		
 		
@@ -145,11 +145,5 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 				this.setVisible(false);
 			}
 		}
-	
-
-	private class CsvFileFilter extends javax.swing.filechooser.FileFilter{
-		public boolean accept(File f){return true;}
-		public String getDescription(){return "csv files";}
-	};
 
 }

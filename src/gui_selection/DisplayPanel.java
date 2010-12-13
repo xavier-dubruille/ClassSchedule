@@ -133,6 +133,7 @@ public class DisplayPanel extends JPanel{
 			else
 				c.setBackground(GUI_Propreties.card_default_background);
 		}
+		 updateViewedCards();
 		
 	}
 }

@@ -2,5 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="/Users/Poulpix/Downloads/poi-bin-3.7-20101029.zip"/>
+	<classpathentry kind="lib" path="lib/poi-bin-3.7-20101029.zip"/>
+	<classpathentry kind="lib" path="lib/poi.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
