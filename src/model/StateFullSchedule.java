@@ -1,5 +1,6 @@
 package model;
 
+import main.Propreties;
 import java.util.*;
 import java.io.*;
 
@@ -14,6 +15,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import java.io.*;
+import java.lang.reflect.Array;
 
 
 /*
@@ -27,6 +29,7 @@ public class StateFullSchedule {
 	Map<String, Room> rooms;
 	Map<String, Teacher> teachers;
 	Map<String, Student> students;
+	Map<String,Integer> indexLine;
 
 	String filesPath[];
 	String csvDelemiter;
@@ -46,6 +49,8 @@ public class StateFullSchedule {
 
 	private void init(){
 		ready=false;
+
+		indexLine=new HashMap<String,Integer>();
 		lessons=new TreeMap<String, Lesson>();
 		cards=new TreeMap<Integer, Card>();
 		rooms=new TreeMap<String, Room>();
@@ -82,10 +87,13 @@ public class StateFullSchedule {
 			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "seuls les fichiers csv et xls sont valide",
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
-		}catch(Exception e){
-			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Impossible de crer nouveau projet",
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Le fichier contenant les cours n'a pas pu être trouve",
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
-			e.printStackTrace();
+			return false;
+		}catch(IOException e){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Probleme de lecture du fichier contenant les cours",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
@@ -93,25 +101,36 @@ public class StateFullSchedule {
 
 
 		try{
-			createStateFromClassRoomFile(filesPath[1]);
+			createStateFromClassRoomFile(filesPath[2]);
 		}catch(NoFileException noFile){
-			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du fichier csv contenant les locaux",
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "veuillez renter le chemin du fichier csv/exel contenant les locaux",
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
-		}catch(Exception e){
-
-			e.printStackTrace();
+		}catch(NotSuportedFileException notSuported){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "seuls les fichiers csv et xls sont valide",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}catch(FileNotFoundException e){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Le fichier contenant les locaux n'a pas pu être trouve",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}catch(IOException e){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Probleme de lecture du fichier contenant les locaux",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
 
+		System.out.println("rooms: "+this.rooms);
 		try{
-			createStateFromConstrainDir(filesPath[2]);
+			createStateFromConstrainDir(filesPath[1]);
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
 
 		}
-		
+
+
+		ready=true;
 		return true;
 
 		/*********************************************
@@ -126,31 +145,120 @@ public class StateFullSchedule {
 		else if(filePath.endsWith("xls")) readCardFromXLS(filePath);
 		else throw new NotSuportedFileException();
 	}
-	private void createStateFromClassRoomFile(String filesPath) throws NoFileException{
+
+	private void createStateFromClassRoomFile(String filePath) throws NoFileException,FileNotFoundException,NotSuportedFileException,IOException{
 		if (filesPath == null || filesPath.equals("") ) throw new NoFileException();
+		if (filePath.endsWith("csv")) readRoomFromCSV(filePath);
+		else if(filePath.endsWith("xls")) readRoomFromXLS(filePath);
+		else throw new NotSuportedFileException();
 	}
 	private void createStateFromConstrainDir(String filesPath){
 		if (filesPath == null || filesPath.equals("") ) return;
+	}
+
+	private void readRoomFromCSV(String filePath){
+
+	}
+	private void  readRoomFromXLS(String filePath)throws FileNotFoundException,IOException{
+		String[] line;
+
+		InputStream inp = new FileInputStream(filePath);
+		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
+
+
+
+		Sheet sheet1 = wb.getSheetAt(0);
+		line=new String[sheet1.getRow(0).getPhysicalNumberOfCells()];
+
+
+		for (Row row : sheet1) {
+			for (Cell cell : row) {
+
+				switch(cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					line[cell.getColumnIndex()]=cell.getRichStringCellValue().getString();
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					if(DateUtil.isCellDateFormatted(cell)) {
+						line[cell.getColumnIndex()]=cell.getDateCellValue().toString();
+					} else {
+
+						line[cell.getColumnIndex()]=""+cell.getNumericCellValue();
+					}
+					break;
+				case Cell.CELL_TYPE_BOOLEAN:
+					line[cell.getColumnIndex()]=""+cell.getBooleanCellValue();
+
+				default:
+					line[cell.getColumnIndex()]="";
+				}
+			}
+
+
+
+			constructRoomStateFromLine(line);
+
+		}
+		inp.close();
+
+
+
+	}
+
+	private void constructRoomStateFromLine(String []line){
+
+		int seats;
+		if(line[1].equalsIgnoreCase("{Indefini}")) {
+			if (line[2].equalsIgnoreCase("classe"))
+				seats=Propreties.default_class_number_seats;
+			else if (line[2].equalsIgnoreCase("auditoire"))
+				seats=Propreties.default_auditoir_number_seats;
+			else if (line[2].equalsIgnoreCase("informatique"))
+				seats=Propreties.default_informatic_number_seats;
+			else if (line[2].equalsIgnoreCase("bureau"))
+				seats=Propreties.default_bureau_number_seats;
+			else if (line[2].equalsIgnoreCase("couloir"))
+				seats=Propreties.default_couloir_number_seats;
+			else if (line[2].equalsIgnoreCase("auditoire"))
+				seats=Propreties.default_auditoir_number_seats;
+			else if (line[2].equalsIgnoreCase("Laboratoire"))
+				seats=Propreties.default_labo_number_seats;
+			else 
+				seats=0;
+
+		}
+		else{
+			try {
+				seats=(int)Double.parseDouble(line[1]);
+			}catch(NumberFormatException na){
+				return;
+			}
+		}
+		if (seats==0){
+			return;
+		}
+
+
+
+		rooms.put(line[0], new Room(line[0],seats,line[2]));
 	}
 
 
 	/*
 	 * Read the csv file containing the courses (the cards)
 	 * 
-	 * pre:filePath has to be valid
+	 * pre:filePath has to be a valid String
 	 */
 	private void readCardFromCSV(String filePath) throws FileNotFoundException{
 
 		String[] line;
-		int[] indexLine;
 
 		Scanner sc=new Scanner(new File(filePath));
 		String firstLine=sc.nextLine();
 		setDelemiter(firstLine);
 		line=firstLine.split(csvDelemiter);
 
-		indexLine=new int[line.length];
-		putRightIndex(line, indexLine);
+		putRightIndex(line);
 
 		//faudrait enregister les champs restant √† titre d'info..
 
@@ -158,45 +266,10 @@ public class StateFullSchedule {
 		while (sc.hasNext()) {
 
 			line=sc.nextLine().split(csvDelemiter);
-			Teacher t; 
-			Lesson l; 
-
-			//now, t and l HAVE TO point to a correct object, because we will use it
-			if (!teachers.containsKey(line[indexLine[5]])){
-				t=new Teacher(line[indexLine[2]],line[indexLine[7]]);
-				teachers.put(line[indexLine[5]], t);
-
-			}
-			else{
-				t=teachers.get(line[indexLine[5]]);
-			}
-
-
-			if (!lessons.containsKey(line[indexLine[4]])){
-				l=new Lesson(line[indexLine[1]]); //concat√®ne 1 et L1 dans le group
-				lessons.put(line[indexLine[4]], l);
-			}
-			else {
-				l=lessons.get(line[indexLine[4]]);
-			}
-
-			// set section, teacher, periods , mode
-			l.setOtherInfo( line[indexLine[0]]+line[indexLine[3]]+line[indexLine[8]], t, line[indexLine[6]],line[indexLine[9]]);
-
-			t.addCourse(line[indexLine[4]],l);
-			// p-e mettre une reference des prof dans l'objet course
-
-			Card card=new Card(l,t,cardId);
-			cards.put(cardId,card); 
-			t.addCard(card);
+			constructCardStateFromLine(line,cardId);
 			cardId++;
-
 		}
 
-		// il faut bien √©videment rajouter ce qui manque..
-
-
-		ready=true;
 	}
 
 
@@ -208,44 +281,112 @@ public class StateFullSchedule {
 			this.csvDelemiter=",";
 	}
 
-	private void readCardFromXLS(String filePath) throws FileNotFoundException,IOException{
-		
-		InputStream inp = new FileInputStream(filePath);
-		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
-		
-		Sheet sheet1 = wb.getSheetAt(0);
-		for (Row row : sheet1) {
-			for (Cell cell : row) {
-				CellReference cellRef = new CellReference(row.getRowNum(), cell.getColumnIndex());
-				System.out.print(cellRef.formatAsString());
-				System.out.print(" - ");
-				
-				switch(cell.getCellType()) {
-		      case Cell.CELL_TYPE_STRING:
-		        System.out.println(cell.getRichStringCellValue().getString());
-		        break;
-		      case Cell.CELL_TYPE_NUMERIC:
-		        if(DateUtil.isCellDateFormatted(cell)) {
-		          System.out.println(cell.getDateCellValue());
-		        } else {
-		          System.out.println(cell.getNumericCellValue());
-		        }
-		        break;
-		      case Cell.CELL_TYPE_BOOLEAN:
-		        System.out.println(cell.getBooleanCellValue());
-		        break;
-		      case Cell.CELL_TYPE_FORMULA:
-		        System.out.println(cell.getCellFormula());
-		        break;
-		      default:
-		        System.out.println();
-				}
-			}
+	/*
+	 * index 0 = year
+	 * index 1 = course_name
+	 * index 2 = teacher_firstName
+	 * index 3 = section
+	 * index 4 = courses_id
+	 * index 5 = teacher_id
+	 * index 6 = period
+	 * index 7 = teacher_lastName
+	 * index 8 = group
+	 * index 9 = mod
+	 */
+	private void constructCardStateFromLine(String[] line, int cardId){
+
+		//System.out.println("construct card state from line "+Arrays.toString(line));
+
+		Teacher t; 
+		Lesson l; 
+
+		//now, t and l HAVE TO point to a correct object, because we will use it
+		if (!teachers.containsKey(line[indexLine.get("teacher_id")])){
+			t=new Teacher(line[indexLine.get("teacher_firstName")],line[indexLine.get("teacher_lastName")]);
+			teachers.put(line[indexLine.get("teacher_id")], t);
+
 		}
+		else{
+			t=teachers.get(line[indexLine.get("teacher_id")]);
+		}
+
+
+		if (!lessons.containsKey(line[indexLine.get("courses_id")])){
+			l=new Lesson(line[indexLine.get("course_name")]); //concat√®ne 1 et L1 dans le group
+			lessons.put(line[indexLine.get("courses_id")], l);
+		}
+		else {
+			l=lessons.get(line[indexLine.get("courses_id")]);
+		}
+
+		// set section, teacher, periods , mode
+		l.setOtherInfo( line[indexLine.get("year")]+line[indexLine.get("section")]+line[indexLine.get("group")], t, line[indexLine.get("period")],line[indexLine.get("mod")]);
+
+		t.addCourse(line[indexLine.get("courses_id")],l);
+		// p-e mettre une reference des prof dans l'objet course
+
+		Card card=new Card(l,t,cardId);
+		cards.put(cardId,card); 
+		t.addCard(card);
+
+
+
+
+		// il faut bien √©videment rajouter ce qui manque..
+
 
 	}
 
-	private void putRightIndex(String[] line, int[] indexLine){
+	private void readCardFromXLS(String filePath) throws FileNotFoundException,IOException{
+		String[] line;
+
+		InputStream inp = new FileInputStream(filePath);
+		HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(inp));
+
+
+
+		Sheet sheet1 = wb.getSheetAt(0);
+		line=new String[sheet1.getRow(0).getPhysicalNumberOfCells()];
+
+
+		for (Row row : sheet1) {
+			for (Cell cell : row) {
+
+				switch(cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					line[cell.getColumnIndex()]=cell.getRichStringCellValue().getString();
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					if(DateUtil.isCellDateFormatted(cell)) {
+						line[cell.getColumnIndex()]=cell.getDateCellValue().toString();
+					} else {
+
+						line[cell.getColumnIndex()]=""+cell.getNumericCellValue();
+					}
+					break;
+				case Cell.CELL_TYPE_BOOLEAN:
+					line[cell.getColumnIndex()]=""+cell.getBooleanCellValue();
+
+				default:
+					line[cell.getColumnIndex()]="";
+				}
+			}
+
+
+
+			if(row.getRowNum()==0)
+				putRightIndex(line);
+			else
+				constructCardStateFromLine(line,row.getRowNum());
+
+		}
+		inp.close();
+
+
+
+	}
+
+	private void putRightIndex(String[] line){
 
 		/*
 		 * index 0 = year
@@ -257,7 +398,7 @@ public class StateFullSchedule {
 		 * index 6 = period
 		 * index 7 = teacher_lastName
 		 * index 8 = group
-		 * index 9 = class/group
+		 * index 9 = mod
 		 */
 
 		int choix=1; // choix semestre
@@ -265,56 +406,41 @@ public class StateFullSchedule {
 
 		for (int i=0; i<line.length; i++){
 
-			if(line[i].equalsIgnoreCase("année")){
-				indexLine[0]=i;
+			if(line[i].equalsIgnoreCase("année"))
+				indexLine.put("year", i);
 
-				//System.out.println("anne "+i+": "+line[i]);
-			}
+			else if(line[i].equalsIgnoreCase("Intitulé cours"))
+				indexLine.put("course_name", i);
 
-			else if(line[i].equalsIgnoreCase("Intitulé cours")){
-				indexLine[1]=i;
-				//System.out.println("intitule cour: "+i+": "+line[i]);
-			}
+			else if(line[i].equalsIgnoreCase("Prénom"))
+				indexLine.put("teacher_firstName", i);
 
-			else if(line[i].equalsIgnoreCase("Prénom")){
-				indexLine[2]=i;
+			else if(line[i].equalsIgnoreCase("nom"))
+				indexLine.put("teacher_lastName", i);
 
-				//System.out.println("prenom: "+i+": "+line[i]);
-			}
+			else if(line[i].equalsIgnoreCase(sem))
+				indexLine.put("period", i);
 
-			else if(line[i].equalsIgnoreCase("nom")){
-				indexLine[7]=i;
-
-
-				//System.out.println("nom: "+i+": "+line[i]);
-			}
-			else if(line[i].equalsIgnoreCase(sem)){
-				indexLine[6]=i;
-
-				//System.out.println(sem+": "+i+": "+line[i]);
-			}
-
-			else if(line[i].equalsIgnoreCase("CodeCours")){
-				indexLine[4]=i;
-
-				//System.out.println("CodeCours: "+i+": "+line[i]);
-			}
+			else if(line[i].equalsIgnoreCase("CodeCours"))
+				indexLine.put("courses_id", i);
 
 			else if(line[i].equalsIgnoreCase("PERS_Id"))
-				indexLine[5]=i;
+				indexLine.put("teacher_id", i);
 
 
 			else if(line[i].equalsIgnoreCase("groupe"))
-				indexLine[8]=i;
+				indexLine.put("group", i);
 
 
 			else if(line[i].equalsIgnoreCase("Intitulé Section"))
-				indexLine[3]=i;
+				indexLine.put("section", i);
 
 			else if(line[i].equalsIgnoreCase("Mode"))
-				indexLine[9]=i;
+				indexLine.put("mod", i);
 
 		}
+		//System.out.println("indexline :"+indexLine);
+		//System.out.println("line      :"+Arrays.toString(line));
 	}
 
 	public Map<Integer,Card> getCards(){

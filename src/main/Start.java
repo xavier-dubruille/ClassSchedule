@@ -1,3 +1,4 @@
+package main;
 
 import gui_schedule.*;
 import gui_selection.*;
