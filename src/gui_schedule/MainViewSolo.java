@@ -1,6 +1,7 @@
 package gui_schedule;
 
 import gui.CardTransferHandler;
+import gui.GUI_Propreties;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -60,8 +61,10 @@ public class MainViewSolo extends JPanel{
 
 	private void cleanSchedule(){
 		for(int i=7; i<56; i++)
-			if(i%7!=0)
+			if(i%7!=0){
 				timeBoxes[i].setLabel("");
+				timeBoxes[i].setBackground(GUI_Propreties.card_default_background);
+			}
 
 	}
 	public void setScheduleView(Teacher t){

@@ -12,6 +12,7 @@ public class Card {
 	private int smiley; //se sera mieu de creer un enum pour cela
 	private int timePeriod; // =DP (Day,Period)
 	private int cardId;
+	private Map<String,Room> rooms;
 	
 	/**
 	 * for tests only !
@@ -35,11 +36,11 @@ public class Card {
 	}
 	*/
 	
-	public Card(Lesson lesson, Teacher teacher,int cardId){
+	public Card(Lesson lesson, Teacher teacher,int cardId,Map<String,Room> rooms){
 		this.lesson=lesson;
 		this.teacher=teacher;
 		this.cardId=cardId;
-		//System.out.println(teacher.getFirstName());
+		this.rooms=rooms;
 		smiley=0;
 		timePeriod=0;
 	}
@@ -47,8 +48,12 @@ public class Card {
 		return cardId;
 	}
 	
-	public void setTimePeriod(int time){
+	public void setTimePeriod_and_pickARoom(int time){
 		timePeriod=time;
+
+		for(Room r:rooms.values()){
+			//if()//si il est du mm type et que la class n'est pas prise ˆ ce moment
+		}
 	}
 	
 	public int getTimePeriod(){
@@ -63,6 +68,8 @@ public class Card {
 	public String getHtmlRepresentation(){
 		return "<html>"+lesson.name+"<html>";
 	}
+	
+	
 	
 	public Teacher getTeacher(){
 		return teacher;

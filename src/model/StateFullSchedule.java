@@ -26,7 +26,8 @@ public class StateFullSchedule {
 
 	Map<String, Lesson> lessons;
 	public Map<Integer, Card> cards;
-	Map<String, Room> rooms;
+	Map<String, Room> rooms;   
+	Map<String, Section> sections; 
 	Map<String, Teacher> teachers;
 	Map<String, Student> students;
 	Map<String,Integer> indexLine;
@@ -298,9 +299,11 @@ public class StateFullSchedule {
 		//System.out.println("construct card state from line "+Arrays.toString(line));
 
 		Teacher t; 
-		Lesson l; 
+		Lesson l;
+		Section s;
+		
 
-		//now, t and l HAVE TO point to a correct object, because we will use it
+		//now, t,s and l HAVE TO point to a correct object, because we will use it
 		if (!teachers.containsKey(line[indexLine.get("teacher_id")])){
 			t=new Teacher(line[indexLine.get("teacher_firstName")],line[indexLine.get("teacher_lastName")]);
 			teachers.put(line[indexLine.get("teacher_id")], t);
@@ -325,7 +328,7 @@ public class StateFullSchedule {
 		t.addCourse(line[indexLine.get("courses_id")],l);
 		// p-e mettre une reference des prof dans l'objet course
 
-		Card card=new Card(l,t,cardId);
+		Card card=new Card(l,t,cardId,rooms);
 		cards.put(cardId,card); 
 		t.addCard(card);
 

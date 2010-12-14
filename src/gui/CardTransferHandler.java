@@ -121,8 +121,8 @@ public class CardTransferHandler extends TransferHandler{
 			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
 			Card c=state.getCards().get(cardId);
 			
-			//place the card state
-			c.setTimePeriod(timeBox.getTimePeriod());
+			//place the card state: time and classRoom
+			c.setTimePeriod_and_pickARoom(timeBox.getTimePeriod());
 			
 			//update the gui timeBox
 			timeBox.getView().updateView();
@@ -136,7 +136,7 @@ public class CardTransferHandler extends TransferHandler{
 			
 		}
 		catch (Exception e){
-			System.err.println("exception..");
+			System.err.println("exception dans importData(..)");
 			return false;
 		}
 		return true;

@@ -20,7 +20,8 @@ public class FrameSchedule extends JFrame {
 
 		setBounds( 100, 100, 800, 660);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-
+		
+		
 		setJMenuBar(bar);
 
 		

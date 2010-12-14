@@ -1,5 +1,7 @@
 package gui_schedule;
 
+import gui.GUI_Propreties;
+
 import javax.swing.*;
 import javax.swing.filechooser.*;
 import java.awt.*;
@@ -13,9 +15,11 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 	public GetCsvFilesDialog(String[] output){
 
 		this.output=output;
-		//setPreferredSize(new Dimension(900,800));
-		setMinimumSize(new Dimension(550,190));
-		setSize(new Dimension(550,190));
+		
+		
+		setPreferredSize(GUI_Propreties.dialog_size);
+		setMinimumSize(GUI_Propreties.dialog_size);
+		setSize(GUI_Propreties.dialog_size);
 		
 		JPanel j=new JPanel();
 		j.setLayout(new BoxLayout(j,BoxLayout.Y_AXIS));
@@ -28,8 +32,8 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		lesson.setLayout(new BoxLayout(lesson,BoxLayout.X_AXIS));
 
 		lesson.add(Box.createHorizontalGlue());
-		JLabel jl=new JLabel("Fichier contenant les cours");
-		//jl.setPreferredSize(12)
+		JLabel jl=new JLabel("    Fichier contenant les cours");
+		jl.setPreferredSize(GUI_Propreties.size_label_dialog);
 		lesson.add(jl);
 
 		lesson.add(Box.createHorizontalGlue());
@@ -52,7 +56,11 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		classRoom.setLayout(new BoxLayout(classRoom,BoxLayout.X_AXIS));
 
 		classRoom.add(Box.createHorizontalGlue());
-		classRoom.add(new JLabel("Fichier contenant les locaux"));
+		
+		JLabel classLabel=new JLabel("    Fichier contenant les locaux");
+		classLabel.setPreferredSize(GUI_Propreties.size_label_dialog);
+		classRoom.add(classLabel);
+		
 		classRoom.add(Box.createHorizontalGlue());
 		jt_classRoom=new JTextField(20);
 		classRoom.add(jt_classRoom);
@@ -72,7 +80,10 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		constrain.setLayout(new BoxLayout(constrain,BoxLayout.X_AXIS));
 
 		constrain.add(Box.createHorizontalGlue());
-		constrain.add(new JLabel("Fichier contenant les contraites"));
+		JLabel conLabel=new JLabel("    Fichier contenant les contraintes");
+		conLabel.setPreferredSize(GUI_Propreties.size_label_dialog);
+
+		constrain.add(conLabel);
 		constrain.add(Box.createHorizontalGlue());
 		jt_constrain=new JTextField(20);
 		constrain.add(jt_constrain);
@@ -93,6 +104,8 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		create.addActionListener(this);
 		j.add(create);
 		getContentPane().add(j);
+		
+		this.pack();
 		setModal(true);
 		setVisible(true);
 	}

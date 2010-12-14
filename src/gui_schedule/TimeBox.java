@@ -45,10 +45,6 @@ public class TimeBox extends JPanel {
 		this.state=state;
 		this.view=view;
 
-		//this.setDropTarget(new DropTarget());
-		//this.setTransferHandler(new CardTransferHandler());
-
-		//il faudrait faire cela seleument sur les bonne cases..
 		this.setTransferHandler(new CardTransferHandler(state,view.getDisplayPanel()));
 
 	}
@@ -58,7 +54,12 @@ public class TimeBox extends JPanel {
 	}
 	public void setLabel(String s){
 		jl.setText(s);
+		
+		jl.setOpaque(true);
+		this.setBackground(GUI_Propreties.timeBox_color_placed);
+		jl.repaint();
 	}
+
 	
 	public String toString(){
 		return "timebox: "+name;

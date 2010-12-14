@@ -31,7 +31,8 @@ public class FrameSelection extends JFrame {
 		super("Selection"); //faudrait p-e attraper la headLessException ici..
 		
 		
-		setBounds( 100, 100, 260, 850);
+		setBounds( 50, 50, 260, 850);
+		//this.setAlwaysOnTop(true); 
 		//setDefaultCloseOperation(EXIT_ON_CLOSE); //Exit_on_close n'est sans doute pas ce qu'on veut ici..
 
 
