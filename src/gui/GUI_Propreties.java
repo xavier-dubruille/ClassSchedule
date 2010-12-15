@@ -28,5 +28,9 @@ public class GUI_Propreties {
 	public static Color timeBox_color_placed=Color.white;
 
 	public static Dimension size_label_dialog=new Dimension(320,20);
+	public static Dimension default_comboBox_size=new Dimension(160,27);
+	
 	public static Dimension dialog_size=new Dimension(670,180);
+	
+	public static Color optionPanelSolo_color=Color.pink;
 }

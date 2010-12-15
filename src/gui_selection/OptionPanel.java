@@ -1,11 +1,14 @@
 package gui_selection;
 
 import model.*;
+import gui.GUI_Propreties;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.SortedMap;
 
 import javax.swing.*;
+import javax.swing.border.*;
 
 public class OptionPanel extends JPanel {
 
@@ -26,7 +29,7 @@ public class OptionPanel extends JPanel {
 		this.gui_cards=gui_cards;
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setPreferredSize(new Dimension(60,60));
+		//this.setPreferredSize(new Dimension(60,60));
 		
 
 		Option_general=new String[]{"place","non place","place posant probleme","tous"};
@@ -35,34 +38,41 @@ public class OptionPanel extends JPanel {
 		
 		//general option
 		choises_one_panel=new JPanel();
-		choises_one_panel.setLayout(new BoxLayout(choises_one_panel, BoxLayout.X_AXIS));
-		choises_one_panel.setPreferredSize(new Dimension(33,33));
-		choises_one_panel.setSize(40, 40); //va faloir chipoter ici..
+		//choises_one_panel.setLayout(new BoxLayout(choises_one_panel, BoxLayout.X_AXIS));
+		//choises_one_panel.setPreferredSize(new Dimension(33,33));
+		//choises_one_panel.setSize(40, 40); //va faloir chipoter ici..
+	
 		choises_one_Combo = new JComboBox(Option_general);
+		choises_one_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		choises_one_Combo.addActionListener(new MyItemListener(0));
-		choises_one_panel.add(new JLabel("Options general"));
+		//choises_one_panel.add(new JLabel("Options general"));
+		choises_one_panel.setBorder(BorderFactory.createTitledBorder("Options generales"));
 		choises_one_panel.add(choises_one_Combo);
 		
 
 		//teacher option
 		JPanel choises_two_panel=new JPanel();
-		choises_two_panel.setLayout(new BoxLayout(choises_two_panel, BoxLayout.X_AXIS));
-		choises_two_panel.setPreferredSize(new Dimension(33,33));
-		choises_two_panel.setSize(40, 40); //va faloir chipoter ici..
+		//choises_two_panel.setLayout(new BoxLayout(choises_two_panel, BoxLayout.X_AXIS));
+		//choises_two_panel.setPreferredSize(new Dimension(33,33));
+		//choises_two_panel.setSize(40, 40); //va faloir chipoter ici..
 		choises_two_Combo = new JComboBox(Option_teacher);
+		choises_two_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		choises_two_Combo.addActionListener(new MyItemListener(1));
-		choises_two_panel.add(new JLabel("professeur"));
+		//choises_two_panel.add(new JLabel("professeur"));
+		choises_two_panel.setBorder(BorderFactory.createTitledBorder("Professeur"));
 		choises_two_panel.add(choises_two_Combo);
 
 
 		//class room option
 		JPanel choises_three_panel=new JPanel();
-		choises_three_panel.setLayout(new BoxLayout(choises_three_panel, BoxLayout.X_AXIS));
-		choises_three_panel.setPreferredSize(new Dimension(33,33));
-		choises_three_panel.setSize(40, 40); //va faloir chipoter ici..
+		//choises_three_panel.setLayout(new BoxLayout(choises_three_panel, BoxLayout.X_AXIS));
+		//choises_three_panel.setPreferredSize(new Dimension(33,33));
+		//choises_three_panel.setSize(40, 40); //va faloir chipoter ici..
 		choises_three_Combo = new JComboBox(Option_classRoom);
+		choises_three_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		choises_three_Combo.addActionListener(new MyItemListener(2));
-		choises_three_panel.add(new JLabel("local"));
+		//choises_three_panel.add(new JLabel("local"));
+		choises_three_panel.setBorder(BorderFactory.createTitledBorder("Local"));
 		choises_three_panel.add(choises_three_Combo);
 
 
@@ -82,8 +92,6 @@ public class OptionPanel extends JPanel {
 		this.add(choises_three_panel);
 		
 		this.setVisible(true);
-		// dans le listeneur on fera un dp.update(options);
-		
 	}
 	
 	/*
@@ -107,11 +115,11 @@ public class OptionPanel extends JPanel {
 		
 
 		//classroom option update:
-		/*
+		
 		for(Room r:state.getClassRoom().values())
 			choises_three_Combo.addItem(r.getName());
 		choises_three_Combo.repaint();
-		*/
+		
 		this.repaint();
 		
 		// System.out.println("update optionPanel..");

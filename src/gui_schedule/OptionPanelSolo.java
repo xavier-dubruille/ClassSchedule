@@ -1,5 +1,6 @@
 package gui_schedule;
 
+import gui.GUI_Propreties;
 import gui_selection.Card_GUI;
 
 import java.awt.Color;
@@ -7,9 +8,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import model.StateFullSchedule;
 import model.*;
 
 public class OptionPanelSolo extends JPanel{
@@ -25,25 +26,39 @@ public class OptionPanelSolo extends JPanel{
 	public OptionPanelSolo(StateFullSchedule state,MainViewSolo mvs){
 		this.state=state;
 		this.mvs=mvs;
-		this.setBackground(Color.red); //test
+		this.setBackground(GUI_Propreties.optionPanelSolo_color); 
 
-		this.setPreferredSize(new Dimension(140,140));
+		//this.setPreferredSize(new Dimension(140,140));
 
-
+		JPanel teacherPanel=new JPanel();
 		teacherCombo=new JComboBox(new String[]{" "});
-		teacherCombo.setPreferredSize(new Dimension(160,27));
+		teacherCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		
+		teacherPanel.setBorder(BorderFactory.createTitledBorder("Professeur"));
+		teacherPanel.add(teacherCombo);
+		teacherPanel.setBackground(GUI_Propreties.optionPanelSolo_color);
 		teacherCombo.addActionListener(new ComboListener(0));
-		this.add(teacherCombo);
+		this.add(teacherPanel);
 
+		JPanel roomPanel=new JPanel();
 		roomCombo=new JComboBox(new String[]{" "});
-		roomCombo.setPreferredSize(new Dimension(160,27));
+		roomCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		
+		roomPanel.setBorder(BorderFactory.createTitledBorder("Local"));
+		roomPanel.add(roomCombo);
+		roomPanel.setBackground(GUI_Propreties.optionPanelSolo_color);
 		roomCombo.addActionListener(new ComboListener(1));
-		this.add(roomCombo);
+		this.add(roomPanel);
 
+		JPanel sectionPanel=new JPanel();
 		sectionCombo=new JComboBox(new String[]{" "});
-		sectionCombo.setPreferredSize(new Dimension(160,27));
+		sectionCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		
+		sectionPanel.setBorder(BorderFactory.createTitledBorder("Section"));
+		sectionPanel.add(sectionCombo);
+		sectionPanel.setBackground(GUI_Propreties.optionPanelSolo_color);
 		sectionCombo.addActionListener(new ComboListener(2));
-		this.add(sectionCombo);
+		this.add(sectionPanel);
 	}
 
 
