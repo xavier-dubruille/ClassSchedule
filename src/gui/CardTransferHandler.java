@@ -3,6 +3,7 @@ package gui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.datatransfer.*;
+
 import gui_selection.*;
 import gui_schedule.*;
 import model.*;
@@ -17,17 +18,18 @@ public class CardTransferHandler extends TransferHandler{
 	/*
 	 * constructor for Card_GUI
 	 */
-	public CardTransferHandler(){	
+	public CardTransferHandler(StateFullSchedule state){
+		this.state=state;	
 	}
 	
 	/*
 	 * constructor for TimeBox
-	 */
+	
 	public CardTransferHandler(StateFullSchedule state, DisplayPanel dp, OptionPanelSolo ops){
 		this.state=state;
 		this.dp=dp;
 		this.ops=ops;
-	}
+	} */
 	
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
@@ -37,7 +39,8 @@ public class CardTransferHandler extends TransferHandler{
 	 * Efectué par card_gui
 	 */
 	public boolean canImport(TransferHandler.TransferSupport suport) {
-	
+
+		//System.out.println("canImport de cardHandler");
 /*
 		try{
 		
@@ -80,11 +83,11 @@ public class CardTransferHandler extends TransferHandler{
 	}
 
 	/*
-	 * Efectué par card_gui ?
+	 * Efectué par card_gui !
 	 */
 	public Transferable createTransferable(JComponent comp) {
 		// Clear
-		
+		//System.out.println("createTransferable de cardHandler");
 		return new StringSelection(""+((Card_GUI)comp).getCard().getCardId());
 		/*image = null;
 
@@ -108,99 +111,34 @@ public class CardTransferHandler extends TransferHandler{
 
 
 	/*
-	 * Efectué par time_box 
+	 *  cart_GUI recoit les info de timeBox !
 	 */
 	public boolean importData(TransferHandler.TransferSupport suport) {
-		
-		
-		//System.out.println(ops.getSelectedRoom()+" "+ops.getSelectedSection()+" "+ops.getSelectedTeacher());
+
 		try{
-			
-			
-			TimeBox timeBox=(TimeBox)suport.getComponent();
-			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
-			Card c=state.getCards().get(cardId);
-			
-			//let's check if we can import (i know, it's not supposed to be here)
-			if(!checkCanImport(c,timeBox))
+			String trans=(String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor);
+			if (trans.equals(""))
 				return false;
 			
-			//place the card state: time and classRoom
-			c.setTimePeriod_and_pickARoom(timeBox.getTimePeriod());
+			Card_GUI card_GUI=(Card_GUI)suport.getComponent();
 			
-			//update the gui timeBox
-			timeBox.getView().updateView();
+			int cardId=Integer.parseInt(trans);
+			Card c=state.getCards().get(cardId);
+			System.out.println("card="+c);
+			c.resetTimePeriod();
 			
-			//update the selection view
-			dp.updateStatusCard();
-			
-		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
-			
+			//update !
+			card_GUI.getDisplayPanel().updateStatusCard();
 			
 		}
 		catch (Exception e){
-			System.err.println("exception dans importData(..)");
+			System.err.println("exception dans importData(..) de CardTransfer");
+			e.printStackTrace();
 			return false;
 		}
 		return true;
-		/*
-			  if (comp instanceof JLabel) {
-		      JLabel label = (JLabel) comp;
-		      if (t.isDataFlavorSupported(flavors[0])) {
-		        try {
-		          image = (Image) t.getTransferData(flavors[0]);
-		          ImageIcon icon = new ImageIcon(image);
-		          label.setIcon(icon);
-		          return true;
-		        } catch (UnsupportedFlavorException ignored) {
-		        } catch (IOException ignored) {
-		        }
-		      }
-		    } else if (comp instanceof AbstractButton) {
-		      AbstractButton button = (AbstractButton) comp;
-		      if (t.isDataFlavorSupported(flavors[0])) {
-		        try {
-		          image = (Image) t.getTransferData(flavors[0]);
-		          ImageIcon icon = new ImageIcon(image);
-		          button.setIcon(icon);
-		          return true;
-		        } catch (UnsupportedFlavorException ignored) {
-		        } catch (IOException ignored) {
-		        }
-		      }
-		    }
-		    return false;
-		 */
 	}
 
-	/*
-	 * Efectué par time_box 
-	 */
-	private boolean checkCanImport(Card card,TimeBox timeBox){
-		
-		for(Card c:card.getTeacher().getCard())
-			if(c.getTimePeriod()==timeBox.getTimePeriod())
-				return false;
-		
-		if(ops.getSelectedTeacher()!=null && ops.getSelectedTeacher()!=card.getTeacher())
-			return false;
-		if(ops.getSelectedSection()!=null && !card.getCard_sections().contains(ops.getSelectedSection())){
-		/*
-			System.out.println("----------");
-			System.out.println("faux -- selection");
-			if(ops.getSelectedSection()!=null){
-				System.out.println("slection affiché: "+ops.getSelectedSection());
-				System.out.println("slections contenu dans la cartes: "+c.getCard_sections());
-			}
-			System.out.println("----------");
-			*/
-			return false;
-		}
-		if(ops.getSelectedRoom()!=null && card.getSeatsToProvide()<ops.getSelectedRoom().getCapacity()) //faut aussi s'occuper des sall info
-			return false;
-		
-		
-		return true;
-	}
+	
 
 }

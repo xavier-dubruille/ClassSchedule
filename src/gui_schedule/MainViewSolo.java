@@ -74,6 +74,7 @@ public class MainViewSolo extends JPanel{
 		for(int i=7; i<56; i++)
 			if(i%7!=0){
 				timeBoxes[i].setLabel("");
+				timeBoxes[i].setCard(null);
 				timeBoxes[i].setBackground(GUI_Propreties.card_default_background);
 			}
 
@@ -91,9 +92,10 @@ public class MainViewSolo extends JPanel{
 
 		/* then let's get all the theacher's cards and see if theirs placed */
 		for(Card c: t.getCard())
-			if(c.getTimePeriod()!=0)
+			if(c.getTimePeriod()!=0){
 				timeBoxes[c.getTimePeriod()].setLabel(c.getHtmlRepresentation());
-
+				timeBoxes[c.getTimePeriod()].setCard(c);
+			}
 
 
 	}
@@ -110,8 +112,10 @@ public class MainViewSolo extends JPanel{
 
 		/* then let's get all the theacher's cards and see if theirs placed */
 		for(Card c: r.getCards())
-			if(c.getTimePeriod()!=0)
+			if(c.getTimePeriod()!=0){
 				timeBoxes[c.getTimePeriod()].setLabel(c.getHtmlRepresentation());
+				timeBoxes[c.getTimePeriod()].setCard(c);
+			}
 
 
 	}
@@ -128,9 +132,10 @@ public class MainViewSolo extends JPanel{
 
 		/* then let's get all the theacher's cards and see if theirs placed */
 		for(Card c: s.getCards())
-			if(c.getTimePeriod()!=0)
+			if(c.getTimePeriod()!=0){
 				timeBoxes[c.getTimePeriod()].setLabel(c.getHtmlRepresentation());
-
+				timeBoxes[c.getTimePeriod()].setCard(c);
+			}
 
 
 	}

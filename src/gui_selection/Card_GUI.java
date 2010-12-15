@@ -28,7 +28,7 @@ public class Card_GUI extends JPanel {
 		this.drawMe();
 
 		//this.setDropTarget(new DropTarget());
-		this.setTransferHandler(new CardTransferHandler());
+		this.setTransferHandler(new CardTransferHandler(card.getState()));
 		this.addMouseListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent me) {
@@ -39,6 +39,7 @@ public class Card_GUI extends JPanel {
 				//	System.out.println("handeler tostring: "+handler);
 
 
+				/*
 				Toolkit toolkit=Toolkit.getDefaultToolkit();
 				Clipboard clip=toolkit.getSystemClipboard();
 
@@ -55,7 +56,7 @@ public class Card_GUI extends JPanel {
 						System.err.println("raté");
 					}
 					//}
-				}
+				}*/
 				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
 
 			}

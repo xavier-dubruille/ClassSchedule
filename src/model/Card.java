@@ -18,11 +18,13 @@ public class Card {
 	private String mod;
 	private Map<String,Section> all_sections;
 	private ArrayList<Section> card_sections;
+	StateFullSchedule state;
 
 
 	public Card(Lesson lesson, Teacher teacher,int cardId,Section s,StateFullSchedule state){
 		this.all_rooms=state.getClassRoom();
 		this.all_sections=state.getSections();
+		this.state=state;
 		
 		this.lesson=lesson;
 		this.teacher=teacher;
@@ -42,6 +44,10 @@ public class Card {
 		card_sections.add(s);
 	}
 
+	public boolean resetTimePeriod(){
+		timePeriod=0;
+		return true;
+	}
 	public boolean setTimePeriod_and_pickARoom(int time){
 		timePeriod=time;
 
@@ -101,6 +107,9 @@ public class Card {
 		return seats_to_provide;
 	}
 	
+	public StateFullSchedule getState() {
+		return state;
+	}
 	public int getTimePeriod(){
 		return timePeriod;
 	}

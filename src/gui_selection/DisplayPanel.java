@@ -126,6 +126,7 @@ public class DisplayPanel extends JPanel{
 		this.updateViewedCards();
 		
 	}
+	
 	public void updateStatusCard(){
 		for (Card_GUI c:gui_cards.values())
 		{
