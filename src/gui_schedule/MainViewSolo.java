@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.StateFullSchedule;
-import model.Card;
+import model.*;
 import gui_selection.*;
 
 public class MainViewSolo extends JPanel{
@@ -21,7 +21,10 @@ public class MainViewSolo extends JPanel{
 	StateFullSchedule state;
 	TimeBox[] timeBoxes;
 	Teacher selectedTeacher;
+	Room selectedRoom;
+	Section selectedSection;
 	private DisplayPanel dp;
+	private OptionPanelSolo ops;
 
 	public MainViewSolo(StateFullSchedule state,DisplayPanel dp){
 		this.state=state;
@@ -31,11 +34,11 @@ public class MainViewSolo extends JPanel{
 		this.setLayout(new GridLayout(8,7));
 		timeBoxes=new TimeBox[56];
 
-		drawEmptySchedule();
+		//drawEmptySchedule();
 
 	}
 
-	private void drawEmptySchedule(){
+	public void drawEmptySchedule(){
 		timeBoxes[0]=new TimeBox("");
 		add(timeBoxes[0]);
 
@@ -58,6 +61,14 @@ public class MainViewSolo extends JPanel{
 	public DisplayPanel getDisplayPanel(){
 		return dp;
 	}
+	
+	public void setOptionPanelSolo(OptionPanelSolo ops){
+		this.ops=ops;
+	}
+	
+	public OptionPanelSolo getOptionPanelSolo(){
+		return ops;
+	}
 
 	private void cleanSchedule(){
 		for(int i=7; i<56; i++)
@@ -69,6 +80,8 @@ public class MainViewSolo extends JPanel{
 	}
 	public void setScheduleView(Teacher t){
 
+		selectedRoom=null;
+		selectedSection=null;
 		selectedTeacher=t;
 
 		//System.out.println(t.getCard());
@@ -84,9 +97,51 @@ public class MainViewSolo extends JPanel{
 
 
 	}
+	
+	public void setScheduleView(Room r){
+
+
+		selectedTeacher=null;
+		selectedSection=null;
+		selectedRoom=r;
+
+		//let's clean first
+		cleanSchedule();
+
+		/* then let's get all the theacher's cards and see if theirs placed */
+		for(Card c: r.getCards())
+			if(c.getTimePeriod()!=0)
+				timeBoxes[c.getTimePeriod()].setLabel(c.getHtmlRepresentation());
+
+
+	}
+	
+	public void setScheduleView(Section s){
+
+		selectedRoom=null;
+		selectedTeacher=null;
+		selectedSection=s;
+
+
+		//let's clean first
+		cleanSchedule();
+
+		/* then let's get all the theacher's cards and see if theirs placed */
+		for(Card c: s.getCards())
+			if(c.getTimePeriod()!=0)
+				timeBoxes[c.getTimePeriod()].setLabel(c.getHtmlRepresentation());
+
+
+
+	}
 
 	public void updateView(){
-		setScheduleView(selectedTeacher);
+		if(selectedTeacher!=null)
+			setScheduleView(selectedTeacher);
+		else if(selectedRoom!=null)
+			setScheduleView(selectedRoom);
+		else if(selectedSection!=null)
+			setScheduleView(selectedSection);
 	}
 
 }

@@ -13,5 +13,8 @@ public class Propreties {
 	public static int default_bureau_number_seats=0;
 	public static int default_auditoir_number_seats=80;
 	
+	public static int default_number_of_students_per_group=20;
+	public static int max_empty_seat=15;
+	
 
 }

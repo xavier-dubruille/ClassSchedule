@@ -32,7 +32,7 @@ public class TimeBox extends JPanel {
 		
 
 		jl=new JLabel(name);
-		jl.setFont(GUI_Propreties.card_default_font);
+		jl.setFont(GUI_Propreties.card_default_font_2);
 
 		add(jl);
 		this.setBorder(GUI_Propreties.card_default_border);
@@ -45,7 +45,7 @@ public class TimeBox extends JPanel {
 		this.state=state;
 		this.view=view;
 
-		this.setTransferHandler(new CardTransferHandler(state,view.getDisplayPanel()));
+		this.setTransferHandler(new CardTransferHandler(state,view.getDisplayPanel(),view.getOptionPanelSolo()));
 
 	}
 	

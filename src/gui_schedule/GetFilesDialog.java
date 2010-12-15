@@ -8,24 +8,44 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class GetCsvFilesDialog extends JDialog implements ActionListener{
+public class GetFilesDialog extends JDialog implements ActionListener{
 
 	JTextField jt_constrain, jt_lesson, jt_classRoom;
 	String output[];
-	public GetCsvFilesDialog(String[] output){
+	public GetFilesDialog(String[] output){
 
 		this.output=output;
-		
-		
+
+
 		setPreferredSize(GUI_Propreties.dialog_size);
 		setMinimumSize(GUI_Propreties.dialog_size);
 		setSize(GUI_Propreties.dialog_size);
-		
+
 		JPanel j=new JPanel();
 		j.setLayout(new BoxLayout(j,BoxLayout.Y_AXIS));
 
 
 		j.add(Box.createGlue());
+
+		// 0th field: the semester checkbox
+		JPanel semester=new JPanel();
+		semester.setLayout(new BoxLayout(semester,BoxLayout.X_AXIS));
+		JRadioButton sem1=new JRadioButton("semestre 1");
+		sem1.setSelected(true);
+		JRadioButton sem2=new JRadioButton("semestre 2");
+		ButtonGroup group = new ButtonGroup();
+		group.add(sem1);
+		group.add(sem2);
+
+		sem1.setActionCommand("sem1");
+		sem1.addActionListener(this);
+		sem2.setActionCommand("sem2");
+		sem2.addActionListener(this);
+		semester.add(sem1);
+		semester.add(sem2);
+	
+		
+		j.add(semester);
 
 		//First field: the lessons
 		JPanel lesson=new JPanel();
@@ -56,11 +76,11 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		classRoom.setLayout(new BoxLayout(classRoom,BoxLayout.X_AXIS));
 
 		classRoom.add(Box.createHorizontalGlue());
-		
+
 		JLabel classLabel=new JLabel("    Fichier contenant les locaux");
 		classLabel.setPreferredSize(GUI_Propreties.size_label_dialog);
 		classRoom.add(classLabel);
-		
+
 		classRoom.add(Box.createHorizontalGlue());
 		jt_classRoom=new JTextField(20);
 		classRoom.add(jt_classRoom);
@@ -104,7 +124,7 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 		create.addActionListener(this);
 		j.add(create);
 		getContentPane().add(j);
-		
+
 		this.pack();
 		setModal(true);
 		setVisible(true);
@@ -115,48 +135,58 @@ public class GetCsvFilesDialog extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		JFileChooser jf=new JFileChooser();
 		int returnVal;
+		String sem="first";
+
+		System.out.println(e.getActionCommand());
 		
 		javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter(){
 			public boolean accept(File f){
 				return f.getName().endsWith(".csv")||f.isDirectory()||f.getName().endsWith(".xls");}
 			public String getDescription(){return "fichiers csv et xls";}
 		};
-		
-		
 
-			if (e.getActionCommand().equals("lesson")){
 
-				jf.setFileFilter(filter);
-				jf.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				returnVal=jf.showOpenDialog(this);
-				if(returnVal == JFileChooser.APPROVE_OPTION)
-					jt_lesson.setText(jf.getSelectedFile().getPath());
-			}
-			if (e.getActionCommand().equals("constrain")){
 
-				jf.resetChoosableFileFilters();
-				jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-				returnVal =jf.showOpenDialog(this);
-				if(returnVal == JFileChooser.APPROVE_OPTION)
-					jt_constrain.setText(jf.getSelectedFile().getPath());
-
-			}
-			if (e.getActionCommand().equals("classRoom")){
-
-				jf.setFileFilter(filter);
-				jf.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				returnVal =jf.showOpenDialog(this);
-				if(returnVal == JFileChooser.APPROVE_OPTION)
-					jt_classRoom.setText(jf.getSelectedFile().getPath());
-			}
-			if (e.getActionCommand().equals("create")){
-
-				output[0]=jt_lesson.getText();
-				output[1]=jt_constrain.getText();
-				output[2]=jt_classRoom.getText();
-
-				this.setVisible(false);
-			}
+		if (e.getActionCommand().equals("sem1")){
+			sem="first";
 		}
+		if (e.getActionCommand().equals("sem2")){
+			sem="second";
+		}
+		if (e.getActionCommand().equals("lesson")){
+
+			jf.setFileFilter(filter);
+			jf.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			returnVal=jf.showOpenDialog(this);
+			if(returnVal == JFileChooser.APPROVE_OPTION)
+				jt_lesson.setText(jf.getSelectedFile().getPath());
+		}
+		if (e.getActionCommand().equals("constrain")){
+
+			jf.resetChoosableFileFilters();
+			jf.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			returnVal =jf.showOpenDialog(this);
+			if(returnVal == JFileChooser.APPROVE_OPTION)
+				jt_constrain.setText(jf.getSelectedFile().getPath());
+
+		}
+		if (e.getActionCommand().equals("classRoom")){
+
+			jf.setFileFilter(filter);
+			jf.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			returnVal =jf.showOpenDialog(this);
+			if(returnVal == JFileChooser.APPROVE_OPTION)
+				jt_classRoom.setText(jf.getSelectedFile().getPath());
+		}
+		if (e.getActionCommand().equals("create")){
+
+			output[0]=jt_lesson.getText();
+			output[1]=jt_constrain.getText();
+			output[2]=jt_classRoom.getText();
+			output[3]=sem;
+
+			this.setVisible(false);
+		}
+	}
 
 }

@@ -100,6 +100,7 @@ public class OptionPanel extends JPanel {
 		//def.addElement("def moddel");
 		
 		//teacher option update:
+		//choises_two_Combo.removeAllItems();
 		for(Teacher t:state.getTeachers().values())
 			choises_two_Combo.addItem(t.getFirstName()+" "+t.getLastName());
 		choises_two_Combo.repaint();

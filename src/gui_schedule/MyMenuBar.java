@@ -84,7 +84,7 @@ public class MyMenuBar extends JMenuBar {
 		}
 
 		public void actionPerformed(ActionEvent ae){
-			GetCsvFilesDialog dialog=new GetCsvFilesDialog(state.getFilesPath());
+			GetFilesDialog dialog=new GetFilesDialog(state.getFilesPath());
 			if(state.update_from_files()){ //update the model; i.e. the internal data
 
 				fSc.update_from_state(); //update the GUI

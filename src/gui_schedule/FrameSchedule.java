@@ -10,6 +10,7 @@ import gui_selection.*;
 public class FrameSchedule extends JFrame {
 
 	OptionPanelSolo ops;
+	MainViewSolo mvs;
 	OptionPanelCompare opc;
 	
 	public FrameSchedule(){
@@ -24,11 +25,13 @@ public class FrameSchedule extends JFrame {
 		
 		setJMenuBar(bar);
 
-		
+
 		// first Tab: the solo/normal selection
 		JPanel soloTab=new JPanel(new BorderLayout());
-		MainViewSolo mvs=new MainViewSolo(state,fs.getDisplayPanel());
+		mvs=new MainViewSolo(state,fs.getDisplayPanel());
 		ops=new OptionPanelSolo(state,mvs);
+		mvs.setOptionPanelSolo(ops);
+		mvs.drawEmptySchedule();
 		soloTab.add(ops,BorderLayout.NORTH);
 		soloTab.add(mvs,BorderLayout.SOUTH);
 		

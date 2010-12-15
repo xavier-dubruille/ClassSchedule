@@ -12,6 +12,7 @@ public class CardTransferHandler extends TransferHandler{
 	private StateFullSchedule state;
 	private Card_GUI card_gui;
 	private DisplayPanel dp;
+	private OptionPanelSolo ops;
 
 	/*
 	 * constructor for Card_GUI
@@ -22,34 +23,36 @@ public class CardTransferHandler extends TransferHandler{
 	/*
 	 * constructor for TimeBox
 	 */
-	public CardTransferHandler(StateFullSchedule state, DisplayPanel dp){
+	public CardTransferHandler(StateFullSchedule state, DisplayPanel dp, OptionPanelSolo ops){
 		this.state=state;
 		this.dp=dp;
+		this.ops=ops;
 	}
+	
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
 	}
 
+	/*
+	 * Efectué par card_gui
+	 */
 	public boolean canImport(TransferHandler.TransferSupport suport) {
-		/*
-		if(suport.isDrop())
-			System.out.println("canImport: isDrop");
-		else
-			System.out.println("canImport: is cut/paste !");
+	
+/*
+		try{
+		
+//		TimeBox timeBox=(TimeBox)suport.getComponent();
+//		int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
+//		Card c=state.getCards().get(cardId);
+//		System.out.println(ops.getSelectedRoom()+" "+ops.getSelectedSection()+" "+ops.getSelectedTeacher());
+		
+		} catch(Exception e){
+			System.err.println("cant import..");
+			e.printStackTrace();
+			return false;
+		}
 		*/
 		return true; 
-		/*
-		    if (!(comp instanceof JLabel) && !(comp instanceof AbstractButton)) {
-		      return false;
-		    }
-		    for (int i = 0, n = flavor.length; i < n; i++) {
-		      for (int j = 0, m = flavors.length; j < m; j++) {
-		        if (flavor[i].equals(flavors[j])) {
-		          return true;
-		        }
-		      }
-		    }
-		    return false;*/
 	}
 
 	public  void exportDone(Component j,Transferable t){
@@ -76,6 +79,9 @@ public class CardTransferHandler extends TransferHandler{
 		
 	}
 
+	/*
+	 * Efectué par card_gui ?
+	 */
 	public Transferable createTransferable(JComponent comp) {
 		// Clear
 		
@@ -100,26 +106,24 @@ public class CardTransferHandler extends TransferHandler{
 		    return null;*/
 	}
 
-	// juste qq tests..
-	public static Action getCopyAction(){
-		System.out.println("copy action");
-		return null;
-	}
-	public static Action getCutAction(){
-		System.out.println("cut action");
-		return null;
-	}
-	public static Action getPasteAction() {
-		System.out.println("paste action");
-		return null;
-	}
+
+	/*
+	 * Efectué par time_box 
+	 */
 	public boolean importData(TransferHandler.TransferSupport suport) {
+		
+		
+		//System.out.println(ops.getSelectedRoom()+" "+ops.getSelectedSection()+" "+ops.getSelectedTeacher());
 		try{
 			
 			
 			TimeBox timeBox=(TimeBox)suport.getComponent();
 			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
 			Card c=state.getCards().get(cardId);
+			
+			//let's check if we can import (i know, it's not supposed to be here)
+			if(!checkCanImport(c,timeBox))
+				return false;
 			
 			//place the card state: time and classRoom
 			c.setTimePeriod_and_pickARoom(timeBox.getTimePeriod());
@@ -129,7 +133,6 @@ public class CardTransferHandler extends TransferHandler{
 			
 			//update the selection view
 			dp.updateStatusCard();
-		
 			
 		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
 			
@@ -170,5 +173,34 @@ public class CardTransferHandler extends TransferHandler{
 		 */
 	}
 
+	/*
+	 * Efectué par time_box 
+	 */
+	private boolean checkCanImport(Card card,TimeBox timeBox){
+		
+		for(Card c:card.getTeacher().getCard())
+			if(c.getTimePeriod()==timeBox.getTimePeriod())
+				return false;
+		
+		if(ops.getSelectedTeacher()!=null && ops.getSelectedTeacher()!=card.getTeacher())
+			return false;
+		if(ops.getSelectedSection()!=null && !card.getCard_sections().contains(ops.getSelectedSection())){
+		/*
+			System.out.println("----------");
+			System.out.println("faux -- selection");
+			if(ops.getSelectedSection()!=null){
+				System.out.println("slection affiché: "+ops.getSelectedSection());
+				System.out.println("slections contenu dans la cartes: "+c.getCard_sections());
+			}
+			System.out.println("----------");
+			*/
+			return false;
+		}
+		if(ops.getSelectedRoom()!=null && card.getSeatsToProvide()<ops.getSelectedRoom().getCapacity()) //faut aussi s'occuper des sall info
+			return false;
+		
+		
+		return true;
+	}
 
 }

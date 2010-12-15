@@ -43,6 +43,7 @@ public class DisplayPanel extends JPanel{
 
 
 	private void printCard(){
+		this.removeAll();
 		for(Map.Entry<Integer,Card_GUI> e:gui_cards.entrySet()){
 			//setLayout(new FlowLayout());
 			add((Card_GUI)e.getValue());
@@ -93,7 +94,7 @@ public class DisplayPanel extends JPanel{
 			   && generalOptionCheck(ca.getTimePeriod()))
 			{
 				c.setVisible(true);
-				System.out.println(generalOptionChoosed+"+ (tp)"+ca.getTimePeriod()+" = "+generalOptionCheck(ca.getTimePeriod()));
+			//	System.out.println(generalOptionChoosed+"+ (tp)"+ca.getTimePeriod()+" = "+generalOptionCheck(ca.getTimePeriod()));
 				
 			}
 			else

@@ -34,6 +34,8 @@ public class StateFullSchedule {
 
 	String filesPath[];
 	String csvDelemiter;
+	private 
+	int choice_sem; // choix semestre
 
 	private boolean ready; //will be true when the object is usable
 
@@ -43,7 +45,7 @@ public class StateFullSchedule {
 	 */
 	public StateFullSchedule(){
 
-		filesPath =new String[3];
+		filesPath =new String[4];
 		init();
 	}
 
@@ -57,7 +59,8 @@ public class StateFullSchedule {
 		rooms=new TreeMap<String, Room>();
 		teachers=new TreeMap<String, Teacher>();
 		students=new TreeMap<String, Student>();
-
+		sections=new TreeMap<String,Section>();
+		choice_sem=2;
 
 		csvDelemiter=";";
 	}
@@ -75,7 +78,12 @@ public class StateFullSchedule {
 		 * si les fichiers on changé, (par ex ac une somme md5)
 		 * si ils existent, sont dans un format valide, ect */
 		init();
-
+		
+		if(filesPath[3]!=null && filesPath[3].equalsIgnoreCase("first"))
+			choice_sem=1;
+		else
+			choice_sem=2;
+		
 
 		try{
 			createStateFromCardFile(filesPath[0]);
@@ -120,8 +128,9 @@ public class StateFullSchedule {
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-
-		System.out.println("rooms: "+this.rooms);
+  
+		// System.out.println("sections: "+this.sections);
+		// System.out.println("rooms: "+this.rooms);
 		try{
 			createStateFromConstrainDir(filesPath[1]);
 		}catch(Exception e){
@@ -297,15 +306,25 @@ public class StateFullSchedule {
 	private void constructCardStateFromLine(String[] line, int cardId){
 
 		//System.out.println("construct card state from line "+Arrays.toString(line));
-
+		if (Integer.parseInt(line[indexLine.get("period")])==0){
+			//System.out.println(line[indexLine.get("course_name")]+" "+line[indexLine.get("period")]);
+			return; //this course doesn't take place this semester
+		}
 		Teacher t; 
 		Lesson l;
+		Room r;
 		Section s;
+		String section_name=line[indexLine.get("year")]+line[indexLine.get("section")]+line[indexLine.get("group")];
+		String teacher_lastName=line[indexLine.get("teacher_lastName")];
+		if(teacher_lastName.equalsIgnoreCase("{N}"))
+			teacher_lastName="Indefini";
 		
 
-		//now, t,s and l HAVE TO point to a correct object, because we will use it
+		//now, t,s,r and l HAVE TO point to a correct object, because we will use it
+		
+		//teachers
 		if (!teachers.containsKey(line[indexLine.get("teacher_id")])){
-			t=new Teacher(line[indexLine.get("teacher_firstName")],line[indexLine.get("teacher_lastName")]);
+			t=new Teacher(line[indexLine.get("teacher_firstName")],teacher_lastName);
 			teachers.put(line[indexLine.get("teacher_id")], t);
 
 		}
@@ -313,29 +332,43 @@ public class StateFullSchedule {
 			t=teachers.get(line[indexLine.get("teacher_id")]);
 		}
 
-
+		//lessons
 		if (!lessons.containsKey(line[indexLine.get("courses_id")])){
-			l=new Lesson(line[indexLine.get("course_name")]); //concatène 1 et L1 dans le group
+			l=new Lesson(line[indexLine.get("course_name")]); 
 			lessons.put(line[indexLine.get("courses_id")], l);
 		}
 		else {
 			l=lessons.get(line[indexLine.get("courses_id")]);
 		}
 
+		//sections
+		if (!sections.containsKey(section_name)){
+			s=new Section(section_name);
+			sections.put(section_name, s);
+		}
+		else {
+			s=sections.get(section_name);
+		}
+		
+		
 		// set section, teacher, periods , mode
-		l.setOtherInfo( line[indexLine.get("year")]+line[indexLine.get("section")]+line[indexLine.get("group")], t, line[indexLine.get("period")],line[indexLine.get("mod")]);
+		l.setOtherInfo( line[indexLine.get("year")]+line[indexLine.get("section_name")]+line[indexLine.get("group")], t, line[indexLine.get("period")],line[indexLine.get("mod")]);
 
 		t.addCourse(line[indexLine.get("courses_id")],l);
 		// p-e mettre une reference des prof dans l'objet course
 
-		Card card=new Card(l,t,cardId,rooms);
-		cards.put(cardId,card); 
+		Card card=findMachingCard(l,line[indexLine.get("mod")],s);
+		if(card==null){
+			card=new Card(l,t,cardId,s,this);
+			cards.put(cardId,card); 		
+		}
+		else{
+			card.addSection(s);
+		}
+		
 		t.addCard(card);
+		s.addCard(card);
 
-
-
-
-		// il faut bien évidement rajouter ce qui manque..
 
 
 	}
@@ -364,7 +397,7 @@ public class StateFullSchedule {
 						line[cell.getColumnIndex()]=cell.getDateCellValue().toString();
 					} else {
 
-						line[cell.getColumnIndex()]=""+cell.getNumericCellValue();
+						line[cell.getColumnIndex()]=""+(int)cell.getNumericCellValue();
 					}
 					break;
 				case Cell.CELL_TYPE_BOOLEAN:
@@ -392,20 +425,20 @@ public class StateFullSchedule {
 	private void putRightIndex(String[] line){
 
 		/*
-		 * index 0 = year
-		 * index 1 = course_name
-		 * index 2 = teacher_firstName
-		 * index 3 = section
-		 * index 4 = courses_id
-		 * index 5 = teacher_id
-		 * index 6 = period
-		 * index 7 = teacher_lastName
-		 * index 8 = group
-		 * index 9 = mod
+		 * index  = year
+		 * index  = course_name
+		 * index  = teacher_firstName
+		 * index  = section
+		 * index  = courses_id
+		 * index  = teacher_id
+		 * index  = period
+		 * index  = teacher_lastName
+		 * index  = group
+		 * index  = mod
+		 * section_name
 		 */
 
-		int choix=1; // choix semestre
-		String sem = "ORCO_NombrePeriodeSemaineSemestre" + choix; 
+		String sem = "ORCO_NombrePeriodeSemaineSemestre" + choice_sem; 
 
 		for (int i=0; i<line.length; i++){
 
@@ -436,14 +469,31 @@ public class StateFullSchedule {
 
 
 			else if(line[i].equalsIgnoreCase("Intitul� Section"))
-				indexLine.put("section", i);
+				indexLine.put("section_name", i);
 
+			else if(line[i].equalsIgnoreCase("Section"))
+				indexLine.put("section", i);
+			
 			else if(line[i].equalsIgnoreCase("Mode"))
 				indexLine.put("mod", i);
 
 		}
 		//System.out.println("indexline :"+indexLine);
 		//System.out.println("line      :"+Arrays.toString(line));
+	}
+	
+	private Card findMachingCard(Lesson l,String mod,Section s){
+		
+		for (Card c:cards.values()){
+			if(l==c.getLesson() && 
+					mod.equalsIgnoreCase("classe") &&
+					s.getName().substring(0, 3).equalsIgnoreCase(c.getCard_sections().get(0).getName().substring(0,3)))
+			{
+				return c;
+			}
+		}
+		
+		return null;
 	}
 
 	public Map<Integer,Card> getCards(){
@@ -458,6 +508,9 @@ public class StateFullSchedule {
 		return rooms; 
 	}
 
+	public Map<String, Section> getSections(){
+		return sections;
+	}
 
 
 	public void setFilesPath(String filesPath[]){
