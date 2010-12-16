@@ -4,18 +4,23 @@
 package gui_schedule;
 
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import model.StateFullSchedule;
 import gui_selection.FrameSelection;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+
+import model.StateFullSchedule;
 
 /**
  * @author 
  *
  */
 public class MyMenuBar extends JMenuBar {
-
+	private static final long serialVersionUID = 1L;
 	FrameSchedule fSc;
 	FrameSelection fSe;
 	/**

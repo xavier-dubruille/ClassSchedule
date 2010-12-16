@@ -1,17 +1,19 @@
 package gui_schedule;
 
-import javax.swing.JPanel;
+import java.awt.GridLayout;
 import java.util.ArrayList;
-import model.StateFullSchedule;
-import model.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.*;
+
+import javax.swing.JPanel;
+
 import main.Propreties;
+import model.Room;
+import model.Section;
+import model.StateFullSchedule;
+import model.Teacher;
 
 public class MainViewCompare extends JPanel{
 
-
+	private static final long serialVersionUID = 1L;
 	StateFullSchedule state;
 
 	public MainViewCompare(StateFullSchedule state){

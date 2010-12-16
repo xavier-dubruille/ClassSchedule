@@ -2,16 +2,28 @@ package gui_schedule;
 
 import gui.GUI_Propreties;
 
-import javax.swing.*;
-import javax.swing.filechooser.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 public class GetFilesDialog extends JDialog implements ActionListener{
 
 	JTextField jt_constrain, jt_lesson, jt_classRoom;
 	String output[];
+	private static final long serialVersionUID = 1L;
+	
 	public GetFilesDialog(String[] output){
 
 		this.output=output;

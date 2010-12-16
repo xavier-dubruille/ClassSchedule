@@ -1,11 +1,11 @@
 package gui;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.BorderFactory;
-
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.border.Border;
 
 /*
  * 

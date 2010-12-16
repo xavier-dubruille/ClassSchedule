@@ -1,23 +1,21 @@
 package gui_schedule;
 
-import gui.CardTransferHandler;
 import gui.GUI_Propreties;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
-import model.*;
+import model.Card;
+import model.StateFullSchedule;
 
 public class TimeBox extends JPanel {
+	private static final long serialVersionUID = 1L;
 
 	JLabel jl;
 	String name;

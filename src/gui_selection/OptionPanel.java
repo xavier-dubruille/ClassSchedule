@@ -1,30 +1,32 @@
 package gui_selection;
 
-import model.*;
 import gui.GUI_Propreties;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.util.SortedMap;
 
-import javax.swing.*;
-import javax.swing.border.*;
-import org.japura.gui.*;
-import org.japura.*;
-import org.japura.gui.model.*;
-import org.japura.gui.renderer.*;
-import org.japura.gui.event.*;
-import org.japura.controller.*;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
+import model.Room;
+import model.StateFullSchedule;
+import model.Teacher;
+
+import org.japura.gui.CheckComboBox;
+import org.japura.gui.event.ListCheckListener;
+import org.japura.gui.event.ListEvent;
+import org.japura.gui.model.ListCheckModel;
 
 public class OptionPanel extends JPanel {
 
-	StateFullSchedule state;
-	DisplayPanel dp;
-	String[] Option_general;
-	String[] Option_teacher;
-	String[] Option_classRoom;
-	JPanel choises_one_panel;
-	SortedMap<Integer,Card_GUI> gui_cards;
+	private static final long serialVersionUID = 1L;
+	private StateFullSchedule state;
+	private DisplayPanel dp;
+	private String[] Option_general;
+	private String[] Option_teacher;
+	private String[] Option_classRoom;
+	private JPanel choises_one_panel;
+	private SortedMap<Integer,Card_GUI> gui_cards;
 	
 	public CheckComboBox choises_one_Combo,choises_two_Combo,choises_three_Combo;
 

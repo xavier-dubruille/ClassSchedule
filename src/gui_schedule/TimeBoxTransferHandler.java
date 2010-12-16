@@ -3,7 +3,6 @@ package gui_schedule;
 import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;
 
-import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -16,6 +15,7 @@ import model.StateFullSchedule;
 
 public class TimeBoxTransferHandler extends TransferHandler {
 
+	private static final long serialVersionUID = 1L;
 	private StateFullSchedule state;
 	private Card_GUI card_gui;
 	private DisplayPanel dp;

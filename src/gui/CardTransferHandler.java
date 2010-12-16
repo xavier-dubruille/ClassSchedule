@@ -1,15 +1,24 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.datatransfer.*;
+import gui_schedule.OptionPanelSolo;
+import gui_selection.Card_GUI;
+import gui_selection.DisplayPanel;
 
-import gui_selection.*;
-import gui_schedule.*;
-import model.*;
+import java.awt.Component;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+
+import javax.swing.JComponent;
+import javax.swing.TransferHandler;
+
+import model.Card;
+import model.StateFullSchedule;
 
 public class CardTransferHandler extends TransferHandler{
 
+	private static final long serialVersionUID = 1L;
+	
 	private StateFullSchedule state;
 	private Card_GUI card_gui;
 	private DisplayPanel dp;

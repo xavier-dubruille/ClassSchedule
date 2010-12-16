@@ -1,21 +1,25 @@
 package model;
 
-import main.Propreties;
-import java.util.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
-import org.apache.*;
-import org.apache.poi.*;
-import org.apache.poi.hssf.*;
-import org.apache.poi.hssf.usermodel.*;
-import org.apache.poi.hssf.util.*;
-import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.usermodel.*;
+
+import main.Propreties;
+
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import java.io.*;
-import java.lang.reflect.Array;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 
 
 /*

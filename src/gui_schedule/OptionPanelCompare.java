@@ -1,30 +1,26 @@
 package gui_schedule;
 
 import gui.GUI_Propreties;
-import model.*;
-import gui.GUI_Propreties;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.SortedMap;
-
-import javax.swing.*;
-import javax.swing.border.*;
-import org.japura.gui.*;
-import org.japura.*;
-import org.japura.gui.model.*;
-import org.japura.gui.renderer.*;
-import org.japura.gui.event.*;
-import org.japura.controller.*;
-import java.awt.*;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import model.Room;
+import model.Section;
 import model.StateFullSchedule;
-import java.util.*;
+import model.Teacher;
+
+import org.japura.gui.CheckComboBox;
+import org.japura.gui.event.ListCheckListener;
+import org.japura.gui.event.ListEvent;
+import org.japura.gui.model.ListCheckModel;
 
 
 public class OptionPanelCompare extends JPanel {
+	private static final long serialVersionUID = 1L;
+	
 	private StateFullSchedule state;
 	private ArrayList<String> selectedDays;
 	private String compareOn;

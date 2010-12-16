@@ -3,20 +3,22 @@ package gui_selection;
 import gui.CardTransferHandler;
 import gui.GUI_Propreties;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.dnd.DropTarget;
-import java.awt.*;
-import java.awt.datatransfer.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.TransferHandler;
 
 import model.Card;
-import model.Section;;
+import model.Section;
 
 public class Card_GUI extends JPanel {
 
+	private static final long serialVersionUID = 1L;
 	private Card card;
 	private DisplayPanel dp;
 	public Card_GUI(Card card, DisplayPanel dp){

@@ -1,19 +1,21 @@
 package gui_schedule;
 
 import gui.GUI_Propreties;
-import gui_selection.Card_GUI;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
-import model.*;
+
+import model.Room;
+import model.Section;
+import model.StateFullSchedule;
+import model.Teacher;
 
 public class OptionPanelSolo extends JPanel{
+	private static final long serialVersionUID = 1L;
 	private StateFullSchedule state;
 	private JComboBox teacherCombo,roomCombo,sectionCombo;
 	private MainViewSolo mvs;

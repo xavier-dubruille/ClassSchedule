@@ -1,22 +1,20 @@
 package gui_schedule;
 
-import gui.CardTransferHandler;
 import gui.GUI_Propreties;
+import gui_selection.DisplayPanel;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
+import javax.swing.JPanel;
+
+import model.Card;
+import model.Room;
+import model.Section;
+import model.StateFullSchedule;
 import model.Teacher;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import model.StateFullSchedule;
-import model.*;
-import gui_selection.*;
-
 public class MainViewSolo extends JPanel{
-
+	private static final long serialVersionUID = 1L;
 
 	StateFullSchedule state;
 	TimeBox[] timeBoxes;

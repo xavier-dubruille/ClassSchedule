@@ -14,6 +14,7 @@ import java.awt.*;
 
 public class DisplayPanel extends JPanel{
 
+	private static final long serialVersionUID = 1L;
 	SortedMap<Integer,Card_GUI> gui_cards;
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
 	

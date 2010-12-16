@@ -1,6 +1,7 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
 
 import main.Propreties;
 
@@ -18,7 +19,7 @@ public class Card {
 	private String mod;
 	private Map<String,Section> all_sections;
 	private ArrayList<Section> card_sections;
-	StateFullSchedule state;
+	private StateFullSchedule state;
 
 
 	public Card(Lesson lesson, Teacher teacher,int cardId,Section s,StateFullSchedule state){
@@ -138,6 +139,7 @@ public class Card {
 	public ArrayList<Section> getCard_sections() {
 		return card_sections;
 	}
+	@Override
 	public String toString(){
 		return lesson.name+" "+teacher.lastName;
 	}

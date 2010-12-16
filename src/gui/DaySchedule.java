@@ -13,6 +13,7 @@ import java.awt.*;
  *
  */
 public class DaySchedule extends JPanel {
+	private static final long serialVersionUID = 1L;
 
 	DaySchedule(){
 		

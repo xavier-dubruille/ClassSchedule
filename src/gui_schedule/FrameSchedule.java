@@ -8,7 +8,8 @@ import model.StateFullSchedule;
 import gui_selection.*;
 
 public class FrameSchedule extends JFrame {
-
+	
+	private static final long serialVersionUID = 1L;
 	OptionPanelSolo ops;
 	MainViewSolo mvs;
 	OptionPanelCompare opc;

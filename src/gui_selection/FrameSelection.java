@@ -1,23 +1,27 @@
 package gui_selection;
 
-import model.StateFullSchedule;
-
-import gui_schedule.MyMenuBar;
-
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.HeadlessException;
-
-import javax.swing.*;
-import java.awt.*;
-import model.*;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
+import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+
+import model.StateFullSchedule;
 
 public class FrameSelection extends JFrame {
 
 
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	DisplayPanel dp;
 	OptionPanel op;
 	JScrollPane scroll_display;
