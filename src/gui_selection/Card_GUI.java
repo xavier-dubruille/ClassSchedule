@@ -89,11 +89,16 @@ public class Card_GUI extends JPanel {
 		secLab.setFont(GUI_Propreties.card_default_font_1);
 		firstLine.add(secLab);
 		firstLine.add(Box.createHorizontalGlue());
+		
+		JPanel secondLine=new JPanel();
+		secondLine.setLayout(new BoxLayout(secondLine,BoxLayout.X_AXIS));
+		secondLine.add(Box.createHorizontalGlue());
 		JLabel nameLab=new JLabel(card.getTeacher().getLastName());
 		nameLab.setFont(GUI_Propreties.card_default_font_1);
-		firstLine.add(nameLab);
+		secondLine.add(nameLab);
 
 		this.add(firstLine);
+		this.add(secondLine);
 		JLabel j=new JLabel(card.getHtmlRepresentation());
 		j.setFont(GUI_Propreties.card_default_font_2);
 

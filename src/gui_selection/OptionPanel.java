@@ -9,6 +9,12 @@ import java.util.SortedMap;
 
 import javax.swing.*;
 import javax.swing.border.*;
+import org.japura.gui.*;
+import org.japura.*;
+import org.japura.gui.model.*;
+import org.japura.gui.renderer.*;
+import org.japura.gui.event.*;
+import org.japura.controller.*;
 
 public class OptionPanel extends JPanel {
 
@@ -20,59 +26,68 @@ public class OptionPanel extends JPanel {
 	JPanel choises_one_panel;
 	SortedMap<Integer,Card_GUI> gui_cards;
 	
-	JComboBox choises_one_Combo,choises_two_Combo,choises_three_Combo;
+	public CheckComboBox choises_one_Combo,choises_two_Combo,choises_three_Combo;
+
+	
 	//DefaultComboBoxModel def;
 	
 	public OptionPanel(DisplayPanel dp, StateFullSchedule state, SortedMap<Integer,Card_GUI> gui_cards){
 		this.dp=dp;
 		this.state=state;
 		this.gui_cards=gui_cards;
+		 ListCheckModel model;
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		//this.setPreferredSize(new Dimension(60,60));
 		
 
-		Option_general=new String[]{"place","non place","place posant probleme","tous"};
-		Option_teacher=new String[]{"tous"};
-		Option_classRoom=new String[]{"tous"};
+		//Option_general=new String[]{"place","non place","place posant probleme","tous"};
+
 		
 		//general option
 		choises_one_panel=new JPanel();
-		//choises_one_panel.setLayout(new BoxLayout(choises_one_panel, BoxLayout.X_AXIS));
-		//choises_one_panel.setPreferredSize(new Dimension(33,33));
-		//choises_one_panel.setSize(40, 40); //va faloir chipoter ici..
-	
-		choises_one_Combo = new JComboBox(Option_general);
-		choises_one_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
-		choises_one_Combo.addActionListener(new MyItemListener(0));
-		//choises_one_panel.add(new JLabel("Options general"));
 		choises_one_panel.setBorder(BorderFactory.createTitledBorder("Options generales"));
+
+		choises_one_Combo = new CheckComboBox();
+		choises_one_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choises_one_Combo.setMultipleItemsText("* plusieurs selections *");
+
+		model = choises_one_Combo.getModel();
+		model.addElement("tous");
+		model.addElement("place");
+		model.addElement("non place");
+		model.addElement("posant probleme");
+		model.addListCheckListener(new MyListCheckListener(0));
 		choises_one_panel.add(choises_one_Combo);
-		
+		  
 
 		//teacher option
 		JPanel choises_two_panel=new JPanel();
-		//choises_two_panel.setLayout(new BoxLayout(choises_two_panel, BoxLayout.X_AXIS));
-		//choises_two_panel.setPreferredSize(new Dimension(33,33));
-		//choises_two_panel.setSize(40, 40); //va faloir chipoter ici..
-		choises_two_Combo = new JComboBox(Option_teacher);
-		choises_two_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
-		choises_two_Combo.addActionListener(new MyItemListener(1));
-		//choises_two_panel.add(new JLabel("professeur"));
 		choises_two_panel.setBorder(BorderFactory.createTitledBorder("Professeur"));
+		
+		choises_two_Combo = new CheckComboBox();
+		choises_two_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choises_two_Combo.setMultipleItemsText("* plusieurs selections *");
+		
+		model = choises_two_Combo.getModel();
+		model.addElement("tous");
+		model.addListCheckListener(new MyListCheckListener(1));
+	
 		choises_two_panel.add(choises_two_Combo);
 
 
 		//class room option
 		JPanel choises_three_panel=new JPanel();
-		//choises_three_panel.setLayout(new BoxLayout(choises_three_panel, BoxLayout.X_AXIS));
-		//choises_three_panel.setPreferredSize(new Dimension(33,33));
-		//choises_three_panel.setSize(40, 40); //va faloir chipoter ici..
-		choises_three_Combo = new JComboBox(Option_classRoom);
-		choises_three_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
-		choises_three_Combo.addActionListener(new MyItemListener(2));
-		//choises_three_panel.add(new JLabel("local"));
 		choises_three_panel.setBorder(BorderFactory.createTitledBorder("Local"));
+		
+		choises_three_Combo = new CheckComboBox();
+		choises_three_Combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choises_three_Combo.setMultipleItemsText("* plusieurs selections *");
+	
+		model = choises_three_Combo.getModel();
+		model.addElement("tous");
+		model.addListCheckListener(new MyListCheckListener(2));
+		
 		choises_three_panel.add(choises_three_Combo);
 
 
@@ -98,34 +113,36 @@ public class OptionPanel extends JPanel {
 	 * the files(with all the options) are not know at creation, so we deal with it now
 	 */
 	public void update_from_state(){
+		ListCheckModel model;
 		
 		if(!state.isReady()){
 			System.err.println("Something wrong happened in optionPanel.update_from_state(), call a developper");
 			System.exit(-2);
 		}
-		
-		
-		//def.addElement("def moddel");
-		
+
+
+
 		//teacher option update:
 		//choises_two_Combo.removeAllItems();
+		model=choises_two_Combo.getModel();
 		for(Teacher t:state.getTeachers().values())
-			choises_two_Combo.addItem(t.getFirstName()+" "+t.getLastName());
+			model.addElement(t.getFirstName()+" "+t.getLastName());
 		choises_two_Combo.repaint();
 		
 
 		//classroom option update:
-		
+		model=choises_three_Combo.getModel();
 		for(Room r:state.getClassRoom().values())
-			choises_three_Combo.addItem(r.getName());
+			model.addElement(r.getName());
 		choises_three_Combo.repaint();
 		
 		this.repaint();
 		
+		
 		// System.out.println("update optionPanel..");
 	}
 	
-	private class MyItemListener implements ActionListener{
+	private class MyListCheckListener implements ListCheckListener{
 
 
 		int category; 
@@ -134,20 +151,49 @@ public class OptionPanel extends JPanel {
 		 * 1 --> teacher
 		 * 2 --> classroom
 		 */
-		MyItemListener(int category){
+		MyListCheckListener(int category){
 			this.category=category;
 		}
-		public void actionPerformed(ActionEvent e){
-			JComboBox cb = (JComboBox)e.getSource();
-	        String selectedItem = (String)cb.getSelectedItem();
-	        //System.out.println(item);
-	        
-	        // foundAndSetvisible(category,SelectedItem,true);
-			if (category==1)
-				dp.updateByTeacherItem(selectedItem);
-			else if(category==0)
-				dp.updateByGeneralItem(selectedItem);
+		public void addCheck(ListEvent e){
+			String value=(String)e.getValues().get(0);
+			switch(category){
+			case 1: //teachers
+				dp.showTeacherCards(value);
+				break;
+			case 0: //general option
+				java.util.List<Object> l=choises_one_Combo.getModel().getCheckeds();
+				for(int i=0;i<l.size();i++){
+					String s=(String)l.get(i);
+					if(!s.equals(value))
+						e.getSource().removeCheck(s);
+				}
 					
+				dp.updateByGeneralItem(value);
+				break;
+			case 2: //rooms
+				showRoom(value);
+				//dp.showRoomCards((String)e.getValues().get(0));
+				break;
+			}
 		}
+		public void removeCheck(ListEvent e){
+			switch(category){
+			case 1:	//teachers
+				dp.hideTeacherCards((String)e.getValues().get(0));
+				break;
+			case 0: //general option
+				//choises_one_Combo.getModel().removeChecks();
+				dp.updateByGeneralItem("tous");
+				break;
+			case 2: //rooms
+				hideRoom((String)e.getValues().get(0));
+				//dp.hideRoomCards((String)e.getValues().get(0));
+				break;
+			}
+		}
+
+		private void showRoom(String room){}
+		private void hideRoom(String room){}
+		
 	}
 }

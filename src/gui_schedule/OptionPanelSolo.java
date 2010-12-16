@@ -28,35 +28,38 @@ public class OptionPanelSolo extends JPanel{
 		this.mvs=mvs;
 		this.setBackground(GUI_Propreties.optionPanelSolo_color); 
 
-		//this.setPreferredSize(new Dimension(140,140));
-
+		
+		// teacher panel
 		JPanel teacherPanel=new JPanel();
 		teacherCombo=new JComboBox(new String[]{" "});
 		teacherCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		
 		teacherPanel.setBorder(BorderFactory.createTitledBorder("Professeur"));
 		teacherPanel.add(teacherCombo);
-		teacherPanel.setBackground(GUI_Propreties.optionPanelSolo_color);
+		teacherPanel.setBackground(GUI_Propreties.teacher_color);
 		teacherCombo.addActionListener(new ComboListener(0));
 		this.add(teacherPanel);
 
+		
+		// room panel
 		JPanel roomPanel=new JPanel();
 		roomCombo=new JComboBox(new String[]{" "});
 		roomCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		
 		roomPanel.setBorder(BorderFactory.createTitledBorder("Local"));
 		roomPanel.add(roomCombo);
-		roomPanel.setBackground(GUI_Propreties.optionPanelSolo_color);
+		roomPanel.setBackground(GUI_Propreties.room_color);
 		roomCombo.addActionListener(new ComboListener(1));
 		this.add(roomPanel);
 
+		// section panel
 		JPanel sectionPanel=new JPanel();
 		sectionCombo=new JComboBox(new String[]{" "});
 		sectionCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		
 		sectionPanel.setBorder(BorderFactory.createTitledBorder("Section"));
 		sectionPanel.add(sectionCombo);
-		sectionPanel.setBackground(GUI_Propreties.optionPanelSolo_color);
+		sectionPanel.setBackground(GUI_Propreties.section_color);
 		sectionCombo.addActionListener(new ComboListener(2));
 		this.add(sectionPanel);
 	}
@@ -84,7 +87,10 @@ public class OptionPanelSolo extends JPanel{
 		sectionCombo.repaint();
 
 		this.repaint();		
+		
 	}
+	
+	
 
 	private class ComboListener implements ActionListener{
 
@@ -103,18 +109,21 @@ public class OptionPanelSolo extends JPanel{
 			//let's set the main View Panel depending on the option_type
 			switch (option_type){
 			case 0: //teacher
+				setBackground(GUI_Propreties.teacher_color);
 				roomCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
 				selectedTeacher=findTeacher(selectedItem);
 				mvs.setScheduleView(selectedTeacher);
 				break;
 			case 1: //room
+				setBackground(GUI_Propreties.room_color);
 				teacherCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
 				selectedRoom=findRoom(selectedItem);
 				mvs.setScheduleView(selectedRoom);
 				break;
 			case 2: //section
+				setBackground(GUI_Propreties.section_color);
 				roomCombo.setSelectedItem(" ");
 				teacherCombo.setSelectedItem(" ");
 				selectedSection=findSection(selectedItem);

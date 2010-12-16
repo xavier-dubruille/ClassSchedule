@@ -4,6 +4,9 @@ package gui_selection;
 import gui.GUI_Propreties;
 
 import javax.swing.*;
+
+import org.japura.gui.event.ListEvent;
+
 import java.util.*;
 
 import model.*;
@@ -127,6 +130,29 @@ public class DisplayPanel extends JPanel{
 		
 	}
 	
+	public void showTeacherCards(String teacher){
+		System.out.println("showTeacher:"+teacher);
+		this.teachersChoosed.add(teacher);
+		this.updateViewedCards();
+	}
+	//public void showGeneralOptionCards(String generalOption){}
+	public void showRoomCards(String room){
+		System.out.println("showRoom:"+room);
+	}
+	public void hideTeacherCards(String teacher){
+		System.out.println("hideTeacher:"+teacher);
+		this.teachersChoosed.remove(teacher);
+		this.updateViewedCards();
+	}
+	//public void hideGeneralOptionCards(String generalOption){}
+	public void hideRoomCards(String room){
+		System.out.println("hideRoom:"+room);
+	}
+	
+	
+	/*
+	 * use it if the card may have been placed/unplaced
+	 */
 	public void updateStatusCard(){
 		for (Card_GUI c:gui_cards.values())
 		{
