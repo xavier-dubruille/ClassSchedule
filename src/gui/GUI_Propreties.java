@@ -33,8 +33,17 @@ public class GUI_Propreties {
 	public static Dimension dialog_size=new Dimension(670,180);
 	
 	public static Color optionPanelSolo_color=Color.white;
+	public static Color optionPanelCompare_color=Color.yellow;
 	
 	public static Color teacher_color=Color.pink;
 	public static Color room_color=Color.cyan;
 	public static Color section_color=Color.magenta;
+	
+	
+	
+	/***************  String constants **************/
+	public static final String option_teachers="Professeurs";
+	public static final String option_rooms="Locaux";
+	public static final String option_sections="Sections";
+	
 }

@@ -112,76 +112,28 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.teacher_color);
 				roomCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
-				selectedTeacher=findTeacher(selectedItem);
+				selectedTeacher=state.findTeacher(selectedItem);
 				mvs.setScheduleView(selectedTeacher);
 				break;
 			case 1: //room
 				setBackground(GUI_Propreties.room_color);
 				teacherCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
-				selectedRoom=findRoom(selectedItem);
+				selectedRoom=state.findRoom(selectedItem);
 				mvs.setScheduleView(selectedRoom);
 				break;
 			case 2: //section
 				setBackground(GUI_Propreties.section_color);
 				roomCombo.setSelectedItem(" ");
 				teacherCombo.setSelectedItem(" ");
-				selectedSection=findSection(selectedItem);
+				selectedSection=state.findSection(selectedItem);
 				mvs.setScheduleView(selectedSection);
 				break;
 			}
 
 		}
 
-		/*
-		 * return the Teacher corresponding to the selectedItem
-		 */
-		private Teacher findTeacher(String selectedItem){
-
-			// not very optimized yet.. but it won't make a big difference anyway.
-
-
-			for (Teacher t: state.getTeachers().values())
-				if (selectedItem.equalsIgnoreCase(t.getFirstName()+" "+t.getLastName()))
-					return t;
-
-			// if we're here, well, we haven't found it, and it's wrong..
-			System.err.println("Etrange Etrange.. problem in OptionPanelSolo.findTeacher(..)");
-			System.exit(-3);
-			return new Teacher(); //stupid, but left for compiling reasons..
-		}
 		
-		/*
-		 * return the Room corresponding to the selectedItem
-		 */
-		private Room findRoom(String selectedItem){
-			
-			for (Room r: state.getClassRoom().values())
-				if (selectedItem.equalsIgnoreCase(r.getName()))
-					return r;
-			
-			// if we're here, well, we haven't found it, and it's wrong..
-			System.err.println("Etrange Etrange.. problem in OptionPanelSolo.findRoom(..)");
-			System.exit(-4);
-			return new Room(); //stupid, but left for compiling reasons..
-			
-		}
-		
-		/*
-		 * return the Section corresponding to the selectedItem
-		 */
-		private Section findSection(String selectedItem){
-			
-			for (Section s: state.getSections().values())
-				if (selectedItem.equalsIgnoreCase(s.getName()))
-					return s;
-			
-			// if we're here, well, we haven't found it, and it's wrong..
-			System.err.println("Etrange Etrange.. problem in OptionPanelSolo.findSection(..)");
-			System.exit(-4);
-			return new Section(); //stupid, but left for compiling reasons..
-			
-		}
 
 	}
 

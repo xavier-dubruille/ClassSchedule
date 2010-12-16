@@ -16,5 +16,8 @@ public class Propreties {
 	public static int default_number_of_students_per_group=20;
 	public static int max_empty_seat=15;
 	
+	public static int period_per_day=7;
+	public static int day_per_week=5;
+	
 
 }

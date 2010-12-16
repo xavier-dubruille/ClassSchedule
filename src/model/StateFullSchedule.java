@@ -324,7 +324,7 @@ public class StateFullSchedule {
 		
 		//teachers
 		if (!teachers.containsKey(line[indexLine.get("teacher_id")])){
-			t=new Teacher(line[indexLine.get("teacher_firstName")],teacher_lastName);
+			t=new Teacher(line[indexLine.get("teacher_firstName")],teacher_lastName, this);
 			teachers.put(line[indexLine.get("teacher_id")], t);
 
 		}
@@ -496,6 +496,45 @@ public class StateFullSchedule {
 		return null;
 	}
 
+	/*
+	 * return the Teacher corresponding to the "firstName LastName"
+	 */
+	public Teacher findTeacher(String selectedItem){
+		
+		for (Teacher t: getTeachers().values())
+			if (selectedItem.equalsIgnoreCase(t.getFirstName()+" "+t.getLastName()))
+				return t;
+
+		return null; //shoulden't happen..
+	}
+	
+
+	/*
+	 * return the Room corresponding to the selectedItem
+	 */
+	public Room findRoom(String selectedItem){
+		
+		for (Room r: getClassRoom().values())
+			if (selectedItem.equalsIgnoreCase(r.getName()))
+				return r;
+		
+		return null; //shoulden't happen..
+		
+	}
+	
+	/*
+	 * return the Section corresponding to the selectedItem
+	 */
+	public Section findSection(String selectedItem){
+		
+		for (Section s: getSections().values())
+			if (selectedItem.equalsIgnoreCase(s.getName()))
+				return s;
+		
+		return null; //shoulden't happen..
+		
+	}
+	
 	public Map<Integer,Card> getCards(){
 		return cards;
 	}

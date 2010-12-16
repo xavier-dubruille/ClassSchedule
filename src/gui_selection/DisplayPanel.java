@@ -5,7 +5,6 @@ import gui.GUI_Propreties;
 
 import javax.swing.*;
 
-import org.japura.gui.event.ListEvent;
 
 import java.util.*;
 

@@ -1,7 +1,6 @@
 package model;
 
 import java.util.*;
-import java.util.Map;
 
 public class Teacher {
 	String firstName;
@@ -10,6 +9,7 @@ public class Teacher {
 	Map<String, Lesson> lessons; //inutil ?
 	ArrayList<Card> cards;
 	Map<Integer,Room> preferedClassRoom;
+	StateFullSchedule state;
 	// we have to had a "preferred schedule"
 	
 	public Teacher(){
@@ -19,17 +19,14 @@ public class Teacher {
 		lessons=new TreeMap<String, Lesson>();
 		preferedClassRoom =new TreeMap<Integer, Room>();
 	}
-	public Teacher(String firstName, String lastName){
+	public Teacher(String firstName, String lastName, StateFullSchedule state){
 		this();
 		this.firstName=firstName;
 		this.lastName=lastName;
+		this.state=state;
 	}
-	
-	public Teacher(String firstName, String lastName, String lesson_id){
-		this();
-		this.firstName=firstName;
-		this.lastName=lastName;
-	}
+
+
 	
 	public ArrayList<Card> getCard(){
 		return cards;
