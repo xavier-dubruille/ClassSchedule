@@ -58,9 +58,9 @@ public class TimeBoxTransferHandler extends TransferHandler {
 		
 		OptionPanelSolo ops;
 		TimeBoxSolo tbs=((TimeBoxSolo)comp);
-		/*
-		int timePeriod=tb.getTimePeriod();
-		ops=tb.getOptionPanelSolo();
+		
+		int timePeriod=tbs.getTimePeriod();
+		ops=tbs.getOptionPanelSolo();
 		String cardId="";
 		if(ops.getSelectedRoom()!=null)
 			for(Card c:ops.getSelectedRoom().getCards())
@@ -76,11 +76,11 @@ public class TimeBoxTransferHandler extends TransferHandler {
 			for(Card c:ops.getSelectedSection().getCards())
 				if(c.getTimePeriod()==timePeriod)
 					cardId=""+c.getCardId();
-					*/
-		if (tbs==null) return null;
-		if (tbs.getCard()==null) return null;
-		return new StringSelection(""+tbs.getCard().getCardId());
-		
+					
+	//	if (tbs==null) return null;
+	//	if (tbs.getCard()==null) return null;
+		//return new StringSelection(""+tbs.getCard().getCardId());
+		return new StringSelection(cardId);
 
 	}
 

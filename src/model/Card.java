@@ -12,7 +12,7 @@ public class Card {
 	private Teacher teacher;
 	private Lesson lesson;
 	private int happy; 
-	private int timePeriod; // =DP (Day,Period), starting both by one
+	private int timePeriod; // representing the day and the period
 	private int cardId;
 	private Map<String,Room> all_rooms;
 	private Room classRoom;
@@ -49,8 +49,8 @@ public class Card {
 		timePeriod=0;
 		return true;
 	}
-	public boolean setTimePeriod_and_pickARoom(int time){
-		timePeriod=time;
+	public boolean setTimePeriod_and_pickARoom(int time_nice_format){
+		timePeriod=time_nice_format;
 
 		boolean has_room = pick_best_room();
 		if (!has_room)
@@ -60,9 +60,10 @@ public class Card {
 		// dans pas de local ? dans le dernier, mais avec un status spécial ? et pour la gui?
 
 		// update the sections
-		for(Section s: card_sections)
-			s.addCard(this);
+	//	for(Section s: card_sections)
+		//	s.addCard(this);
 
+		System.out.println("set time period an pik a room "+card_sections);
 		return has_room;
 	}
 

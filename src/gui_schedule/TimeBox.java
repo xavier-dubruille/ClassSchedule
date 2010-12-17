@@ -48,7 +48,9 @@ public class TimeBox extends JPanel {
 			public void mousePressed(MouseEvent me) {
 
 				JComponent comp = (JComponent) me.getSource();
+				if (comp==null) return;
 				TransferHandler handler = comp.getTransferHandler();
+				if (handler==null) return;
 				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
 
 			}
@@ -59,6 +61,7 @@ public class TimeBox extends JPanel {
 	
 
 	public void setCard(Card c){
+		System.out.println("set Card :"+ c);
 		this.card=c;
 		jl.setText(c.getHtmlRepresentation());
 		

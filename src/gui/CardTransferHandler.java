@@ -141,8 +141,8 @@ public class CardTransferHandler extends TransferHandler{
 			
 		}
 		catch (Exception e){
-			System.err.println("exception dans importData(..) de CardTransfer");
-			e.printStackTrace();
+			System.err.println("exception dans importData(..) de CardTransfer: "+e);
+			//e.printStackTrace();
 			return false;
 		}
 		return true;

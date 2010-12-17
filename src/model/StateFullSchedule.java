@@ -136,6 +136,10 @@ public class StateFullSchedule {
 
 		// System.out.println("sections: "+this.sections);
 		// System.out.println("rooms: "+this.rooms);
+		// 		for (Teacher t: this.teachers.values())
+		// System.out.println(t.getLastName()+": "+t.getCard());
+	
+		
 		try{
 			createStateFromConstrainDir(filesPath[1]);
 		}catch(IOException e){
@@ -144,7 +148,6 @@ public class StateFullSchedule {
 			return false;
 
 		}
-
 
 		ready=true;
 		return true;
@@ -187,6 +190,7 @@ public class StateFullSchedule {
 
 	}
 
+	
 	private void treatConstraintFile(File file) throws IOException{
 		if (!file.getName().endsWith(".txt")) return;
 
@@ -425,7 +429,9 @@ public class StateFullSchedule {
 		Card card=findMachingCard(l,line[indexLine.get("mod")],s);
 		if(card==null){
 			card=new Card(l,t,cardId,s,this);
-			cards.put(cardId,card); 		
+			cards.put(cardId,card); 	
+			t.addCard(card);
+			s.addCard(card);
 			//if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
 			//	System.out.println("Batu, nvll carte: "+line[indexLine.get("course_name")]);
 		}

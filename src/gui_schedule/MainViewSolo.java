@@ -95,6 +95,7 @@ public class MainViewSolo extends JPanel{
 		selectedSection=null;
 		selectedTeacher=t;
 
+		//System.out.print("set teacher view..");
 		//System.out.println(t.getCard());
 
 		//let's clean first
@@ -118,6 +119,7 @@ public class MainViewSolo extends JPanel{
 	public void setScheduleView(Room r){
 
 
+	
 		selectedTeacher=null;
 		selectedSection=null;
 		selectedRoom=r;
