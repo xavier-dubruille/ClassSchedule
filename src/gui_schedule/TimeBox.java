@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -19,11 +20,9 @@ public class TimeBox extends JPanel {
 
 	JLabel jl;
 	String name;
-	private int timePeriod;
-	private StateFullSchedule state;
-	private MainViewSolo view;
-	private OptionPanelSolo ops;
-	private Card card;
+	protected int timePeriod;
+	protected StateFullSchedule state;
+	protected Card card;
 	
 	/*
 	 * constructor without TransferHandler
@@ -56,38 +55,31 @@ public class TimeBox extends JPanel {
 		});
 
 	}
-	TimeBox(String s, int timePeriod,StateFullSchedule state,MainViewSolo view){
-		
-		this(s);
-		this.timePeriod=timePeriod;
-		this.state=state;
-		this.view=view;
-		this.ops=view.getOptionPanelSolo();
-		this.setTransferHandler(new TimeBoxTransferHandler(state,view.getDisplayPanel(),ops));
 
-	}
 	
-	public MainViewSolo getView(){
-		return view;
-	}
+
 	public void setCard(Card c){
 		this.card=c;
-	}
-	
-	public Card getCard(){
-		return card;
-	}
-	public void setLabel(String s){
-		jl.setText(s);
+		jl.setText(c.getHtmlRepresentation());
 		
 		jl.setOpaque(true);
 		this.setBackground(GUI_Propreties.timeBox_color_placed);
 		jl.repaint();
 	}
 	
-	public OptionPanelSolo getOptionPanelSolo(){
-		return ops;
+	public void clear(){
+		this.card=null;
+		jl.setText("");
+		
+		jl.setOpaque(true);
+		this.setBackground(GUI_Propreties.timeBox_color_placed);
+		jl.repaint();
 	}
+	
+	public Card getCard(){
+		return card;
+	}
+
 
 	
 	public String toString(){
@@ -100,5 +92,12 @@ public class TimeBox extends JPanel {
 	
 	public void setTimePeriod(int timePeriod){
 		this.timePeriod=timePeriod;
+	}
+
+
+
+	public void setPref(int i) {
+		this.setBorder(BorderFactory.createLineBorder(Color.red));
+		
 	}
 }

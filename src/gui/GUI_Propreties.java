@@ -36,8 +36,8 @@ public class GUI_Propreties {
 	public static Color optionPanelCompare_color=Color.yellow;
 	
 	public static Color teacher_color=Color.pink;
-	public static Color room_color=Color.cyan;
-	public static Color section_color=Color.magenta;
+	public static Color room_color=Color.pink;
+	public static Color section_color=Color.pink;
 	
 	
 	

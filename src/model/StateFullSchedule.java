@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -82,12 +83,12 @@ public class StateFullSchedule {
 		 * si les fichiers on chang√©, (par ex ac une somme md5)
 		 * si ils existent, sont dans un format valide, ect */
 		init();
-		
+
 		if(filesPath[3]!=null && filesPath[3].equalsIgnoreCase("first"))
 			choice_sem=1;
 		else
 			choice_sem=2;
-		
+
 
 		try{
 			createStateFromCardFile(filesPath[0]);
@@ -132,13 +133,14 @@ public class StateFullSchedule {
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-  
+
 		// System.out.println("sections: "+this.sections);
 		// System.out.println("rooms: "+this.rooms);
 		try{
 			createStateFromConstrainDir(filesPath[1]);
-		}catch(Exception e){
-			e.printStackTrace();
+		}catch(IOException e){
+			JOptionPane.showMessageDialog(JOptionPane.getRootFrame(), "Impossible de lire les fichiers contenenant les contraintes",
+					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 
 		}
@@ -166,9 +168,65 @@ public class StateFullSchedule {
 		else if(filePath.endsWith("xls")) readRoomFromXLS(filePath);
 		else throw new NotSuportedFileException();
 	}
-	private void createStateFromConstrainDir(String filesPath){
+	private void createStateFromConstrainDir(String filesPath) throws IOException{
 		if (filesPath == null || filesPath.equals("") ) return;
+
+		/*****************************/
+
+		File rep = new File(filesPath);
+		File[] constraints = rep.listFiles();
+		for(File f:constraints)
+			treatConstraintFile(f);
+
+
+
+
+
+
+
+
 	}
+
+	private void treatConstraintFile(File file) throws IOException{
+		if (!file.getName().endsWith(".txt")) return;
+
+		String name[]=file.getName().split("\\.");
+
+		System.out.println(Arrays.toString(name));
+
+		Teacher t=findTeacherFromLastName(name[0]);
+		System.out.println(name[0]);
+		if(t!=null)
+			updateTeacherConstraints(t,file);
+
+
+
+	}
+
+
+	private void updateTeacherConstraints (Teacher teacher,File file) throws IOException{
+		System.out.println("update teacher constraints"+teacher.getFirstName()+" "+teacher.getLastName());
+		String[] lineTab;
+
+		String line;
+		Scanner sc=new Scanner(file);
+
+
+		while(sc.hasNext()){
+			
+			line=sc.nextLine();
+			
+			if(line.length()<3) continue; 
+			if(line.substring(0, 1).equals("#")) continue;
+
+			lineTab=line.split("=");
+			if(lineTab.length!=2) continue;
+			teacher.setPreferedSlide(Integer.parseInt(lineTab[0]), Integer.parseInt(lineTab[1]));
+			
+		}
+
+	}
+
 
 	private void readRoomFromCSV(String filePath){
 
@@ -309,6 +367,9 @@ public class StateFullSchedule {
 	 */
 	private void constructCardStateFromLine(String[] line, int cardId){
 
+		//	if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
+		//		System.out.println("débu. Batu: "+line[indexLine.get("course_name")]);
+
 		//System.out.println("construct card state from line "+Arrays.toString(line));
 		if (Integer.parseInt(line[indexLine.get("period")])==0){
 			//System.out.println(line[indexLine.get("course_name")]+" "+line[indexLine.get("period")]);
@@ -322,10 +383,10 @@ public class StateFullSchedule {
 		String teacher_lastName=line[indexLine.get("teacher_lastName")];
 		if(teacher_lastName.equalsIgnoreCase("{N}"))
 			teacher_lastName="Indefini";
-		
+
 
 		//now, t,s,r and l HAVE TO point to a correct object, because we will use it
-		
+
 		//teachers
 		if (!teachers.containsKey(line[indexLine.get("teacher_id")])){
 			t=new Teacher(line[indexLine.get("teacher_firstName")],teacher_lastName, this);
@@ -353,8 +414,8 @@ public class StateFullSchedule {
 		else {
 			s=sections.get(section_name);
 		}
-		
-		
+
+
 		// set section, teacher, periods , mode
 		l.setOtherInfo( line[indexLine.get("year")]+line[indexLine.get("section_name")]+line[indexLine.get("group")], t, line[indexLine.get("period")],line[indexLine.get("mod")]);
 
@@ -365,13 +426,14 @@ public class StateFullSchedule {
 		if(card==null){
 			card=new Card(l,t,cardId,s,this);
 			cards.put(cardId,card); 		
+			//if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
+			//	System.out.println("Batu, nvll carte: "+line[indexLine.get("course_name")]);
 		}
 		else{
 			card.addSection(s);
 		}
-		
-		t.addCard(card);
-		s.addCard(card);
+
+
 
 
 
@@ -477,7 +539,7 @@ public class StateFullSchedule {
 
 			else if(line[i].equalsIgnoreCase("Section"))
 				indexLine.put("section", i);
-			
+
 			else if(line[i].equalsIgnoreCase("Mode"))
 				indexLine.put("mod", i);
 
@@ -485,9 +547,9 @@ public class StateFullSchedule {
 		//System.out.println("indexline :"+indexLine);
 		//System.out.println("line      :"+Arrays.toString(line));
 	}
-	
+
 	private Card findMachingCard(Lesson l,String mod,Section s){
-		
+
 		for (Card c:cards.values()){
 			if(l==c.getLesson() && 
 					mod.equalsIgnoreCase("classe") &&
@@ -496,49 +558,61 @@ public class StateFullSchedule {
 				return c;
 			}
 		}
-		
+
 		return null;
+	}
+
+	/*
+	 * return the Teacher corresponding to the "LastName"
+	 */
+	public Teacher findTeacherFromLastName(String string){
+
+		for (Teacher t: getTeachers().values())
+			if (string.equalsIgnoreCase(t.getLastName()))
+				return t;
+
+		return null; 
 	}
 
 	/*
 	 * return the Teacher corresponding to the "firstName LastName"
 	 */
 	public Teacher findTeacher(String selectedItem){
-		
+
 		for (Teacher t: getTeachers().values())
 			if (selectedItem.equalsIgnoreCase(t.getFirstName()+" "+t.getLastName()))
 				return t;
 
-		return null; //shoulden't happen..
+		return null; 
 	}
-	
+
 
 	/*
 	 * return the Room corresponding to the selectedItem
 	 */
 	public Room findRoom(String selectedItem){
-		
+
 		for (Room r: getClassRoom().values())
 			if (selectedItem.equalsIgnoreCase(r.getName()))
 				return r;
-		
+
 		return null; //shoulden't happen..
-		
+
 	}
-	
-	/*
+
+	/*0
 	 * return the Section corresponding to the selectedItem
 	 */
 	public Section findSection(String selectedItem){
-		
+
 		for (Section s: getSections().values())
 			if (selectedItem.equalsIgnoreCase(s.getName()))
 				return s;
-		
+
 		return null; //shoulden't happen..
-		
+
 	}
-	
+
 	public Map<Integer,Card> getCards(){
 		return cards;
 	}

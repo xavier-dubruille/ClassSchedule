@@ -1,6 +1,7 @@
 package model;
 
 import java.util.*;
+import main.Propreties;
 
 public class Teacher {
 	String firstName;
@@ -10,9 +11,10 @@ public class Teacher {
 	ArrayList<Card> cards;
 	Map<Integer,Room> preferedClassRoom;
 	StateFullSchedule state;
-	// we have to had a "preferred schedule"
+	private int[] preferedTimeSlides;
 	
 	public Teacher(){
+		preferedTimeSlides=new int[(Propreties.day_per_week+1)*(Propreties.period_per_day+1)];
 		firstName="not set";
 		lastName="not set";
 		cards=new ArrayList<Card>();
@@ -26,8 +28,24 @@ public class Teacher {
 		this.state=state;
 	}
 
-
+	public void setPreferedSlide(int timeSlide,int pref){
 	
+		int day=timeSlide/10;
+		int period=timeSlide%10;
+		
+		//we should make some cheks and throws exeption..
+		
+		int timeSlideConverted=(Propreties.day_per_week+1)*period+day;
+		
+		System.out.println("setprefered time slide:"+timeSlide+"-->"+pref+" "+day+period+". and converted="+timeSlideConverted);
+		
+		preferedTimeSlides[timeSlideConverted]=pref;
+	}
+	
+	
+	public int[] getPreferedTimeSlides() {
+		return preferedTimeSlides;
+	}
 	public ArrayList<Card> getCard(){
 		return cards;
 	}

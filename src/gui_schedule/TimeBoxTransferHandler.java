@@ -41,11 +41,13 @@ public class TimeBoxTransferHandler extends TransferHandler {
 	 */
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 		//System.out.println("can import de timeboxhandler");
+		if(ops.getSelectedTeacher()==null && ops .getSelectedRoom()==null && ops.getSelectedSection()==null)
+			return false;
 		return true; 
 	}
 
 	public void exportDone(JComponent c, Transferable t, int action) { 
-		((TimeBox)c).getView().updateView();
+		((TimeBoxSolo)c).getView().updateView();
 	}
 	
 	/*
@@ -55,7 +57,8 @@ public class TimeBoxTransferHandler extends TransferHandler {
 		//System.out.println("createTransferable de timeBoxHandler");
 		
 		OptionPanelSolo ops;
-		TimeBox tb=((TimeBox)comp);
+		TimeBoxSolo tbs=((TimeBoxSolo)comp);
+		/*
 		int timePeriod=tb.getTimePeriod();
 		ops=tb.getOptionPanelSolo();
 		String cardId="";
@@ -73,8 +76,10 @@ public class TimeBoxTransferHandler extends TransferHandler {
 			for(Card c:ops.getSelectedSection().getCards())
 				if(c.getTimePeriod()==timePeriod)
 					cardId=""+c.getCardId();
-		
-		return new StringSelection(cardId);
+					*/
+		if (tbs==null) return null;
+		if (tbs.getCard()==null) return null;
+		return new StringSelection(""+tbs.getCard().getCardId());
 		
 
 	}
@@ -87,26 +92,26 @@ public class TimeBoxTransferHandler extends TransferHandler {
 		
 		//System.out.println("importData de timeBoxHandler");
 		try{
-			
-			
-			TimeBox timeBox=(TimeBox)suport.getComponent();
+			if(!canImport(suport))
+				return false;
+			TimeBoxSolo timeBoxSolo=(TimeBoxSolo)suport.getComponent();
 			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
 			Card c=state.getCards().get(cardId);
 			
 			//let's check if we can import (i know, it's not supposed to be here)
-			if(!checkCanImport(c,timeBox))
+			if(!checkCanImport(c,timeBoxSolo))
 				return false;
 			
 			//place the card state: time and classRoom
-			c.setTimePeriod_and_pickARoom(timeBox.getTimePeriod());
+			c.setTimePeriod_and_pickARoom(timeBoxSolo.getTimePeriod());
 			
 			//update the gui timeBox
-			timeBox.getView().updateView();
+			timeBoxSolo.getView().updateView();
 			
 			//update the selection view
 			dp.updateStatusCard();
 			
-		//System.out.println("importData "+(String)t.getTransferData(DataFlavor.stringFlavor)+" -- comp: "+((TimeBox)comp).getTimePeriod());
+		//System.out.println("importData  -- comp: "+suport.getComponent());
 			
 			
 		}

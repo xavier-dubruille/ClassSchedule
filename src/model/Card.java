@@ -12,7 +12,7 @@ public class Card {
 	private Teacher teacher;
 	private Lesson lesson;
 	private int happy; 
-	private int timePeriod; // =DP (Day,Period)
+	private int timePeriod; // =DP (Day,Period), starting both by one
 	private int cardId;
 	private Map<String,Room> all_rooms;
 	private Room classRoom;
