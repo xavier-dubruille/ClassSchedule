@@ -62,7 +62,7 @@ public class Room {
 	}
 
 	public String toString(){
-		return cards.toString(); //name+" "+type+" "+info+" "+seats;
+		return "room[name="+name+",type="+type+",info="+info+",seats="+seats+"]";
 	}
 
 }

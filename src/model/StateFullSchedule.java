@@ -392,13 +392,13 @@ public class StateFullSchedule {
 		//now, t,s,r and l HAVE TO point to a correct object, because we will use it
 
 		//teachers
-		if (!teachers.containsKey(line[indexLine.get("teacher_id")])){
+		if (!teachers.containsKey(teacher_lastName+line[indexLine.get("teacher_firstName")])){
 			t=new Teacher(line[indexLine.get("teacher_firstName")],teacher_lastName, this);
-			teachers.put(line[indexLine.get("teacher_id")], t);
+			teachers.put(line[indexLine.get("teacher_lastName")]+line[indexLine.get("teacher_firstName")], t);
 
 		}
 		else{
-			t=teachers.get(line[indexLine.get("teacher_id")]);
+			t=teachers.get(teacher_lastName+line[indexLine.get("teacher_firstName")]);
 		}
 
 		//lessons
@@ -412,7 +412,7 @@ public class StateFullSchedule {
 
 		//sections
 		if (!sections.containsKey(section_name)){
-			s=new Section(section_name);
+			s=new Section(line[indexLine.get("year")],line[indexLine.get("section")],line[indexLine.get("group")]);
 			sections.put(section_name, s);
 		}
 		else {
@@ -433,7 +433,7 @@ public class StateFullSchedule {
 			t.addCard(card);
 			s.addCard(card);
 			//if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
-			//	System.out.println("Batu, nvll carte: "+line[indexLine.get("course_name")]);
+				//System.out.println("Batu, nvll carte: "+line[indexLine.get("course_name")]);
 		}
 		else{
 			card.addSection(s);
@@ -559,7 +559,8 @@ public class StateFullSchedule {
 		for (Card c:cards.values()){
 			if(l==c.getLesson() && 
 					mod.equalsIgnoreCase("classe") &&
-					s.getName().substring(0, 3).equalsIgnoreCase(c.getCard_sections().get(0).getName().substring(0,3)))
+					s.getYear().equalsIgnoreCase(c.getCard_sections().get(0).getYear()) &&
+					s.getSectionType().equalsIgnoreCase(c.getCard_sections().get(0).getSectionType()))
 			{
 				return c;
 			}

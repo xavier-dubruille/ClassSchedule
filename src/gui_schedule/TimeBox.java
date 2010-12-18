@@ -61,7 +61,7 @@ public class TimeBox extends JPanel {
 	
 
 	public void setCard(Card c){
-		System.out.println("set Card :"+ c);
+		// System.out.println("TimeBox.set Card :"+ c);
 		this.card=c;
 		jl.setText(c.getHtmlRepresentation());
 		

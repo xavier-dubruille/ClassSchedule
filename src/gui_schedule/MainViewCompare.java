@@ -51,7 +51,7 @@ public class MainViewCompare extends JPanel{
 		// find the timePeriod --> 
 		int timePeriod = (Propreties.day_per_week+1)*i+getDayNumber(day);
 
-		for(Card c:teacher.getCard()){
+		for(Card c:teacher.getCards()){
 			if (c.getTimePeriod()==timePeriod)
 				return c;
 		}

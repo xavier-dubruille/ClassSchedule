@@ -96,18 +96,19 @@ public class MainViewSolo extends JPanel{
 		selectedTeacher=t;
 
 		//System.out.print("set teacher view..");
-		//System.out.println(t.getCard());
+		//System.out.println("mainVueSolo: setScheduleView(Teacher): teachers card's:"+t.getCards());
 
 		//let's clean first
 		cleanSchedule();
 
 		/* then let's get all the theacher's cards and see if theirs placed */
-		for(Card c: t.getCard())
+		for(Card c: t.getCards())
 			if(c.getTimePeriod()!=0){
 				timeBoxes[c.getTimePeriod()].setCard(c);
 			}
 		
 		/* and then let's fix the preferance's Teacher */
+		
 		int pref[]=t.getPreferedTimeSlides();
 		for(int i=0;i<pref.length;i++)
 			if (pref[i]!=0)

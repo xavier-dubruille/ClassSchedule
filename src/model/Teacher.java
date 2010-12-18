@@ -12,6 +12,7 @@ public class Teacher {
 	Map<Integer,Room> preferedClassRoom;
 	StateFullSchedule state;
 	private int[] preferedTimeSlides;
+	int testi;
 	
 	public Teacher(){
 		preferedTimeSlides=new int[(Propreties.day_per_week+1)*(Propreties.period_per_day+1)];
@@ -46,7 +47,7 @@ public class Teacher {
 	public int[] getPreferedTimeSlides() {
 		return preferedTimeSlides;
 	}
-	public ArrayList<Card> getCard(){
+	public ArrayList<Card> getCards(){
 		return cards;
 	}
 	public void putLocal(int priority,Room l){
@@ -56,6 +57,7 @@ public class Teacher {
 	public void setCards(Collection<? extends Card> coll){
 		cards.addAll(coll);
 	}
+	
 	public void addCard(Card ca){
 		cards.add(ca);
 	}
