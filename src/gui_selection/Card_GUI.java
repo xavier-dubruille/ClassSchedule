@@ -21,6 +21,7 @@ public class Card_GUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private Card card;
 	private DisplayPanel dp;
+	private JLabel classRoomLab;
 	public Card_GUI(Card card, DisplayPanel dp){
 
 		super();
@@ -99,19 +100,43 @@ public class Card_GUI extends JPanel {
 		nameLab.setFont(GUI_Propreties.card_default_font_1);
 		secondLine.add(nameLab);
 
+		JLabel midle=new JLabel(card.getHtmlRepresentation());
+		midle.setFont(GUI_Propreties.card_default_font_2);
+		
+		JPanel lastLine=new JPanel();
+		lastLine.setLayout(new BoxLayout(lastLine,BoxLayout.X_AXIS));
+		classRoomLab=new JLabel(".");
+		lastLine.add(classRoomLab);
+		lastLine.add(Box.createHorizontalGlue());
+		
 		this.add(firstLine);
 		this.add(secondLine);
-		JLabel j=new JLabel(card.getHtmlRepresentation());
-		j.setFont(GUI_Propreties.card_default_font_2);
-
-		add(j);
-
+		this.add(Box.createVerticalGlue());
+		this.add(midle);
+		this.add(Box.createVerticalGlue());
+		this.add(lastLine);
 
 
 		if(card.getTimePeriod()==0)
 			this.setBackground(GUI_Propreties.card_default_background);
 		else
 			this.setBackground(GUI_Propreties.card_color_placed);
+	}
+	public void reDraw(){
+		
+		// classRoom
+		if (card.getClassRoom()==null || card.getClassRoom().getName()==null) {
+			classRoomLab.setText(".");
+		}
+		else 
+			classRoomLab.setText(card.getClassRoom().getName());
+		
+		// timePeriod (i.e placed or not placed)
+		if(card.getTimePeriod()!=0)
+			setBackground(GUI_Propreties.card_color_placed);
+		else
+			setBackground(GUI_Propreties.card_default_background);
+		
 	}
 	public Card getCard(){
 		return card;
@@ -121,6 +146,8 @@ public class Card_GUI extends JPanel {
 		return dp;
 	}
 
+	
+	
 	public String toSrring(){
 		return card.toString();
 	}

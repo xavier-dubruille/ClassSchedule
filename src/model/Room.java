@@ -25,7 +25,7 @@ public class Room {
 	}
 	
 	public void addCard(Card c){
-		System.out.println("add card: "+c.getTimePeriod());
+		//System.out.println("add card: "+c.getTimePeriod());
 		cards.add(c);
 	}
 	

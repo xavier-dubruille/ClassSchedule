@@ -45,10 +45,12 @@ public class Card {
 		card_sections.add(s);
 	}
 
-	public boolean resetTimePeriod(){
+
+	public void resetStatusCard() {
 		timePeriod=0;
-		return true;
+		classRoom=null;
 	}
+	
 	public boolean setTimePeriod_and_pickARoom(int timePeriod){
 		this.timePeriod=timePeriod;
 
@@ -74,11 +76,11 @@ public class Card {
 		classRoom=selectedRoom;
 		classRoom.addCard(this);
 		
-		System.out.println("Card.setTimePeriodAndRoom() sections avant:"+card_sections);
 		// update the sections 
 		for(Section s: card_sections)
 			s.addCard(this);
-		System.out.println("Card.setTimePeriodAndRoom() sections après :"+card_sections);
+		
+		//System.out.println("Card.setTimePeriodAndRoom() sections après :"+card_sections);
 		
 	}
 	private Room pick_best_room(){
@@ -158,5 +160,6 @@ public class Card {
 	public String toString(){
 		return lesson.name+" "+teacher.lastName;
 	}
+
 
 }

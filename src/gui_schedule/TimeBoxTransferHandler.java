@@ -12,6 +12,7 @@ import javax.swing.TransferHandler;
 
 import model.Card;
 import model.StateFullSchedule;
+import model.*;
 
 public class TimeBoxTransferHandler extends TransferHandler {
 
@@ -44,23 +45,32 @@ public class TimeBoxTransferHandler extends TransferHandler {
 		if(ops.getSelectedTeacher()==null && ops.getSelectedRoom()==null && ops.getSelectedSection()==null)
 			return false;
 
+		Card card;
+		TimeBoxSolo timeBoxSolo;
+
 		try{
-			TimeBoxSolo timeBoxSolo=(TimeBoxSolo)suport.getComponent();
+			timeBoxSolo=(TimeBoxSolo)suport.getComponent();
 			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
-			Card c=state.getCards().get(cardId);
-			
-			
-			/**********************************
-			
+			card=state.getCards().get(cardId);
+		}catch(Exception e){
+			System.out.println("ne peut être importé ici.  "+e);
+			return false;
+		}
 
-			for(Card c:card.getTeacher().getCard())
-				if(c.getTimePeriod()==timeBox.getTimePeriod())
-					return false;
 
-			if(ops.getSelectedTeacher()!=null && ops.getSelectedTeacher()!=card.getTeacher())
-				return false;
-			if(ops.getSelectedSection()!=null && !card.getCard_sections().contains(ops.getSelectedSection())){
-				/
+		
+
+
+		// let's check if it's the right teacher selected
+		if(ops.getSelectedTeacher()!=null && ops.getSelectedTeacher()!=card.getTeacher()){
+			System.out.println("pas sur la bonne vue. il s'agit de la vue du prof "+ops.getSelectedTeacher());
+			return false;
+		}
+
+		// let's check if it's the right section selected
+		if(ops.getSelectedSection()!=null && !card.getCard_sections().contains(ops.getSelectedSection())){
+			System.out.println("pas sur la bonne vue. il s'agit de la vue de la section "+ops.getSelectedSection());
+			/*
 				System.out.println("----------");
 				System.out.println("faux -- selection");
 				if(ops.getSelectedSection()!=null){
@@ -68,23 +78,36 @@ public class TimeBoxTransferHandler extends TransferHandler {
 					System.out.println("slections contenu dans la cartes: "+c.getCard_sections());
 				}
 				System.out.println("----------");
-				 /
-				return false;
-			}
-			if(ops.getSelectedRoom()!=null && card.getSeatsToProvide()<ops.getSelectedRoom().getCapacity()) //faut aussi s'occuper des sall info
-				return false;
-
-
-			return true;
-		
-			*********************************/
-			
-			
-		}catch(Exception e){
-			System.out.println("ne peut être importé ici.  "+e);
+			 */
 			return false;
 		}
-		return true; 
+		
+		// let's check if it's A right local selected
+		if(ops.getSelectedRoom()!=null && card.getSeatsToProvide()>ops.getSelectedRoom().getCapacity()){ //faut aussi s'occuper des sall info
+			System.out.println("Ce local ne peut pas contenir ce cour. Il peut comptenir "+ops.getSelectedRoom().getCapacity()+" et on a besoin de "+card.getSeatsToProvide());
+			return false;
+		}
+		
+		// let's check if the teacher is not already buzy
+		for(Card c:card.getTeacher().getCards())
+			if(c.getTimePeriod()==timeBoxSolo.getTimePeriod()){
+				System.out.println("ce professeur donne un autre cour à ce moment là. C'est le cour "+c);
+				return false;
+			}
+
+		
+		// let's check if all the sections of the card are free
+		for (Section s: card.getCard_sections()){
+			for (Card c: s.getCards()){
+				if(c.getTimePeriod()==timeBoxSolo.getTimePeriod()){
+					System.out.println("une des section suit déja un autre cour à ce moment là. C'est le cour "+c);
+					return false;
+				}
+			}
+		}
+
+		return true;
+
 	}
 
 	/*
@@ -133,7 +156,7 @@ public class TimeBoxTransferHandler extends TransferHandler {
 
 			//update the selection view -- may not should be here..
 			dp.updateStatusCard();
-			
+
 			//System.out.println("importData de timeBoxHandler. carton:"+c+". Room:"+c.getClassRoom()+". timePeriod:"+c.getTimePeriod());
 
 		}

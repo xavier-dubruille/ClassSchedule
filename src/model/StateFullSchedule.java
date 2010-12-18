@@ -84,12 +84,13 @@ public class StateFullSchedule {
 		 * si ils existent, sont dans un format valide, ect */
 		init();
 
+
 		if(filesPath[3]!=null && filesPath[3].equalsIgnoreCase("first"))
 			choice_sem=1;
 		else
 			choice_sem=2;
 
-
+		System.out.println("et donc le choix de semestre est: "+choice_sem);
 		try{
 			createStateFromCardFile(filesPath[0]);
 
@@ -133,11 +134,6 @@ public class StateFullSchedule {
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-
-		// System.out.println("sections: "+this.sections);
-		// System.out.println("rooms: "+this.rooms);
-		// 		for (Teacher t: this.teachers.values())
-		// System.out.println(t.getLastName()+": "+t.getCard());
 	
 		
 		try{
@@ -149,12 +145,16 @@ public class StateFullSchedule {
 
 		}
 
+		
+		// System.out.println("choix semestre :"+choice_sem+" ("+filesPath[3]+")");
+		// System.out.println("sections: "+this.sections);
+		// System.out.println("rooms: "+this.rooms);
+		// 		for (Teacher t: this.teachers.values())
+		// System.out.println(t.getLastName()+": "+t.getCard());
+		
+		
 		ready=true;
 		return true;
-
-		/*********************************************
-		 * Let's update all the maps
-		 *********************************************/
 
 	}
 
@@ -377,6 +377,7 @@ public class StateFullSchedule {
 		//System.out.println("construct card state from line "+Arrays.toString(line));
 		if (Integer.parseInt(line[indexLine.get("period")])==0){
 			//System.out.println(line[indexLine.get("course_name")]+" "+line[indexLine.get("period")]);
+			//System.out.println("index line pour les periods: "+indexLine.get("period"));
 			return; //this course doesn't take place this semester
 		}
 		Teacher t; 
@@ -510,7 +511,8 @@ public class StateFullSchedule {
 		 * section_name
 		 */
 
-		String sem = "ORCO_NombrePeriodeSemaineSemestre" + choice_sem; 
+		String sem = ("ORCO_NombrePeriodeSemaineSemestre" + choice_sem); 
+		//System.out.println("choice sem: "+choice_sem+" "+sem);
 
 		for (int i=0; i<line.length; i++){
 
@@ -526,8 +528,10 @@ public class StateFullSchedule {
 			else if(line[i].equalsIgnoreCase("nom"))
 				indexLine.put("teacher_lastName", i);
 
-			else if(line[i].equalsIgnoreCase(sem))
+			else if(line[i].equalsIgnoreCase(sem)){
 				indexLine.put("period", i);
+				System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
+			}
 
 			else if(line[i].equalsIgnoreCase("CodeCours"))
 				indexLine.put("courses_id", i);

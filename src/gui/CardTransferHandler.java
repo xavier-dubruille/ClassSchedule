@@ -60,11 +60,6 @@ public class CardTransferHandler extends TransferHandler{
 		// faudrait updater le display panel..
 	}
 
-	public  void exportDon616e(TransferHandler.TransferSupport suport) {
-		
-		System.out.println("export done v2");
-	}
-
 	
 	/*
 	 * Efectué par card_gui !
@@ -76,7 +71,7 @@ public class CardTransferHandler extends TransferHandler{
 
 
 	/*
-	 *  cart_GUI recoit les info (de timeBox) !
+	 *  card_GUI recoit les info (de timeBox) !
 	 */
 	public boolean importData(TransferHandler.TransferSupport suport) {
 
@@ -90,12 +85,12 @@ public class CardTransferHandler extends TransferHandler{
 			
 			int cardId=Integer.parseInt(trans);
 			Card c=state.getCards().get(cardId);
-			System.out.println("card="+c);
-			c.resetTimePeriod();
+			//System.out.println("card="+c);
+			c.resetStatusCard();
 			
-			//update !
-			Card_GUI card_GUI=(Card_GUI)suport.getComponent();
-			card_GUI.getDisplayPanel().updateStatusCard();
+			//repaint() equivalent
+			((Card_GUI)suport.getComponent()).reDraw();
+			
 			
 		}
 		catch (Exception e){

@@ -27,7 +27,7 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 	public GetFilesDialog(String[] output){
 
 		this.output=output;
-
+		output[3]="first";
 
 		setPreferredSize(GUI_Propreties.dialog_size);
 		setMinimumSize(GUI_Propreties.dialog_size);
@@ -147,9 +147,9 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		JFileChooser jf=new JFileChooser();
 		int returnVal;
-		String sem="first";
 
-		System.out.println(e.getActionCommand());
+
+		//System.out.println(e.getActionCommand());
 		
 		javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter(){
 			public boolean accept(File f){
@@ -160,11 +160,12 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 
 
 		if (e.getActionCommand().equals("sem1")){
-			sem="first";
+			output[3]="first";
 		}
 		if (e.getActionCommand().equals("sem2")){
-			sem="second";
+			output[3]="second";
 		}
+		
 		if (e.getActionCommand().equals("lesson")){
 
 			jf.setFileFilter(filter);
@@ -195,7 +196,8 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 			output[0]=jt_lesson.getText();
 			output[1]=jt_constrain.getText();
 			output[2]=jt_classRoom.getText();
-			output[3]=sem;
+			//output[3]=sem;
+			//System.out.println("actionPerfomed du Dialog; sem= "+sem);
 
 			this.setVisible(false);
 		}

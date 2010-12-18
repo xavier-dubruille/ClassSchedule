@@ -131,7 +131,7 @@ public class DisplayPanel extends JPanel{
 	}
 	
 	public void showTeacherCards(String teacher){
-		System.out.println("showTeacher:"+teacher);
+		//System.out.println("showTeacher:"+teacher);
 		this.teachersChoosed.add(teacher);
 		this.updateViewedCards();
 	}
@@ -140,13 +140,13 @@ public class DisplayPanel extends JPanel{
 		System.out.println("showRoom:"+room);
 	}
 	public void hideTeacherCards(String teacher){
-		System.out.println("hideTeacher:"+teacher);
+		//System.out.println("hideTeacher:"+teacher);
 		this.teachersChoosed.remove(teacher);
 		this.updateViewedCards();
 	}
 	//public void hideGeneralOptionCards(String generalOption){}
 	public void hideRoomCards(String room){
-		System.out.println("hideRoom:"+room);
+		//System.out.println("hideRoom:"+room);
 	}
 	
 	
@@ -154,13 +154,9 @@ public class DisplayPanel extends JPanel{
 	 * use it if the card may have been placed/unplaced
 	 */
 	public void updateStatusCard(){
-		for (Card_GUI c:gui_cards.values())
-		{
-			if(c.getCard().getTimePeriod()!=0)
-				c.setBackground(GUI_Propreties.card_color_placed);
-			else
-				c.setBackground(GUI_Propreties.card_default_background);
-		}
+		for (Card_GUI cg:gui_cards.values())
+			cg.reDraw();
+		
 		 updateViewedCards();
 		
 	}

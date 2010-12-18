@@ -95,7 +95,7 @@ public class MainViewSolo extends JPanel{
 		selectedSection=null;
 		selectedTeacher=t;
 
-		//System.out.print("set teacher view..");
+		//System.out.print("set teacher view.. ");
 		//System.out.println("mainVueSolo: setScheduleView(Teacher): teachers card's:"+t.getCards());
 
 		//let's clean first

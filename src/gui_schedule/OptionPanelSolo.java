@@ -114,6 +114,8 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.teacher_color);
 				roomCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
+				selectedRoom=null;
+				selectedSection=null;
 				selectedTeacher=state.findTeacher(selectedItem);
 				mvs.setScheduleView(selectedTeacher);
 				break;
@@ -121,6 +123,8 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.room_color);
 				teacherCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
+				selectedSection=null;
+				selectedTeacher=null;
 				selectedRoom=state.findRoom(selectedItem);
 				mvs.setScheduleView(selectedRoom);
 				break;
@@ -128,6 +132,8 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.section_color);
 				roomCombo.setSelectedItem(" ");
 				teacherCombo.setSelectedItem(" ");
+				selectedRoom=null;
+				selectedTeacher=null;
 				selectedSection=state.findSection(selectedItem);
 				mvs.setScheduleView(selectedSection);
 				break;
