@@ -33,6 +33,8 @@ public class DisplayPanel extends JPanel{
 		
 		this.state=state;
 		
+		this.setTransferHandler(new PanelTransferHandler(state,this));
+		
 		teachersChoosed= new ArrayList<String>();
 		classRoomsChoosed= new ArrayList<String>();
 		generalOptionChoosed="tous";

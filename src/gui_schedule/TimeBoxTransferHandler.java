@@ -50,7 +50,8 @@ public class TimeBoxTransferHandler extends TransferHandler {
 
 		try{
 			timeBoxSolo=(TimeBoxSolo)suport.getComponent();
-			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
+			String transferable=(String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor);
+			int cardId=Integer.parseInt(transferable.substring(1));
 			card=state.getCards().get(cardId);
 		}catch(Exception e){
 			System.out.println("ne peut être importé ici.  "+e);
@@ -127,7 +128,7 @@ public class TimeBoxTransferHandler extends TransferHandler {
 		if (tbs==null) return null;
 		if (tbs.getCard()==null) return null;
 
-		return new StringSelection(""+tbs.getCard().getCardId());
+		return new StringSelection("T"+tbs.getCard().getCardId());
 
 	}
 
@@ -142,20 +143,21 @@ public class TimeBoxTransferHandler extends TransferHandler {
 
 		try{
 			TimeBoxSolo timeBoxSolo=(TimeBoxSolo)suport.getComponent();
-			int cardId=Integer.parseInt((String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor));
-			Card c=state.getCards().get(cardId);
+			String transferable=(String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor);
+			int cardId=Integer.parseInt(transferable.substring(1));
+			Card card=state.getCards().get(cardId);
 
 			//place the card state: time and classRoom
 			if (ops.getSelectedRoom()!=null)
-				c.setTimePeriod_and_Room(timeBoxSolo.getTimePeriod(),ops.getSelectedRoom());
+				card.setTimePeriod_and_Room(timeBoxSolo.getTimePeriod(),ops.getSelectedRoom());
 			else
-				c.setTimePeriod_and_pickARoom(timeBoxSolo.getTimePeriod());
+				card.setTimePeriod_and_pickARoom(timeBoxSolo.getTimePeriod());
 
 			//update the gui timeBox
 			timeBoxSolo.getView().updateView();
 
 			//update the selection view -- may not should be here..
-			dp.updateStatusCard();
+			//dp.updateStatusCard();
 
 			//System.out.println("importData de timeBoxHandler. carton:"+c+". Room:"+c.getClassRoom()+". timePeriod:"+c.getTimePeriod());
 

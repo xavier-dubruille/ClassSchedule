@@ -31,7 +31,7 @@ public class Card_GUI extends JPanel {
 		this.drawMe();
 
 		//this.setDropTarget(new DropTarget());
-		this.setTransferHandler(new CardTransferHandler(card.getState()));
+		this.setTransferHandler(new CardTransferHandler(card.getState(),dp));
 		this.addMouseListener(new MouseAdapter() {
 
 			public void mousePressed(MouseEvent me) {
@@ -123,20 +123,24 @@ public class Card_GUI extends JPanel {
 			this.setBackground(GUI_Propreties.card_color_placed);
 	}
 	public void reDraw(){
+		//System.out.println("CardGui.redraw(): ");
 		
 		// classRoom
 		if (card.getClassRoom()==null || card.getClassRoom().getName()==null) {
 			classRoomLab.setText(".");
 		}
-		else 
+		else {
 			classRoomLab.setText(card.getClassRoom().getName());
+			System.out.println("redraw de la cart: "+card+", class room: "+card.getClassRoom().getName());
 		
+		}
 		// timePeriod (i.e placed or not placed)
 		if(card.getTimePeriod()!=0)
 			setBackground(GUI_Propreties.card_color_placed);
-		else
+		else{
 			setBackground(GUI_Propreties.card_default_background);
-		
+			System.out.println("redraw de la cart: "+card+", timePeriod: "+card.getTimePeriod());
+		}
 	}
 	public Card getCard(){
 		return card;

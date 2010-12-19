@@ -128,7 +128,7 @@ public class MainViewSolo extends JPanel{
 		//let's clean first
 		cleanSchedule();
 
-		/* then let's get all the theacher's cards and see if theirs placed */
+		/* then let's get all the room's cards and see if theirs placed */
 		for(Card c: r.getCards())
 			if(c.getTimePeriod()!=0){
 				timeBoxes[c.getTimePeriod()].setCard(c);

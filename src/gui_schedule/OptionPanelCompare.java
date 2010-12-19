@@ -38,7 +38,7 @@ public class OptionPanelCompare extends JPanel {
 		teachersToCompare = new ArrayList<Teacher>();
 		roomsToCompare=new ArrayList<Room>();
 		sectionsToCompare=new ArrayList<Section>();
-
+		
 		this.setBackground(GUI_Propreties.optionPanelCompare_color);
 
 
@@ -109,6 +109,7 @@ public class OptionPanelCompare extends JPanel {
 
 	private class MyListCheckListener implements ListCheckListener{
 		int category;
+		java.util.List<Object> l;
 		public MyListCheckListener(int category){
 			this.category=category;
 		}
@@ -118,10 +119,21 @@ public class OptionPanelCompare extends JPanel {
 			String value=(String)e.getValues().get(0);
 			switch(category){
 			case 0: //days
+				selectedDays.clear();
 				selectedDays.add(value);
+				
+				l=daysCombo.getModel().getCheckeds();
+				for(int i=0;i<l.size();i++){
+					String s=(String)l.get(i);
+					if(!s.equals(value))
+						e.getSource().removeCheck(s);
+				}
+				mvc.constructView();
+
+ 
 				break;
 			case 1: //compare on
-				java.util.List<Object> l=compareOn_Combo.getModel().getCheckeds();
+				l=compareOn_Combo.getModel().getCheckeds();
 				for(int i=0;i<l.size();i++){
 					String s=(String)l.get(i);
 					if(!s.equals(value))
@@ -147,24 +159,21 @@ public class OptionPanelCompare extends JPanel {
 				break;
 			case 2: //compare between these stuff
 				//we update de mainView
-
 				if(compareOn.equals(GUI_Propreties.option_teachers)){
 					teachersToCompare.add(state.findTeacher(value));
-					mvc.constructViewFromTeachers(selectedDays, teachersToCompare);
 				}
 				else if(compareOn.equals(GUI_Propreties.option_rooms)){
 					roomsToCompare.add(state.findRoom(value));
-					mvc.constructViewFromRooms(selectedDays, roomsToCompare);
 				}
 				else if(compareOn.equals(GUI_Propreties.option_sections)){
 					sectionsToCompare.add(state.findSection(value));
-					mvc.constructViewFromSections(selectedDays, sectionsToCompare);
 				}
-
+				mvc.constructView();
 				break;
 			}
 
 		}
+
 
 		public void removeCheck(ListEvent e){
 			//System.out.println("removeCheck: catego="+category+", selected="+e.getValues().get(0));
@@ -172,7 +181,8 @@ public class OptionPanelCompare extends JPanel {
 			String value=(String)e.getValues().get(0);
 			switch(category){
 			case 0: //days
-				selectedDays.remove(value);
+				//selectedDays.remove(value);
+				//constructMainView();
 				break;
 			case 1: //compare on
 				//e.getSource().addCheck(value);
@@ -180,18 +190,46 @@ public class OptionPanelCompare extends JPanel {
 			case 2: //compare between these stuff
 				if(compareOn.equals(GUI_Propreties.option_teachers)){
 					teachersToCompare.remove(state.findTeacher(value));
-					mvc.constructViewFromTeachers(selectedDays, teachersToCompare);
 				}
 				else if(compareOn.equals(GUI_Propreties.option_rooms)){
 					roomsToCompare.remove(state.findRoom(value));
-					mvc.constructViewFromRooms(selectedDays, roomsToCompare);
 				}
 				else if(compareOn.equals(GUI_Propreties.option_sections)){
 					sectionsToCompare.remove(state.findSection(value));
-					mvc.constructViewFromSections(selectedDays, sectionsToCompare);
 				}
+				mvc.constructView();
 				break;
 			}
 		}
+		
+
+		
+		
 	}
+
+	public ArrayList<String> getSelectedDays() {
+		return selectedDays;
+	}
+
+	public String getCompareOn() {
+		return compareOn;
+	}
+
+	public ArrayList<Teacher> getTeachersToCompare() {
+		return teachersToCompare;
+	}
+
+	public ArrayList<Room> getRoomsToCompare() {
+		return roomsToCompare;
+	}
+
+	public ArrayList<Section> getSectionsToCompare() {
+		return sectionsToCompare;
+	}
+
+	public CheckComboBox getDaysCombo() {
+		return daysCombo;
+	}
+	
+	
 }

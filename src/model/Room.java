@@ -28,6 +28,10 @@ public class Room {
 		//System.out.println("add card: "+c.getTimePeriod());
 		cards.add(c);
 	}
+	public void removeCard(Card c){
+		//System.out.println("add card: "+c.getTimePeriod());
+		cards.remove(c);
+	}
 	
 	public String getName() {
 		return name;

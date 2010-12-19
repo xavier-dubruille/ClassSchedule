@@ -1,14 +1,6 @@
-package gui;
+package gui_selection;
 
-import gui_schedule.OptionPanelSolo;
-import gui_schedule.TimeBox;
-import gui_schedule.TimeBoxSolo;
-import gui_selection.Card_GUI;
-import gui_selection.DisplayPanel;
-
-import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 
 import javax.swing.JComponent;
@@ -17,7 +9,7 @@ import javax.swing.TransferHandler;
 import model.Card;
 import model.StateFullSchedule;
 
-public class CardTransferHandler extends TransferHandler{
+public class PanelTransferHandler extends TransferHandler{
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,15 +17,9 @@ public class CardTransferHandler extends TransferHandler{
 
 
 	private DisplayPanel dp;
-	/*
-	private OptionPanelSolo ops;
-		private Card_GUI card_gui;
-	 */
 
-	/*
-	 * constructor for Card_GUI
-	 */
-	public CardTransferHandler(StateFullSchedule state, DisplayPanel dp){
+	
+	public PanelTransferHandler(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;	
 		this.dp=dp;
 	}
@@ -42,9 +28,6 @@ public class CardTransferHandler extends TransferHandler{
 		return TransferHandler.MOVE;
 	}
 
-	/*
-	 * Efectué par card_gui sur ce qui le survole (donc les timeBox..)
-	 */
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 
 		//System.out.println("canImport de cardHandler");
@@ -59,28 +42,13 @@ public class CardTransferHandler extends TransferHandler{
 		return true; 
 	}
 
-	/*
-	 * exextuté par card_gui, qd son carton est laché (quelque soit où)
-	 * 
-	 */
-	public void exportDone(JComponent c, Transferable t, int action) { 
-		System.out.println("CardGui: export done");
-		dp.updateStatusCard();
-	}
 
 
-
-	/*
-	 * Efectué par card_gui !
-	 */
 	public Transferable createTransferable(JComponent comp) {
-		//System.out.println("createTransferable de cardHandler");
-		return new StringSelection("C"+((Card_GUI)comp).getCard().getCardId());
+		return null;
 	}
 
-	/*
-	 *  card_GUI recoit les info (de timeBox) !
-	 */
+
 	public boolean importData(TransferHandler.TransferSupport suport) {
 
 		try{
@@ -97,7 +65,6 @@ public class CardTransferHandler extends TransferHandler{
 			c.resetStatusCard();
 
 			//repaint() equivalent
-			((Card_GUI)suport.getComponent()).reDraw();
 			dp.updateStatusCard();
 
 

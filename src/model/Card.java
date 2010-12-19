@@ -54,6 +54,9 @@ public class Card {
 	public boolean setTimePeriod_and_pickARoom(int timePeriod){
 		this.timePeriod=timePeriod;
 
+		for(Room r :all_rooms.values())
+			r.removeCard(this);
+		
 		Room room = pick_best_room();
 		if (room==null){
 			happy=-10;
@@ -70,17 +73,20 @@ public class Card {
 		return true;
 	}
 
-	public void setTimePeriod_and_Room(int time_nice_format, Room selectedRoom) {
-		timePeriod=time_nice_format;
+	public void setTimePeriod_and_Room(int timePeriod, Room selectedRoom) {
+		this.timePeriod=timePeriod;
 
+		for(Room r :all_rooms.values())
+			r.removeCard(this);
+		
 		classRoom=selectedRoom;
 		classRoom.addCard(this);
 		
 		// update the sections 
 		for(Section s: card_sections)
 			s.addCard(this);
-		
-		//System.out.println("Card.setTimePeriodAndRoom() sections après :"+card_sections);
+
+		System.out.println("Card.setTimePeriodAndRoom(): card="+this+", classRoom="+classRoom);
 		
 	}
 	private Room pick_best_room(){

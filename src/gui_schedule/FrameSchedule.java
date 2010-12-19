@@ -39,8 +39,9 @@ public class FrameSchedule extends JFrame {
 		// second Tab: the compare selection
 		JPanel compareTab=new JPanel(new BorderLayout());
 		
-		MainViewCompare mvc=new MainViewCompare(state);
+		MainViewCompare mvc=new MainViewCompare(state,fs.getDisplayPanel());
 		opc = new OptionPanelCompare(state,mvc);
+		mvc.setOptionPanelCompare(opc);
 		
 		compareTab.add(opc,BorderLayout.NORTH);
 		compareTab.add(mvc,BorderLayout.SOUTH);

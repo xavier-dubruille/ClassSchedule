@@ -1,5 +1,7 @@
 package gui_schedule;
 
+import gui.GUI_Propreties;
+
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
@@ -7,23 +9,40 @@ import javax.swing.JPanel;
 
 import main.Propreties;
 import model.*;
+import gui_selection.DisplayPanel;
 
 public class MainViewCompare extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	StateFullSchedule state;
-	ArrayList<Teacher> teachers;
-	ArrayList<Section> sections;
-	ArrayList<Room> rooms;
-
-	public MainViewCompare(StateFullSchedule state){
+	private StateFullSchedule state;
+	private OptionPanelCompare opc;
+	private DisplayPanel dp;
+	
+	public MainViewCompare(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;
+		this.dp=dp;
 	}
 
-	public void constructViewFromTeachers(ArrayList<String> days, ArrayList<Teacher> teachers){
+
+	public void constructView(){
+		String compareOn=opc.getCompareOn();
+		ArrayList<String> selectedDays=opc.getSelectedDays();
+		if(compareOn==null) return;
+		if(compareOn.equals(GUI_Propreties.option_teachers)){
+			constructViewFromTeachers(selectedDays, opc.getTeachersToCompare());
+		}
+		else if(compareOn.equals(GUI_Propreties.option_rooms)){
+
+			constructViewFromRooms(selectedDays, opc.getRoomsToCompare());
+		}
+		else if(compareOn.equals(GUI_Propreties.option_sections)){
+			constructViewFromSections(selectedDays, opc.getSectionsToCompare());
+		}
+	}
+	
+	private void constructViewFromTeachers(ArrayList<String> days, ArrayList<Teacher> teachers){
 		//	System.out.println("days: "+days+"--- teachers: "+teachers);
 
-		this.teachers=teachers;
 		TimeBoxCompare timeBoxCompare;
 		int rows=days.size()*Propreties.period_per_day+1;
 		int cols=teachers.size()+1;
@@ -39,7 +58,9 @@ public class MainViewCompare extends JPanel{
 		for (int i=1;i<rows;i++){
 			add(new TimeBoxCompare(""+i));
 			for (int j=0; j<cols-1;j++){
-				timeBoxCompare=new TimeBoxCompare(getTeacherCardAtThatTime(teachers.get(j),i,days.get(0)));
+				int timePeriod = calculateTimePeriod(i,days.get(0));
+				Card c=getTeacherCardAtThatTime(teachers.get(j),timePeriod);
+				timeBoxCompare=new TimeBoxCompare(c,state,timePeriod,opc,this,dp,teachers.get(j));
 				add(timeBoxCompare);
 
 			}
@@ -47,10 +68,11 @@ public class MainViewCompare extends JPanel{
 		this.revalidate();
 		this.repaint();
 	}
-	private Card getTeacherCardAtThatTime(Teacher teacher, int i,String day) {
+	private Card getTeacherCardAtThatTime(Teacher teacher, int timePeriod) {
 		// find the timePeriod --> 
-		int timePeriod = (Propreties.day_per_week+1)*i+getDayNumber(day);
+		
 
+		//System.out.println("getTeacherAtTime: teacherName:"+teacher.getLastName()+". day="+day);
 		for(Card c:teacher.getCards()){
 			if (c.getTimePeriod()==timePeriod)
 				return c;
@@ -59,6 +81,9 @@ public class MainViewCompare extends JPanel{
 		return null;
 	}
 
+	private int calculateTimePeriod(int i, String day){
+		return (Propreties.day_per_week+1)*i+getDayNumber(day);
+	}
 	private int getDayNumber(String day) {
 		if(day.equalsIgnoreCase("lundi"))
 			return 1;
@@ -75,10 +100,11 @@ public class MainViewCompare extends JPanel{
 		return 0;
 	}
 
-	public void constructViewFromSections(ArrayList<String> days, ArrayList<Section> sections){
+
+	
+	private void constructViewFromSections(ArrayList<String> days, ArrayList<Section> sections){
 		//	System.out.println("days: "+days+"--- sections: "+sections);
 
-		this.sections=sections;
 		TimeBoxCompare timeBoxCompare;
 		int rows=days.size()*Propreties.period_per_day+1;
 		int cols=sections.size()+1;
@@ -94,7 +120,9 @@ public class MainViewCompare extends JPanel{
 		for (int i=1;i<rows;i++){
 			add(new TimeBoxCompare(""+i));
 			for (int j=0; j<cols-1;j++){
-				timeBoxCompare=new TimeBoxCompare(getSectionCardAtThatTime(sections.get(j),i,days.get(0)));
+				int timePeriod = calculateTimePeriod(i,days.get(0));
+				Card c=getSectionCardAtThatTime(sections.get(j),timePeriod);
+				timeBoxCompare=new TimeBoxCompare(c,state,timePeriod,opc,this,dp,sections.get(j));
 				add(timeBoxCompare);
 
 			}
@@ -103,10 +131,7 @@ public class MainViewCompare extends JPanel{
 		this.repaint();
 
 	}
-	private Card getSectionCardAtThatTime(Section section, int i, String day) {
-
-		// find the timePeriod --> 
-		int timePeriod = (Propreties.day_per_week+1)*i+getDayNumber(day);
+	private Card getSectionCardAtThatTime(Section section, int timePeriod) {
 
 		for(Card c:section.getCards()){
 			if (c.getTimePeriod()==timePeriod)
@@ -116,9 +141,9 @@ public class MainViewCompare extends JPanel{
 		return null;
 	}
 
-	public void constructViewFromRooms(ArrayList<String> days, ArrayList<Room> rooms){
+	private void constructViewFromRooms(ArrayList<String> days, ArrayList<Room> rooms){
 		//	System.out.println("days: "+days+"--- rooms: "+rooms);
-		this.rooms=rooms;
+		
 		TimeBoxCompare timeBoxCompare;
 		int rows=days.size()*Propreties.period_per_day+1;
 		int cols=rooms.size()+1;
@@ -134,7 +159,10 @@ public class MainViewCompare extends JPanel{
 		for (int i=1;i<rows;i++){
 			add(new TimeBoxCompare(""+i));
 			for (int j=0; j<cols-1;j++){
-				timeBoxCompare=new TimeBoxCompare(getRoomCardAtThatTime(rooms.get(j),i,days.get(0)));
+
+				int timePeriod = calculateTimePeriod(i,days.get(0));
+				Card c=getRoomCardAtThatTime(rooms.get(j),timePeriod);
+				timeBoxCompare=new TimeBoxCompare(c,state,timePeriod,opc,this,dp,rooms.get(j));
 				add(timeBoxCompare);
 
 			}
@@ -143,10 +171,7 @@ public class MainViewCompare extends JPanel{
 		this.repaint();
 
 	}
-	private Card getRoomCardAtThatTime(Room room, int i, String day) {
-
-		// find the timePeriod --> 
-		int timePeriod = (Propreties.day_per_week+1)*i+getDayNumber(day);
+	private Card getRoomCardAtThatTime(Room room, int timePeriod) {
 
 		for(Card c:room.getCards()){
 			if (c.getTimePeriod()==timePeriod)
@@ -154,5 +179,9 @@ public class MainViewCompare extends JPanel{
 		}
 
 		return null;
+	}
+	
+	public void setOptionPanelCompare(OptionPanelCompare opc){
+		this.opc=opc;
 	}
 }
