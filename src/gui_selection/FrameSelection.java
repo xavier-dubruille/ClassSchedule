@@ -35,7 +35,7 @@ public class FrameSelection extends JFrame {
 		super("Selection"); //faudrait p-e attraper la headLessException ici..
 		
 		
-		setBounds( 50, 50, 260, 850);
+		setBounds( 50, 50, 210, 850);
 		//this.setAlwaysOnTop(true); 
 		//setDefaultCloseOperation(EXIT_ON_CLOSE); //Exit_on_close n'est sans doute pas ce qu'on veut ici..
 
@@ -48,12 +48,18 @@ public class FrameSelection extends JFrame {
 		dp.setBackground(Color.orange);
 		dp.setVisible(true);
 		op=new OptionPanel(dp, state,gui_cards);
+		op.setMinimumSize(new Dimension(3,3));
 
 		scroll_display=new JScrollPane(dp,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		//scroll_display.add(dp);
 		 dp.setBackground(Color.blue);
 		
 		JSplitPane jSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,op,scroll_display);
+		jSplit.setAutoscrolls(true);
+		jSplit.setMinimumSize(new Dimension(3,3));
+		jSplit.setOneTouchExpandable(true);
+		//jSplit.setMaximumSize(new Dimension(50,50));
+
 
 
 		getContentPane().add(jSplit);

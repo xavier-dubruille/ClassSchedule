@@ -19,6 +19,9 @@ public class TimeBoxCompare extends TimeBox {
 	public TimeBoxCompare(String s) {
 		super(s);
 	}
+	public TimeBoxCompare(int day_period, boolean day) {
+		super(day_period,day);
+	}
 
 	private TimeBoxCompare(Card c, StateFullSchedule state, int timePeriod, OptionPanelCompare opc, MainViewCompare mvc, DisplayPanel dp) {
 

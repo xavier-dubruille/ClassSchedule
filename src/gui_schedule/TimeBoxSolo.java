@@ -12,10 +12,13 @@ public class TimeBoxSolo extends TimeBox {
 	protected OptionPanelSolo ops;
 	
 	/*
-	 *constructor without transferHandler..
+	 *constructors without transferHandler..
 	 */
 	public TimeBoxSolo(String s) {
 		super(s);
+	}
+	public TimeBoxSolo(int day_period, boolean day) {
+		super(day_period,day);
 	}
 
 	public TimeBoxSolo(String s, int timePeriod, StateFullSchedule state, MainViewSolo view) {

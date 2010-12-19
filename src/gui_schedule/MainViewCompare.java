@@ -56,7 +56,7 @@ public class MainViewCompare extends JPanel{
 			add(new TimeBoxCompare(teachers.get(i).getLastName()));
 
 		for (int i=1;i<rows;i++){
-			add(new TimeBoxCompare(""+i));
+			add(new TimeBoxCompare(i,false));
 			for (int j=0; j<cols-1;j++){
 				int timePeriod = calculateTimePeriod(i,days.get(0));
 				Card c=getTeacherCardAtThatTime(teachers.get(j),timePeriod);
@@ -118,7 +118,7 @@ public class MainViewCompare extends JPanel{
 			add(new TimeBoxCompare(sections.get(i).getName()));
 
 		for (int i=1;i<rows;i++){
-			add(new TimeBoxCompare(""+i));
+			add(new TimeBoxCompare(i,false));
 			for (int j=0; j<cols-1;j++){
 				int timePeriod = calculateTimePeriod(i,days.get(0));
 				Card c=getSectionCardAtThatTime(sections.get(j),timePeriod);
@@ -157,7 +157,7 @@ public class MainViewCompare extends JPanel{
 			add(new TimeBoxCompare(rooms.get(i).getName()));
 
 		for (int i=1;i<rows;i++){
-			add(new TimeBoxCompare(""+i));
+			add(new TimeBoxCompare(i,false));
 			for (int j=0; j<cols-1;j++){
 
 				int timePeriod = calculateTimePeriod(i,days.get(0));

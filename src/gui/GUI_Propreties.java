@@ -23,6 +23,7 @@ public class GUI_Propreties {
 	public static Color card_color_placed=Color.green;
 	public static Font card_default_font_1=new Font("Helvetica", Font.PLAIN, 11);
 	public static Font card_default_font_2=new Font("Helvetica", Font.PLAIN, 10);
+	public static Font timeBox_static_font=new Font("Papyrus", Font.PLAIN, 17);
 	public static Border card_default_border=BorderFactory.createLineBorder(Color.DARK_GRAY);
 	
 	public static Color timeBox_color_placed=Color.white;

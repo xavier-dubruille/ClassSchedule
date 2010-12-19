@@ -50,13 +50,13 @@ public class MainViewSolo extends JPanel{
 		add(timeBoxes[0]);
 
 		for(int i=1; i<d; i++){
-			timeBoxes[i]=new TimeBoxSolo("jour "+i);
+			timeBoxes[i]=new TimeBoxSolo(i,true);
 			add(timeBoxes[i]);
 		}
 
 		for(int i=d; i<size; i++){
 			if(i%d==0)
-				timeBoxes[i]=new TimeBoxSolo("periode "+i/d+".");
+				timeBoxes[i]=new TimeBoxSolo(i/d,false);
 
 			else{
 				
