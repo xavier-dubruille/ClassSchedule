@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -134,8 +135,8 @@ public class StateFullSchedule {
 					"Impossible de crer nouveau projet", JOptionPane.ERROR_MESSAGE);
 			return false;
 		}
-	
-		
+
+
 		try{
 			createStateFromConstrainDir(filesPath[1]);
 		}catch(IOException e){
@@ -145,14 +146,14 @@ public class StateFullSchedule {
 
 		}
 
-		
+
 		// System.out.println("choix semestre :"+choice_sem+" ("+filesPath[3]+")");
 		// System.out.println("sections: "+this.sections);
 		// System.out.println("rooms: "+this.rooms);
 		// 		for (Teacher t: this.teachers.values())
 		// System.out.println(t.getLastName()+": "+t.getCard());
-		
-		
+
+
 		ready=true;
 		return true;
 
@@ -190,7 +191,7 @@ public class StateFullSchedule {
 
 	}
 
-	
+
 	private void treatConstraintFile(File file) throws IOException{
 		if (!file.getName().endsWith(".txt")) return;
 
@@ -217,16 +218,16 @@ public class StateFullSchedule {
 
 
 		while(sc.hasNext()){
-			
+
 			line=sc.nextLine();
-			
+
 			if(line.length()<3) continue; 
 			if(line.substring(0, 1).equals("#")) continue;
 
 			lineTab=line.split("=");
 			if(lineTab.length!=2) continue;
 			teacher.setPreferedSlide(Integer.parseInt(lineTab[0]), Integer.parseInt(lineTab[1]));
-			
+
 		}
 
 	}
@@ -373,9 +374,9 @@ public class StateFullSchedule {
 
 		//	if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
 		//		System.out.println("dŽbu. Batu: "+line[indexLine.get("course_name")]);
-
+		int periods=Integer.parseInt(line[indexLine.get("period")]);
 		//System.out.println("construct card state from line "+Arrays.toString(line));
-		if (Integer.parseInt(line[indexLine.get("period")])==0){
+		if (periods==0){
 			//System.out.println(line[indexLine.get("course_name")]+" "+line[indexLine.get("period")]);
 			//System.out.println("index line pour les periods: "+indexLine.get("period"));
 			return; //this course doesn't take place this semester
@@ -427,17 +428,22 @@ public class StateFullSchedule {
 		t.addCourse(line[indexLine.get("courses_id")],l);
 		// p-e mettre une reference des prof dans l'objet course
 
-		Card card=findMachingCard(l,line[indexLine.get("mod")],s);
-		if(card==null){
-			card=new Card(l,t,cardId,s,this);
-			cards.put(cardId,card); 	
-			t.addCard(card);
-			s.addCard(card);
+		ArrayList<Card> matchingCards=findMachingCards(l,line[indexLine.get("mod")],s);
+		Card card;
+
+		if(matchingCards.size()==0){
+			for(int i=0; i<periods; i++){
+				card=new Card(l,t,cardId*1000+i,s,this);
+				cards.put(cardId*1000+i,card); 	
+				t.addCard(card);
+				s.addCard(card);
+			}
 			//if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
-				//System.out.println("Batu, nvll carte: "+line[indexLine.get("course_name")]);
+			//System.out.println("Batu, nvll carte: "+line[indexLine.get("course_name")]);
 		}
 		else{
-			card.addSection(s);
+			for(Card c: matchingCards)
+				c.addSection(s);
 		}
 
 
@@ -558,19 +564,29 @@ public class StateFullSchedule {
 		//System.out.println("line      :"+Arrays.toString(line));
 	}
 
-	private Card findMachingCard(Lesson l,String mod,Section s){
+	private ArrayList<Card> findMachingCards(Lesson l,String mod,Section s){
+		//System.out.println("secType="+s.getSectionType());
+		
+		ArrayList<Card> toReturn=new ArrayList<Card>();
+		String groupLetters=s.getGroupNumber().substring(0, (s.getGroupNumber().length())-1);
+		String cardGroupLetters, cardSecGroupN;
 
 		for (Card c:cards.values()){
+			cardSecGroupN=c.getCard_sections().get(0).getGroupNumber();
+			cardGroupLetters=cardSecGroupN.substring(0, (cardSecGroupN.length())-1);
+
 			if(l==c.getLesson() && 
 					mod.equalsIgnoreCase("classe") &&
 					s.getYear().equalsIgnoreCase(c.getCard_sections().get(0).getYear()) &&
-					s.getSectionType().equalsIgnoreCase(c.getCard_sections().get(0).getSectionType()))
+					s.getSectionType().equalsIgnoreCase(c.getCard_sections().get(0).getSectionType()) &&
+					groupLetters.equalsIgnoreCase(cardGroupLetters)) 
 			{
-				return c;
+				//System.out.println("cardGroupLetter="+cardGroupLetters+", groupLetter="+groupLetters);
+				toReturn.add(c);
 			}
 		}
 
-		return null;
+		return toReturn;
 	}
 
 	/*
