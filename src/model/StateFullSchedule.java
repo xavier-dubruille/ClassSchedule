@@ -433,8 +433,8 @@ public class StateFullSchedule {
 
 		if(matchingCards.size()==0){
 			for(int i=0; i<periods; i++){
-				card=new Card(l,t,cardId*1000+i,s,this);
-				cards.put(cardId*1000+i,card); 	
+				card=new Card(l,t,cardId*10+i,s,this,line[indexLine.get("info")],line[indexLine.get("mod")]);
+				cards.put(cardId*10+i,card); 	
 				t.addCard(card);
 				s.addCard(card);
 			}
@@ -536,7 +536,7 @@ public class StateFullSchedule {
 
 			else if(line[i].equalsIgnoreCase(sem)){
 				indexLine.put("period", i);
-				System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
+				//System.out.println("on a fixŽ l'index des periodes ˆ: "+i);
 			}
 
 			else if(line[i].equalsIgnoreCase("CodeCours"))
@@ -558,6 +558,11 @@ public class StateFullSchedule {
 
 			else if(line[i].equalsIgnoreCase("Mode"))
 				indexLine.put("mod", i);
+			
+			else if(line[i].equalsIgnoreCase("ORCO_SalleInformatique"))
+				indexLine.put("info", i);
+			
+			
 
 		}
 		//System.out.println("indexline :"+indexLine);

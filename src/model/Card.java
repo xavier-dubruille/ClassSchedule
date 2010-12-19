@@ -17,19 +17,26 @@ public class Card {
 	private Map<String,Room> all_rooms;
 	private Room classRoom;
 	private String mod;
+	private boolean info;
 	private Map<String,Section> all_sections;
 	private ArrayList<Section> card_sections;
 	private StateFullSchedule state;
 
 
-	public Card(Lesson lesson, Teacher teacher,int cardId,Section s,StateFullSchedule state){
+	public Card(Lesson lesson, Teacher teacher,int cardId,Section s,StateFullSchedule state, String info, String mod){
 		this.all_rooms=state.getClassRoom();
 		this.all_sections=state.getSections();
 		this.state=state;
+		this.mod=mod;
+		this.info=info.equalsIgnoreCase("1") ? true :false ;
+		
 
 		this.lesson=lesson;
 		this.teacher=teacher;
 		this.cardId=cardId;
+		
+
+		//if(this.info) System.out.println("carton "+this.lesson.name+", "+cardId+" doit être en salle info");
 
 		happy=0;
 		timePeriod=0;
@@ -149,6 +156,12 @@ public class Card {
 
 
 
+	public String getMod() {
+		return mod;
+	}
+	public boolean isInfo() {
+		return info;
+	}
 	public Room getClassRoom() {
 		return classRoom;
 	}
