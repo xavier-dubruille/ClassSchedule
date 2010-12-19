@@ -19,7 +19,8 @@ public class GUI_Propreties {
 	private static double ratio=0.62;
 	
 	public static Dimension card_dimension=new Dimension(size,(int)(size*ratio));
-	public static Color card_default_background=Color.lightGray;
+	public static Color card_default_background=Color.white;
+	public static Color card_static_background=Color.lightGray; 
 	public static Color card_color_placed=Color.green;
 	public static Font card_default_font_1=new Font("Helvetica", Font.PLAIN, 11);
 	public static Font card_default_font_2=new Font("Helvetica", Font.PLAIN, 10);
@@ -33,12 +34,15 @@ public class GUI_Propreties {
 	
 	public static Dimension dialog_size=new Dimension(670,180);
 	
-	public static Color optionPanelSolo_color=Color.white;
-	public static Color optionPanelCompare_color=Color.yellow;
+	public static Color optionPanelSolo_color=new Color(132,214,77);
 	
-	public static Color teacher_color=Color.pink;
-	public static Color room_color=Color.pink;
-	public static Color section_color=Color.pink;
+	public static Color optionPanelCompare_color=new Color(255,193,59);
+	public static Color displayPanel=new Color(208,209,247);
+	
+	
+	public static Color teacher_color=optionPanelSolo_color;
+	public static Color room_color=optionPanelSolo_color;
+	public static Color section_color=optionPanelSolo_color;
 	
 	
 	

@@ -17,6 +17,7 @@ public class MainViewCompare extends JPanel{
 	private StateFullSchedule state;
 	private OptionPanelCompare opc;
 	private DisplayPanel dp;
+	private TimeBoxCompare firstTimeBox;
 	
 	public MainViewCompare(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;
@@ -51,7 +52,8 @@ public class MainViewCompare extends JPanel{
 		setLayout(new GridLayout(rows,cols));
 
 		//first line:
-		add(new TimeBoxCompare(""));
+		firstTimeBox=new TimeBoxCompare("*** "+days.get(0)+" ***");
+		add(firstTimeBox);
 		for (int i=0;i<cols-1;i++)
 			add(new TimeBoxCompare(teachers.get(i).getLastName()));
 
@@ -113,7 +115,8 @@ public class MainViewCompare extends JPanel{
 		setLayout(new GridLayout(rows,cols));
 
 		//first line:
-		add(new TimeBoxCompare(""));
+		firstTimeBox=new TimeBoxCompare("*** "+days.get(0)+" ***");
+		add(firstTimeBox);
 		for (int i=0;i<cols-1;i++)
 			add(new TimeBoxCompare(sections.get(i).getName()));
 
@@ -151,8 +154,9 @@ public class MainViewCompare extends JPanel{
 		this.removeAll();
 		setLayout(new GridLayout(rows,cols));
 
-		//first line:
-		add(new TimeBoxCompare(""));
+		//first line:		
+		firstTimeBox=new TimeBoxCompare("*** "+days.get(0)+" ***");
+		add(firstTimeBox);
 		for (int i=0;i<cols-1;i++)
 			add(new TimeBoxCompare(rooms.get(i).getName()));
 

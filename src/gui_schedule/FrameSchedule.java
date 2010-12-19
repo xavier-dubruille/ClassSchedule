@@ -4,6 +4,15 @@ package gui_schedule;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import model.StateFullSchedule;
 import gui_selection.*;
 
@@ -11,7 +20,7 @@ public class FrameSchedule extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	OptionPanelSolo ops;
-	MainViewSolo mvs;
+
 	OptionPanelCompare opc;
 	
 	public FrameSchedule(){
@@ -28,6 +37,7 @@ public class FrameSchedule extends JFrame {
 
 
 		// first Tab: the solo/normal selection
+		final MainViewSolo mvs;
 		JPanel soloTab=new JPanel(new BorderLayout());
 		mvs=new MainViewSolo(state,fs.getDisplayPanel());
 		ops=new OptionPanelSolo(state,mvs);
@@ -35,16 +45,46 @@ public class FrameSchedule extends JFrame {
 		mvs.drawEmptySchedule();
 		soloTab.add(ops,BorderLayout.NORTH);
 		soloTab.add(mvs,BorderLayout.SOUTH);
+		soloTab.addComponentListener(new ComponentListener(){
+			@Override
+			public void componentHidden(ComponentEvent arg0) {}
+
+			@Override
+			public void componentMoved(ComponentEvent arg0) {}
+
+			@Override
+			public void componentResized(ComponentEvent arg0) {}
+
+			@Override
+			public void componentShown(ComponentEvent arg0) {
+				System.out.println("youpie Component");
+				mvs.updateView();
+				
+			}});
 		
 		// second Tab: the compare selection
 		JPanel compareTab=new JPanel(new BorderLayout());
-		
-		MainViewCompare mvc=new MainViewCompare(state,fs.getDisplayPanel());
+		final MainViewCompare mvc=new MainViewCompare(state,fs.getDisplayPanel());
 		opc = new OptionPanelCompare(state,mvc);
 		mvc.setOptionPanelCompare(opc);
-		
 		compareTab.add(opc,BorderLayout.NORTH);
 		compareTab.add(mvc,BorderLayout.SOUTH);
+		compareTab.addComponentListener(new ComponentListener(){
+			@Override
+			public void componentHidden(ComponentEvent arg0) {}
+
+			@Override
+			public void componentMoved(ComponentEvent arg0) {}
+
+			@Override
+			public void componentResized(ComponentEvent arg0) {}
+
+			@Override
+			public void componentShown(ComponentEvent arg0) {
+				System.out.println("youpie Component");
+				mvc.constructView();
+				
+			}});
 
 		// ... and the tabbedPane
 		JTabbedPane jt=new JTabbedPane();

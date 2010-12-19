@@ -34,6 +34,7 @@ public class DisplayPanel extends JPanel{
 		this.state=state;
 		
 		this.setTransferHandler(new PanelTransferHandler(state,this));
+		this.setBackground(GUI_Propreties.displayPanel);
 		
 		teachersChoosed= new ArrayList<String>();
 		classRoomsChoosed= new ArrayList<String>();

@@ -2,6 +2,7 @@ package gui_schedule;
 
 import gui.GUI_Propreties;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -39,6 +40,7 @@ public class OptionPanelCompare extends JPanel {
 		roomsToCompare=new ArrayList<Room>();
 		sectionsToCompare=new ArrayList<Section>();
 		
+		this.setPreferredSize(new Dimension(130,130));
 		this.setBackground(GUI_Propreties.optionPanelCompare_color);
 
 

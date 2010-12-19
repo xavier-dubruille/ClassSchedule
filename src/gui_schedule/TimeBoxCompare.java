@@ -75,9 +75,6 @@ public class TimeBoxCompare extends TimeBox {
 		return teacherConcerned;
 	}
 
-	private void reDraw() {
 
-
-	}
 
 }

@@ -45,14 +45,13 @@ public class FrameSelection extends JFrame {
 		
 		dp=new DisplayPanel(state,gui_cards);
 
-		dp.setBackground(Color.orange);
+		
 		dp.setVisible(true);
 		op=new OptionPanel(dp, state,gui_cards);
 		op.setMinimumSize(new Dimension(3,3));
 
 		scroll_display=new JScrollPane(dp,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		//scroll_display.add(dp);
-		 dp.setBackground(Color.blue);
+	
 		
 		JSplitPane jSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,op,scroll_display);
 		jSplit.setAutoscrolls(true);

@@ -2,10 +2,13 @@ package gui_schedule;
 
 import gui.GUI_Propreties;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -13,6 +16,7 @@ import model.Room;
 import model.Section;
 import model.StateFullSchedule;
 import model.Teacher;
+import javax.swing.*;
 
 public class OptionPanelSolo extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -23,13 +27,25 @@ public class OptionPanelSolo extends JPanel{
 	private Teacher selectedTeacher;
 	private Room selectedRoom;
 	private Section selectedSection;
+	private JLabel icon;
+	private ImageIcon[] imagesTab;
 
 	public OptionPanelSolo(){};
 	public OptionPanelSolo(StateFullSchedule state,MainViewSolo mvs){
 		this.state=state;
 		this.mvs=mvs;
 		this.setBackground(GUI_Propreties.optionPanelSolo_color); 
+		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 
+		// the image icon
+		imagesTab=new ImageIcon[4];
+		imagesTab[0]=new ImageIcon("images/teacher_130.png");
+		imagesTab[1]=new ImageIcon("images/table_130.png");
+		imagesTab[2]=new ImageIcon("images/group2_130.png");	
+		imagesTab[3]=new ImageIcon("images/blank_130.png");	
+		icon=new JLabel(imagesTab[3]);
+		add(icon);
+		this.add(Box.createVerticalGlue());
 		
 		// teacher panel
 		JPanel teacherPanel=new JPanel();
@@ -64,6 +80,7 @@ public class OptionPanelSolo extends JPanel{
 		sectionPanel.setBackground(GUI_Propreties.section_color);
 		sectionCombo.addActionListener(new ComboListener(2));
 		this.add(sectionPanel);
+		this.add(Box.createVerticalGlue());
 	}
 
 
@@ -114,6 +131,7 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.teacher_color);
 				roomCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
+				icon.setIcon(imagesTab[0]);
 				selectedRoom=null;
 				selectedSection=null;
 				selectedTeacher=state.findTeacher(selectedItem);
@@ -123,6 +141,7 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.room_color);
 				teacherCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
+				icon.setIcon(imagesTab[1]);
 				selectedSection=null;
 				selectedTeacher=null;
 				selectedRoom=state.findRoom(selectedItem);
@@ -132,6 +151,7 @@ public class OptionPanelSolo extends JPanel{
 				setBackground(GUI_Propreties.section_color);
 				roomCombo.setSelectedItem(" ");
 				teacherCombo.setSelectedItem(" ");
+				icon.setIcon(imagesTab[2]);
 				selectedRoom=null;
 				selectedTeacher=null;
 				selectedSection=state.findSection(selectedItem);

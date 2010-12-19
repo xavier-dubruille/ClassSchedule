@@ -2,11 +2,14 @@ package gui_schedule;
 
 import gui.GUI_Propreties;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,15 +37,27 @@ public class TimeBox extends JPanel {
 		setMaximumSize(GUI_Propreties.card_dimension);
 		setMinimumSize(GUI_Propreties.card_dimension);
 		setPreferredSize(GUI_Propreties.card_dimension);
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 
 		jl=new JLabel(name);
 
 		jl.setFont(GUI_Propreties.timeBox_static_font);
-
-		add(jl);
+		
+		this.add(Box.createHorizontalGlue());
+		JPanel center=new JPanel();
+		center.setLayout(new BoxLayout(center,BoxLayout.X_AXIS));
+		center.add(Box.createVerticalGlue());
+		center.add(jl);
+		center.add(Box.createVerticalGlue());
+		center.setBackground(GUI_Propreties.card_static_background);
+		
+		this.add(Box.createHorizontalGlue());
+		this.add(center);
+		this.add(Box.createHorizontalGlue());
+		
 		this.setBorder(GUI_Propreties.card_default_border);
-		this.setBackground(Color.lightGray);
+		this.setBackground(GUI_Propreties.card_static_background);
 
 
 		this.addMouseListener(new MouseAdapter() {
@@ -119,7 +134,11 @@ public class TimeBox extends JPanel {
 		this.timePeriod=timePeriod;
 	}
 
+	public void setStaticText(String text) {
+		jl.setText(text);
+		jl.setFont(GUI_Propreties.timeBox_static_font);
 
+	}
 
 	public void setPref(int i) {
 		this.setBorder(BorderFactory.createLineBorder(Color.red));
