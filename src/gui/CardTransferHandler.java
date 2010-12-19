@@ -1,12 +1,8 @@
 package gui;
 
-import gui_schedule.OptionPanelSolo;
-import gui_schedule.TimeBox;
-import gui_schedule.TimeBoxSolo;
 import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;
 
-import java.awt.Component;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -38,6 +34,7 @@ public class CardTransferHandler extends TransferHandler{
 		this.dp=dp;
 	}
 
+	@Override
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
 	}
@@ -45,6 +42,7 @@ public class CardTransferHandler extends TransferHandler{
 	/*
 	 * Efectué par card_gui sur ce qui le survole (donc les timeBox..)
 	 */
+	@Override
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 
 		//System.out.println("canImport de cardHandler");
@@ -63,6 +61,7 @@ public class CardTransferHandler extends TransferHandler{
 	 * exextuté par card_gui, qd son carton est laché (quelque soit où)
 	 * 
 	 */
+	@Override
 	public void exportDone(JComponent c, Transferable t, int action) { 
 		System.out.println("CardGui: export done");
 		dp.updateStatusCard();
@@ -73,6 +72,7 @@ public class CardTransferHandler extends TransferHandler{
 	/*
 	 * Efectué par card_gui !
 	 */
+	@Override
 	public Transferable createTransferable(JComponent comp) {
 		//System.out.println("createTransferable de cardHandler");
 		return new StringSelection("C"+((Card_GUI)comp).getCard().getCardId());
@@ -81,6 +81,7 @@ public class CardTransferHandler extends TransferHandler{
 	/*
 	 *  card_GUI recoit les info (de timeBox) !
 	 */
+	@Override
 	public boolean importData(TransferHandler.TransferSupport suport) {
 
 		try{
