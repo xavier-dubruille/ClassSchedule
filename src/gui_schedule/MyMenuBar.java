@@ -52,6 +52,7 @@ public class MyMenuBar extends JMenuBar {
 
 		// ** quit
 		quit.addActionListener(new ActionListener(){
+			@Override
 			public void actionPerformed(ActionEvent e){
 				// il faudrait gerer la sauvegarde automatique ici
 				System.exit(0);
@@ -88,6 +89,7 @@ public class MyMenuBar extends JMenuBar {
 			this.state=state;
 		}
 
+		@Override
 		public void actionPerformed(ActionEvent ae){
 			GetFilesDialog dialog=new GetFilesDialog(state.getFilesPath());
 			if(state.update_from_files()){ //update the model; i.e. the internal data

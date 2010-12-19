@@ -1,7 +1,5 @@
 package gui_schedule;
 
-import gui_selection.Card_GUI;
-
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -31,20 +29,31 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 		this.dp=dp;
 	}
 	
+	@Override
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
 	}
 	
+	@Override
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 
+		
+		
+		
+		
+		
+		
+		
 		return true; 
 	}
 	
+	@Override
 	public void exportDone(JComponent c, Transferable t, int action) { 
 
 	}
 
 
+	@Override
 	public Transferable createTransferable(JComponent comp) {
 
 		TimeBoxCompare tbc=((TimeBoxCompare)comp);
@@ -56,6 +65,7 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 	}
 
 
+	@Override
 	public boolean importData(TransferHandler.TransferSupport suport) {
 
 		try{

@@ -56,8 +56,8 @@ public class DisplayPanel extends JPanel{
 		this.removeAll();
 		for(Map.Entry<Integer,Card_GUI> e:gui_cards.entrySet()){
 			//setLayout(new FlowLayout());
-			add((Card_GUI)e.getValue());
-			((Card_GUI)e.getValue()).setVisible(true);
+			add(e.getValue());
+			(e.getValue()).setVisible(true);
 		}
 
 	}

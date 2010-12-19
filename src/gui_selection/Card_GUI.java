@@ -34,6 +34,7 @@ public class Card_GUI extends JPanel {
 		this.setTransferHandler(new CardTransferHandler(card.getState(),dp));
 		this.addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mousePressed(MouseEvent me) {
 
 				JComponent comp = (JComponent) me.getSource();

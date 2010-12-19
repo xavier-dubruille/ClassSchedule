@@ -2,9 +2,17 @@ package model;
 
 import java.util.*;
 
+/**
+ * 
+ * This class represent a Lesson
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
+ */
 public class Lesson {
 	String name;
-	String group; //Prochaine version en objet -- nombre etudiants dans un groupe
+	String group; //next version, we should make a object of this
 	int period; //for the current semester
 	
 	
@@ -39,11 +47,23 @@ public class Lesson {
 		this.teacher=t;
 	}
 	
-	public void putLocal(int priority,Room l){
-		preferedClassRoom.put(priority, l);
+	/**
+	 * 
+	 * Allow to set a room to this Lesson, with a priority
+	 * (not currently used)
+	 * 
+	 * @param priority	the priority of the room (for this lesson)
+	 * @param room 	the room to be added
+	 */
+	public void putRoom(int priority,Room room){
+		preferedClassRoom.put(priority, room);
 	}
 	
 
+	/**
+	 * 
+	 * @return the teacher giving this course
+	 */
 	public Teacher getTeacher(){
 		return teacher;
 	}

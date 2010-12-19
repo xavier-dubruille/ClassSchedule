@@ -144,6 +144,7 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 
 
 
+	@Override
 	public void actionPerformed(ActionEvent e){
 		JFileChooser jf=new JFileChooser();
 		int returnVal;
@@ -152,8 +153,10 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 		//System.out.println(e.getActionCommand());
 		
 		javax.swing.filechooser.FileFilter filter = new javax.swing.filechooser.FileFilter(){
+			@Override
 			public boolean accept(File f){
 				return f.getName().endsWith(".csv")||f.isDirectory()||f.getName().endsWith(".xls");}
+			@Override
 			public String getDescription(){return "fichiers csv et xls";}
 		};
 

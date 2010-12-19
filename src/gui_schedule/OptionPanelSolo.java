@@ -5,8 +5,6 @@ import gui.GUI_Propreties;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
@@ -75,7 +73,7 @@ public class OptionPanelSolo extends JPanel{
 		sectionCombo=new JComboBox(new String[]{" "});
 		sectionCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 		
-		sectionPanel.setBorder(BorderFactory.createTitledBorder("Section"));
+		sectionPanel.setBorder(BorderFactory.createTitledBorder("Annee, Section, Groupe"));
 		sectionPanel.add(sectionCombo);
 		sectionPanel.setBackground(GUI_Propreties.section_color);
 		sectionCombo.addActionListener(new ComboListener(2));
@@ -118,6 +116,7 @@ public class OptionPanelSolo extends JPanel{
 		public ComboListener(int option_type){
 			this.option_type=option_type;
 		}
+		@Override
 		public void actionPerformed(ActionEvent e){
 			JComboBox cb = (JComboBox)e.getSource();
 			String selectedItem = (String)cb.getSelectedItem();

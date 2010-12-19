@@ -1,6 +1,5 @@
 package gui_selection;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.util.SortedMap;
@@ -10,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.ScrollPaneConstants;
 
 import model.StateFullSchedule;
 
@@ -50,7 +50,7 @@ public class FrameSelection extends JFrame {
 		op=new OptionPanel(dp, state,gui_cards);
 		op.setMinimumSize(new Dimension(3,3));
 
-		scroll_display=new JScrollPane(dp,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll_display=new JScrollPane(dp,ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS,ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 	
 		
 		JSplitPane jSplit=new JSplitPane(JSplitPane.VERTICAL_SPLIT,op,scroll_display);

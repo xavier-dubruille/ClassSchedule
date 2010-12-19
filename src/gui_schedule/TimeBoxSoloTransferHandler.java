@@ -14,7 +14,7 @@ import model.Card;
 import model.StateFullSchedule;
 import model.*;
 
-public class TimeBoxTransferHandler extends TransferHandler {
+public class TimeBoxSoloTransferHandler extends TransferHandler {
 
 	private static final long serialVersionUID = 1L;
 	private StateFullSchedule state;
@@ -27,12 +27,13 @@ public class TimeBoxTransferHandler extends TransferHandler {
 	/*
 	 * constructor for TimeBox
 	 */
-	public TimeBoxTransferHandler(StateFullSchedule state, DisplayPanel dp, OptionPanelSolo ops){
+	public TimeBoxSoloTransferHandler(StateFullSchedule state, DisplayPanel dp, OptionPanelSolo ops){
 		this.state=state;
 		this.dp=dp;
 		this.ops=ops;
 	}
 
+	@Override
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
 	}
@@ -40,6 +41,7 @@ public class TimeBoxTransferHandler extends TransferHandler {
 	/*
 	 * Efectué par TimeBox qd qqch le survole (une timebox ou une gui_card)
 	 */
+	@Override
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 		//System.out.println("can import de timeboxhandler");
 		if(ops.getSelectedTeacher()==null && ops.getSelectedRoom()==null && ops.getSelectedSection()==null)
@@ -114,6 +116,7 @@ public class TimeBoxTransferHandler extends TransferHandler {
 	/*
 	 * Effectué par timebox une fois que le carton a été laché
 	 */
+	@Override
 	public void exportDone(JComponent c, Transferable t, int action) { 
 		((TimeBoxSolo)c).getView().updateView();
 	}
@@ -121,6 +124,7 @@ public class TimeBoxTransferHandler extends TransferHandler {
 	/*
 	 * Efectué par timeBox
 	 */
+	@Override
 	public Transferable createTransferable(JComponent comp) {
 		//System.out.println("createTransferable de timeBoxHandler");
 
@@ -136,6 +140,7 @@ public class TimeBoxTransferHandler extends TransferHandler {
 	/*
 	 * TimeBox recoi les info (d'une gui_card ou d'une autre timeBox..)
 	 */
+	@Override
 	public boolean importData(TransferHandler.TransferSupport suport) {
 
 		//System.out.println("importData de timeBoxHandler");

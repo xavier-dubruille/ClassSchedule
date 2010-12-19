@@ -65,6 +65,7 @@ public class Room {
 		this.seats = seats;
 	}
 
+	@Override
 	public String toString(){
 		return "room[name="+name+",type="+type+",info="+info+",seats="+seats+"]";
 	}

@@ -24,10 +24,12 @@ public class PanelTransferHandler extends TransferHandler{
 		this.dp=dp;
 	}
 
+	@Override
 	public int getSourceActions(JComponent c) {
 		return TransferHandler.MOVE;
 	}
 
+	@Override
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 
 		//System.out.println("canImport de cardHandler");
@@ -44,11 +46,13 @@ public class PanelTransferHandler extends TransferHandler{
 
 
 
+	@Override
 	public Transferable createTransferable(JComponent comp) {
 		return null;
 	}
 
 
+	@Override
 	public boolean importData(TransferHandler.TransferSupport suport) {
 
 		try{

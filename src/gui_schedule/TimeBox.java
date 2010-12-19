@@ -2,7 +2,6 @@ package gui_schedule;
 
 import gui.GUI_Propreties;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -62,6 +61,7 @@ public class TimeBox extends JPanel {
 
 		this.addMouseListener(new MouseAdapter() {
 
+			@Override
 			public void mousePressed(MouseEvent me) {
 
 				JComponent comp = (JComponent) me.getSource();
@@ -122,6 +122,7 @@ public class TimeBox extends JPanel {
 
 
 
+	@Override
 	public String toString(){
 		return "timebox: "+name;
 	}

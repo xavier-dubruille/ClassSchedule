@@ -91,7 +91,7 @@ public class OptionPanelCompare extends JPanel {
 		stuffCombo=new CheckComboBox();
 		stuffCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
 
-		stuffPanel.setBorder(BorderFactory.createTitledBorder("selection"));
+		stuffPanel.setBorder(BorderFactory.createTitledBorder("Annee, selection, groupe"));
 		stuffPanel.add(stuffCombo);
 		stuffPanel.setBackground(GUI_Propreties.optionPanelCompare_color);
 		stuffCombo.setMultipleItemsText("* plusieurs selections *");
@@ -115,6 +115,7 @@ public class OptionPanelCompare extends JPanel {
 		public MyListCheckListener(int category){
 			this.category=category;
 		}
+		@Override
 		public void addCheck(ListEvent e){
 			//System.out.println("addCheck: catego="+category+", selected="+e.getValues().get(0));
 
@@ -177,6 +178,7 @@ public class OptionPanelCompare extends JPanel {
 		}
 
 
+		@Override
 		public void removeCheck(ListEvent e){
 			//System.out.println("removeCheck: catego="+category+", selected="+e.getValues().get(0));
 

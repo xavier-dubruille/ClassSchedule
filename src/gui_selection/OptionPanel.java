@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import model.Room;
 import model.Section;
 import model.StateFullSchedule;
 import model.Teacher;
@@ -183,6 +182,7 @@ public class OptionPanel extends JPanel {
 		MyListCheckListener(int category){
 			this.category=category;
 		}
+		@Override
 		public void addCheck(ListEvent e){
 			
 			if(e.getValues().size()>1) return;
@@ -229,6 +229,7 @@ public class OptionPanel extends JPanel {
 				break;
 			}
 		}
+		@Override
 		public void removeCheck(ListEvent e){
 			String value;
 			if (e == null || e.getValues()==null)

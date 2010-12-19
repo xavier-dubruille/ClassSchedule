@@ -28,7 +28,7 @@ public class TimeBoxSolo extends TimeBox {
 		this.state=state;
 		this.view=view;
 		this.ops=view.getOptionPanelSolo();
-		this.setTransferHandler(new TimeBoxTransferHandler(state,view.getDisplayPanel(),ops));
+		this.setTransferHandler(new TimeBoxSoloTransferHandler(state,view.getDisplayPanel(),ops));
 	}
 	
 	public MainViewSolo getView(){
