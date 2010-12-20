@@ -16,15 +16,18 @@ import javax.swing.JMenuItem;
 import model.StateFullSchedule;
 
 /**
- * @author 
+ * @author Dubruille Xavier
+ * @author Delange Jonas 
  *
  */
 public class MyMenuBar extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 	FrameSchedule fSc;
 	FrameSelection fSe;
+
 	/**
 	 * 
+	 * @param state
 	 */
 	public MyMenuBar(StateFullSchedule state) {
 
@@ -71,15 +74,19 @@ public class MyMenuBar extends JMenuBar {
 		// * end of top menus
 	}
 
+	/**
+	 * 
+	 * @param fSe
+	 * @param fSc
+	 */
 	public void setPanels(FrameSelection fSe,FrameSchedule fSc){
 		this.fSc=fSc;
 		this.fSe=fSe;
 	}
 
-	/*
-	 * Le listener qui s'occupera de l'item "créer un nouveau projet
-	 * à partir de fichies CSV"
-	 * 
+
+	/**
+	 * This listener will take care of the "new" item..
 	 */
 	private class CsvActionListener implements ActionListener{
 		StateFullSchedule state;
@@ -91,7 +98,8 @@ public class MyMenuBar extends JMenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent ae){
-			GetFilesDialog dialog=new GetFilesDialog(state.getFilesPath());
+			//GetFilesDialog dialog=
+			new GetFilesDialog(state.getFilesPath());
 			if(state.update_from_files()){ //update the model; i.e. the internal data
 
 				fSc.update_from_state(); //update the GUI

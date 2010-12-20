@@ -9,6 +9,11 @@ import java.awt.event.ComponentListener;
 import model.StateFullSchedule;
 import gui_selection.*;
 
+/**
+ *
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ */
 public class FrameSchedule extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
@@ -19,6 +24,13 @@ public class FrameSchedule extends JFrame {
 	public FrameSchedule(){
 		//empty, not visible frame
 	}
+	
+	/**
+	 * 
+	 * @param state
+	 * @param bar
+	 * @param fs
+	 */
 	public FrameSchedule(StateFullSchedule state,MyMenuBar bar,FrameSelection fs){
 		super("Gestion Horraires");
 
@@ -90,8 +102,11 @@ public class FrameSchedule extends JFrame {
 		setVisible(true);
 	}
 	
+	/**
+	 * 
+	 */
 	public void update_from_state(){
 		ops.update_from_state();
-		opc.update_from_state(); //pas encore implementé
+		opc.update_from_state(); // not implemented yet.
 	}
 }

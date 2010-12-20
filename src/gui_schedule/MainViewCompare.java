@@ -11,6 +11,11 @@ import main.Propreties;
 import model.*;
 import gui_selection.DisplayPanel;
 
+/**
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas *
+ */
 public class MainViewCompare extends JPanel{
 
 	private static final long serialVersionUID = 1L;
@@ -25,6 +30,9 @@ public class MainViewCompare extends JPanel{
 	}
 
 
+	/**
+	 * 
+	 */
 	public void constructView(){
 		String compareOn=opc.getCompareOn();
 		ArrayList<String> selectedDays=opc.getSelectedDays();
@@ -41,6 +49,11 @@ public class MainViewCompare extends JPanel{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param days
+	 * @param teachers
+	 */
 	private void constructViewFromTeachers(ArrayList<String> days, ArrayList<Teacher> teachers){
 		//	System.out.println("days: "+days+"--- teachers: "+teachers);
 
@@ -70,6 +83,13 @@ public class MainViewCompare extends JPanel{
 		this.revalidate();
 		this.repaint();
 	}
+	
+	/**
+	 * 
+	 * @param teacher
+	 * @param timePeriod
+	 * @return
+	 */
 	private Card getTeacherCardAtThatTime(Teacher teacher, int timePeriod) {
 		// find the timePeriod --> 
 		
@@ -83,9 +103,21 @@ public class MainViewCompare extends JPanel{
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param i
+	 * @param day
+	 * @return
+	 */
 	private int calculateTimePeriod(int i, String day){
 		return (Propreties.day_per_week+1)*i+getDayNumber(day);
 	}
+	
+	/**
+	 * 
+	 * @param day
+	 * @return
+	 */
 	private int getDayNumber(String day) {
 		if(day.equalsIgnoreCase("lundi"))
 			return 1;
@@ -103,7 +135,11 @@ public class MainViewCompare extends JPanel{
 	}
 
 
-	
+	/**
+	 * 
+	 * @param days
+	 * @param sections
+	 */
 	private void constructViewFromSections(ArrayList<String> days, ArrayList<Section> sections){
 		//	System.out.println("days: "+days+"--- sections: "+sections);
 
@@ -134,6 +170,13 @@ public class MainViewCompare extends JPanel{
 		this.repaint();
 
 	}
+	
+	/**
+	 * 
+	 * @param section
+	 * @param timePeriod
+	 * @return
+	 */
 	private Card getSectionCardAtThatTime(Section section, int timePeriod) {
 
 		for(Card c:section.getCards()){
@@ -144,6 +187,11 @@ public class MainViewCompare extends JPanel{
 		return null;
 	}
 
+	/**
+	 * 
+	 * @param days
+	 * @param rooms
+	 */
 	private void constructViewFromRooms(ArrayList<String> days, ArrayList<Room> rooms){
 		//	System.out.println("days: "+days+"--- rooms: "+rooms);
 		
@@ -175,6 +223,13 @@ public class MainViewCompare extends JPanel{
 		this.repaint();
 
 	}
+	
+	/**
+	 * 
+	 * @param room
+	 * @param timePeriod
+	 * @return
+	 */
 	private Card getRoomCardAtThatTime(Room room, int timePeriod) {
 
 		for(Card c:room.getCards()){

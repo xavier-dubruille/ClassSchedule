@@ -2,6 +2,14 @@ package model;
 
 import java.io.IOException;
 
+/**
+ * 
+ * This Exception is use when the input file is not in a correct format
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ * 
+ */
 public class NotSuportedFileException extends IOException{
 
 	/**

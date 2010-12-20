@@ -22,11 +22,8 @@ public class OptionPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private StateFullSchedule state;
 	private DisplayPanel dp;
-	private String[] Option_general;
-	private String[] Option_teacher;
-	private String[] Option_classRoom;
 	private JPanel choices_one_panel;
-	private SortedMap<Integer,Card_GUI> gui_cards;
+//	private SortedMap<Integer,Card_GUI> gui_cards;
 	private boolean started;
 
 	public CheckComboBox choices_one_combo,choices_two_combo,choices_three_combo,choices_four_combo;
@@ -37,7 +34,7 @@ public class OptionPanel extends JPanel {
 	public OptionPanel(DisplayPanel dp, StateFullSchedule state, SortedMap<Integer,Card_GUI> gui_cards){
 		this.dp=dp;
 		this.state=state;
-		this.gui_cards=gui_cards;
+//		this.gui_cards=gui_cards;
 		ListCheckModel model;
 		started=false;
 
@@ -262,8 +259,9 @@ public class OptionPanel extends JPanel {
 			}
 		}
 
+		/*
 		private void showRoom(String room){}
 		private void hideRoom(String room){}
-
+		*/
 	}
 }

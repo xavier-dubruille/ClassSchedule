@@ -18,6 +18,10 @@ import main.Propreties;
 import model.Card;
 import model.StateFullSchedule;
 
+/**
+ * 
+ *
+ */
 public class TimeBox extends JPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +31,8 @@ public class TimeBox extends JPanel {
 	protected StateFullSchedule state;
 	protected Card card;
 
-	/*
+
+	/**
 	 * constructor without TransferHandler
 	 */
 	TimeBox(String s){
@@ -75,6 +80,11 @@ public class TimeBox extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * @param day_period
+	 * @param day
+	 */
 	public TimeBox(int day_period, boolean day){
 		this("");
 		if(day)
@@ -84,6 +94,11 @@ public class TimeBox extends JPanel {
 
 	}
 
+	/**
+	 * 
+	 * @param day_period
+	 * @return
+	 */
 	private String correspondingDay(int day_period) {
 		switch (day_period){
 		case 1:return "Lundi";
@@ -97,6 +112,10 @@ public class TimeBox extends JPanel {
 		}
 	}
 
+	/**
+	 * 
+	 * @param c
+	 */
 	public void setCard(Card c){
 		// System.out.println("TimeBox.set Card :"+ c);
 		this.card=c;
@@ -107,6 +126,9 @@ public class TimeBox extends JPanel {
 		jl.repaint();
 	}
 
+	/**
+	 * 
+	 */
 	public void clear(){
 		this.card=null;
 		jl.setText("");
@@ -116,6 +138,10 @@ public class TimeBox extends JPanel {
 		jl.repaint();
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public Card getCard(){
 		return card;
 	}
@@ -127,20 +153,36 @@ public class TimeBox extends JPanel {
 		return "timebox: "+name;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public int getTimePeriod(){
 		return timePeriod;
 	}
 
+	/**
+	 * 
+	 * @param timePeriod
+	 */
 	public void setTimePeriod(int timePeriod){
 		this.timePeriod=timePeriod;
 	}
 
+	/**
+	 * 
+	 * @param text
+	 */
 	public void setStaticText(String text) {
 		jl.setText(text);
 		jl.setFont(GUI_Propreties.timeBox_static_font);
 
 	}
 
+	/**
+	 * 
+	 * @param i
+	 */
 	public void setPref(int i) {
 		this.setBorder(BorderFactory.createLineBorder(Color.red));
 

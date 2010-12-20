@@ -13,6 +13,12 @@ import model.Section;
 import model.StateFullSchedule;
 import model.Teacher;
 
+/**
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
+ */
 public class MainViewSolo extends JPanel{
 	private static final long serialVersionUID = 1L;
 
@@ -25,6 +31,11 @@ public class MainViewSolo extends JPanel{
 	private OptionPanelSolo ops;
 	private int size;
 
+	/**
+	 * 
+	 * @param state
+	 * @param dp
+	 */
 	public MainViewSolo(StateFullSchedule state,DisplayPanel dp){
 		this.state=state;
 		this.dp=dp;
@@ -41,6 +52,9 @@ public class MainViewSolo extends JPanel{
 
 	}
 
+	/**
+	 * 
+	 */
 	public void drawEmptySchedule(){
 	
 		
@@ -66,18 +80,33 @@ public class MainViewSolo extends JPanel{
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public DisplayPanel getDisplayPanel(){
 		return dp;
 	}
 	
+	/**
+	 * 
+	 * @param ops
+	 */
 	public void setOptionPanelSolo(OptionPanelSolo ops){
 		this.ops=ops;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public OptionPanelSolo getOptionPanelSolo(){
 		return ops;
 	}
 
+	/**
+	 * 
+	 */
 	private void cleanSchedule(){
 		
 		int d=Propreties.day_per_week+1;
@@ -89,6 +118,11 @@ public class MainViewSolo extends JPanel{
 			}
 
 	}
+	
+	/**
+	 * 
+	 * @param t
+	 */
 	public void setScheduleView(Teacher t){
 
 		selectedRoom=null;
@@ -117,10 +151,11 @@ public class MainViewSolo extends JPanel{
 
 	}
 	
+	/**
+	 * 
+	 * @param r
+	 */
 	public void setScheduleView(Room r){
-
-
-	
 		selectedTeacher=null;
 		selectedSection=null;
 		selectedRoom=r;
@@ -137,6 +172,10 @@ public class MainViewSolo extends JPanel{
 
 	}
 	
+	/**
+	 * 
+	 * @param s
+	 */
 	public void setScheduleView(Section s){
 
 		selectedRoom=null;
@@ -156,6 +195,9 @@ public class MainViewSolo extends JPanel{
 
 	}
 
+	/**
+	 * 
+	 */
 	public void updateView(){
 		if(selectedTeacher!=null)
 			setScheduleView(selectedTeacher);

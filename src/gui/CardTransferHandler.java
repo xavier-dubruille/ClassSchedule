@@ -13,6 +13,12 @@ import javax.swing.TransferHandler;
 import model.Card;
 import model.StateFullSchedule;
 
+/**
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
+ */
 public class CardTransferHandler extends TransferHandler{
 
 	private static final long serialVersionUID = 1L;

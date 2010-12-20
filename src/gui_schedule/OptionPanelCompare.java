@@ -19,9 +19,15 @@ import org.japura.gui.event.ListEvent;
 import org.japura.gui.model.ListCheckModel;
 
 
+/**
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
+ */
 public class OptionPanelCompare extends JPanel {
 	private static final long serialVersionUID = 1L;
-	
+
 	private StateFullSchedule state;
 	private ArrayList<String> selectedDays;
 	private String compareOn;
@@ -31,6 +37,11 @@ public class OptionPanelCompare extends JPanel {
 	private CheckComboBox daysCombo,compareOn_Combo,stuffCombo;
 	private MainViewCompare mvc;
 
+	/**
+	 * 
+	 * @param state
+	 * @param mvc
+	 */
 	public OptionPanelCompare(StateFullSchedule state,MainViewCompare mvc){
 		this.state=state;
 		this.mvc=mvc;
@@ -39,7 +50,7 @@ public class OptionPanelCompare extends JPanel {
 		teachersToCompare = new ArrayList<Teacher>();
 		roomsToCompare=new ArrayList<Room>();
 		sectionsToCompare=new ArrayList<Section>();
-		
+
 		this.setPreferredSize(new Dimension(130,130));
 		this.setBackground(GUI_Propreties.optionPanelCompare_color);
 
@@ -100,15 +111,21 @@ public class OptionPanelCompare extends JPanel {
 		model.addListCheckListener(new MyListCheckListener(2));
 
 		this.add(stuffPanel);
-
-
-
 	}
 
+	/**
+	 * not implemented yet
+	 */
 	public void update_from_state(){
 
 	}
 
+	/**
+	 * 
+	 * @author Dubruille Xavier
+	 * @author Delange Jonas
+	 *
+	 */
 	private class MyListCheckListener implements ListCheckListener{
 		int category;
 		java.util.List<Object> l;
@@ -124,7 +141,7 @@ public class OptionPanelCompare extends JPanel {
 			case 0: //days
 				selectedDays.clear();
 				selectedDays.add(value);
-				
+
 				l=daysCombo.getModel().getCheckeds();
 				for(int i=0;i<l.size();i++){
 					String s=(String)l.get(i);
@@ -133,7 +150,7 @@ public class OptionPanelCompare extends JPanel {
 				}
 				mvc.constructView();
 
- 
+
 				break;
 			case 1: //compare on
 				l=compareOn_Combo.getModel().getCheckeds();
@@ -205,35 +222,55 @@ public class OptionPanelCompare extends JPanel {
 				break;
 			}
 		}
-		
-
-		
-		
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<String> getSelectedDays() {
 		return selectedDays;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public String getCompareOn() {
 		return compareOn;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Teacher> getTeachersToCompare() {
 		return teachersToCompare;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Room> getRoomsToCompare() {
 		return roomsToCompare;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public ArrayList<Section> getSectionsToCompare() {
 		return sectionsToCompare;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public CheckComboBox getDaysCombo() {
 		return daysCombo;
 	}
-	
-	
+
+
 }

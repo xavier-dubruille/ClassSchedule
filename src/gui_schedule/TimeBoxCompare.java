@@ -9,12 +9,12 @@ public class TimeBoxCompare extends TimeBox {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private MainViewCompare mvc;
-	private OptionPanelCompare opc;
+	//private MainViewCompare mvc;
+	//private OptionPanelCompare opc;
 	private Section sectionConcerned;
 	private Room roomConcerned;
 	private Teacher teacherConcerned;
-	private  DisplayPanel dp;
+	//private  DisplayPanel dp;
 
 	public TimeBoxCompare(String s) {
 		super(s);
@@ -27,10 +27,10 @@ public class TimeBoxCompare extends TimeBox {
 
 		this("");
 
-		this.mvc=mvc;
-		this.opc=opc;
+		//this.mvc=mvc;
+		//this.opc=opc;
 		this.timePeriod=timePeriod;
-		this.dp=dp;
+		//this.dp=dp;
 
 
 		if(c==null)

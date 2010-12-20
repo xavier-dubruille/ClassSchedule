@@ -19,14 +19,14 @@ public class Card {
 	// private String name;
 	private Teacher teacher;
 	private Lesson lesson;
-	private int happy; 
+//	private int happy; 
 	private int timePeriod; // representing the day and the period
 	private int cardId;
 	private Map<String,Room> all_rooms;
 	private Room classRoom;
 	private String mod;
 	private boolean info;
-	private Map<String,Section> all_sections;
+	//private Map<String,Section> all_sections;
 	private ArrayList<Section> card_sections;
 	private StateFullSchedule state;
 
@@ -45,7 +45,7 @@ public class Card {
 	 */
 	public Card(Lesson lesson, Teacher teacher,int cardId,Section s,StateFullSchedule state, String info, String mod){
 		this.all_rooms=state.getClassRoom();
-		this.all_sections=state.getSections();
+		//this.all_sections=state.getSections();
 		this.state=state;
 		this.mod=mod;
 		this.info=info.equalsIgnoreCase("1") ? true :false ;
@@ -58,7 +58,7 @@ public class Card {
 
 		//if(this.info) System.out.println("carton "+this.lesson.name+", "+cardId+" doit être en salle info");
 
-		happy=0;
+		//happy=0;
 		timePeriod=0;
 		card_sections=new ArrayList<Section>();
 		card_sections.add(s);
@@ -89,7 +89,7 @@ public class Card {
 
 		Room room = pick_best_room();
 		if (room==null){
-			happy=-10;
+		//	happy=-10;
 			return false;
 		}
 

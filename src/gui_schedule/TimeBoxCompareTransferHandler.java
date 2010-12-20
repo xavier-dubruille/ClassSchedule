@@ -19,13 +19,13 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 	private static final long serialVersionUID = 1L;
 	private StateFullSchedule state;
 	private MainViewCompare mvc;
-	private OptionPanelCompare opc;
+	//private OptionPanelCompare opc;
 	private DisplayPanel dp;
 	
 	TimeBoxCompareTransferHandler(StateFullSchedule state, MainViewCompare mvc, OptionPanelCompare opc, DisplayPanel dp){
 		this.state=state;
 		this.mvc=mvc;
-		this.opc=opc;
+		//this.opc=opc;
 		this.dp=dp;
 	}
 	

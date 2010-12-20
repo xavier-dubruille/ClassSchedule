@@ -18,12 +18,20 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ */
 public class GetFilesDialog extends JDialog implements ActionListener{
 
 	JTextField jt_constrain, jt_lesson, jt_classRoom;
 	String output[];
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 
+	 * @param output
+	 */
 	public GetFilesDialog(String[] output){
 
 		this.output=output;

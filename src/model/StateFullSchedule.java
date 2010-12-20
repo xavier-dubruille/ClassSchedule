@@ -24,9 +24,15 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 
 
-/*
- * Contient de quoi creer un horraire et de 
- * concerver toutes les info le representant.
+/**
+ * This class is the most important of the wall program.
+ * It contains all the data, it is really the model in a model-view-controler pattern
+ * 
+ * This class has also everything to construct himself from a file, or save him to a file
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
  */
 public class StateFullSchedule {
 
@@ -41,7 +47,7 @@ public class StateFullSchedule {
 	String filesPath[];
 	String csvDelemiter;
 	private 
-	int choice_sem; // choix semestre
+	int choice_sem; // semester choice
 
 	private boolean ready; //will be true when the object is usable
 
@@ -56,6 +62,9 @@ public class StateFullSchedule {
 	}
 
 
+	/**
+	 * initiation procedure, it's more like a extension of the constructor
+	 */
 	private void init(){
 		ready=false;
 
@@ -71,19 +80,18 @@ public class StateFullSchedule {
 		csvDelemiter=";";
 	}
 
-	/*
-	 * cette méthode, une fois écrite devrait mettre à jour
-	 * tout l'état de l'objet à partir des infos dans les fichiers
+	/**
+	 * This is everything is construct from the files.
+	 * Pre: the path files must be valid before calling this method
+	 * the path files must be in filePath[]
+	 * 
+	 * @return true if it was a success
 	 */
 	public boolean update_from_files(){
 
-		// si ce n'est pas la tt première update; il faut fermer les fichiers,
-		// et tout effacer (sauvegarder ?) 
-
-		/* il faudrait p-e vérifier ici (du moins dans cette méthode) 
-		 * si les fichiers on changé, (par ex ac une somme md5)
-		 * si ils existent, sont dans un format valide, ect */
-		init();
+		
+		
+		init(); // maybe there is more to (re)initiate ?
 
 
 		if(filesPath[3]!=null && filesPath[3].equalsIgnoreCase("first"))
@@ -159,6 +167,13 @@ public class StateFullSchedule {
 
 	}
 
+	/**
+	 * Construct the state based on the first/main file containing all the courses/teachers/cards
+	 * @param filePath the file path of the file to be read
+	 * @throws NoFileException
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	private void createStateFromCardFile(String filePath) throws NoFileException,FileNotFoundException,IOException{
 		if (filePath == null || filesPath.equals("") ) throw new NoFileException();
 		if (filePath.endsWith("csv")) readCardFromCSV(filePath);
@@ -166,12 +181,26 @@ public class StateFullSchedule {
 		else throw new NotSuportedFileException();
 	}
 
+	/**
+	 * Construct the state based on the second file. Containing all room specifications.
+	 * @param filePath the file path of the file to be read
+	 * @throws NoFileException
+	 * @throws FileNotFoundException
+	 * @throws NotSuportedFileException
+	 * @throws IOException
+	 */
 	private void createStateFromClassRoomFile(String filePath) throws NoFileException,FileNotFoundException,NotSuportedFileException,IOException{
 		if (filesPath == null || filesPath.equals("") ) throw new NoFileException();
 		if (filePath.endsWith("csv")) readRoomFromCSV(filePath);
 		else if(filePath.endsWith("xls")) readRoomFromXLS(filePath);
 		else throw new NotSuportedFileException();
 	}
+	
+	/**
+	 * construct the state based on the directory containing all the constrains of the teachers, classRooms, sections..
+	 * @param filesPath the path of the directory
+	 * @throws IOException
+	 */
 	private void createStateFromConstrainDir(String filesPath) throws IOException{
 		if (filesPath == null || filesPath.equals("") ) return;
 
@@ -182,16 +211,16 @@ public class StateFullSchedule {
 		for(File f:constraints)
 			treatConstraintFile(f);
 
-
-
-
-
-
-
-
 	}
 
 
+	/**
+	 * 
+	 * called for each file in the constraints directory.. 
+	 * will build the state accordingly
+	 * @param file the File to be treated
+	 * @throws IOException
+	 */
 	private void treatConstraintFile(File file) throws IOException{
 		if (!file.getName().endsWith(".txt")) return;
 
@@ -204,11 +233,18 @@ public class StateFullSchedule {
 		if(t!=null)
 			updateTeacherConstraints(t,file);
 
-
-
 	}
 
 
+	/**
+	 * 
+	 * Called for each teacher's file's constrains.
+	 * Will build the state accordingly
+	 * 
+	 * @param teacher the teacher concerned by this changes
+	 * @param file the File containing this theacher's preferrences (=the constraints)
+	 * @throws IOException
+	 */
 	private void updateTeacherConstraints (Teacher teacher,File file) throws IOException{
 		System.out.println("update teacher constraints"+teacher.getFirstName()+" "+teacher.getLastName());
 		String[] lineTab;
@@ -233,9 +269,22 @@ public class StateFullSchedule {
 	}
 
 
+	/**
+	 * 
+	 * construct the state room from a csv file
+	 * @param filePath the file path of the csv file containing the rooms spec
+	 */
 	private void readRoomFromCSV(String filePath){
 
 	}
+	
+	/**
+	 * 
+	 * Construct the state room from a xls file
+	 * @param filePath the file path of the xls file containing the rooms spec
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	private void  readRoomFromXLS(String filePath)throws FileNotFoundException,IOException{
 		String[] line;
 
@@ -282,6 +331,10 @@ public class StateFullSchedule {
 
 	}
 
+	/**
+	 * Called for each line in a room file specifcation. no matter if it's a csv file, a xls or orther
+	 * @param line the table represanting the line to be treated.
+	 */
 	private void constructRoomStateFromLine(String []line){
 
 		int seats;
@@ -321,10 +374,12 @@ public class StateFullSchedule {
 	}
 
 
-	/*
-	 * Read the csv file containing the courses (the cards)
-	 * 
+	/**
+	 * Read the csv file containing the courses (the cards) 
 	 * pre:filePath has to be a valid String
+	 *
+	 * @param filePath the file path of the csv file containing the course. has to be a valid path.
+	 * @throws FileNotFoundException
 	 */
 	private void readCardFromCSV(String filePath) throws FileNotFoundException{
 
@@ -337,7 +392,7 @@ public class StateFullSchedule {
 
 		putRightIndex(line);
 
-		//faudrait enregister les champs restant à titre d'info..
+		//should we save the rest of the info ?
 
 		int cardId=0; //i.e. index
 		while (sc.hasNext()) {
@@ -351,6 +406,10 @@ public class StateFullSchedule {
 
 
 
+	/**
+	 * will set the most probable delimiter for a csv file
+	 * @param line a line of the file
+	 */
 	private void setDelemiter(String line){
 		if(line.split(";").length>2)
 			this.csvDelemiter=";";
@@ -358,22 +417,18 @@ public class StateFullSchedule {
 			this.csvDelemiter=",";
 	}
 
-	/*
-	 * index 0 = year
-	 * index 1 = course_name
-	 * index 2 = teacher_firstName
-	 * index 3 = section
-	 * index 4 = courses_id
-	 * index 5 = teacher_id
-	 * index 6 = period
-	 * index 7 = teacher_lastName
-	 * index 8 = group
-	 * index 9 = mod
+
+	/**
+	 * 
+	 *  Called for each lines of the file containing the courses,teachers, ect
+	 *  It's separeted from the rest because it can be called from any 
+	 *  type of file (in our case: csv and xls)
+	 *   
+	 * @param line the String table representing a line of the file
+	 * @param cardId the card id, must be different each time the method is called.
 	 */
 	private void constructCardStateFromLine(String[] line, int cardId){
 
-		//	if(line[indexLine.get("teacher_lastName")].equalsIgnoreCase("Batugowski"))
-		//		System.out.println("d�bu. Batu: "+line[indexLine.get("course_name")]);
 		int periods=Integer.parseInt(line[indexLine.get("period")]);
 		//System.out.println("construct card state from line "+Arrays.toString(line));
 		if (periods==0){
@@ -383,7 +438,7 @@ public class StateFullSchedule {
 		}
 		Teacher t; 
 		Lesson l;
-		Room r;
+		//Room r;
 		Section s;
 		String section_name=line[indexLine.get("year")]+line[indexLine.get("section")]+line[indexLine.get("group")];
 		String teacher_lastName=line[indexLine.get("teacher_lastName")];
@@ -426,7 +481,7 @@ public class StateFullSchedule {
 		l.setOtherInfo( line[indexLine.get("year")]+line[indexLine.get("section_name")]+line[indexLine.get("group")], t, line[indexLine.get("period")],line[indexLine.get("mod")]);
 
 		t.addCourse(line[indexLine.get("courses_id")],l);
-		// p-e mettre une reference des prof dans l'objet course
+		// should we put a reference to the teacher in the Lesson object ?
 
 		ArrayList<Card> matchingCards=findMachingCards(l,line[indexLine.get("mod")],s);
 		Card card;
@@ -446,12 +501,14 @@ public class StateFullSchedule {
 				c.addSection(s);
 		}
 
-
-
-
-
 	}
 
+	/**
+	 * 
+	 * @param filePath
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	private void readCardFromXLS(String filePath) throws FileNotFoundException,IOException{
 		String[] line;
 
@@ -502,19 +559,19 @@ public class StateFullSchedule {
 	}
 
 	private void putRightIndex(String[] line){
-
 		/*
-		 * index  = year
-		 * index  = course_name
-		 * index  = teacher_firstName
-		 * index  = section
-		 * index  = courses_id
-		 * index  = teacher_id
-		 * index  = period
-		 * index  = teacher_lastName
-		 * index  = group
-		 * index  = mod
-		 * section_name
+		 * The different keys of "indexLine" are:
+		 *  year
+		 *  course_name
+		 *  teacher_firstName
+		 *  section
+		 *  courses_id
+		 *  teacher_id
+		 *  period
+		 *  teacher_lastName
+		 *  group
+		 *  mod
+		 *  section_name
 		 */
 
 		String sem = ("ORCO_NombrePeriodeSemaineSemestre" + choice_sem); 
@@ -632,8 +689,11 @@ public class StateFullSchedule {
 
 	}
 
-	/*0
+	/**
 	 * return the Section corresponding to the selectedItem
+	 * 
+	 * @param selectedItem
+	 * @return
 	 */
 	public Section findSection(String selectedItem){
 

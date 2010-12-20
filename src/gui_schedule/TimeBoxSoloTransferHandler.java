@@ -1,6 +1,4 @@
 package gui_schedule;
-
-import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;
 
 import java.awt.datatransfer.DataFlavor;
@@ -18,8 +16,7 @@ public class TimeBoxSoloTransferHandler extends TransferHandler {
 
 	private static final long serialVersionUID = 1L;
 	private StateFullSchedule state;
-	private Card_GUI card_gui;
-	private DisplayPanel dp;
+	//private DisplayPanel dp;
 	private OptionPanelSolo ops;
 
 
@@ -29,7 +26,7 @@ public class TimeBoxSoloTransferHandler extends TransferHandler {
 	 */
 	public TimeBoxSoloTransferHandler(StateFullSchedule state, DisplayPanel dp, OptionPanelSolo ops){
 		this.state=state;
-		this.dp=dp;
+	//	this.dp=dp;
 		this.ops=ops;
 	}
 
