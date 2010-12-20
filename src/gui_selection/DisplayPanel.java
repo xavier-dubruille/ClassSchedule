@@ -2,6 +2,7 @@ package gui_selection;
 
 
 import gui.GUI_Propreties;
+import gui_schedule.MainViewSolo;
 
 import javax.swing.*;
 
@@ -19,13 +20,15 @@ public class DisplayPanel extends JPanel{
 	SortedMap<Integer,Card_GUI> gui_cards;
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
 
-	String generalOptionChoosed;
-	ArrayList<String> teachersChoosed;
-	ArrayList<String> sectionsChoosed;
-	String roomTypeChoosed;
-
-	StateFullSchedule state;
+	private String generalOptionChoosed;
+	private ArrayList<String> teachersChoosed;
+	private ArrayList<String> sectionsChoosed;
+	private String roomTypeChoosed;
+	
+	
+	private StateFullSchedule state;
 	private boolean teacherFull;
+	private MainViewSolo mvs;
 	public DisplayPanel(StateFullSchedule state,SortedMap<Integer,Card_GUI> gui_cards){
 
 		this.gui_cards=gui_cards;
@@ -51,6 +54,13 @@ public class DisplayPanel extends JPanel{
 
 	}
 
+	public MainViewSolo getMainViewSolo(){
+		return mvs;
+	}
+
+	public void setMainViewSolo (MainViewSolo mvs) {
+		this.mvs = mvs;
+	}
 
 	private void printCard(){
 		this.removeAll();

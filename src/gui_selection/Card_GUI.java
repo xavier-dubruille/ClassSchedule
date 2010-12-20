@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
@@ -22,7 +21,7 @@ public class Card_GUI extends JPanel {
 	private Card card;
 	private DisplayPanel dp;
 	private JLabel classRoomLab;
-	public Card_GUI(Card card, DisplayPanel dp){
+	public Card_GUI(Card card, final DisplayPanel dp){
 
 		super();
 		this.card=card;
@@ -35,10 +34,19 @@ public class Card_GUI extends JPanel {
 		this.addMouseListener(new MouseAdapter() {
 
 			@Override
+			public void mouseReleased(MouseEvent me){
+				System.out.println("mouse released");
+			//	dp.getMainViewSolo().updateView();
+			}
+			
+			@Override
 			public void mousePressed(MouseEvent me) {
 
-				JComponent comp = (JComponent) me.getSource();
-				TransferHandler handler = comp.getTransferHandler();
+				
+				Card_GUI card_gui = (Card_GUI) me.getSource();
+				TransferHandler handler = card_gui.getTransferHandler();
+				dp.getMainViewSolo().showPossibilities(card_gui.getCard());
+				
 				//	System.out.println("class name: "+handler.getClass());
 				//	System.out.println("handeler tostring: "+handler);
 
@@ -47,7 +55,7 @@ public class Card_GUI extends JPanel {
 				Toolkit toolkit=Toolkit.getDefaultToolkit();
 				Clipboard clip=toolkit.getSystemClipboard();
 
-				handler.exportToClipboard(comp, clip, TransferHandler.MOVE);
+				handler.exportToCC5921lipboard(comp, clip, TransferHandler.MOVE);
 
 				Transferable clipData = clip.getContents(clip);
 				if (clipData != null) {
@@ -61,15 +69,20 @@ public class Card_GUI extends JPanel {
 					}
 					//}
 				}*/
-				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
+				handler.exportAsDrag(card_gui, me, TransferHandler.MOVE);
 
 			}
+			
+	
 		});
 
 		//System.out.println("la carte "+card.getHtmlRepresentation()+" a ete cree");
 		//
 	}
 
+	/**
+	 * construct the card.. should be called at the beginning only.. otherwise it may become to slow
+	 */
 	private void drawMe(){
 
 		setMaximumSize(GUI_Propreties.card_dimension);
@@ -140,7 +153,7 @@ public class Card_GUI extends JPanel {
 			setBackground(GUI_Propreties.card_color_placed);
 		else{
 			setBackground(GUI_Propreties.card_default_background);
-			System.out.println("redraw de la cart: "+card+", timePeriod: "+card.getTimePeriod());
+			//System.out.println("redraw de la cart: "+card+", timePeriod: "+card.getTimePeriod());
 		}
 	}
 	public Card getCard(){

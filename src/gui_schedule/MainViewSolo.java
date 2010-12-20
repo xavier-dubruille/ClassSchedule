@@ -39,7 +39,7 @@ public class MainViewSolo extends JPanel{
 	public MainViewSolo(StateFullSchedule state,DisplayPanel dp){
 		this.state=state;
 		this.dp=dp;
-		
+
 		selectedRoom=null;
 		selectedTeacher=null;
 		selectedSection=null;
@@ -48,6 +48,7 @@ public class MainViewSolo extends JPanel{
 		size=(Propreties.period_per_day+1)*(Propreties.day_per_week+1);
 		timeBoxes=new TimeBox[size];
 
+		dp.setMainViewSolo(this);
 		//drawEmptySchedule();
 
 	}
@@ -56,11 +57,11 @@ public class MainViewSolo extends JPanel{
 	 * 
 	 */
 	public void drawEmptySchedule(){
-	
-		
+
+
 		int d=Propreties.day_per_week+1;
-		
-		timeBoxes[0]=new TimeBoxSolo("");
+
+		timeBoxes[0]=new TimeBoxSolo(0,true);
 		add(timeBoxes[0]);
 
 		for(int i=1; i<d; i++){
@@ -73,7 +74,7 @@ public class MainViewSolo extends JPanel{
 				timeBoxes[i]=new TimeBoxSolo(i/d,false);
 
 			else{
-				
+
 				timeBoxes[i]=new TimeBoxSolo("",i,state,this);
 			}
 			add(timeBoxes[i]);
@@ -87,7 +88,7 @@ public class MainViewSolo extends JPanel{
 	public DisplayPanel getDisplayPanel(){
 		return dp;
 	}
-	
+
 	/**
 	 * 
 	 * @param ops
@@ -95,7 +96,7 @@ public class MainViewSolo extends JPanel{
 	public void setOptionPanelSolo(OptionPanelSolo ops){
 		this.ops=ops;
 	}
-	
+
 	/**
 	 * 
 	 * @return
@@ -108,17 +109,17 @@ public class MainViewSolo extends JPanel{
 	 * 
 	 */
 	private void cleanSchedule(){
-		
+
 		int d=Propreties.day_per_week+1;
-		
+
 		for(int i=d; i<size; i++)
 			if(i%d!=0){
 				timeBoxes[i].clear();
-				timeBoxes[i].setBackground(GUI_Propreties.card_default_background);
+				timeBoxes[i].setBackground(GUI_Propreties.timeBox_color_default);
 			}
 
 	}
-	
+
 	/**
 	 * 
 	 * @param t
@@ -140,9 +141,9 @@ public class MainViewSolo extends JPanel{
 			if(c.getTimePeriod()!=0){
 				timeBoxes[c.getTimePeriod()].setCard(c);
 			}
-		
+
 		/* and then let's fix the preferance's Teacher */
-		
+
 		int pref[]=t.getPreferedTimeSlides();
 		for(int i=0;i<pref.length;i++)
 			if (pref[i]!=0)
@@ -150,7 +151,7 @@ public class MainViewSolo extends JPanel{
 
 
 	}
-	
+
 	/**
 	 * 
 	 * @param r
@@ -171,7 +172,7 @@ public class MainViewSolo extends JPanel{
 
 
 	}
-	
+
 	/**
 	 * 
 	 * @param s
@@ -206,6 +207,96 @@ public class MainViewSolo extends JPanel{
 		else if(selectedSection!=null)
 			setScheduleView(selectedSection);
 
+	}
+
+	/**
+	 * will update the view by showing where the card c can or can not be placed
+	 * @param c the Card on witch we'll base the update showing
+	 */
+	public void showPossibilities(Card c){
+
+		//System.out.println("showPossiblilities: card="+c);
+		//System.out.println("options concerned:"+ ops.getSelectedRoom()+ops.getSelectedSection()+ops.getSelectedTeacher());
+		
+		// step 1: the card can no be placed at all on this selected view
+		if(!(ops.getSelectedTeacher()==null) && c.getTeacher()!=ops.getSelectedTeacher()){
+			disabiliseView(0);
+			return;
+		}
+
+		if(!(ops.getSelectedSection()==null) && !(c.getCard_sections().contains(ops.getSelectedSection())) ) {
+			disabiliseView(1);
+			return;
+		}
+
+		if(!(ops.getSelectedRoom()==null) && !(ops.getSelectedRoom().canAcceptCard(c)) ) {
+			disabiliseView(2);
+			return;
+		}
+
+		
+		// for all the timeBoxes..
+		for(int i=0; i<timeBoxes.length; i++){
+			
+			if (!(timeBoxes[i].getStaticLabel()==null)) continue;
+			int currentTimePeriod=timeBoxes[i].getTimePeriod();
+
+			// step 2: set the teacher (from the card) 's preferences
+			int [] teacherPreferedMoments = c.getTeacher().getPreferedTimeSlides();
+			if (teacherPreferedMoments[currentTimePeriod]!=0){
+				if (teacherPreferedMoments[currentTimePeriod]<=5)
+					timeBoxes[i].drawAdvised(0, 1);
+				else
+					timeBoxes[i].drawAdvised(0, 0 );
+			}
+
+			// step 3: let's check if the teacher is not giving already some courses
+			for (Card card :c.getTeacher().getCards() )
+			{
+				//System.out.println("showPossiblities() --> "+card.getTimePeriod()+" ("+currentTimePeriod+")");
+				if (card.getTimePeriod()==currentTimePeriod){
+					timeBoxes[i].drawAdvised(0, 0);
+					break; 
+				}
+			}
+			
+			
+			// step 4: let's see if one of the section is not busy
+
+			for (Section section: c.getCard_sections())
+				for (Card card: section.getCards()){
+					if (card.getTimePeriod()==currentTimePeriod){
+						timeBoxes[i].drawAdvised(1, 0);
+						break; 
+					}
+				}
+			
+			
+			// step 5: let's see if the possible room are not busy ..
+			if (c.getTimePeriod()==0) {
+				int nbRooms=c.findAllRoom().size();
+				if (nbRooms==0)
+					timeBoxes[i].drawAdvised(2, 0);
+				else if(nbRooms <2 )
+					timeBoxes[i].drawAdvised(2, 1);
+			}
+			
+		}
+
+
+
+	}
+
+	private void disabiliseView(int reason){
+		System.out.println("vue grisŽe! ");
+
+
+		int d=Propreties.day_per_week+1;
+
+		for(int i=d; i<size; i++){
+			if(i%d!=0)
+				timeBoxes[i].drawAdvised(reason, 0);
+		}
 	}
 
 }

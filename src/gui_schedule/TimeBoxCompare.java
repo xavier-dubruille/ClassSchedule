@@ -16,6 +16,9 @@ public class TimeBoxCompare extends TimeBox {
 	private Teacher teacherConcerned;
 	//private  DisplayPanel dp;
 
+	/**
+	 * only for the satic timeBox!
+	 */
 	public TimeBoxCompare(String s) {
 		super(s);
 	}
@@ -25,7 +28,7 @@ public class TimeBoxCompare extends TimeBox {
 
 	private TimeBoxCompare(Card c, StateFullSchedule state, int timePeriod, OptionPanelCompare opc, MainViewCompare mvc, DisplayPanel dp) {
 
-		this("");
+		super();
 
 		//this.mvc=mvc;
 		//this.opc=opc;

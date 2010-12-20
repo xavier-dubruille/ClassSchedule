@@ -37,6 +37,23 @@ public class Room {
 	}
 	
 	/**
+	 * return if the room is busy at that time
+	 * Careful, if the card is already in the room.. 
+	 * 
+	 * @param timePeriod
+	 * @return
+	 */
+	public boolean isBusy(int timePeriod){
+
+		for(Card c:cards)
+			if(c.getTimePeriod()==timePeriod){
+				return true;
+			}
+
+		return false;
+	}
+	
+	/**
 	 * Add a card in this Class Room
 	 * @param c the card to be added
 	 */
@@ -122,6 +139,15 @@ public class Room {
 	@Override
 	public String toString(){
 		return "room[name="+name+",type="+type+",info="+info+",seats="+seats+"]";
+	}
+
+	public boolean canAcceptCard(Card card) {
+
+		if (card.isInfo() && !isInfo() )
+			return false;
+		if (card.getSeatsToProvide()>this.getCapacity())
+			return false;
+		return true;
 	}
 
 }

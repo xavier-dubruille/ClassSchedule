@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -19,7 +20,7 @@ public class Card {
 	// private String name;
 	private Teacher teacher;
 	private Lesson lesson;
-//	private int happy; 
+	//	private int happy; 
 	private int timePeriod; // representing the day and the period
 	private int cardId;
 	private Map<String,Room> all_rooms;
@@ -75,7 +76,7 @@ public class Card {
 
 	/**
 	 * 
-	 * Set the card TimePeriod and pick a convinient classRoom
+	 * Set the card TimePeriod and pick a convenient classRoom
 	 * In other words, this method place the card.
 	 * 
 	 * @param timePeriod	the time period to set the card
@@ -87,9 +88,14 @@ public class Card {
 		for(Room r :all_rooms.values())
 			r.removeCard(this);
 
-		Room room = pick_best_room();
+
+		Room room = this.classRoom;
+
+		if (room==null)
+			room = pick_best_room();
+
 		if (room==null){
-		//	happy=-10;
+			//	happy=-10;
 			return false;
 		}
 
@@ -144,29 +150,24 @@ public class Card {
 		 * let's find a local that: has right capacity AND does not already contain a card at the same time
 		 */
 		for(Room r:all_rooms.values()){
+			if(this.isInfo() && r.isInfo() && !r.isBusy(timePeriod)) return r;
+
+			if(this.isInfo() && !r.isInfo()) continue;
+
 			if(r.getCapacity()>seats_to_provide && r.getCapacity()<(seats_to_provide+Propreties.max_empty_seat)){
 				// ok, it's the right capacity
 
 				// let's see if it's busy at that time
-				boolean busy=false;
-
-				for(Card c:r.getCards())
-					if(c.timePeriod==this.timePeriod){
-						busy=true;
-					}
-
-				if(!busy){
-					//System.out.println("on peut placer dans le local "+r.getName());
-
+				if (!r.isBusy(this.timePeriod))
 					return r;
-				}
+
 			}
 		}
 
 		return null;
 	}
 
-	
+
 	/**
 	 * 
 	 * Calculate the number of seats this card will need
@@ -188,7 +189,7 @@ public class Card {
 	public StateFullSchedule getState() {
 		return state;
 	}
-	
+
 	/**
 	 * 
 	 * @return the time period (i.e. day and period) of the card
@@ -222,7 +223,7 @@ public class Card {
 	public String getMod() {
 		return mod;
 	}
-	
+
 	/**
 	 * 
 	 * @return if it's a computer class room
@@ -230,7 +231,7 @@ public class Card {
 	public boolean isInfo() {
 		return info;
 	}
-	
+
 	/**
 	 * 
 	 * @return the room in witch the card course take place
@@ -238,7 +239,7 @@ public class Card {
 	public Room getClassRoom() {
 		return classRoom;
 	}
-	
+
 	/**
 	 * 
 	 * @return the teacher giving this card course
@@ -254,7 +255,7 @@ public class Card {
 	public Lesson getLesson() {
 		return lesson;
 	}
-	
+
 	/**
 	 * 
 	 * @return all the section that are attached to that card
@@ -283,6 +284,31 @@ public class Card {
 	@Override
 	public String toString(){
 		return lesson.name+" "+teacher.lastName;
+	}
+
+	public ArrayList<Room> findAllRoom() {
+
+		System.out.println("find all room for the card, info: "+this.info+", necessitant: "+this.getSeatsToProvide());
+		ArrayList<Room> possibleRooms=new ArrayList<Room>();
+		for (Room r:all_rooms.values()){
+			if (!(this.classRoom==null) && this.classRoom==r){
+				possibleRooms.add(r);
+				continue;
+			}
+			if (this.isInfo() && !r.isInfo()) continue;
+			if (this.isInfo() && r.isInfo() && !r.isBusy(timePeriod)){
+				possibleRooms.add(r);
+				continue;
+			}
+
+			if (this.getSeatsToProvide()<r.getCapacity() && !r.isBusy(timePeriod) ){
+				possibleRooms.add(r);
+				continue;
+			}
+		}
+
+		System.out.println(possibleRooms);
+		return possibleRooms;
 	}
 
 

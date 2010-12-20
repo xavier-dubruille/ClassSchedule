@@ -71,6 +71,7 @@ public class CardTransferHandler extends TransferHandler{
 	public void exportDone(JComponent c, Transferable t, int action) { 
 		System.out.println("CardGui: export done");
 		dp.updateStatusCard();
+		dp.getMainViewSolo().updateView();
 	}
 
 

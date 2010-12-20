@@ -24,7 +24,7 @@ public class GUI_Propreties {
 	public static Color card_color_placed=Color.green;
 	public static Font card_default_font_1=new Font("Helvetica", Font.PLAIN, 11);
 	public static Font card_default_font_2=new Font("Helvetica", Font.PLAIN, 10);
-	public static Font timeBox_static_font=new Font("Papyrus", Font.PLAIN, 17);
+	public static Font timeBox_static_font=new Font("Papyrus", Font.BOLD, 17);
 	public static Border card_default_border=BorderFactory.createLineBorder(Color.DARK_GRAY);
 	
 	public static Color timeBox_color_placed=Color.white;
@@ -43,6 +43,10 @@ public class GUI_Propreties {
 	public static Color teacher_color=optionPanelSolo_color;
 	public static Color room_color=optionPanelSolo_color;
 	public static Color section_color=optionPanelSolo_color;
+	
+	public static Color timeBox_color_disable= Color.lightGray;
+	public static Color timeBox_color_warning= Color.orange;
+	public static Color timeBox_color_default= Color.white;
 	
 	
 	

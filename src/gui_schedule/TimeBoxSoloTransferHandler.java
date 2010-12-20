@@ -63,13 +63,13 @@ public class TimeBoxSoloTransferHandler extends TransferHandler {
 
 		// let's check if it's the right teacher selected
 		if(ops.getSelectedTeacher()!=null && ops.getSelectedTeacher()!=card.getTeacher()){
-			System.out.println("pas sur la bonne vue. il s'agit de la vue du prof "+ops.getSelectedTeacher());
+			//System.out.println("pas sur la bonne vue. il s'agit de la vue du prof "+ops.getSelectedTeacher());
 			return false;
 		}
 
 		// let's check if it's the right section selected
 		if(ops.getSelectedSection()!=null && !card.getCard_sections().contains(ops.getSelectedSection())){
-			System.out.println("pas sur la bonne vue. il s'agit de la vue de la section "+ops.getSelectedSection());
+			//System.out.println("pas sur la bonne vue. il s'agit de la vue de la section "+ops.getSelectedSection());
 			/*
 				System.out.println("----------");
 				System.out.println("faux -- selection");
@@ -84,7 +84,7 @@ public class TimeBoxSoloTransferHandler extends TransferHandler {
 		
 		// let's check if it's A right local selected
 		if(ops.getSelectedRoom()!=null && card.getSeatsToProvide()>ops.getSelectedRoom().getCapacity()){ //faut aussi s'occuper des sall info
-			System.out.println("Ce local ne peut pas contenir ce cour. Il peut comptenir "+ops.getSelectedRoom().getCapacity()+" et on a besoin de "+card.getSeatsToProvide());
+			//System.out.println("Ce local ne peut pas contenir ce cour. Il peut comptenir "+ops.getSelectedRoom().getCapacity()+" et on a besoin de "+card.getSeatsToProvide());
 			return false;
 		}
 		
