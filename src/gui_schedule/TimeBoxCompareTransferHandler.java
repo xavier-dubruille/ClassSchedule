@@ -49,7 +49,7 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 	
 	@Override
 	public void exportDone(JComponent c, Transferable t, int action) { 
-
+		mvc.constructView();
 	}
 
 

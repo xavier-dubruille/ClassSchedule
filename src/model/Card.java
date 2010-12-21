@@ -1,6 +1,8 @@
 package model;
 
-import java.awt.Component;
+import gui.GUI_Propreties;
+
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -84,16 +86,18 @@ public class Card {
 	 */
 	public boolean setTimePeriod_and_pickARoom(int timePeriod){
 		this.timePeriod=timePeriod;
+		if (!(this.getClassRoom()==null)){
+			setTimePeriod_and_Room(timePeriod,this.getClassRoom());
+			return true;
+		}
 
+		/*
 		for(Room r :all_rooms.values())
 			r.removeCard(this);
+		 */
 
-
-		Room room = this.classRoom;
-
-		if (room==null)
-			room = pick_best_room();
-
+		Room room= this.pick_best_room();
+		
 		if (room==null){
 			//	happy=-10;
 			return false;
@@ -141,14 +145,22 @@ public class Card {
 	 */
 	private Room pick_best_room(){
 
+
+		ArrayList <Room> allPossibleRooms=findAllRoom(timePeriod);
+		for( Room r: allPossibleRooms)
+			if (this.getSeatsToProvide()+Propreties.max_empty_seat > r.getCapacity())
+				return r;
+		
+		return null;
+		/*
 		//System.out.println("sections toString: "+card_sections);
 
 		int seats_to_provide=getSeatsToProvide();
 		//System.out.println("pick best room. seats-to-provide: "+ seats_to_provide);
 
-		/*
-		 * let's find a local that: has right capacity AND does not already contain a card at the same time
-		 */
+		
+		 // let's find a local that: has right capacity AND does not already contain a card at the same time
+		 
 		for(Room r:all_rooms.values()){
 			if(this.isInfo() && r.isInfo() && !r.isBusy(timePeriod)) return r;
 
@@ -165,6 +177,7 @@ public class Card {
 		}
 
 		return null;
+		*/
 	}
 
 
@@ -286,29 +299,51 @@ public class Card {
 		return lesson.name+" "+teacher.lastName;
 	}
 
-	public ArrayList<Room> findAllRoom() {
+	public ArrayList<Room> findAllRoom(int atTimePeriod) {
 
-		System.out.println("find all room for the card, info: "+this.info+", necessitant: "+this.getSeatsToProvide());
+		//System.out.println("find all room for the card, info: "+this.info+", necessitant: "+this.getSeatsToProvide());
 		ArrayList<Room> possibleRooms=new ArrayList<Room>();
 		for (Room r:all_rooms.values()){
 			if (!(this.classRoom==null) && this.classRoom==r){
 				possibleRooms.add(r);
+				//System.out.println("c'est la mem cart, donc on l'ajoute");
 				continue;
 			}
 			if (this.isInfo() && !r.isInfo()) continue;
-			if (this.isInfo() && r.isInfo() && !r.isBusy(timePeriod)){
+			if (this.isInfo() && r.isInfo() && !r.isBusy(atTimePeriod)){
+				//System.out.println("local info ! libre ? "+!r.isBusy(atTimePeriod));
 				possibleRooms.add(r);
 				continue;
 			}
 
-			if (this.getSeatsToProvide()<r.getCapacity() && !r.isBusy(timePeriod) ){
+			if (!r.isInfo() && this.getSeatsToProvide()<r.getCapacity() && !r.isBusy(atTimePeriod) ){
+				//System.out.println("local assez grand ! libre ? "+!r.isBusy(atTimePeriod));
 				possibleRooms.add(r);
 				continue;
 			}
 		}
 
-		System.out.println(possibleRooms);
+		//System.out.println(possibleRooms);
 		return possibleRooms;
+	}
+
+	public Color findBackgroundColor() {
+
+		Room r=this.classRoom;
+		if( r == null) 
+			return Color.white;
+		if( r.getName().equalsIgnoreCase("L35"))
+			return GUI_Propreties.l35_color;
+		if (r.getName().equalsIgnoreCase("A10"))
+			return GUI_Propreties.a10_color;
+		if (r.getName().equalsIgnoreCase("L63"))
+			return GUI_Propreties.l63_color;
+		if (r.getType().equalsIgnoreCase("groupe"))
+			return GUI_Propreties.group_color;
+		if (r.getType().equalsIgnoreCase("classe"))
+			return GUI_Propreties.class_color;
+
+		return Color.white;
 	}
 
 

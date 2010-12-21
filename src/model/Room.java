@@ -46,9 +46,12 @@ public class Room {
 	public boolean isBusy(int timePeriod){
 
 		for(Card c:cards)
+		{
+			System.out.println("is busy(): card="+c+", ist timePeriod="+c.getTimePeriod()+". et la tp recherché est :"+timePeriod);
 			if(c.getTimePeriod()==timePeriod){
 				return true;
 			}
+		}
 
 		return false;
 	}

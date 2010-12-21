@@ -116,6 +116,7 @@ public class Card_GUI extends JPanel {
 
 		JLabel midle=new JLabel(card.getHtmlRepresentation());
 		midle.setFont(GUI_Propreties.card_default_font_2);
+		midle.setBackground(card.findBackgroundColor());
 		
 		JPanel lastLine=new JPanel();
 		lastLine.setLayout(new BoxLayout(lastLine,BoxLayout.X_AXIS));

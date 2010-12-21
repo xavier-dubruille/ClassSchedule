@@ -6,10 +6,8 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -41,8 +39,11 @@ public class TimeBox extends JPanel {
 	private JLabel problem_category;
 	private final ImageIcon[] problem_level_images=new ImageIcon[3];
 	private final ImageIcon[] problem_category_image=new ImageIcon[3];
-	
 
+
+	private JPanel firstLine;
+	private JPanel secondLine;
+	private JPanel lastLine;
 
 
 
@@ -53,10 +54,10 @@ public class TimeBox extends JPanel {
 	 */
 	public TimeBox(String s){
 		String text=s;
-		setMaximumSize(GUI_Propreties.card_dimension);
-		setMinimumSize(GUI_Propreties.card_dimension);
+		//setMaximumSize(GUI_Propreties.card_dimension);
+		//setMinimumSize(GUI_Propreties.card_dimension);
 		setPreferredSize(GUI_Propreties.card_dimension);
-		
+
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 
 		staticLabel=new JLabel(text);
@@ -78,41 +79,41 @@ public class TimeBox extends JPanel {
 		this.setBorder(GUI_Propreties.card_default_border);
 		this.setBackground(GUI_Propreties.card_static_background);
 
-		
+
 	}
-		
+
 	/**
 	 * default constructor, shouldn't be called directly, but by his child. and not for static timeBoxes!
 	 */
 	protected TimeBox(){
 		super();
 
-		setMaximumSize(GUI_Propreties.card_dimension);
-		setMinimumSize(GUI_Propreties.card_dimension);
+		//setMaximumSize(GUI_Propreties.card_dimension);
+		//setMinimumSize(GUI_Propreties.card_dimension);
 		setPreferredSize(GUI_Propreties.card_dimension);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		
-		
-		problem_level_images[0]=new ImageIcon("images/cross_30.png");
-		problem_level_images[1]=new ImageIcon("images/carefull_30.png");
-		problem_level_images[2]=new ImageIcon("images/check_30.png");
-		
-		problem_category_image[0]=new ImageIcon("images/teacher_30.png");
-		problem_category_image[1]=new ImageIcon("images/group_30.png");
-		problem_category_image[2]=new ImageIcon("images/table_30.png");
-		
 
-		JPanel firstLine=new JPanel();
+
+
+		problem_level_images[0]=new ImageIcon(getClass().getResource("/cross_30.png"));
+		problem_level_images[1]=new ImageIcon(getClass().getResource("/carefull_30.png"));
+		problem_level_images[2]=new ImageIcon(getClass().getResource("/check_30.jpg"));
+
+		problem_category_image[0]=new ImageIcon(getClass().getResource("/teacher_30.png"));
+		problem_category_image[1]=new ImageIcon(getClass().getResource("/group_30.png"));
+		problem_category_image[2]=new ImageIcon(getClass().getResource("/table_30.png"));
+
+
+		firstLine=new JPanel();
 		firstLine.setLayout(new BoxLayout(firstLine,BoxLayout.X_AXIS));
 
 		sectionLabel=new JLabel("");
 		sectionLabel.setFont(GUI_Propreties.card_default_font_1);
 		firstLine.add(sectionLabel);
 		firstLine.add(Box.createHorizontalGlue());
-		
-		JPanel secondLine=new JPanel();
+
+		secondLine=new JPanel();
 		secondLine.setLayout(new BoxLayout(secondLine,BoxLayout.X_AXIS));
 		secondLine.add(Box.createHorizontalGlue());
 		teacherLabel=new JLabel(" ");
@@ -121,26 +122,27 @@ public class TimeBox extends JPanel {
 
 		midleLabel=new JLabel("");
 		midleLabel.setFont(GUI_Propreties.card_default_font_2);
-		
+
+
 		problem_level = new JLabel();
 		problem_category=new JLabel();
-		JPanel lastLine=new JPanel();
+		lastLine=new JPanel();
 		lastLine.setLayout(new BoxLayout(lastLine,BoxLayout.X_AXIS));
 		classRoomLabel=new JLabel(" ");
 		lastLine.add(classRoomLabel);
 		lastLine.add(Box.createHorizontalGlue());
 		lastLine.add(problem_level);
 		lastLine.add(problem_category);
-		
+
 		this.setBorder(GUI_Propreties.card_default_border);
-		
+
 		this.add(firstLine);
 		this.add(secondLine);
 		this.add(Box.createVerticalGlue());
 		this.add(midleLabel);
 		this.add(Box.createVerticalGlue());
 		this.add(lastLine);
-		
+
 
 		this.addMouseListener(new MouseAdapter() {
 
@@ -154,11 +156,13 @@ public class TimeBox extends JPanel {
 				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
 
 			}
+			
+			
 		});
 	}
 
 
-		
+
 
 
 
@@ -170,18 +174,18 @@ public class TimeBox extends JPanel {
 	 * @param day
 	 */
 	public TimeBox(int day_period, boolean day){
-		
+
 		this("");
-		
-		
+
+
 		if(day)
 			staticLabel.setText(correspondingDay(day_period));
 		else
 			staticLabel.setText(Propreties.Periods_name[day_period-1]);
-		
-		
+
+
 	}
-	
+
 
 
 
@@ -216,14 +220,22 @@ public class TimeBox extends JPanel {
 				sec=s.getName();
 			else 
 				sec+=", "+s.getName();
-		
+
 		this.midleLabel.setText(c.getHtmlRepresentation());
+		midleLabel.setBackground(card.findBackgroundColor());
 		sectionLabel.setText(sec);
 		teacherLabel.setText(c.getTeacher().getLastName());
 		classRoomLabel.setText(c.getClassRoom().getName());
-		
-		this.setBackground(GUI_Propreties.timeBox_color_placed);
-		
+
+		this.setAllBackground(GUI_Propreties.timeBox_color_placed);
+
+	}
+
+	private void setAllBackground(Color c){
+		this.setBackground(c);
+		this.firstLine.setBackground(c);
+		this.secondLine.setBackground(c);
+		this.lastLine.setBackground(c);
 	}
 
 	/**
@@ -231,16 +243,16 @@ public class TimeBox extends JPanel {
 	 */
 	public void clear(){
 		this.card=null;
-		this.midleLabel.setText(" ");
+		this.midleLabel.setText("");
 		sectionLabel.setText(" ");
 		teacherLabel.setText(" ");
 		classRoomLabel.setText(" ");
 		problem_level.setIcon(null);
 		problem_category.setIcon(null);
 
-		
-		this.setBackground(GUI_Propreties.timeBox_color_placed);
-		
+
+		this.setAllBackground(GUI_Propreties.timeBox_color_empty);
+
 	}
 
 	/**
@@ -284,8 +296,15 @@ public class TimeBox extends JPanel {
 	 * @param i
 	 */
 	public void setPref(int i) {
-		this.setBorder(BorderFactory.createLineBorder(Color.red));
+		//this.setBorder(BorderFactory.createLineBorder(Color.red));
 
+		if (i==0) return;
+		
+		if (i<=5) // warning
+			drawAdvised(0,1);
+		else //bad
+			drawAdvised(0,0);
+		
 	}
 
 	/**
@@ -294,37 +313,40 @@ public class TimeBox extends JPanel {
 	 * @param level the level of the draw: 0 is disable, 1 is warning, 2 is ok, and 3 is advice
 	 */
 	public void drawAdvised(int reason, int level) {
-		
-		problem_category.setIcon(problem_category_image[reason]);
-		
+
+
+
 		switch(reason){
 
 		case 0:
-			
+			problem_category.setIcon(problem_category_image[reason]);
 			break;
 		case 1:
+			problem_category.setIcon(problem_category_image[reason]);
 			break;
 		case 2:
+			problem_category.setIcon(problem_category_image[reason]);
 			break;
+		default:problem_category.setIcon(null);
 		}
-		
+
 		switch(level){
-		case 0:
-			setBackground(GUI_Propreties.timeBox_color_disable);
+		case 0: // cross
+			setAllBackground(GUI_Propreties.timeBox_color_disable);
 			problem_level.setIcon(problem_level_images[0]);
 			break;
-		case 1:
-			setBackground(GUI_Propreties.timeBox_color_warning);
+		case 1: // warning
+			setAllBackground(GUI_Propreties.timeBox_color_warning);
 			problem_level.setIcon(problem_level_images[1]);
 			break;
-		case 2:
-			setBackground(GUI_Propreties.timeBox_color_default);
+		case 2: // ok
+			setAllBackground(GUI_Propreties.timeBox_color_ok);
 			problem_level.setIcon(problem_level_images[2]);
 			break;
 		}
 
 	}
-	
+
 	public JLabel getStaticLabel() {
 		return staticLabel;
 	}

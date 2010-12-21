@@ -115,7 +115,7 @@ public class MainViewSolo extends JPanel{
 		for(int i=d; i<size; i++)
 			if(i%d!=0){
 				timeBoxes[i].clear();
-				timeBoxes[i].setBackground(GUI_Propreties.timeBox_color_default);
+				timeBoxes[i].setBackground(GUI_Propreties.timeBox_color_empty);
 			}
 
 	}
@@ -228,15 +228,16 @@ public class MainViewSolo extends JPanel{
 			disabiliseView(1);
 			return;
 		}
-
-		if(!(ops.getSelectedRoom()==null) && !(ops.getSelectedRoom().canAcceptCard(c)) ) {
+/*
+		if(!(ops.getSelectedRoom()==null) && !(c.findAllRoom(atTimePeriod)ops.getSelectedRoom()) ) {
 			disabiliseView(2);
 			return;
 		}
+		*/
 
 		
 		// for all the timeBoxes..
-		for(int i=0; i<timeBoxes.length; i++){
+		lab:for(int i=0; i<timeBoxes.length; i++){
 			
 			if (!(timeBoxes[i].getStaticLabel()==null)) continue;
 			int currentTimePeriod=timeBoxes[i].getTimePeriod();
@@ -248,6 +249,7 @@ public class MainViewSolo extends JPanel{
 					timeBoxes[i].drawAdvised(0, 1);
 				else
 					timeBoxes[i].drawAdvised(0, 0 );
+				continue lab;
 			}
 
 			// step 3: let's check if the teacher is not giving already some courses
@@ -256,7 +258,7 @@ public class MainViewSolo extends JPanel{
 				//System.out.println("showPossiblities() --> "+card.getTimePeriod()+" ("+currentTimePeriod+")");
 				if (card.getTimePeriod()==currentTimePeriod){
 					timeBoxes[i].drawAdvised(0, 0);
-					break; 
+					continue lab;
 				}
 			}
 			
@@ -267,19 +269,24 @@ public class MainViewSolo extends JPanel{
 				for (Card card: section.getCards()){
 					if (card.getTimePeriod()==currentTimePeriod){
 						timeBoxes[i].drawAdvised(1, 0);
-						break; 
+						continue lab; 
 					}
 				}
 			
 			
 			// step 5: let's see if the possible room are not busy ..
-			if (c.getTimePeriod()==0) {
-				int nbRooms=c.findAllRoom().size();
-				if (nbRooms==0)
+			//if (c.getTimePeriod()==0) {
+				int nbRooms=c.findAllRoom(currentTimePeriod).size();
+				if (nbRooms==0){
 					timeBoxes[i].drawAdvised(2, 0);
-				else if(nbRooms <2 )
+					continue lab;
+				}
+				else if(nbRooms <2 ){
 					timeBoxes[i].drawAdvised(2, 1);
-			}
+					continue lab;
+				}
+			//}
+				timeBoxes[i].drawAdvised(4, 2);
 			
 		}
 

@@ -26,8 +26,6 @@ public class GUI_Propreties {
 	public static Font card_default_font_2=new Font("Helvetica", Font.PLAIN, 10);
 	public static Font timeBox_static_font=new Font("Papyrus", Font.BOLD, 17);
 	public static Border card_default_border=BorderFactory.createLineBorder(Color.DARK_GRAY);
-	
-	public static Color timeBox_color_placed=Color.white;
 
 	public static Dimension size_label_dialog=new Dimension(320,20);
 	public static Dimension default_comboBox_size=new Dimension(182,27);
@@ -44,10 +42,21 @@ public class GUI_Propreties {
 	public static Color room_color=optionPanelSolo_color;
 	public static Color section_color=optionPanelSolo_color;
 	
-	public static Color timeBox_color_disable= Color.lightGray;
+	public static Color timeBox_color_disable= Color.red;
 	public static Color timeBox_color_warning= Color.orange;
-	public static Color timeBox_color_default= Color.white;
+	//public static Color timeBox_color_default= Color.white;
+	public static Color timeBox_color_empty  = Color.white;
+	public static Color timeBox_color_placed = new Color(179,230,255);
+	public static Color timeBox_color_ok = Color.green;
 	
+	public static Color class_color= Color.cyan;
+	public static Color info_color= Color.yellow;
+	public static Color group_color= Color.magenta;
+	public static Color l35_color= Color.orange;
+	public static Color a10_color= Color.pink;
+	public static Color l63_color= Color.blue;
+	public static Color labo_color= Color.green;
+
 	
 	
 	/***************  String constants **************/

@@ -49,7 +49,7 @@ public class FrameSchedule extends JFrame {
 		mvs.setOptionPanelSolo(ops);
 		mvs.drawEmptySchedule();
 		soloTab.add(ops,BorderLayout.NORTH);
-		soloTab.add(mvs,BorderLayout.SOUTH);
+		soloTab.add(mvs,BorderLayout.CENTER);
 		soloTab.addComponentListener(new ComponentListener(){
 			@Override
 			public void componentHidden(ComponentEvent arg0) {}
@@ -73,7 +73,7 @@ public class FrameSchedule extends JFrame {
 		opc = new OptionPanelCompare(state,mvc);
 		mvc.setOptionPanelCompare(opc);
 		compareTab.add(opc,BorderLayout.NORTH);
-		compareTab.add(mvc,BorderLayout.SOUTH);
+		compareTab.add(mvc,BorderLayout.CENTER);
 		compareTab.addComponentListener(new ComponentListener(){
 			@Override
 			public void componentHidden(ComponentEvent arg0) {}
@@ -93,8 +93,8 @@ public class FrameSchedule extends JFrame {
 
 		// ... and the tabbedPane
 		JTabbedPane jt=new JTabbedPane();
-		jt.addTab("mode normal", soloTab); //faudrait prendre l'autre methode addTab(...), avec le parametre tip
-		jt.addTab("mode comparaison", compareTab);
+		jt.addTab("Mode normal", soloTab); //faudrait prendre l'autre methode addTab(...), avec le parametre tip
+		jt.addTab("Mode comparaison", compareTab);
 
 		this.getContentPane().add(jt);
 
