@@ -1,7 +1,7 @@
 package gui_selection;
 
-import gui.CardTransferHandler;
-import gui.GUI_Propreties;
+import gui.GUI_properties;
+import gui_schedule.CardTransferHandler;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -85,11 +85,11 @@ public class Card_GUI extends JPanel {
 	 */
 	private void drawMe(){
 
-		setMaximumSize(GUI_Propreties.card_dimension);
-		setMinimumSize(GUI_Propreties.card_dimension);
-		setPreferredSize(GUI_Propreties.card_dimension);
-		setSize(GUI_Propreties.card_dimension);
-		this.setBorder(GUI_Propreties.card_default_border);
+		setMaximumSize(GUI_properties.card_dimension);
+		setMinimumSize(GUI_properties.card_dimension);
+		setPreferredSize(GUI_properties.card_dimension);
+		setSize(GUI_properties.card_dimension);
+		this.setBorder(GUI_properties.card_default_border);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -103,7 +103,7 @@ public class Card_GUI extends JPanel {
 				sec+=", "+s.getName();
 
 		JLabel secLab=new JLabel(sec);
-		secLab.setFont(GUI_Propreties.card_default_font_1);
+		secLab.setFont(GUI_properties.card_default_font_1);
 		firstLine.add(secLab);
 		firstLine.add(Box.createHorizontalGlue());
 		
@@ -111,11 +111,11 @@ public class Card_GUI extends JPanel {
 		secondLine.setLayout(new BoxLayout(secondLine,BoxLayout.X_AXIS));
 		secondLine.add(Box.createHorizontalGlue());
 		JLabel nameLab=new JLabel(card.getTeacher().getLastName());
-		nameLab.setFont(GUI_Propreties.card_default_font_1);
+		nameLab.setFont(GUI_properties.card_default_font_1);
 		secondLine.add(nameLab);
 
 		JLabel midle=new JLabel(card.getHtmlRepresentation());
-		midle.setFont(GUI_Propreties.card_default_font_2);
+		midle.setFont(GUI_properties.card_default_font_2);
 		midle.setBackground(card.findBackgroundColor());
 		
 		JPanel lastLine=new JPanel();
@@ -133,9 +133,9 @@ public class Card_GUI extends JPanel {
 
 
 		if(card.getTimePeriod()==0)
-			this.setBackground(GUI_Propreties.card_default_background);
+			this.setBackground(GUI_properties.card_default_background);
 		else
-			this.setBackground(GUI_Propreties.card_color_placed);
+			this.setBackground(GUI_properties.card_color_placed);
 	}
 	public void reDraw(){
 		//System.out.println("CardGui.redraw(): ");
@@ -151,9 +151,9 @@ public class Card_GUI extends JPanel {
 		}
 		// timePeriod (i.e placed or not placed)
 		if(card.getTimePeriod()!=0)
-			setBackground(GUI_Propreties.card_color_placed);
+			setBackground(GUI_properties.card_color_placed);
 		else{
-			setBackground(GUI_Propreties.card_default_background);
+			setBackground(GUI_properties.card_default_background);
 			//System.out.println("redraw de la cart: "+card+", timePeriod: "+card.getTimePeriod());
 		}
 	}

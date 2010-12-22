@@ -14,7 +14,7 @@ import java.util.TreeMap;
 
 import javax.swing.JOptionPane;
 
-import main.Propreties;
+import main.Main_properties;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -340,19 +340,19 @@ public class StateFullSchedule {
 		int seats;
 		if(line[1].equalsIgnoreCase("{Indefini}")) {
 			if (line[2].equalsIgnoreCase("classe"))
-				seats=Propreties.default_class_number_seats;
+				seats=Main_properties.default_class_number_seats;
 			else if (line[2].equalsIgnoreCase("auditoire"))
-				seats=Propreties.default_auditoir_number_seats;
+				seats=Main_properties.default_auditoir_number_seats;
 			else if (line[2].equalsIgnoreCase("informatique"))
-				seats=Propreties.default_informatic_number_seats;
+				seats=Main_properties.default_informatic_number_seats;
 			else if (line[2].equalsIgnoreCase("bureau"))
-				seats=Propreties.default_bureau_number_seats;
+				seats=Main_properties.default_bureau_number_seats;
 			else if (line[2].equalsIgnoreCase("couloir"))
-				seats=Propreties.default_couloir_number_seats;
+				seats=Main_properties.default_couloir_number_seats;
 			else if (line[2].equalsIgnoreCase("auditoire"))
-				seats=Propreties.default_auditoir_number_seats;
+				seats=Main_properties.default_auditoir_number_seats;
 			else if (line[2].equalsIgnoreCase("Laboratoire"))
-				seats=Propreties.default_labo_number_seats;
+				seats=Main_properties.default_labo_number_seats;
 			else 
 				seats=0;
 

@@ -4,7 +4,7 @@ package main;
  * 
  * Cette classe centralise toutes les constante globale
  */
-public class Propreties {
+public class Main_properties {
 	
 	public static int default_class_number_seats=25;
 	public static int default_informatic_number_seats=25;

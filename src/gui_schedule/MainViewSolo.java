@@ -1,12 +1,12 @@
 package gui_schedule;
 
-import gui.GUI_Propreties;
+import gui.GUI_properties;
 import gui_selection.DisplayPanel;
 
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
-import main.Propreties;
+import main.Main_properties;
 import model.Card;
 import model.Room;
 import model.Section;
@@ -44,8 +44,8 @@ public class MainViewSolo extends JPanel{
 		selectedTeacher=null;
 		selectedSection=null;
 
-		this.setLayout(new GridLayout(Propreties.period_per_day+1,Propreties.day_per_week+1));
-		size=(Propreties.period_per_day+1)*(Propreties.day_per_week+1);
+		this.setLayout(new GridLayout(Main_properties.period_per_day+1,Main_properties.day_per_week+1));
+		size=(Main_properties.period_per_day+1)*(Main_properties.day_per_week+1);
 		timeBoxes=new TimeBox[size];
 
 		dp.setMainViewSolo(this);
@@ -59,7 +59,7 @@ public class MainViewSolo extends JPanel{
 	public void drawEmptySchedule(){
 
 
-		int d=Propreties.day_per_week+1;
+		int d=Main_properties.day_per_week+1;
 
 		timeBoxes[0]=new TimeBoxSolo(0,true);
 		add(timeBoxes[0]);
@@ -110,12 +110,12 @@ public class MainViewSolo extends JPanel{
 	 */
 	private void cleanSchedule(){
 
-		int d=Propreties.day_per_week+1;
+		int d=Main_properties.day_per_week+1;
 
 		for(int i=d; i<size; i++)
 			if(i%d!=0){
 				timeBoxes[i].clear();
-				timeBoxes[i].setBackground(GUI_Propreties.timeBox_color_empty);
+				timeBoxes[i].setBackground(GUI_properties.timeBox_color_empty);
 			}
 
 	}
@@ -298,7 +298,7 @@ public class MainViewSolo extends JPanel{
 		System.out.println("vue grisŽe! ");
 
 
-		int d=Propreties.day_per_week+1;
+		int d=Main_properties.day_per_week+1;
 
 		for(int i=d; i<size; i++){
 			if(i%d!=0)

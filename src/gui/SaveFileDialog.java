@@ -1,6 +1,4 @@
-package gui_schedule;
-
-import gui.GUI_Propreties;
+package gui;
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -9,20 +7,19 @@ import java.io.File;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
  * @author Dubruille Xavier
  * @author Delange Jonas
  */
-public class GetFilesDialog extends JDialog implements ActionListener{
+
+public class SaveFileDialog extends JDialog implements  ActionListener{
 
 	JTextField jt_constrain, jt_lesson, jt_classRoom;
 	String output[];
@@ -30,16 +27,17 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 	
 	/**
 	 * 
-	 * @param output
+	 * Create a dialog 'frame' to save the project 
+	 * 
+	 * @param output the string tab where this dialog will put the files
 	 */
-	public GetFilesDialog(String[] output){
+	public SaveFileDialog(String[] output){
 
 		this.output=output;
-		output[3]="first";
 
-		setPreferredSize(GUI_Propreties.dialog_size);
-		setMinimumSize(GUI_Propreties.dialog_size);
-		setSize(GUI_Propreties.dialog_size);
+		setPreferredSize(GUI_properties.dialog_size);
+		setMinimumSize(GUI_properties.dialog_size);
+		setSize(GUI_properties.dialog_size);
 
 		JPanel j=new JPanel();
 		j.setLayout(new BoxLayout(j,BoxLayout.Y_AXIS));
@@ -47,25 +45,6 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 
 		j.add(Box.createGlue());
 
-		// 0th field: the semester checkbox
-		JPanel semester=new JPanel();
-		semester.setLayout(new BoxLayout(semester,BoxLayout.X_AXIS));
-		JRadioButton sem1=new JRadioButton("semestre 1");
-		sem1.setSelected(true);
-		JRadioButton sem2=new JRadioButton("semestre 2");
-		ButtonGroup group = new ButtonGroup();
-		group.add(sem1);
-		group.add(sem2);
-
-		sem1.setActionCommand("sem1");
-		sem1.addActionListener(this);
-		sem2.setActionCommand("sem2");
-		sem2.addActionListener(this);
-		semester.add(sem1);
-		semester.add(sem2);
-	
-		
-		j.add(semester);
 
 		//First field: the lessons
 		JPanel lesson=new JPanel();
@@ -73,7 +52,7 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 
 		lesson.add(Box.createHorizontalGlue());
 		JLabel jl=new JLabel("    Fichier contenant les cours");
-		jl.setPreferredSize(GUI_Propreties.size_label_dialog);
+		jl.setPreferredSize(GUI_properties.size_label_dialog);
 		lesson.add(jl);
 
 		lesson.add(Box.createHorizontalGlue());
@@ -90,51 +69,6 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 		lesson.add(Box.createHorizontalGlue());
 		j.add(lesson);
 
-
-		// second field : the classRooms
-		JPanel classRoom=new JPanel();
-		classRoom.setLayout(new BoxLayout(classRoom,BoxLayout.X_AXIS));
-
-		classRoom.add(Box.createHorizontalGlue());
-
-		JLabel classLabel=new JLabel("    Fichier contenant les locaux");
-		classLabel.setPreferredSize(GUI_Propreties.size_label_dialog);
-		classRoom.add(classLabel);
-
-		classRoom.add(Box.createHorizontalGlue());
-		jt_classRoom=new JTextField(20);
-		classRoom.add(jt_classRoom);
-		classRoom.add(Box.createHorizontalGlue());
-		JButton jb_classRoom = new JButton("Browse");
-		jt_classRoom.setMaximumSize(new Dimension(110,30));
-		jb_classRoom.setActionCommand("classRoom");
-		jb_classRoom.addActionListener(this);
-		classRoom.add(jb_classRoom);
-		classRoom.add(Box.createHorizontalGlue());
-		j.add(classRoom);
-
-
-
-		// third field : the constrains
-		JPanel constrain=new JPanel();
-		constrain.setLayout(new BoxLayout(constrain,BoxLayout.X_AXIS));
-
-		constrain.add(Box.createHorizontalGlue());
-		JLabel conLabel=new JLabel("    Fichier contenant les contraintes");
-		conLabel.setPreferredSize(GUI_Propreties.size_label_dialog);
-
-		constrain.add(conLabel);
-		constrain.add(Box.createHorizontalGlue());
-		jt_constrain=new JTextField(20);
-		constrain.add(jt_constrain);
-		constrain.add(Box.createHorizontalGlue());
-		JButton jb_constrain = new JButton("Browse");
-		jt_constrain.setMaximumSize(new Dimension(110,30));
-		jb_constrain.setActionCommand("constrain");
-		jb_constrain.addActionListener(this);
-		constrain.add(jb_constrain);
-		constrain.add(Box.createHorizontalGlue());
-		j.add(constrain);
 
 
 		j.add(Box.createGlue());

@@ -1,13 +1,13 @@
 package gui_schedule;
 
-import gui.GUI_Propreties;
+import gui.GUI_properties;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import main.Propreties;
+import main.Main_properties;
 import model.*;
 import gui_selection.DisplayPanel;
 
@@ -37,14 +37,14 @@ public class MainViewCompare extends JPanel{
 		String compareOn=opc.getCompareOn();
 		ArrayList<String> selectedDays=opc.getSelectedDays();
 		if(compareOn==null) return;
-		if(compareOn.equals(GUI_Propreties.option_teachers)){
+		if(compareOn.equals(GUI_properties.option_teachers)){
 			constructViewFromTeachers(selectedDays, opc.getTeachersToCompare());
 		}
-		else if(compareOn.equals(GUI_Propreties.option_rooms)){
+		else if(compareOn.equals(GUI_properties.option_rooms)){
 
 			constructViewFromRooms(selectedDays, opc.getRoomsToCompare());
 		}
-		else if(compareOn.equals(GUI_Propreties.option_sections)){
+		else if(compareOn.equals(GUI_properties.option_sections)){
 			constructViewFromSections(selectedDays, opc.getSectionsToCompare());
 		}
 	}
@@ -58,7 +58,7 @@ public class MainViewCompare extends JPanel{
 		//	System.out.println("days: "+days+"--- teachers: "+teachers);
 
 		TimeBoxCompare timeBoxCompare;
-		int rows=days.size()*Propreties.period_per_day+1;
+		int rows=days.size()*Main_properties.period_per_day+1;
 		int cols=teachers.size()+1;
 
 		this.removeAll();
@@ -110,7 +110,7 @@ public class MainViewCompare extends JPanel{
 	 * @return
 	 */
 	private int calculateTimePeriod(int i, String day){
-		return (Propreties.day_per_week+1)*i+getDayNumber(day);
+		return (Main_properties.day_per_week+1)*i+getDayNumber(day);
 	}
 	
 	/**
@@ -144,7 +144,7 @@ public class MainViewCompare extends JPanel{
 		//	System.out.println("days: "+days+"--- sections: "+sections);
 
 		TimeBoxCompare timeBoxCompare;
-		int rows=days.size()*Propreties.period_per_day+1;
+		int rows=days.size()*Main_properties.period_per_day+1;
 		int cols=sections.size()+1;
 
 		this.removeAll();
@@ -196,7 +196,7 @@ public class MainViewCompare extends JPanel{
 		//	System.out.println("days: "+days+"--- rooms: "+rooms);
 		
 		TimeBoxCompare timeBoxCompare;
-		int rows=days.size()*Propreties.period_per_day+1;
+		int rows=days.size()*Main_properties.period_per_day+1;
 		int cols=rooms.size()+1;
 
 		this.removeAll();

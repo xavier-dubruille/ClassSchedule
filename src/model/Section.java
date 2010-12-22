@@ -2,7 +2,7 @@ package model;
 
 import java.util.*;
 
-import main.Propreties;
+import main.Main_properties;
 
 /**
  * 
@@ -29,7 +29,7 @@ public class Section {
 		this.groupNumber=groupNumber;
 		this.name=year+sectionType+groupNumber;
 		
-		num_of_students=Propreties.default_number_of_students_per_group;
+		num_of_students=Main_properties.default_number_of_students_per_group;
 	}
 	
 	/**

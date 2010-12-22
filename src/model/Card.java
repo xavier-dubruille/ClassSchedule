@@ -1,12 +1,12 @@
 package model;
 
-import gui.GUI_Propreties;
+import gui.GUI_properties;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Map;
 
-import main.Propreties;
+import main.Main_properties;
 
 /**
  * 
@@ -148,7 +148,7 @@ public class Card {
 
 		ArrayList <Room> allPossibleRooms=findAllRoom(timePeriod);
 		for( Room r: allPossibleRooms)
-			if (this.getSeatsToProvide()+Propreties.max_empty_seat > r.getCapacity())
+			if (this.getSeatsToProvide()+Main_properties.max_empty_seat > r.getCapacity())
 				return r;
 		
 		return null;
@@ -333,15 +333,15 @@ public class Card {
 		if( r == null) 
 			return Color.white;
 		if( r.getName().equalsIgnoreCase("L35"))
-			return GUI_Propreties.l35_color;
+			return GUI_properties.l35_color;
 		if (r.getName().equalsIgnoreCase("A10"))
-			return GUI_Propreties.a10_color;
+			return GUI_properties.a10_color;
 		if (r.getName().equalsIgnoreCase("L63"))
-			return GUI_Propreties.l63_color;
+			return GUI_properties.l63_color;
 		if (r.getType().equalsIgnoreCase("groupe"))
-			return GUI_Propreties.group_color;
+			return GUI_properties.group_color;
 		if (r.getType().equalsIgnoreCase("classe"))
-			return GUI_Propreties.class_color;
+			return GUI_properties.class_color;
 
 		return Color.white;
 	}

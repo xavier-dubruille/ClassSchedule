@@ -1,7 +1,7 @@
 package gui_selection;
 
 
-import gui.GUI_Propreties;
+import gui.GUI_properties;
 import gui_schedule.MainViewSolo;
 
 import javax.swing.*;
@@ -40,7 +40,7 @@ public class DisplayPanel extends JPanel{
 		this.state=state;
 
 		this.setTransferHandler(new PanelTransferHandler(state,this));
-		this.setBackground(GUI_Propreties.displayPanel);
+		this.setBackground(GUI_properties.displayPanel);
 
 		teachersChoosed= new ArrayList<String>();
 		sectionsChoosed= new ArrayList<String>();
@@ -190,7 +190,7 @@ public class DisplayPanel extends JPanel{
 	public void showTeacherCards(String teacher){
 		//System.out.println("showTeacher:"+teacher);
 		this.teachersChoosed.add(teacher);
-		teacherFull=false; // useless !
+		teacherFull=false; // useless ..
 		this.updateViewedCards();
 	}
 

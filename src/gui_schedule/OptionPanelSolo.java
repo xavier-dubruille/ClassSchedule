@@ -1,6 +1,6 @@
 package gui_schedule;
 
-import gui.GUI_Propreties;
+import gui.GUI_properties;
 
 
 import java.awt.event.ActionEvent;
@@ -38,15 +38,15 @@ public class OptionPanelSolo extends JPanel{
 	public OptionPanelSolo(StateFullSchedule state,MainViewSolo mvs){
 		this.state=state;
 		this.mvs=mvs;
-		this.setBackground(GUI_Propreties.optionPanelSolo_color); 
+		this.setBackground(GUI_properties.optionPanelSolo_color); 
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
 
 		// the image icon
 		imagesTab=new ImageIcon[4];
-		imagesTab[0]=new ImageIcon(getClass().getResource("/teacher_130.png"));
-		imagesTab[1]=new ImageIcon(getClass().getResource("/table_130.png"));
-		imagesTab[2]=new ImageIcon(getClass().getResource("/group2_130.png"));	
-		imagesTab[3]=new ImageIcon(getClass().getResource("/blank_130.png"));	
+		imagesTab[0]=new ImageIcon("image/teacher_130.png");//getClass().getResource("/teacher_130.png"));
+		imagesTab[1]=new ImageIcon("image/table_130.png");//getClass().getResource("/table_130.png"));
+		imagesTab[2]=new ImageIcon("image/group2_130.png");//getClass().getResource("/group2_130.png"));	
+		imagesTab[3]=new ImageIcon("image/blank_130.png");//getClass().getResource("/blank_130.png"));	
 		icon=new JLabel(imagesTab[3]);
 		add(icon);
 		this.add(Box.createVerticalGlue());
@@ -54,11 +54,11 @@ public class OptionPanelSolo extends JPanel{
 		// teacher panel
 		JPanel teacherPanel=new JPanel();
 		teacherCombo=new JComboBox(new String[]{" "});
-		teacherCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		teacherCombo.setPreferredSize(GUI_properties.default_comboBox_size);
 
 		teacherPanel.setBorder(BorderFactory.createTitledBorder("Professeur"));
 		teacherPanel.add(teacherCombo);
-		teacherPanel.setBackground(GUI_Propreties.teacher_color);
+		teacherPanel.setBackground(GUI_properties.teacher_color);
 		teacherCombo.addActionListener(new ComboListener(0));
 		this.add(teacherPanel);
 
@@ -66,22 +66,22 @@ public class OptionPanelSolo extends JPanel{
 		// room panel
 		JPanel roomPanel=new JPanel();
 		roomCombo=new JComboBox(new String[]{" "});
-		roomCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		roomCombo.setPreferredSize(GUI_properties.default_comboBox_size);
 
 		roomPanel.setBorder(BorderFactory.createTitledBorder("Local"));
 		roomPanel.add(roomCombo);
-		roomPanel.setBackground(GUI_Propreties.room_color);
+		roomPanel.setBackground(GUI_properties.room_color);
 		roomCombo.addActionListener(new ComboListener(1));
 		this.add(roomPanel);
 
 		// section panel
 		JPanel sectionPanel=new JPanel();
 		sectionCombo=new JComboBox(new String[]{" "});
-		sectionCombo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		sectionCombo.setPreferredSize(GUI_properties.default_comboBox_size);
 
 		sectionPanel.setBorder(BorderFactory.createTitledBorder("Annee, Section, Groupe"));
 		sectionPanel.add(sectionCombo);
-		sectionPanel.setBackground(GUI_Propreties.section_color);
+		sectionPanel.setBackground(GUI_properties.section_color);
 		sectionCombo.addActionListener(new ComboListener(2));
 		this.add(sectionPanel);
 		this.add(Box.createVerticalGlue());
@@ -141,7 +141,7 @@ public class OptionPanelSolo extends JPanel{
 			//let's set the main View Panel depending on the option_type
 			switch (option_type){
 			case 0: //teacher
-				setBackground(GUI_Propreties.teacher_color);
+				setBackground(GUI_properties.teacher_color);
 				roomCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
 				icon.setIcon(imagesTab[0]);
@@ -151,7 +151,7 @@ public class OptionPanelSolo extends JPanel{
 				mvs.setScheduleView(selectedTeacher);
 				break;
 			case 1: //room
-				setBackground(GUI_Propreties.room_color);
+				setBackground(GUI_properties.room_color);
 				teacherCombo.setSelectedItem(" ");
 				sectionCombo.setSelectedItem(" ");
 				icon.setIcon(imagesTab[1]);
@@ -161,7 +161,7 @@ public class OptionPanelSolo extends JPanel{
 				mvs.setScheduleView(selectedRoom);
 				break;
 			case 2: //section
-				setBackground(GUI_Propreties.section_color);
+				setBackground(GUI_properties.section_color);
 				roomCombo.setSelectedItem(" ");
 				teacherCombo.setSelectedItem(" ");
 				icon.setIcon(imagesTab[2]);

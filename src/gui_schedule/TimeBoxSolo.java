@@ -2,6 +2,7 @@ package gui_schedule;
 
 
 
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -9,6 +10,12 @@ import javax.swing.TransferHandler;
 
 import model.StateFullSchedule;
 
+/**
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
+ */
 public class TimeBoxSolo extends TimeBox {
 
 
@@ -17,17 +24,14 @@ public class TimeBoxSolo extends TimeBox {
 
 	protected MainViewSolo view;
 	protected OptionPanelSolo ops;
-	
-	/*
-	 *constructors without transferHandler..
-	 */
+
 
 	public TimeBoxSolo(int day_period, boolean day) {
 		super(day_period,day);
 	}
 
 	public TimeBoxSolo(String s, int timePeriod, StateFullSchedule state, final MainViewSolo view) {
-		
+
 		super();
 		this.timePeriod=timePeriod;
 		this.state=state;
@@ -44,15 +48,19 @@ public class TimeBoxSolo extends TimeBox {
 				TransferHandler handler = comp.getTransferHandler();
 				if (handler==null) return;
 				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
-				
+
 				if(!(comp.getCard()==null))
 					view.showPossibilities(comp.getCard());
 
 			}
-				
+
 		});
 	}
-	
+
+	/**
+	 * 
+	 * @return the main view panel, i.e. the pannel where the schedule is builded
+	 */
 	public MainViewSolo getView(){
 		return view;
 	}

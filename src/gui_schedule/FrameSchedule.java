@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import model.StateFullSchedule;
+import gui.MyMenuBar;
 import gui_selection.*;
 
 /**

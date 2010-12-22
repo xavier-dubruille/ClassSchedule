@@ -1,7 +1,7 @@
 package model;
 
 import java.util.*;
-import main.Propreties;
+import main.Main_properties;
 
 public class Teacher {
 	String firstName;
@@ -15,7 +15,7 @@ public class Teacher {
 	int testi;
 	
 	public Teacher(){
-		preferedTimeSlides=new int[(Propreties.day_per_week+1)*(Propreties.period_per_day+1)];
+		preferedTimeSlides=new int[(Main_properties.day_per_week+1)*(Main_properties.period_per_day+1)];
 		firstName="not set";
 		lastName="not set";
 		cards=new ArrayList<Card>();
@@ -29,6 +29,12 @@ public class Teacher {
 		this.state=state;
 	}
 
+	
+	/**
+	 * 
+	 * @param timeSlide
+	 * @param pref
+	 */
 	public void setPreferedSlide(int timeSlide,int pref){
 	
 		int day=timeSlide/10;
@@ -36,14 +42,17 @@ public class Teacher {
 		
 		//we should make some cheks and throws exeption..
 		
-		int timeSlideConverted=(Propreties.day_per_week+1)*period+day;
+		int timeSlideConverted=(Main_properties.day_per_week+1)*period+day;
 		
 		System.out.println("setprefered time slide:"+timeSlide+"-->"+pref+" "+day+period+". and converted="+timeSlideConverted);
 		
 		preferedTimeSlides[timeSlideConverted]=pref;
 	}
 	
-	
+	/**
+	 * 
+	 * @return
+	 */
 	public int[] getPreferedTimeSlides() {
 		return preferedTimeSlides;
 	}

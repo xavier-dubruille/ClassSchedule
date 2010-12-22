@@ -1,6 +1,6 @@
 package gui_selection;
 
-import gui.GUI_Propreties;
+import gui.GUI_properties;
 
 import java.util.SortedMap;
 
@@ -50,7 +50,7 @@ public class OptionPanel extends JPanel {
 		choices_one_panel.setBorder(BorderFactory.createTitledBorder("Options generales"));
 
 		choices_one_combo = new CheckComboBox();
-		choices_one_combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choices_one_combo.setPreferredSize(GUI_properties.default_comboBox_size);
 		choices_one_combo.setMultipleItemsText("* plusieurs selections *");
 
 		model = choices_one_combo.getModel();
@@ -68,7 +68,7 @@ public class OptionPanel extends JPanel {
 		choices_two_panel.setBorder(BorderFactory.createTitledBorder("Professeur"));
 
 		choices_two_combo = new CheckComboBox();
-		choices_two_combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choices_two_combo.setPreferredSize(GUI_properties.default_comboBox_size);
 		choices_two_combo.setMultipleItemsText("* plusieurs selections *");
 
 		model = choices_two_combo.getModel();
@@ -84,7 +84,7 @@ public class OptionPanel extends JPanel {
 		choices_three_panel.setBorder(BorderFactory.createTitledBorder("Local"));
 
 		choices_three_combo = new CheckComboBox();
-		choices_three_combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choices_three_combo.setPreferredSize(GUI_properties.default_comboBox_size);
 		choices_three_combo.setMultipleItemsText("* plusieurs selections *");
 
 		model = choices_three_combo.getModel();
@@ -104,7 +104,7 @@ public class OptionPanel extends JPanel {
 		choices_four_panel.setBorder(BorderFactory.createTitledBorder("Annee, Section, Groupe"));
 
 		choices_four_combo = new CheckComboBox();
-		choices_four_combo.setPreferredSize(GUI_Propreties.default_comboBox_size);
+		choices_four_combo.setPreferredSize(GUI_properties.default_comboBox_size);
 		choices_four_combo.setMultipleItemsText("* plusieurs selections *");
 
 		model = choices_four_combo.getModel();

@@ -11,6 +11,12 @@ import model.Card;
 import model.StateFullSchedule;
 import gui_selection.DisplayPanel;
 
+/**
+ * 
+ * @author Dubruille Xavier
+ * @author Delange Jonas
+ *
+ */
 public class TimeBoxCompareTransferHandler extends TransferHandler {
 
 	/**

@@ -1,9 +1,10 @@
 /**
  * 
  */
-package gui_schedule;
+package gui;
 
 
+import gui_schedule.FrameSchedule;
 import gui_selection.FrameSelection;
 
 import java.awt.event.ActionEvent;
@@ -46,6 +47,7 @@ public class MyMenuBar extends JMenuBar {
 		// ** declarations
 		JMenuItem new_project = new JMenuItem ("nouveau");
 		JMenuItem open = new JMenuItem ("ouvrir");
+		JMenuItem save = new JMenuItem ("enregistrer");
 		JMenuItem quit = new JMenuItem ("quiter");
 		// ** end of declarations
 
@@ -62,6 +64,7 @@ public class MyMenuBar extends JMenuBar {
 			}
 		});
 		// ** end of quit
+		
 
 		file.add(new_project);
 		file.add(open);

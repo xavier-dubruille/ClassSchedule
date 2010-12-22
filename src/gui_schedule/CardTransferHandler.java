@@ -1,4 +1,4 @@
-package gui;
+package gui_schedule;
 
 import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;

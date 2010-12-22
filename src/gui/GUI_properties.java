@@ -12,7 +12,7 @@ import javax.swing.border.Border;
  * 
  * some graphical satic properties
  */
-public class GUI_Propreties {
+public class GUI_properties {
 	
 
 	private static int size=134;
@@ -20,8 +20,8 @@ public class GUI_Propreties {
 	
 	public static Dimension card_dimension=new Dimension(size,(int)(size*ratio));
 	public static Color card_default_background=Color.white;
-	public static Color card_static_background=Color.lightGray; 
-	public static Color card_color_placed=Color.green;
+	public static Color card_static_background= new Color(209,214,206); // Color.lightGray; 
+	public static Color card_color_placed=new Color(230,241,250);
 	public static Font card_default_font_1=new Font("Helvetica", Font.PLAIN, 11);
 	public static Font card_default_font_2=new Font("Helvetica", Font.PLAIN, 10);
 	public static Font timeBox_static_font=new Font("Papyrus", Font.BOLD, 17);
@@ -32,22 +32,22 @@ public class GUI_Propreties {
 	
 	public static Dimension dialog_size=new Dimension(670,180);
 	
-	public static Color optionPanelSolo_color=new Color(132,214,77);
+	public static Color optionPanelSolo_color= new Color(111,179,66); // new Color(132,214,77);
 	
 	public static Color optionPanelCompare_color=new Color(255,193,59);
-	public static Color displayPanel=new Color(208,209,247);
+	public static Color displayPanel=new Color(250,247,225); 
 	
 	
 	public static Color teacher_color=optionPanelSolo_color;
 	public static Color room_color=optionPanelSolo_color;
 	public static Color section_color=optionPanelSolo_color;
 	
-	public static Color timeBox_color_disable= Color.red;
-	public static Color timeBox_color_warning= Color.orange;
+	public static Color timeBox_color_disable= new Color(250,212,200); // Color.red;
+	public static Color timeBox_color_warning= new Color(250,232,192); // Color.orange;
 	//public static Color timeBox_color_default= Color.white;
-	public static Color timeBox_color_empty  = Color.white;
-	public static Color timeBox_color_placed = new Color(179,230,255);
-	public static Color timeBox_color_ok = Color.green;
+	public static Color timeBox_color_empty  = new Color(250,247,225); // Color.white;
+	public static Color timeBox_color_placed = new Color(230,241,250); // new Color(179,230,255);
+	public static Color timeBox_color_ok = new Color(217,250,197); // Color.green;
 	
 	public static Color class_color= Color.cyan;
 	public static Color info_color= Color.yellow;
