@@ -81,7 +81,7 @@ public class DisplayPanel extends JPanel{
 		//this.setLayout(new GridLayout());
 		// First we create ours sortedMap..
 
-		for(Map.Entry<Integer,Card> e:state.cards.entrySet()){
+		for(Map.Entry<Integer,Card> e:state.getCards().entrySet()){
 			gui_cards.put(e.getKey(), new Card_GUI(e.getValue(),this));
 		}
 

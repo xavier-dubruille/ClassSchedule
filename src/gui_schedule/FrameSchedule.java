@@ -63,7 +63,7 @@ public class FrameSchedule extends JFrame {
 
 			@Override
 			public void componentShown(ComponentEvent arg0) {
-				System.out.println("youpie Component");
+				//System.out.println("youpie Component");
 				mvs.updateView();
 				
 			}});
@@ -94,8 +94,8 @@ public class FrameSchedule extends JFrame {
 
 		// ... and the tabbedPane
 		JTabbedPane jt=new JTabbedPane();
-		jt.addTab("Mode normal", soloTab); //faudrait prendre l'autre methode addTab(...), avec le parametre tip
-		jt.addTab("Mode comparaison", compareTab);
+		jt.addTab("Mode Standard", soloTab); //faudrait prendre l'autre methode addTab(...), avec le parametre tip
+		jt.addTab("Mode Comparaison", compareTab);
 
 		this.getContentPane().add(jt);
 

@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -186,7 +185,7 @@ public class TimeBox extends JPanel {
 	 * @param day_period
 	 * @return
 	 */
-	private String correspondingDay(int day_period) {
+	public static String correspondingDay(int day_period) {
 		switch (day_period){
 		case 1:return "Lundi";
 		case 2:return "Mardi";

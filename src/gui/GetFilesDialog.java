@@ -51,9 +51,9 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 		// 0th field: the semester checkbox
 		JPanel semester=new JPanel();
 		semester.setLayout(new BoxLayout(semester,BoxLayout.X_AXIS));
-		JRadioButton sem1=new JRadioButton("semestre 1");
+		JRadioButton sem1=new JRadioButton("Premier semestre");
 		sem1.setSelected(true);
-		JRadioButton sem2=new JRadioButton("semestre 2");
+		JRadioButton sem2=new JRadioButton("Second semestre");
 		ButtonGroup group = new ButtonGroup();
 		group.add(sem1);
 		group.add(sem2);
@@ -121,7 +121,7 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 		constrain.setLayout(new BoxLayout(constrain,BoxLayout.X_AXIS));
 
 		constrain.add(Box.createHorizontalGlue());
-		JLabel conLabel=new JLabel("    Fichier contenant les contraintes");
+		JLabel conLabel=new JLabel("     Dossier contenant les contraintes");
 		conLabel.setPreferredSize(GUI_properties.size_label_dialog);
 
 		constrain.add(conLabel);

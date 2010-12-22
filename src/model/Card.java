@@ -1,6 +1,7 @@
 package model;
 
 import gui.GUI_properties;
+import gui_schedule.TimeBox;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -344,6 +345,16 @@ public class Card {
 			return GUI_properties.class_color;
 
 		return Color.white;
+	}
+
+	public String getDayName() {
+		//System.out.println(""+(timePeriod% Main_properties.day_per_week);
+		return TimeBox.correspondingDay(timePeriod % (1+Main_properties.day_per_week));
+	}
+
+	public String getPeriodName() {
+		//System.out.println(""+timePeriod / (Main_properties.day_per_week+1));
+		return Main_properties.Periods_name[(timePeriod-Main_properties.day_per_week-1) / (Main_properties.day_per_week+1)];
 	}
 
 

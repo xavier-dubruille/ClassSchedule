@@ -1,10 +1,13 @@
 package model;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,18 +39,17 @@ import org.apache.poi.ss.usermodel.Sheet;
  */
 public class StateFullSchedule {
 
-	Map<String, Lesson> lessons;
-	public Map<Integer, Card> cards;
-	Map<String, Room> rooms;   
-	Map<String, Section> sections; 
-	Map<String, Teacher> teachers;
-	Map<String, Student> students;
-	Map<String,Integer> indexLine;
+	private Map<String, Lesson> lessons;
+	private Map<Integer, Card> cards;
+	private Map<String, Room> rooms;   
+	private Map<String, Section> sections; 
+	private Map<String, Teacher> teachers;
+	 Map<String, Student> students;
+	private Map<String,Integer> indexLine;
 
-	String filesPath[];
-	String csvDelemiter;
-	private 
-	int choice_sem; // semester choice
+	public String filesPath[];
+	private String csvDelemiter;
+	private int choice_sem; // semester choice
 
 	private boolean ready; //will be true when the object is usable
 
@@ -81,6 +83,7 @@ public class StateFullSchedule {
 	}
 
 	/**
+	 * 
 	 * This is everything is construct from the files.
 	 * Pre: the path files must be valid before calling this method
 	 * the path files must be in filePath[]
@@ -197,7 +200,7 @@ public class StateFullSchedule {
 	}
 	
 	/**
-	 * construct the state based on the directory containing all the constrains of the teachers, classRooms, sections..
+	 * Construct the state based on the directory containing all the constrains of the teachers, classRooms, sections..
 	 * @param filesPath the path of the directory
 	 * @throws IOException
 	 */
@@ -216,7 +219,7 @@ public class StateFullSchedule {
 
 	/**
 	 * 
-	 * called for each file in the constraints directory.. 
+	 * Called for each file in the constraints directory.. 
 	 * will build the state accordingly
 	 * @param file the File to be treated
 	 * @throws IOException
@@ -558,6 +561,10 @@ public class StateFullSchedule {
 
 	}
 
+	/**
+	 * Construct the index place
+	 * @param line
+	 */
 	private void putRightIndex(String[] line){
 		/*
 		 * The different keys of "indexLine" are:
@@ -626,6 +633,15 @@ public class StateFullSchedule {
 		//System.out.println("line      :"+Arrays.toString(line));
 	}
 
+	/**
+	 * 
+	 * Find a card maching the parameters
+	 * 
+	 * @param l
+	 * @param mod
+	 * @param s
+	 * @return
+	 */
 	private ArrayList<Card> findMachingCards(Lesson l,String mod,Section s){
 		//System.out.println("secType="+s.getSectionType());
 		
@@ -651,8 +667,11 @@ public class StateFullSchedule {
 		return toReturn;
 	}
 
-	/*
+	/**
 	 * return the Teacher corresponding to the "LastName"
+	 * 
+	 * @param string the last name of the teacher we are looking for
+	 * @return the Teacher founded of null otherwise
 	 */
 	public Teacher findTeacherFromLastName(String string){
 
@@ -663,8 +682,11 @@ public class StateFullSchedule {
 		return null; 
 	}
 
-	/*
-	 * return the Teacher corresponding to the "firstName LastName"
+	/**
+	 * Return the Teacher corresponding to the "firstName LastName"
+	 * 
+	 * @param selectedItem the firstName+lastName of the teacher
+	 * @return the Teacher founded or null otherwise
 	 */
 	public Teacher findTeacher(String selectedItem){
 
@@ -676,8 +698,11 @@ public class StateFullSchedule {
 	}
 
 
-	/*
-	 * return the Room corresponding to the selectedItem
+	/**
+	 * Return the Room corresponding to the selectedItem
+	 *
+	 * @param selectedItem the name of the room
+	 * @return the Room it founded of null otherwise
 	 */
 	public Room findRoom(String selectedItem){
 
@@ -690,10 +715,10 @@ public class StateFullSchedule {
 	}
 
 	/**
-	 * return the Section corresponding to the selectedItem
+	 * Return the Section corresponding to the selectedItem
 	 * 
-	 * @param selectedItem
-	 * @return
+	 * @param selectedItem the name of the section
+	 * @return the founded Section or null otherwise
 	 */
 	public Section findSection(String selectedItem){
 
@@ -704,34 +729,90 @@ public class StateFullSchedule {
 		return null; //shoulden't happen..
 
 	}
+	
+	/**
+	 * This is use to know if the state is builded or not, and if we can work on it or not
+	 * @return if the state as been build
+	 */
+	public boolean isReady(){
+		return ready;
+	}
 
+
+	/**
+	 * Will save all the state in a csv file
+	 * @param path the path where the project will be saved
+	 */
+	public void saveProject(String path) {
+		String realPath= path+".csv";//path.split("\\.")[0]+".csv";
+		//System.out.println(realPath);
+		PrintWriter writer = null;
+
+		try{
+	    writer =  new PrintWriter(new BufferedWriter
+		   (new FileWriter(realPath)));
+		}catch (IOException io){
+			System.err.println("the file can't be saved");
+		}
+		
+		writer.println("Carton id; Nom du cour; Professeur; Local; Jour; Periode");
+		for(Card c: cards.values())
+			if(c.getTimePeriod()!=0)
+				writer.println(""+c.getCardId()+"; "+c.getLesson().name+"; "+c.getTeacher().lastName+"; "+c.getClassRoom().getName()+"; "+c.getDayName()+"; "+c.getPeriodName());
+		
+		writer.close();
+	}
+
+	/**
+	 * Get all the Cards.  (for the selected semester)
+	 * @return all the cards
+	 */
 	public Map<Integer,Card> getCards(){
 		return cards;
 	}
 
+	/**
+	 * Get all the teachers. (for the selected semester)
+	 * @return all the teachers
+	 */
 	public Map<String,Teacher> getTeachers(){
 		return teachers;
 	}
 
+	/**
+	 * Get all the classRoom existing
+	 * @return all the class room
+	 */
 	public Map<String,Room> getClassRoom(){
 		return rooms; 
 	}
 
+	/**
+	 * Get all the sections existing
+	 * @return all the sections
+	 */
 	public Map<String, Section> getSections(){
 		return sections;
 	}
 
 
+	/**
+	 * Set the path of the files that this class will 
+	 * read to construct the internal sate
+	 * @param filesPath the String table containing the file's path
+	 */
 	public void setFilesPath(String filesPath[]){
 		this.filesPath=filesPath;
 	}
 
+	/**
+	 * Get the path for the files containing all the information to build the internal state
+	 * @return the String table containing the file's path
+	 */
 	public String[] getFilesPath(){
 		return filesPath;
 	}
 
-	public boolean isReady(){
-		return ready;
-	}
+
 
 }

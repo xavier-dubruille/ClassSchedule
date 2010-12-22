@@ -72,7 +72,7 @@ public class OptionPanelCompare extends JPanel {
 		daysCombo=new CheckComboBox();
 		daysCombo.setPreferredSize(GUI_properties.default_comboBox_size);
 
-		daysPanel.setBorder(BorderFactory.createTitledBorder("jours"));
+		daysPanel.setBorder(BorderFactory.createTitledBorder("Jour"));
 		daysPanel.add(daysCombo);
 		daysPanel.setBackground(GUI_properties.optionPanelCompare_color);
 
@@ -95,7 +95,7 @@ public class OptionPanelCompare extends JPanel {
 		compareOn_Combo=new CheckComboBox();
 		compareOn_Combo.setPreferredSize(GUI_properties.default_comboBox_size);
 
-		compareOn_Panel.setBorder(BorderFactory.createTitledBorder("Option a comparer"));
+		compareOn_Panel.setBorder(BorderFactory.createTitledBorder("Option A Comparer"));
 		compareOn_Panel.add(compareOn_Combo);
 		compareOn_Panel.setBackground(GUI_properties.optionPanelCompare_color);
 
@@ -114,7 +114,7 @@ public class OptionPanelCompare extends JPanel {
 		stuffCombo=new CheckComboBox();
 		stuffCombo.setPreferredSize(GUI_properties.default_comboBox_size);
 
-		stuffPanel.setBorder(BorderFactory.createTitledBorder("Annee, selection, groupe"));
+		stuffPanel.setBorder(BorderFactory.createTitledBorder("Annees, Selections, Groupes"));
 		stuffPanel.add(stuffCombo);
 		stuffPanel.setBackground(GUI_properties.optionPanelCompare_color);
 		stuffCombo.setMultipleItemsText("* plusieurs selections *");
