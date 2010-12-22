@@ -38,8 +38,7 @@ public class TimeBox extends JPanel {
 	private JLabel midleLabel;
 	private JLabel problem_level;
 	private JLabel problem_category;
-	private final ImageIcon[] problem_level_images=new ImageIcon[3];
-	private final ImageIcon[] problem_category_image=new ImageIcon[3];
+
 
 
 	private JPanel firstLine;
@@ -96,14 +95,6 @@ public class TimeBox extends JPanel {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 
-
-		problem_level_images[0]=new ImageIcon("image/cross_30.png"); //getClass().getResource("/cross_30.png"));
-		problem_level_images[1]=new ImageIcon("image/carefull_30.png");//getClass().getResource("/carefull_30.png"));
-		problem_level_images[2]=new ImageIcon("image/check_30.png"); //getClass().getResource("/check_30.jpg"));
-
-		problem_category_image[0]=new ImageIcon("image/teacher_30.png"); //getClass().getResource("/teacher_30.png"));
-		problem_category_image[1]=new ImageIcon("image/group_30.png"); //getClass().getResource("/group_30.png"));
-		problem_category_image[2]=new ImageIcon("image/table_30.png"); //getClass().getResource("/table_30.png"));
 
 
 		firstLine=new JPanel();
@@ -320,13 +311,13 @@ public class TimeBox extends JPanel {
 		switch(reason){
 
 		case 0:
-			problem_category.setIcon(problem_category_image[reason]);
+			problem_category.setIcon(MainViewSolo.problem_category_image[reason]);
 			break;
 		case 1:
-			problem_category.setIcon(problem_category_image[reason]);
+			problem_category.setIcon(MainViewSolo.problem_category_image[reason]);
 			break;
 		case 2:
-			problem_category.setIcon(problem_category_image[reason]);
+			problem_category.setIcon(MainViewSolo.problem_category_image[reason]);
 			break;
 		default:problem_category.setIcon(null);
 		}
@@ -334,15 +325,15 @@ public class TimeBox extends JPanel {
 		switch(level){
 		case 0: // cross
 			setAllBackground(GUI_properties.timeBox_color_disable);
-			problem_level.setIcon(problem_level_images[0]);
+			problem_level.setIcon(MainViewSolo.problem_level_images[0]);
 			break;
 		case 1: // warning
 			setAllBackground(GUI_properties.timeBox_color_warning);
-			problem_level.setIcon(problem_level_images[1]);
+			problem_level.setIcon(MainViewSolo.problem_level_images[1]);
 			break;
 		case 2: // ok
 			setAllBackground(GUI_properties.timeBox_color_ok);
-			problem_level.setIcon(problem_level_images[2]);
+			problem_level.setIcon(MainViewSolo.problem_level_images[2]);
 			break;
 		}
 

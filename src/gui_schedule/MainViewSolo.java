@@ -5,6 +5,7 @@ import gui_selection.DisplayPanel;
 
 import java.awt.GridLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import main.Main_properties;
 import model.Card;
@@ -30,6 +31,8 @@ public class MainViewSolo extends JPanel{
 	private DisplayPanel dp;
 	private OptionPanelSolo ops;
 	private int size;
+	public static final ImageIcon[] problem_level_images=new ImageIcon[3];
+	public static final ImageIcon[] problem_category_image=new ImageIcon[3];
 
 	/**
 	 * 
@@ -43,6 +46,16 @@ public class MainViewSolo extends JPanel{
 		selectedRoom=null;
 		selectedTeacher=null;
 		selectedSection=null;
+		
+
+		problem_level_images[0]=new ImageIcon("image/cross_30.png"); //getClass().getResource("/cross_30.png"));
+		problem_level_images[1]=new ImageIcon("image/carefull_30.png");//getClass().getResource("/carefull_30.png"));
+		problem_level_images[2]=new ImageIcon("image/check_30.png"); //getClass().getResource("/check_30.jpg"));
+
+		problem_category_image[0]=new ImageIcon("image/teacher_30.png"); //getClass().getResource("/teacher_30.png"));
+		problem_category_image[1]=new ImageIcon("image/group_30.png"); //getClass().getResource("/group_30.png"));
+		problem_category_image[2]=new ImageIcon("image/table_30.png"); //getClass().getResource("/table_30.png"));
+
 
 		this.setLayout(new GridLayout(Main_properties.period_per_day+1,Main_properties.day_per_week+1));
 		size=(Main_properties.period_per_day+1)*(Main_properties.day_per_week+1);
