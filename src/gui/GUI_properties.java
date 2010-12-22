@@ -15,7 +15,7 @@ import javax.swing.border.Border;
 public class GUI_properties {
 	
 
-	private static int size=134;
+	private static int size=132;
 	private static double ratio=0.62;
 	
 	public static Dimension card_dimension=new Dimension(size,(int)(size*ratio));

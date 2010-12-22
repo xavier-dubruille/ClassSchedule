@@ -20,9 +20,6 @@ public class Start {
 
     private static void createAndShowGUI() {
 
-		// faudrait p-e verifier ici que la JVM soie à une bonne version
-		
-		
 		
 		StateFullSchedule state;
 		MyMenuBar bar;
@@ -39,10 +36,9 @@ public class Start {
 		bar.setPanels(fSe,fSc);
 		
 
-		// faudrait lancer un thread de "fin d'application" (handHookThread ?)
-		// pour sauvegarder dans un fichier caché l'état et vérifier au démarage
-		// si un tel fichier existe.
-		
+		// we should start here a threak to folow the change in the files ?
+	    // we also should star a thread to save the project if something wrong happen ( whith the handHookThread ?)
+
 	}
 
 }

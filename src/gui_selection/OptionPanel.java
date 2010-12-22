@@ -47,17 +47,17 @@ public class OptionPanel extends JPanel {
 
 		//general option
 		choices_one_panel=new JPanel();
-		choices_one_panel.setBorder(BorderFactory.createTitledBorder("Options generales"));
+		choices_one_panel.setBorder(BorderFactory.createTitledBorder("Options G始erales"));
 
 		choices_one_combo = new CheckComboBox();
 		choices_one_combo.setPreferredSize(GUI_properties.default_comboBox_size);
-		choices_one_combo.setMultipleItemsText("* plusieurs selections *");
+		choices_one_combo.setMultipleItemsText("* plusieurs s四ections *");
 
 		model = choices_one_combo.getModel();
 		model.addElement("tous");
 		model.addElement("place");
 		model.addElement("non place");
-		model.addElement("posant probleme");
+		model.addElement("posant probl塾e");
 		model.addListCheckListener(new MyListCheckListener(0));
 		model.setCheck("tous");
 		choices_one_panel.add(choices_one_combo);
@@ -69,7 +69,7 @@ public class OptionPanel extends JPanel {
 
 		choices_two_combo = new CheckComboBox();
 		choices_two_combo.setPreferredSize(GUI_properties.default_comboBox_size);
-		choices_two_combo.setMultipleItemsText("* plusieurs selections *");
+		choices_two_combo.setMultipleItemsText("* plusieurs s四ections *");
 
 		model = choices_two_combo.getModel();
 		model.addElement("tous");
@@ -85,7 +85,7 @@ public class OptionPanel extends JPanel {
 
 		choices_three_combo = new CheckComboBox();
 		choices_three_combo.setPreferredSize(GUI_properties.default_comboBox_size);
-		choices_three_combo.setMultipleItemsText("* plusieurs selections *");
+		choices_three_combo.setMultipleItemsText("* plusieurs s四ections *");
 
 		model = choices_three_combo.getModel();
 		model.addElement("tous");
@@ -101,11 +101,11 @@ public class OptionPanel extends JPanel {
 		//section option
 		JPanel choices_four_panel=new JPanel();
 		choices_four_panel=new JPanel();
-		choices_four_panel.setBorder(BorderFactory.createTitledBorder("Annee, Section, Groupe"));
+		choices_four_panel.setBorder(BorderFactory.createTitledBorder("Ann仔, Section, Groupe"));
 
 		choices_four_combo = new CheckComboBox();
 		choices_four_combo.setPreferredSize(GUI_properties.default_comboBox_size);
-		choices_four_combo.setMultipleItemsText("* plusieurs selections *");
+		choices_four_combo.setMultipleItemsText("* plusieurs s四ections *");
 
 		model = choices_four_combo.getModel();
 		model.addElement("tous");

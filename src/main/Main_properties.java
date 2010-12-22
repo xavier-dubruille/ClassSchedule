@@ -19,6 +19,6 @@ public class Main_properties {
 	public static int period_per_day=6;
 	public static int day_per_week=5;
 	
-	public static String[] Periods_name={"8h30-10h00","10h-11h35","11h35-13h00","13h50-15h20","15h20-16h45","16h45-18h15"};
+	public static String[] Periods_name={"8h30","10h00","11h35","13h50","15h20","16h45"};
 
 }

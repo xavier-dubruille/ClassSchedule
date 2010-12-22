@@ -51,9 +51,9 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 		// 0th field: the semester checkbox
 		JPanel semester=new JPanel();
 		semester.setLayout(new BoxLayout(semester,BoxLayout.X_AXIS));
-		JRadioButton sem1=new JRadioButton("Premier semestre");
+		JRadioButton sem1=new JRadioButton("Premier Semestre");
 		sem1.setSelected(true);
-		JRadioButton sem2=new JRadioButton("Second semestre");
+		JRadioButton sem2=new JRadioButton("Second Semestre");
 		ButtonGroup group = new ButtonGroup();
 		group.add(sem1);
 		group.add(sem2);
@@ -140,7 +140,7 @@ public class GetFilesDialog extends JDialog implements ActionListener{
 
 		j.add(Box.createGlue());
 
-		JButton create=new JButton("creer");
+		JButton create=new JButton("Créer");
 		create.setActionCommand("create");
 		create.addActionListener(this);
 		j.add(create);

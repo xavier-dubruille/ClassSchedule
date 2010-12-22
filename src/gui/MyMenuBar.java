@@ -92,7 +92,7 @@ public class MyMenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e){
 				JOptionPane.showMessageDialog(null,  "<html>Cette option n'est malheureusement pas encore pleinement fonctionnelle. <br>" +
-						"Veuillez nous en escuser.</html>", "Sorry",JOptionPane.WARNING_MESSAGE); 
+						"Veuillez nous en excuser.</html>", "Sorry",JOptionPane.WARNING_MESSAGE); 
 			}
 		});
 		// ** end of open
@@ -109,11 +109,12 @@ public class MyMenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent e){
 				
-				JOptionPane.showMessageDialog(null,  "<html>Programme de gestion d'horaire. <br><br>" +
-						"Realise dans le cadre du cour de programmation de Mm. Vroman, <br>" +
+				JOptionPane.showMessageDialog(null,  "<html>Programme de gestion et creation d'horaire. <br><br>" +
+						"Réalisé dans le cadre du cour de <i>Langage avancé de programmation</i> de Mm. Vroman, <br>" +
 						"pour l'Ephec. <br><br>" +
 						"Sous licence GPL2.<br><br>" +
-						"Auteurs: xavier.dubruille@gmail.com et jonas.delange@gmail.com </html>", 
+						"Auteurs: xavier.dubruille@gmail.com et jonas.delange@gmail.com <br>" +
+						"N'hésitez pas à nous contacter! </html>", 
 						"About",JOptionPane.INFORMATION_MESSAGE); 
 				
 			}
@@ -156,9 +157,9 @@ public class MyMenuBar extends JMenuBar {
 			
 			if(state.isReady()){
 				JOptionPane.showMessageDialog(null,  "<html>Ce programme est encore en developpement, <br>" +
-						"et pour une parfaite stabilite, nous vous conseillons de redemarer <br>" +
-						"le programme avant de pour pouvoir re-cree un nouveau projet. <br><br>" +
-						"Veuillez nous excuser du desagrement. </html>","Attention", JOptionPane.WARNING_MESSAGE); 
+						"et pour une parfaite stabilité, nous vous conseillons de redémarrer <br>" +
+						"le programme afin de créer un nouveau projet. <br><br>" +
+						"Veuillez nous excuser du désagrément. </html>","Attention", JOptionPane.WARNING_MESSAGE); 
 				return;
 			}
 			

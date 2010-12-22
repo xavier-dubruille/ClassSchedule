@@ -87,8 +87,8 @@ public class Teacher {
 	 * Not used yet.
 	 * 
 	 * @param priority the level of the preference
-	 * @param room, the room the teacher want
-	 * @param lesson, the lesson for witch he want this preference
+	 * @param room the room the teacher want
+	 * @param lesson the lesson for witch he want this preference
 	 */
 	public void putLocal(int priority,Room room, Lesson lesson){
 		preferedClassRoom.put(priority, room);

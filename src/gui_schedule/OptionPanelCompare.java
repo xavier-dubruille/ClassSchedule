@@ -59,10 +59,10 @@ public class OptionPanelCompare extends JPanel {
 		this.setBackground(GUI_properties.optionPanelCompare_color);
 		
 		imagesTab=new ImageIcon[4];
-		imagesTab[0]=new ImageIcon("image/teacher_130_C.png");//getClass().getResource("/teacher_130.png"));
-		imagesTab[1]=new ImageIcon("image/table_130_C.png");//getClass().getResource("/table_130.png"));
-		imagesTab[2]=new ImageIcon("image/group2_130_C.png");//getClass().getResource("/group2_130.png"));	
-		imagesTab[3]=new ImageIcon("image/blank_130_C.png");//getClass().getResource("/blank_130.png"));	
+		imagesTab[0]=new ImageIcon(getClass().getResource("/teacher_130_C.png"));
+		imagesTab[1]=new ImageIcon(getClass().getResource("/table_130_C.png"));
+		imagesTab[2]=new ImageIcon(getClass().getResource("/group2_130_C.png"));	
+		imagesTab[3]=new ImageIcon(getClass().getResource("/blank_130_C.png"));	
 		icon=new JLabel(imagesTab[3]);
 		add(icon);
 
@@ -95,11 +95,11 @@ public class OptionPanelCompare extends JPanel {
 		compareOn_Combo=new CheckComboBox();
 		compareOn_Combo.setPreferredSize(GUI_properties.default_comboBox_size);
 
-		compareOn_Panel.setBorder(BorderFactory.createTitledBorder("Option A Comparer"));
+		compareOn_Panel.setBorder(BorderFactory.createTitledBorder("Option à Comparer"));
 		compareOn_Panel.add(compareOn_Combo);
 		compareOn_Panel.setBackground(GUI_properties.optionPanelCompare_color);
 
-		compareOn_Combo.setMultipleItemsText("* plusieurs selections *");
+		compareOn_Combo.setMultipleItemsText("* plusieurs sélections *");
 
 		model = compareOn_Combo.getModel();
 		model.addElement(GUI_properties.option_teachers);
@@ -114,10 +114,10 @@ public class OptionPanelCompare extends JPanel {
 		stuffCombo=new CheckComboBox();
 		stuffCombo.setPreferredSize(GUI_properties.default_comboBox_size);
 
-		stuffPanel.setBorder(BorderFactory.createTitledBorder("Annees, Selections, Groupes"));
+		stuffPanel.setBorder(BorderFactory.createTitledBorder("Années, Sections, Groupes"));
 		stuffPanel.add(stuffCombo);
 		stuffPanel.setBackground(GUI_properties.optionPanelCompare_color);
-		stuffCombo.setMultipleItemsText("* plusieurs selections *");
+		stuffCombo.setMultipleItemsText("* plusieurs sélections *");
 
 		model = stuffCombo.getModel();
 		model.addListCheckListener(new MyListCheckListener(2));

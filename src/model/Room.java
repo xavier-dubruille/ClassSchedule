@@ -41,7 +41,7 @@ public class Room {
 	 * Careful, if the card is already in the room.. 
 	 * 
 	 * @param timePeriod
-	 * @return
+	 * @return if it's busy
 	 */
 	public boolean isBusy(int timePeriod){
 

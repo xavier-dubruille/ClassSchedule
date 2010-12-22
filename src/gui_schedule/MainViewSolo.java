@@ -48,13 +48,13 @@ public class MainViewSolo extends JPanel{
 		selectedSection=null;
 		
 
-		problem_level_images[0]=new ImageIcon("image/cross_30.png"); //getClass().getResource("/cross_30.png"));
-		problem_level_images[1]=new ImageIcon("image/carefull_30.png");//getClass().getResource("/carefull_30.png"));
-		problem_level_images[2]=new ImageIcon("image/check_30.png"); //getClass().getResource("/check_30.jpg"));
+		problem_level_images[0]=new ImageIcon(getClass().getResource("/cross_30.png"));
+		problem_level_images[1]=new ImageIcon(getClass().getResource("/carefull_30.png"));
+		problem_level_images[2]=new ImageIcon(getClass().getResource("/check_30.png"));
 
-		problem_category_image[0]=new ImageIcon("image/teacher_30.png"); //getClass().getResource("/teacher_30.png"));
-		problem_category_image[1]=new ImageIcon("image/group_30.png"); //getClass().getResource("/group_30.png"));
-		problem_category_image[2]=new ImageIcon("image/table_30.png"); //getClass().getResource("/table_30.png"));
+		problem_category_image[0]=new ImageIcon(getClass().getResource("/teacher_30.png"));
+		problem_category_image[1]=new ImageIcon(getClass().getResource("/group_30.png"));
+		problem_category_image[2]=new ImageIcon(getClass().getResource("/table_30.png"));
 
 
 		this.setLayout(new GridLayout(Main_properties.period_per_day+1,Main_properties.day_per_week+1));
