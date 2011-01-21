@@ -1,0 +1,1379 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Bouml (http://bouml.free.fr/) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="1944" height="1391" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<g>
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="-101" y="433" width="389" height="10" />
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="-101" y="443" width="974" height="936" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-anchor="middle" x="386" y="452">model</text>
+</g>
+<g>
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="1145" y="468" width="284" height="10" />
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="1145" y="478" width="713" height="875" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-anchor="middle" x="1502" y="487">gui_schedule</text>
+</g>
+<g>
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="41" y="30" width="140" height="10" />
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="41" y="40" width="352" height="251" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-anchor="middle" x="217" y="49">main</text>
+</g>
+<g>
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="627" y="2" width="312" height="10" />
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="627" y="12" width="782" height="418" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-anchor="middle" x="1018" y="21">gui_selection</text>
+</g>
+<g>
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="1467" y="11" width="185" height="10" />
+	<rect fill="none" stroke="black" stroke-width="1" stroke-opacity="1" x="1467" y="21" width="465" height="439" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-anchor="middle" x="1700" y="30">gui</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="253" y="619" width="2" height="352" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="135" y="969" width="120" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="132" y="616" width="121" height="353" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="193" y="625">StateFullSchedule</text>
+	<line stroke="black" stroke-opacity="1" x1="132" y1="627" x2="253" y2="627" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="636">indexLine</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="646">filesPath</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="656">csvDelemiter</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="666">choice_sem</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="676">ready</text>
+	<line stroke="black" stroke-opacity="1" x1="132" y1="678" x2="253" y2="678" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="687">StateFullSchedule()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="697">init()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="707">update_from_files()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="717">createStateFromCardFile()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="727">createStateFromClassRoomFile()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="737">createStateFromConstrainDir()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="747">treatConstraintFile()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="757">updateTeacherConstraints()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="767">readRoomFromCSV()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="777">readRoomFromXLS()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="787">constructRoomStateFromLine()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="797">readCardFromCSV()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="807">setDelemiter()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="817">constructCardStateFromLine()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="827">readCardFromXLS()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="837">putRightIndex()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="847">findMachingCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="857">findTeacherFromLastName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="867">findTeacher()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="877">findRoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="887">findSection()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="897">isReady()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="907">saveProject()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="917">getCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="927">getTeachers()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="937">getClassRoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="947">getSections()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="957">setFilesPath()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="134" y="967">getFilesPath()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="358" y="135" width="2" height="124" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="226" y="257" width="134" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="223" y="132" width="135" height="125" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="291" y="141">Main_properties</text>
+	<line stroke="black" stroke-opacity="1" x1="223" y1="143" x2="358" y2="143" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="152">default_class_number_seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="162">default_informatic_number_seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="172">default_couloir_number_seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="182">default_labo_number_seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="192">default_bureau_number_seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="202">default_auditoir_number_seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="212">default_number_of_students_per_group</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="222">max_empty_seat</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="232">period_per_day</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="242">day_per_week</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="225" y="252">Periods_name</text>
+	<line stroke="black" stroke-opacity="1" x1="223" y1="254" x2="358" y2="254" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1256" y="26" width="2" height="82" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1188" y="106" width="70" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1185" y="23" width="71" height="83" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1221" y="32">FrameSelection</text>
+	<line stroke="black" stroke-opacity="1" x1="1185" y1="34" x2="1256" y2="34" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1187" y="43">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1187" y="53">scroll_display</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1187" y="63">jl</text>
+	<line stroke="black" stroke-opacity="1" x1="1185" y1="65" x2="1256" y2="65" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1187" y="74">FrameSelection()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1187" y="84">FrameSelection()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1187" y="94">update_from_state()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1187" y="104">getDisplayPanel()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1594" y="637" width="2" height="56" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1495" y="691" width="101" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1492" y="634" width="102" height="57" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1543" y="643">FrameSchedule</text>
+	<line stroke="black" stroke-opacity="1" x1="1492" y1="645" x2="1594" y2="645" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1494" y="654">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1492" y1="656" x2="1594" y2="656" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1494" y="665">FrameSchedule()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1494" y="675">FrameSchedule()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1494" y="685">update_from_state()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1697" y="56" width="2" height="82" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1635" y="136" width="64" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1632" y="53" width="65" height="83" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1665" y="62">GetFilesDialog</text>
+	<line stroke="black" stroke-opacity="1" x1="1632" y1="64" x2="1697" y2="64" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1634" y="73">jt_constrain</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1634" y="83">jt_lesson</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1634" y="93">jt_classRoom</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1634" y="103">output</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1634" y="113">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1632" y1="115" x2="1697" y2="115" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1634" y="124">GetFilesDialog()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1634" y="134">actionPerformed()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="167" y="74" width="2" height="34" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="93" y="106" width="76" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="90" y="71" width="77" height="35" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="129" y="80">Start</text>
+	<line stroke="black" stroke-opacity="1" x1="90" y1="82" x2="167" y2="82" />
+	<line stroke="black" stroke-opacity="1" x1="90" y1="86" x2="167" y2="86" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="92" y="95">main()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="92" y="105">createAndShowGUI()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1900" y="42" width="2" height="354" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1808" y="394" width="94" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1805" y="39" width="95" height="355" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1853" y="48">GUI_properties</text>
+	<line stroke="black" stroke-opacity="1" x1="1805" y1="50" x2="1900" y2="50" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="59">size</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="69">ratio</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="79">card_dimension</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="89">card_default_background</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="99">card_static_background</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="109">card_color_placed</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="119">card_default_font_1</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="129">card_default_font_2</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="139">timeBox_static_font</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="149">card_default_border</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="159">size_label_dialog</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="169">default_comboBox_size</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="179">dialog_size</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="189">optionPanelSolo_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="199">optionPanelCompare_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="209">displayPanel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="219">teacher_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="229">room_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="239">section_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="249">timeBox_color_disable</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="259">timeBox_color_warning</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="269">timeBox_color_empty</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="279">timeBox_color_placed</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="289">timeBox_color_ok</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="299">class_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="309">info_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="319">group_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="329">l35_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="339">a10_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="349">l63_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="359">labo_color</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="369">option_teachers</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="379">option_rooms</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1807" y="389">option_sections</text>
+	<line stroke="black" stroke-opacity="1" x1="1805" y1="391" x2="1900" y2="391" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="131" y1="109" x2="177" y2="615" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1562" y="74" width="2" height="42" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1502" y="114" width="62" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1499" y="71" width="63" height="43" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1531" y="80">MyMenuBar</text>
+	<line stroke="black" stroke-opacity="1" x1="1499" y1="82" x2="1562" y2="82" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1501" y="91">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1499" y1="93" x2="1562" y2="93" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1501" y="102">MyMenuBar()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1501" y="112">setPanels()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1184" y1="51" x2="1123" y2="28" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="170" y1="104" x2="1491" y2="641" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1259" y1="69" x2="1264" y2="75" />
+	<line stroke="black" stroke-opacity="1" x1="1259" y1="69" x2="1265" y2="63" />
+	<line stroke="black" stroke-opacity="1" x1="1498" y1="90" x2="1259" y2="69" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1631" y1="95" x2="1565" y2="94" />
+	<polygon fill="#000000" stroke="black" stroke-opacity="1" points="1631,95 1624,100 1619,94 1625,88" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1543" y1="633" x2="1548" y2="626" />
+	<line stroke="black" stroke-opacity="1" x1="1543" y1="633" x2="1536" y2="627" />
+	<line stroke="black" stroke-opacity="1" x1="1532" y1="117" x2="1543" y2="633" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1123" y1="28" x2="296" y2="26" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="296" y1="26" x2="170" y2="74" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1681" y="219" width="2" height="82" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1619" y="299" width="64" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1616" y="216" width="65" height="83" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1649" y="225">SaveFileDialog</text>
+	<line stroke="black" stroke-opacity="1" x1="1616" y1="227" x2="1681" y2="227" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1618" y="236">jt_constrain</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1618" y="246">jt_lesson</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1618" y="256">jt_classRoom</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1618" y="266">output</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1618" y="276">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1616" y1="278" x2="1681" y2="278" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1618" y="287">SaveFileDialog()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1618" y="297">actionPerformed()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1619" y1="215" x2="1547" y2="117" />
+	<polygon fill="#000000" stroke="black" stroke-opacity="1" points="1619,215 1610,213 1611,205 1620,206" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="747">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="870" y="225">gui_cards</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1303" y="176">op</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1319" y="1163">opc</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="743" y="957">cards</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="626" y="742">selectedRoom</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="850">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="752" y="957">card</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="637" y="1068">cards</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="759" y="653">teacher</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="681" y="957">cards</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="637" y="1105">cards</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="133" y="1162">card_sections</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="125" y="1054">sections</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="812" y="631">teachersToCompare</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="630" y="690">preferedClassRoom</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="627" y="827">all_rooms</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="627" y="827">classRoom</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="519" y="728">rooms</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="419" y="533">lessons</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="673" y="549">teacher</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="472" y="702">preferedClassRoom</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1065" y="174">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="421" y="593">lesson</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="361" y="582">lessons</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="361" y="918">students</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="626" y="757">roomsToCompare</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1065" y="137">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1626" y="1206">ops</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="133" y="1167">selectedSection</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="950" y="165">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="950" y="178">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="812">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="626" y="728">selectedRoom</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="809" y="574">selectedTeacher</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1067" y="248">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1557" y="1058">ops</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="794">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1066" y="310">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="813" y="617">selectedTeacher</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="807">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1540" y="1058">ops</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="795">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="750">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1335" y="1163">opc</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="780">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1065" y="197">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="578">teachers</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1656" y="682">mvc</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="626" y="716">roomConcerned</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="809" y="557">teacherConcerned</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1310" y="597">firstTimeBox</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1620" y="910">timeBoxes</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1652" y="926">[]</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1600" y="583">mvc</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1483" y="930">mvs</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="795">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="799" y="1087">card</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1065" y="215">dp</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1626" y="1154">ops</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1520" y="910">view</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="133" y="1154">sectionConcerned</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="758">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1269" y="65">fSe</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1553" y="629">fSc</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="133" y="1148">selectedSection</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="269" y="712">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="270" y="723">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="133" y="1185">sectionsToCompare</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="266" y="838">state</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1393" y="732">mvs</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="786" y="965" width="2" height="282" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="670" y="1245" width="118" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="667" y="962" width="119" height="283" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="727" y="971">Card</text>
+	<line stroke="black" stroke-opacity="1" x1="667" y1="973" x2="786" y2="973" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="982">timePeriod</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="992">cardId</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1002">mod</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1012">info</text>
+	<line stroke="black" stroke-opacity="1" x1="667" y1="1014" x2="786" y2="1014" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1023">Card()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1033">resetStatusCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1043">setTimePeriod_and_pickARoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1053">setTimePeriod_and_Room()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1063">pick_best_room()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1073">getSeatsToProvide()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1083">getState()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1093">getTimePeriod()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1103">update()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1113">getHtmlRepresentation()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1123">getMod()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1133">isInfo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1143">getClassRoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1153">getTeacher()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1163">getLesson()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1173">getCard_sections()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1183">getCardId()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1193">addSection()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1203">toString()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1213">findAllRoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1223">findBackgroundColor()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1233">getDayName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="669" y="1243">getPeriodName()</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="441" y="954">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1067" x2="663" y2="1058" />
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1067" x2="657" y2="1069" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="829" x2="666" y2="1067" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1099" x2="541" y2="1091" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="541" y1="1091" x2="483" y2="1038" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="846" x2="256" y2="854" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="846" x2="264" y2="845" />
+	<line stroke="black" stroke-opacity="1" x1="483" y1="1038" x2="256" y2="846" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="796" y="478" width="2" height="162" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="712" y="638" width="86" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="709" y="475" width="87" height="163" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="753" y="484">Teacher</text>
+	<line stroke="black" stroke-opacity="1" x1="709" y1="486" x2="796" y2="486" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="495">firstName</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="505">lastName</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="515">preferedTimeSlides</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="525">testi</text>
+	<line stroke="black" stroke-opacity="1" x1="709" y1="527" x2="796" y2="527" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="536">Teacher()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="546">Teacher()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="556">setPreferedSlide()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="566">getPreferedTimeSlides()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="576">getCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="586">putLocal()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="596">setCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="606">addCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="616">addCourse()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="626">getFirstName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="711" y="636">getLastName()</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="716" y="808">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="770" x2="641" y2="639" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="749" y1="641" x2="742" y2="646" />
+	<line stroke="black" stroke-opacity="1" x1="749" y1="641" x2="754" y2="647" />
+	<line stroke="black" stroke-opacity="1" x1="734" y1="961" x2="749" y2="641" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="708" y1="578" x2="616" y2="622" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="733" y1="961" x2="739" y2="955" />
+	<line stroke="black" stroke-opacity="1" x1="733" y1="961" x2="727" y2="954" />
+	<line stroke="black" stroke-opacity="1" x1="749" y1="641" x2="733" y2="961" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="429" y="712">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="766" x2="263" y2="769" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="766" x2="259" y2="758" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="622" x2="256" y2="766" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="708" y1="589" x2="699" y2="587" />
+	<line stroke="black" stroke-opacity="1" x1="708" y1="589" x2="706" y2="597" />
+	<line stroke="black" stroke-opacity="1" x1="641" y1="639" x2="708" y2="589" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1052" y="38" width="2" height="262" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="972" y="298" width="82" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="969" y="35" width="83" height="263" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1011" y="44">DisplayPanel</text>
+	<line stroke="black" stroke-opacity="1" x1="969" y1="46" x2="1052" y2="46" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="971" y="55">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="65">generalOptionChoosed</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="75">teachersChoosed</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="85">sectionsChoosed</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="95">roomTypeChoosed</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="105">teacherFull</text>
+	<line stroke="black" stroke-opacity="1" x1="969" y1="107" x2="1052" y2="107" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="116">DisplayPanel()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="126">getMainViewSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="136">setMainViewSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="146">printCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="156">update_default()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="166">updateViewedCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="176">sectionOptionCheck()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="186">roomOptionCheck()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="196">generalOptionCheck()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="206">updateByTeacherItem()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="216">updateByGeneralItem()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="226">updateByRoomItem()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="236">showTeacherCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="246">hideTeacherCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="256">hideSectionCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="266">showSectionCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="276">updateStatusCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="286">allTeachersChoosed()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="971" y="296">allSectionsChoosed()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="145" x2="1063" y2="147" />
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="145" x2="1057" y2="136" />
+	<line stroke="black" stroke-opacity="1" x1="1184" y1="82" x2="1055" y2="145" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="120" y="1062" width="2" height="222" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="44" y="1282" width="78" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="41" y="1059" width="79" height="223" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="81" y="1068">Section</text>
+	<line stroke="black" stroke-opacity="1" x1="41" y1="1070" x2="120" y2="1070" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1079">name</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1089">year</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1099">sectionType</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1109">groupNumber</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1119">num_of_students</text>
+	<line stroke="black" stroke-opacity="1" x1="41" y1="1121" x2="120" y2="1121" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1130">Section()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1140">Section()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1150">getYear()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1160">setYear()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1170">getSectionType()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1180">setSectionType()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1190">getGroupNumber()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1200">setGroupNumber()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1210">setCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1220">getNum_of_students()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1230">setNum_of_students()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1240">addCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1250">getName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1260">setName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1270">getCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="43" y="1280">toString()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="968" y1="208" x2="636" y2="542" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1110" x2="659" y2="1104" />
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1110" x2="660" y2="1116" />
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1166" x2="666" y2="1110" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="429" y="1140">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1167" x2="129" y2="1172" />
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1167" x2="128" y2="1160" />
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1111" x2="123" y2="1167" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="407" y="1106">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="114" y1="1058" x2="121" y2="1053" />
+	<line stroke="black" stroke-opacity="1" x1="114" y1="1058" x2="109" y2="1050" />
+	<line stroke="black" stroke-opacity="1" x1="140" y1="972" x2="114" y2="1058" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="165" y="1084">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="756" x2="264" y2="758" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="756" x2="258" y2="747" />
+	<line stroke="black" stroke-opacity="1" x1="636" y1="542" x2="256" y2="756" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1367" y="184" width="2" height="102" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1293" y="284" width="76" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1290" y="181" width="77" height="103" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1329" y="190">OptionPanel</text>
+	<line stroke="black" stroke-opacity="1" x1="1290" y1="192" x2="1367" y2="192" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1292" y="201">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="211">choices_one_panel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="221">started</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="231">choices_one_combo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="241">choices_two_combo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="251">choices_three_combo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="261">choices_four_combo</text>
+	<line stroke="black" stroke-opacity="1" x1="1290" y1="263" x2="1367" y2="263" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="272">OptionPanel()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1292" y="282">update_from_state()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="857" y="204" width="2" height="92" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="795" y="294" width="64" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="792" y="201" width="65" height="93" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="825" y="210">Card_GUI</text>
+	<line stroke="black" stroke-opacity="1" x1="792" y1="212" x2="857" y2="212" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="794" y="221">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="231">classRoomLab</text>
+	<line stroke="black" stroke-opacity="1" x1="792" y1="233" x2="857" y2="233" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="242">Card_GUI()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="252">drawMe()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="262">reDraw()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="272">getCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="282">getDisplayPanel()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="794" y="292">toSrring()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="768" y="151" width="2" height="72" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="686" y="221" width="84" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="683" y="148" width="85" height="73" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="726" y="157">PanelTransferHandler</text>
+	<line stroke="black" stroke-opacity="1" x1="683" y1="159" x2="768" y2="159" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="685" y="168">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="683" y1="170" x2="768" y2="170" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="685" y="179">PanelTransferHandler()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="685" y="189">getSourceActions()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="685" y="199">canImport()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="685" y="209">createTransferable()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="685" y="219">importData()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1316" y="836" width="2" height="89" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1205" y="923" width="113" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1202" y="833" width="114" height="90" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1259" y="842">CardTransferHandler</text>
+	<line stroke="black" stroke-opacity="1" x1="1202" y1="844" x2="1316" y2="844" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1204" y="853">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1202" y1="855" x2="1316" y2="855" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1204" y="864">CardTransferHandler()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1204" y="874">getSourceActions()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1204" y="884">canImport()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1204" y="894">exportDone()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1204" y="904">createTransferable()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1204" y="914">importData()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="687" y1="224" x2="447" y2="472" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="968" y1="169" x2="961" y2="163" />
+	<line stroke="black" stroke-opacity="1" x1="968" y1="169" x2="962" y2="175" />
+	<line stroke="black" stroke-opacity="1" x1="771" y1="182" x2="968" y2="169" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="298" x2="1051" y2="305" />
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="298" x2="1062" y2="301" />
+	<line stroke="black" stroke-opacity="1" x1="1243" y1="832" x2="1055" y2="298" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="742" y1="961" x2="748" y2="955" />
+	<line stroke="black" stroke-opacity="1" x1="742" y1="961" x2="736" y2="954" />
+	<line stroke="black" stroke-opacity="1" x1="819" y1="297" x2="742" y2="961" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="968" y1="186" x2="960" y2="182" />
+	<line stroke="black" stroke-opacity="1" x1="968" y1="186" x2="964" y2="193" />
+	<line stroke="black" stroke-opacity="1" x1="860" y1="232" x2="968" y2="186" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="176" x2="1059" y2="183" />
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="176" x2="1062" y2="171" />
+	<line stroke="black" stroke-opacity="1" x1="1289" y1="224" x2="1055" y2="176" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="613" y="624" width="2" height="212" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="555" y="834" width="60" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="552" y="621" width="61" height="213" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="583" y="630">Room</text>
+	<line stroke="black" stroke-opacity="1" x1="552" y1="632" x2="613" y2="632" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="641">name</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="651">type</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="661">seats</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="671">info</text>
+	<line stroke="black" stroke-opacity="1" x1="552" y1="673" x2="613" y2="673" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="682">Room()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="692">Room()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="702">getCapacity()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="712">isBusy()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="722">addCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="732">removeCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="742">getName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="752">setName()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="762">getType()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="772">setType()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="782">isInfo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="792">setInfo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="802">getCards()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="812">setSeats()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="822">toString()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="554" y="832">canAcceptCard()</text>
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="900" y="185">&lt;&lt;SortedMap&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1295" y1="180" x2="1296" y2="171" />
+	<line stroke="black" stroke-opacity="1" x1="1295" y1="180" x2="1286" y2="178" />
+	<line stroke="black" stroke-opacity="1" x1="1249" y1="109" x2="1295" y2="180" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1289" y1="246" x2="484" y2="492" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="798" x2="261" y2="804" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="798" x2="262" y2="792" />
+	<line stroke="black" stroke-opacity="1" x1="1201" y1="873" x2="256" y2="798" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="860" y1="233" x2="867" y2="236" />
+	<line stroke="black" stroke-opacity="1" x1="860" y1="233" x2="863" y2="225" />
+	<line stroke="black" stroke-opacity="1" x1="968" y1="185" x2="860" y2="233" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="630" y="988">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="672" y1="961" x2="675" y2="953" />
+	<line stroke="black" stroke-opacity="1" x1="672" y1="961" x2="664" y2="957" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="816" x2="672" y2="961" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="694" x2="624" y2="693" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="694" x2="615" y2="685" />
+	<line stroke="black" stroke-opacity="1" x1="708" y1="601" x2="616" y2="694" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="551" y1="733" x2="544" y2="728" />
+	<line stroke="black" stroke-opacity="1" x1="551" y1="733" x2="546" y2="739" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="782" x2="551" y2="733" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="641" y="692">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="815" x2="612" y2="822" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="815" x2="623" y2="818" />
+	<line stroke="black" stroke-opacity="1" x1="672" y1="961" x2="616" y2="815" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="593" y="1028">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="815" x2="612" y2="822" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="815" x2="623" y2="818" />
+	<line stroke="black" stroke-opacity="1" x1="672" y1="961" x2="616" y2="815" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="369" y="872">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="716" x2="264" y2="715" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="716" x2="255" y2="707" />
+	<line stroke="black" stroke-opacity="1" x1="418" y1="521" x2="256" y2="716" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="727" x2="264" y2="726" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="727" x2="255" y2="718" />
+	<line stroke="black" stroke-opacity="1" x1="484" y1="492" x2="256" y2="727" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="447" y1="472" x2="418" y2="521" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="85" y="522" width="2" height="42" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="23" y="562" width="64" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="20" y="519" width="65" height="43" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="53" y="528">NoFileException</text>
+	<line stroke="black" stroke-opacity="1" x1="20" y1="530" x2="85" y2="530" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="22" y="539">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="20" y1="541" x2="85" y2="541" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="22" y="550">NoFileException()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="22" y="560">NoFileException()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="406" y="486" width="2" height="102" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="358" y="586" width="50" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="355" y="483" width="51" height="103" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="381" y="492">Lesson</text>
+	<line stroke="black" stroke-opacity="1" x1="355" y1="494" x2="406" y2="494" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="503">name</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="513">group</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="523">period</text>
+	<line stroke="black" stroke-opacity="1" x1="355" y1="525" x2="406" y2="525" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="534">Lesson()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="544">Lesson()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="554">Lesson()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="564">setOtherInfo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="574">putRoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="357" y="584">getTeacher()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1603" y="1066" width="2" height="149" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1496" y="1213" width="109" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1493" y="1063" width="110" height="150" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1548" y="1072">OptionPanelSolo</text>
+	<line stroke="black" stroke-opacity="1" x1="1493" y1="1074" x2="1603" y2="1074" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1495" y="1083">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1093">teacherCombo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1103">roomCombo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1113">sectionCombo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1123">icon</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1133">imagesTab</text>
+	<line stroke="black" stroke-opacity="1" x1="1493" y1="1135" x2="1603" y2="1135" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1144">OptionPanelSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1154">OptionPanelSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1164">update_from_state()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1174">getState()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1184">getSelectedRoom()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1194">getSelectedSection()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1495" y="1204">getSelectedTeacher()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="23" y1="565" x2="131" y2="711" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1171" x2="129" y2="1176" />
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1171" x2="128" y2="1164" />
+	<line stroke="black" stroke-opacity="1" x1="1492" y1="1140" x2="123" y2="1171" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="809" x2="260" y2="816" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="809" x2="263" y2="804" />
+	<line stroke="black" stroke-opacity="1" x1="1492" y1="1124" x2="256" y2="809" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="463" y="637">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="551" y1="697" x2="550" y2="688" />
+	<line stroke="black" stroke-opacity="1" x1="551" y1="697" x2="542" y2="697" />
+	<line stroke="black" stroke-opacity="1" x1="409" y1="562" x2="551" y2="697" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="542" y="553">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="409" y1="537" x2="414" y2="543" />
+	<line stroke="black" stroke-opacity="1" x1="409" y1="537" x2="415" y2="531" />
+	<line stroke="black" stroke-opacity="1" x1="708" y1="555" x2="409" y2="537" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="708" y1="553" x2="702" y2="546" />
+	<line stroke="black" stroke-opacity="1" x1="708" y1="553" x2="701" y2="558" />
+	<line stroke="black" stroke-opacity="1" x1="409" y1="528" x2="708" y2="553" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="409" y1="581" x2="406" y2="589" />
+	<line stroke="black" stroke-opacity="1" x1="409" y1="581" x2="417" y2="583" />
+	<line stroke="black" stroke-opacity="1" x1="666" y1="1005" x2="409" y2="581" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="354" y1="570" x2="345" y2="571" />
+	<line stroke="black" stroke-opacity="1" x1="354" y1="570" x2="355" y2="578" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="706" x2="354" y2="570" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="287" y="646">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1547" y1="1062" x2="1552" y2="1055" />
+	<line stroke="black" stroke-opacity="1" x1="1547" y1="1062" x2="1540" y2="1056" />
+	<line stroke="black" stroke-opacity="1" x1="1544" y1="694" x2="1547" y2="1062" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1492" y1="1112" x2="1137" y2="952" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="742" x2="619" y2="749" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="742" x2="623" y2="738" />
+	<line stroke="black" stroke-opacity="1" x1="1492" y1="1114" x2="616" y2="742" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="799" y1="605" x2="798" y2="613" />
+	<line stroke="black" stroke-opacity="1" x1="799" y1="605" x2="807" y2="605" />
+	<line stroke="black" stroke-opacity="1" x1="1137" y1="952" x2="799" y2="605" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="55" y="636" width="2" height="42" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="-45" y="676" width="102" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="-48" y="633" width="103" height="43" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="4" y="642">NotSuportedFileException</text>
+	<line stroke="black" stroke-opacity="1" x1="-48" y1="644" x2="55" y2="644" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="-46" y="653">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="-48" y1="655" x2="55" y2="655" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="-46" y="664">NotSuportedFileException()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="-46" y="674">NotSuportedFileException()</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="433" y="920" width="2" height="18" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="403" y="936" width="32" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="400" y="917" width="33" height="19" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="417" y="926">Student</text>
+	<line stroke="black" stroke-opacity="1" x1="400" y1="928" x2="433" y2="928" />
+	<line stroke="black" stroke-opacity="1" x1="400" y1="932" x2="433" y2="932" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="0" y1="679" x2="131" y2="756" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="399" y1="916" x2="396" y2="907" />
+	<line stroke="black" stroke-opacity="1" x1="399" y1="916" x2="390" y2="918" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="830" x2="399" y2="916" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="281" y="904">&lt;&lt;Map&gt;&gt;</text>
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1327" y="1171" width="2" height="176" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1208" y="1345" width="121" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1205" y="1168" width="122" height="177" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1266" y="1177">OptionPanelCompare</text>
+	<line stroke="black" stroke-opacity="1" x1="1205" y1="1179" x2="1327" y2="1179" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1207" y="1188">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1198">selectedDays</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1208">compareOn</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1218">daysCombo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1228">compareOn_Combo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1238">stuffCombo</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1248">imagesTab</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1258">icon</text>
+	<line stroke="black" stroke-opacity="1" x1="1205" y1="1260" x2="1327" y2="1260" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1269">OptionPanelCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1279">update_from_state()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1289">getSelectedDays()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1299">getCompareOn()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1309">getTeachersToCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1319">getRoomsToCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1329">getSectionsToCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1207" y="1339">getDaysCombo()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1204" y1="1260" x2="420" y2="1298" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="973" y="901">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1307" y1="1167" x2="1314" y2="1164" />
+	<line stroke="black" stroke-opacity="1" x1="1307" y1="1167" x2="1304" y2="1159" />
+	<line stroke="black" stroke-opacity="1" x1="1528" y1="694" x2="1307" y2="1167" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="799" y1="619" x2="797" y2="627" />
+	<line stroke="black" stroke-opacity="1" x1="799" y1="619" x2="807" y2="620" />
+	<line stroke="black" stroke-opacity="1" x1="1204" y1="1172" x2="799" y2="619" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="351" y="1269">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="754" x2="617" y2="762" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="754" x2="624" y2="752" />
+	<line stroke="black" stroke-opacity="1" x1="1204" y1="1209" x2="616" y2="754" />
+</g>
+<g>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="885" y="989">&lt;&lt;ArrayList&gt;&gt;</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1204" y1="1260" x2="789" y2="1274" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="789" y1="1274" x2="598" y2="1072" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1186" x2="126" y2="1193" />
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1186" x2="130" y2="1182" />
+	<line stroke="black" stroke-opacity="1" x1="420" y1="1298" x2="123" y2="1186" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="836" x2="257" y2="844" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="836" x2="264" y2="834" />
+	<line stroke="black" stroke-opacity="1" x1="598" y1="1072" x2="256" y2="836" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1764" y="532" width="2" height="137" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1629" y="667" width="137" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1626" y="529" width="138" height="138" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1695" y="538">MainViewCompare</text>
+	<line stroke="black" stroke-opacity="1" x1="1626" y1="540" x2="1764" y2="540" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1628" y="549">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1626" y1="551" x2="1764" y2="551" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="560">MainViewCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="570">constructView()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="580">constructViewFromTeachers()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="590">getTeacherCardAtThatTime()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="600">calculateTimePeriod()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="610">getDayNumber()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="620">constructViewFromSections()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="630">getSectionCardAtThatTime()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="640">constructViewFromRooms()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="650">getRoomCardAtThatTime()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1628" y="660">setOptionPanelCompare()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1648" y1="670" x2="1639" y2="671" />
+	<line stroke="black" stroke-opacity="1" x1="1648" y1="670" x2="1649" y2="678" />
+	<line stroke="black" stroke-opacity="1" x1="1323" y1="1167" x2="1648" y2="670" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="785" x2="262" y2="790" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="785" x2="261" y2="778" />
+	<line stroke="black" stroke-opacity="1" x1="1625" y1="607" x2="256" y2="785" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1323" y1="1167" x2="1331" y2="1165" />
+	<line stroke="black" stroke-opacity="1" x1="1323" y1="1167" x2="1321" y2="1158" />
+	<line stroke="black" stroke-opacity="1" x1="1647" y1="670" x2="1323" y2="1167" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="195" x2="1056" y2="203" />
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="195" x2="1063" y2="193" />
+	<line stroke="black" stroke-opacity="1" x1="1625" y1="554" x2="1055" y2="195" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1297" y="545" width="2" height="116" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1186" y="659" width="113" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1183" y="542" width="114" height="117" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1240" y="551">TimeBoxCompare</text>
+	<line stroke="black" stroke-opacity="1" x1="1183" y1="553" x2="1297" y2="553" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1185" y="562">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1183" y1="564" x2="1297" y2="564" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="573">TimeBoxCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="583">TimeBoxCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="593">TimeBoxCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="603">TimeBoxCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="613">TimeBoxCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="623">TimeBoxCompare()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="633">getSectionConcerned()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="643">getRoomConcerned()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1185" y="653">getTeacherConcerned()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1182" y1="639" x2="600" y2="1040" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="721" x2="623" y2="725" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="721" x2="620" y2="713" />
+	<line stroke="black" stroke-opacity="1" x1="1182" y1="612" x2="616" y2="721" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="799" y1="561" x2="804" y2="567" />
+	<line stroke="black" stroke-opacity="1" x1="799" y1="561" x2="805" y2="555" />
+	<line stroke="black" stroke-opacity="1" x1="1182" y1="596" x2="799" y2="561" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1300" y1="601" x2="1306" y2="606" />
+	<line stroke="black" stroke-opacity="1" x1="1300" y1="601" x2="1305" y2="594" />
+	<line stroke="black" stroke-opacity="1" x1="1625" y1="599" x2="1300" y2="601" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1160" x2="130" y2="1164" />
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1160" x2="127" y2="1152" />
+	<line stroke="black" stroke-opacity="1" x1="600" y1="1040" x2="123" y2="1160" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1493" y="741" width="2" height="176" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1374" y="915" width="121" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1371" y="738" width="122" height="177" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1432" y="747">MainViewSolo</text>
+	<line stroke="black" stroke-opacity="1" x1="1371" y1="749" x2="1493" y2="749" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1373" y="758">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="768">size</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1373" y="778">problem_level_images</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1373" y="788">problem_category_image</text>
+	<line stroke="black" stroke-opacity="1" x1="1371" y1="790" x2="1493" y2="790" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="799">MainViewSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="809">drawEmptySchedule()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="819">getDisplayPanel()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="829">setOptionPanelSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="839">getOptionPanelSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="849">cleanSchedule()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="859">setScheduleView()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="869">setScheduleView()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="879">setScheduleView()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="889">updateView()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="899">showPossibilities()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1373" y="909">disabiliseView()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="616" y1="731" x2="621" y2="737" />
+	<line stroke="black" stroke-opacity="1" x1="616" y1="731" x2="622" y2="725" />
+	<line stroke="black" stroke-opacity="1" x1="1370" y1="819" x2="616" y2="731" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1370" y1="868" x2="1229" y2="966" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1370" y1="744" x2="1222" y2="546" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="233" x2="1252" y2="534" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1370" y1="831" x2="960" y2="852" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1519" y1="1062" x2="1522" y2="1054" />
+	<line stroke="black" stroke-opacity="1" x1="1519" y1="1062" x2="1511" y2="1058" />
+	<line stroke="black" stroke-opacity="1" x1="1466" y1="918" x2="1519" y2="1062" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="799" y1="575" x2="802" y2="582" />
+	<line stroke="black" stroke-opacity="1" x1="799" y1="575" x2="806" y2="571" />
+	<line stroke="black" stroke-opacity="1" x1="1370" y1="802" x2="799" y2="575" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1466" y1="918" x2="1462" y2="925" />
+	<line stroke="black" stroke-opacity="1" x1="1466" y1="918" x2="1473" y2="921" />
+	<line stroke="black" stroke-opacity="1" x1="1520" y1="1062" x2="1466" y2="918" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="960" y1="852" x2="713" y2="843" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="799" x2="261" y2="805" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="799" x2="262" y2="793" />
+	<line stroke="black" stroke-opacity="1" x1="713" y1="843" x2="256" y2="799" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="236" x2="1052" y2="244" />
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="236" x2="1063" y2="238" />
+	<line stroke="black" stroke-opacity="1" x1="1222" y1="546" x2="1055" y2="236" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1376" y1="737" x2="1377" y2="728" />
+	<line stroke="black" stroke-opacity="1" x1="1376" y1="737" x2="1367" y2="735" />
+	<line stroke="black" stroke-opacity="1" x1="1252" y1="534" x2="1376" y2="737" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1229" y1="966" x2="609" y2="955" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="609" y1="955" x2="569" y2="1002" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1769" y="794" width="2" height="277" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1670" y="1069" width="101" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1667" y="791" width="102" height="278" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1718" y="800">TimeBox</text>
+	<line stroke="black" stroke-opacity="1" x1="1667" y1="802" x2="1769" y2="802" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1669" y="811">serialVersionUID</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="821">staticLabel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="831">timePeriod</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="841">sectionLabel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="851">teacherLabel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="861">classRoomLabel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="871">midleLabel</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="881">problem_level</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="891">problem_category</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="901">firstLine</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="911">secondLine</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="921">lastLine</text>
+	<line stroke="black" stroke-opacity="1" x1="1667" y1="923" x2="1769" y2="923" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="932">TimeBox()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="942">TimeBox()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="952">TimeBox()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1669" y="962">correspondingDay()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="972">setCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="982">setAllBackground()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="992">clear()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1002">getCard()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1012">getTimePeriod()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1022">setTimePeriod()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1032">setStaticText()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1042">setPref()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1052">drawAdvised()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1669" y="1062">getStaticLabel()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="799" x2="261" y2="805" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="799" x2="262" y2="793" />
+	<line stroke="black" stroke-opacity="1" x1="1666" y1="925" x2="256" y2="799" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1666" y1="911" x2="1662" y2="903" />
+	<line stroke="black" stroke-opacity="1" x1="1666" y1="911" x2="1658" y2="914" />
+	<line stroke="black" stroke-opacity="1" x1="1496" y1="849" x2="1666" y2="911" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1300" y1="643" x2="1661" y2="891" />
+	<line stroke="black" stroke-opacity="1" x1="1666" y1="895" x2="1664" y2="886" />
+	<line stroke="black" stroke-opacity="1" x1="1666" y1="895" x2="1657" y2="896" />
+	<line stroke="black" stroke-opacity="1" x1="1664" y1="886" x2="1657" y2="896" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="789" y1="1092" x2="795" y2="1096" />
+	<line stroke="black" stroke-opacity="1" x1="789" y1="1092" x2="793" y2="1085" />
+	<line stroke="black" stroke-opacity="1" x1="1666" y1="938" x2="789" y2="1092" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1155" x2="130" y2="1158" />
+	<line stroke="black" stroke-opacity="1" x1="123" y1="1155" x2="126" y2="1147" />
+	<line stroke="black" stroke-opacity="1" x1="569" y1="1002" x2="123" y2="1155" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1492" y="508" width="2" height="89" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1333" y="595" width="161" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1330" y="505" width="162" height="90" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1411" y="514">TimeBoxCompareTransferHandler</text>
+	<line stroke="black" stroke-opacity="1" x1="1330" y1="516" x2="1492" y2="516" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1332" y="525">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1330" y1="527" x2="1492" y2="527" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1332" y="536">TimeBoxCompareTransferHandler()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1332" y="546">getSourceActions()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1332" y="556">canImport()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1332" y="566">exportDone()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1332" y="576">createTransferable()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1332" y="586">importData()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1625" y1="586" x2="1620" y2="579" />
+	<line stroke="black" stroke-opacity="1" x1="1625" y1="586" x2="1618" y2="590" />
+	<line stroke="black" stroke-opacity="1" x1="1495" y1="565" x2="1625" y2="586" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="210" x2="1055" y2="218" />
+	<line stroke="black" stroke-opacity="1" x1="1055" y1="210" x2="1063" y2="209" />
+	<line stroke="black" stroke-opacity="1" x1="1363" y1="504" x2="1055" y2="210" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1329" y1="525" x2="1185" y2="482" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="944" y1="474" x2="773" y2="485" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1185" y1="482" x2="944" y2="474" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="759" x2="264" y2="761" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="759" x2="258" y2="750" />
+	<line stroke="black" stroke-opacity="1" x1="773" y1="485" x2="256" y2="759" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1808" y="1165" width="2" height="68" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1701" y="1231" width="109" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1698" y="1162" width="110" height="69" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1753" y="1171">TimeBoxSolo</text>
+	<line stroke="black" stroke-opacity="1" x1="1698" y1="1173" x2="1808" y2="1173" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1700" y="1182">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1698" y1="1184" x2="1808" y2="1184" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1700" y="1193">TimeBoxSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1700" y="1203">TimeBoxSolo()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1700" y="1213">getView()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1700" y="1223">getOptionPanelSolo()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1496" y1="900" x2="1495" y2="908" />
+	<line stroke="black" stroke-opacity="1" x1="1496" y1="900" x2="1504" y2="900" />
+	<line stroke="black" stroke-opacity="1" x1="1722" y1="1161" x2="1496" y2="900" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1748" y1="1161" x2="1735" y2="1077" />
+	<line stroke="black" stroke-opacity="1" x1="1735" y1="1072" x2="1729" y2="1078" />
+	<line stroke="black" stroke-opacity="1" x1="1735" y1="1072" x2="1741" y2="1077" />
+	<line stroke="black" stroke-opacity="1" x1="1729" y1="1078" x2="1741" y2="1077" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1606" y1="1154" x2="1610" y2="1161" />
+	<line stroke="black" stroke-opacity="1" x1="1606" y1="1154" x2="1613" y2="1149" />
+	<line stroke="black" stroke-opacity="1" x1="1697" y1="1181" x2="1606" y2="1154" />
+</g>
+<g>
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1792" y="1252" width="2" height="89" />
+	<rect fill="#808080" stroke="none" stroke-opacity="1" x="1649" y="1339" width="145" height="2" />
+	<rect fill="#ffffc0" stroke="black" stroke-width="1" stroke-opacity="1" x="1646" y="1249" width="146" height="90" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" font-weight="bold" text-anchor="middle" x="1719" y="1258">TimeBoxSoloTransferHandler</text>
+	<line stroke="black" stroke-opacity="1" x1="1646" y1="1260" x2="1792" y2="1260" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" text-decoration="underline" x="1648" y="1269">serialVersionUID</text>
+	<line stroke="black" stroke-opacity="1" x1="1646" y1="1271" x2="1792" y2="1271" />
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1648" y="1280">TimeBoxSoloTransferHandler()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1648" y="1290">getSourceActions()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1648" y="1300">canImport()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1648" y="1310">exportDone()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1648" y="1320">createTransferable()</text>
+	<text font-family="Helvetica" font-size="8" fill="#000000" xml:space="preserve" x="1648" y="1330">importData()</text>
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="256" y1="813" x2="259" y2="820" />
+	<line stroke="black" stroke-opacity="1" x1="256" y1="813" x2="263" y2="809" />
+	<line stroke="black" stroke-opacity="1" x1="1645" y1="1270" x2="256" y2="813" />
+</g>
+<g>
+	<line stroke="black" stroke-opacity="1" x1="1606" y1="1191" x2="1606" y2="1199" />
+	<line stroke="black" stroke-opacity="1" x1="1606" y1="1191" x2="1614" y2="1190" />
+	<line stroke="black" stroke-opacity="1" x1="1668" y1="1248" x2="1606" y2="1191" />
+</g>
+</svg>

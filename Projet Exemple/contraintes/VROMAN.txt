@@ -1,0 +1,18 @@
+# Ceci sont des commentaires
+#
+# Une préférence s'écrit sous la forme JourPériod=préférence
+# 12 représente donc le lundi en deuxième heure
+# et une préférence de 1 est un simple désir, et une de 10 est
+# une impossibilité. (la valeur 0 est la valeur par défaut)
+
+
+# exemple:
+
+# mardi, à la 3ieme période, M.Vroman ne peut vraiment pas être la.
+23=10
+
+# le lundi, a la premiere heure, Mm. Vroman peut être la, mais ca ne 
+# l'arrange pas, idem pour la deuxième et troisième heure.
+11=5
+12=5
+13=5
