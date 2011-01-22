@@ -290,5 +290,26 @@ public class OptionPanelCompare extends JPanel {
 		return daysCombo;
 	}
 
+	public void clear() {
+		/*
+		selectedDays.clear();
+		teachersToCompare.clear();
+		roomsToCompare.clear();
+		sectionsToCompare.clear();
+		
+		daysCombo.getModel().removeChecks();
+		compareOn_Combo.getModel().removeChecks();
+		stuffCombo.getModel().removeChecks();
+		*/
+		
+		
+		/*
+		daysCombo.removeAll();
+		compareOn_Combo.removeAll();
+		stuffCombo.removeAll();
+		*/
+		
+	}
+
 
 }

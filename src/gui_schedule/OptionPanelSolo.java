@@ -38,9 +38,15 @@ public class OptionPanelSolo extends JPanel{
 	public OptionPanelSolo(StateFullSchedule state,MainViewSolo mvs){
 		this.state=state;
 		this.mvs=mvs;
+		init();
+		
+
+	}
+	
+	private void init(){
+		
 		this.setBackground(GUI_properties.optionPanelSolo_color); 
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-
 		// the image icon
 		imagesTab=new ImageIcon[4];
 		imagesTab[0]=new ImageIcon(getClass().getResource("/teacher_130.png"));
@@ -205,6 +211,19 @@ public class OptionPanelSolo extends JPanel{
 	 */
 	public Teacher getSelectedTeacher(){
 		return selectedTeacher;
+	}
+	public void clear() {
+	
+
+		
+		this.removeAll();
+
+		selectedTeacher=null;
+		selectedRoom=null;
+		selectedSection=null;
+		
+		init();
+		
 	}
 
 

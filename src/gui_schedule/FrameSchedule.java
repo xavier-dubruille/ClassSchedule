@@ -22,9 +22,15 @@ public class FrameSchedule extends JFrame {
 
 	OptionPanelCompare opc;
 	
+	
+	final MainViewCompare mvc;
+	final MainViewSolo mvs;
+	
+	/*
 	public FrameSchedule(){
 		//empty, not visible frame
 	}
+	*/
 	
 	/**
 	 * 
@@ -43,7 +49,6 @@ public class FrameSchedule extends JFrame {
 
 
 		// first Tab: the solo/normal selection
-		final MainViewSolo mvs;
 		JPanel soloTab=new JPanel(new BorderLayout());
 		mvs=new MainViewSolo(state,fs.getDisplayPanel());
 		ops=new OptionPanelSolo(state,mvs);
@@ -70,7 +75,7 @@ public class FrameSchedule extends JFrame {
 		
 		// second Tab: the compare selection
 		JPanel compareTab=new JPanel(new BorderLayout());
-		final MainViewCompare mvc=new MainViewCompare(state,fs.getDisplayPanel());
+		mvc=new MainViewCompare(state,fs.getDisplayPanel());
 		opc = new OptionPanelCompare(state,mvc);
 		mvc.setOptionPanelCompare(opc);
 		compareTab.add(opc,BorderLayout.NORTH);
@@ -109,5 +114,15 @@ public class FrameSchedule extends JFrame {
 	public void update_from_state(){
 		ops.update_from_state();
 		opc.update_from_state(); // not implemented yet.
+	}
+
+	public void clear() {
+
+		mvc.clear();
+		mvs.clear();
+		ops.clear();
+		opc.clear();
+		
+		
 	}
 }

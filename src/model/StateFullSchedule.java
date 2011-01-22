@@ -60,16 +60,6 @@ public class StateFullSchedule {
 	public StateFullSchedule(){
 
 		filesPath =new String[4];
-		init();
-	}
-
-
-	/**
-	 * initiation procedure, it's more like a extension of the constructor
-	 */
-	private void init(){
-		ready=false;
-
 		indexLine=new HashMap<String,Integer>();
 		lessons=new TreeMap<String, Lesson>();
 		cards=new TreeMap<Integer, Card>();
@@ -80,7 +70,11 @@ public class StateFullSchedule {
 		choice_sem=2;
 
 		csvDelemiter=";";
+
 	}
+
+
+
 
 	/**
 	 * 
@@ -94,7 +88,7 @@ public class StateFullSchedule {
 
 		
 		
-		init(); // maybe there is more to (re)initiate ?
+	//	init(); // maybe there is more to (re)initiate ?
 
 
 		if(filesPath[3]!=null && filesPath[3].equalsIgnoreCase("first"))
@@ -811,6 +805,21 @@ public class StateFullSchedule {
 	 */
 	public String[] getFilesPath(){
 		return filesPath;
+	}
+
+
+	public void reset() {
+		//filesPath =new String[4];
+		ready=false;
+
+		indexLine.clear();
+		lessons.clear();
+		cards.clear();
+		rooms.clear();
+		teachers.clear();
+		students.clear();
+		sections.clear();
+		
 	}
 
 

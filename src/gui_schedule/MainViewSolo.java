@@ -319,4 +319,10 @@ public class MainViewSolo extends JPanel{
 		}
 	}
 
+	public void clear() {
+		this.removeAll();
+		drawEmptySchedule();
+		
+	}
+
 }

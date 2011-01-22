@@ -38,8 +38,8 @@ public class MyMenuBar extends JMenuBar {
 
 		
 		//empty panel; has to be updated later
-		fSc= new  FrameSchedule(); 
-		fSe= new FrameSelection();
+		//fSc= new  FrameSchedule(); 
+		//fSe= new FrameSelection();
 
 		// * top menus
 		// * declarations
@@ -155,18 +155,34 @@ public class MyMenuBar extends JMenuBar {
 		@Override
 		public void actionPerformed(ActionEvent ae){
 			
-			if(state.isReady()){
-				JOptionPane.showMessageDialog(null,  "<html>Ce programme est encore en developpement, <br>" +
-						"et pour une parfaite stabilité, nous vous conseillons de redémarrer <br>" +
-						"le programme afin de créer un nouveau projet. <br><br>" +
-						"Veuillez nous excuser du désagrément. </html>","Attention", JOptionPane.WARNING_MESSAGE); 
-				return;
+			boolean reset=state.isReady();
+
+			if(reset){	
+				state.filesPath=new String[4];
+				
+				System.out.println("et on recommence..");
+				
+				state.reset();
+				fSc.clear();
+				fSe.clear();
 			}
 			
 			//GetFilesDialog dialog=
 			new GetFilesDialog(state.getFilesPath());
-			if(state.update_from_files()){ //update the model; i.e. the internal data
+			
+			if(reset){	
 
+			}
+			
+			
+			boolean IsUpdatedWrite=state.update_from_files();
+			if(!IsUpdatedWrite && reset)
+				System.out.println("Strange state? .. we have to fix that ?..");
+			
+			if(IsUpdatedWrite){ //update the model; i.e. the internal data
+
+
+				
 				fSc.update_from_state(); //update the GUI
 				fSe.update_from_state(); //update the GUI
 			}

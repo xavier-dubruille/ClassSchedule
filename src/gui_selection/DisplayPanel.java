@@ -242,6 +242,16 @@ public class DisplayPanel extends JPanel{
 		updateViewedCards();
 	}
 
+	public void clear() {
+
+		this.removeAll();
+		teachersChoosed.clear();
+		sectionsChoosed.clear();
+		roomTypeChoosed= "tous";
+		generalOptionChoosed="tous";
+		
+	}
+
 
 
 }

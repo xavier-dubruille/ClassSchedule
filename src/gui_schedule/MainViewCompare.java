@@ -14,7 +14,7 @@ import gui_selection.DisplayPanel;
 /**
  * 
  * @author Dubruille Xavier
- * @author Delange Jonas *
+ * @author Delange Jonas 
  */
 public class MainViewCompare extends JPanel{
 
@@ -27,6 +27,34 @@ public class MainViewCompare extends JPanel{
 	public MainViewCompare(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;
 		this.dp=dp;
+	    constructDefaultView();
+	}
+
+
+	/**
+	 * for now, it's ugly..
+	 * but it's supose to be the nice, default view, when nothing is selected..
+	 */
+	private void constructDefaultView() {
+		//TimeBoxCompare timeBoxCompare;
+		int rows=7;
+		int cols=2;
+
+		this.removeAll();
+		setLayout(new GridLayout(rows,cols));
+
+		//first line:
+		firstTimeBox=new TimeBoxCompare("*** Selectionnez un jour ***");
+		add(firstTimeBox);
+		add(new TimeBoxCompare("Selectionnez une option"));
+
+		for (int i=1;i<rows;i++){
+			add(new TimeBoxCompare(i,false));
+			add(new TimeBoxCompare(" "));
+		}
+		this.revalidate();
+		this.repaint();
+		
 	}
 
 
@@ -242,5 +270,12 @@ public class MainViewCompare extends JPanel{
 	
 	public void setOptionPanelCompare(OptionPanelCompare opc){
 		this.opc=opc;
+	}
+
+
+	public void clear() {
+		constructDefaultView();
+		
+		
 	}
 }

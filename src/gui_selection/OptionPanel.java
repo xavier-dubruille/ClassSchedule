@@ -113,7 +113,7 @@ public class OptionPanel extends JPanel {
 		model.setCheck("tous");
 		choices_four_panel.add(choices_four_combo);
 
-		// do we had more options?
+		// do we add more options?
 
 
 		this.add(choices_one_panel);
@@ -263,5 +263,10 @@ public class OptionPanel extends JPanel {
 		private void showRoom(String room){}
 		private void hideRoom(String room){}
 		*/
+	}
+
+	public void clear() {
+		// TODO Auto-generated method stub
+		
 	}
 }

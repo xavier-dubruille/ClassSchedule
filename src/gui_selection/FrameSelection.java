@@ -100,5 +100,11 @@ public class FrameSelection extends JFrame {
 		return dp;
 	}
 
+	public void clear() {
+		dp.clear();
+		op.clear();
+		
+	}
+
 
 }
