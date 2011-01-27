@@ -1,6 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
+
+import main.Main_properties;
 
 /**
  * 
@@ -10,8 +13,10 @@ import java.util.*;
  * @author Delange Jonas
  *
  */
-public class Lesson {
-	String name;
+public class Lesson implements Serializable{
+	
+	static private final long serialVersionUID = Main_properties.serialVersionUID;
+	private String name;
 	String group; //next version, we should make a object of this
 	int period; //for the current semester
 	
@@ -25,7 +30,7 @@ public class Lesson {
 	public Lesson(String name){
 		//preferedTeachers=new HashMap<Integer,Teacher>();
 		preferedClassRoom =new HashMap<Integer, Room>();
-		this.name=name;
+		this.setName(name);
 	}
 	
 	/*
@@ -37,7 +42,7 @@ public class Lesson {
 		preferedClassRoom =new TreeMap<Integer, Room>();
 		
 		this.teacher=teacher;
-		this.name=name;
+		this.setName(name);
 		//preferedTeachers.put(100, preferedTeacher);
 		preferedClassRoom.put(100, preferedLocal);
 		
@@ -66,6 +71,14 @@ public class Lesson {
 	 */
 	public Teacher getTeacher(){
 		return teacher;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 }

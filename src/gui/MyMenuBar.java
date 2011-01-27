@@ -17,6 +17,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
+import model.NotSuportedFileException;
 import model.StateFullSchedule;
 
 /**
@@ -26,9 +27,8 @@ import model.StateFullSchedule;
  */
 public class MyMenuBar extends JMenuBar {
 	private static final long serialVersionUID = 1L;
-	FrameSchedule fSc;
-	FrameSelection fSe;
-	
+	private MenuBarFunctions menuBarFunctions;
+
 
 	/**
 	 * 
@@ -36,7 +36,8 @@ public class MyMenuBar extends JMenuBar {
 	 */
 	public MyMenuBar(final StateFullSchedule state) {
 
-		
+		menuBarFunctions=new MenuBarFunctions(state);
+
 		//empty panel; has to be updated later
 		//fSc= new  FrameSchedule(); 
 		//fSe= new FrameSelection();
@@ -52,29 +53,52 @@ public class MyMenuBar extends JMenuBar {
 		// ** declarations
 		JMenuItem new_project = new JMenuItem ("Nouveau");
 		JMenuItem open = new JMenuItem ("Ouvrir");
-		JMenuItem save = new JMenuItem ("Enregistrer");
+		JMenuItem saveProject = new JMenuItem ("Enregistrer");
+		JMenuItem export = new JMenuItem ("Exporter en csv");
 		JMenuItem quit = new JMenuItem ("Quitter");
 		JMenuItem about = new JMenuItem ("About");
 		// ** end of declarations
 
 		// ** save
-		save.addActionListener(new ActionListener(){
+		saveProject.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
 				if(state==null || !state.isReady())
 					return;
 				JFileChooser jf=new JFileChooser();
-				
+
 				int ret=jf.showSaveDialog((JComponent)e.getSource());
 				if(ret == JFileChooser.APPROVE_OPTION)
-					state.saveProject(jf.getSelectedFile().getPath());
-				
+					menuBarFunctions.saveProject(jf.getSelectedFile().getPath());
+
 			}
 		});
 		// ** end of save
-		
+
+		// ** export
+		export.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				if(state==null || !state.isReady())
+					return;
+				JFileChooser jf=new JFileChooser();
+
+				int ret=jf.showSaveDialog((JComponent)e.getSource());
+				if(ret == JFileChooser.APPROVE_OPTION)
+					menuBarFunctions.export(jf.getSelectedFile().getPath());
+
+			}
+		});
+		// ** end of export
+
 		// ** new_project
-		new_project.addActionListener(new CsvActionListener(state));
+		new_project.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				menuBarFunctions.newProject();
+
+			}
+		});
 		// ** end of new_project
 
 		// ** quit
@@ -86,20 +110,42 @@ public class MyMenuBar extends JMenuBar {
 			}
 		});
 		// ** end of quit
-		
+
 		// ** open
 		open.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				JOptionPane.showMessageDialog(null,  "<html>Cette option n'est malheureusement pas encore pleinement fonctionnelle. <br>" +
-						"Veuillez nous en excuser.</html>", "Sorry",JOptionPane.WARNING_MESSAGE); 
+
+				JFileChooser jf=new JFileChooser();
+
+				int ret=jf.showOpenDialog((JComponent)e.getSource());
+				if(ret == JFileChooser.APPROVE_OPTION)
+					try{
+						menuBarFunctions.openProject(jf.getSelectedFile().getPath());
+					}
+				catch(NotSuportedFileException notSuportedE){
+					JOptionPane.showMessageDialog(null,  "<html>Le projet n'a pu être ouvert <br>" +
+							"Le projet doit être un fichier du type \"sx\" <br>" +
+							"Désolé.</html>", "Sorry",JOptionPane.ERROR_MESSAGE); 
+				}
+				catch(Exception exception){
+					JOptionPane.showMessageDialog(null,  "<html>Le projet n'a pu être ouvert <br>" +
+							"Désolé.</html>", "Sorry",JOptionPane.ERROR_MESSAGE); 
+				}
+
 			}
+
+
 		});
 		// ** end of open
 
 		file.add(new_project);
+		file.addSeparator();
 		file.add(open);
-		file.add(save);
+		file.addSeparator();
+		file.add(saveProject);
+		file.add(export);
+		file.addSeparator();
 		file.add(quit);
 		// ** end of file
 
@@ -108,7 +154,7 @@ public class MyMenuBar extends JMenuBar {
 		about.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e){
-				
+
 				JOptionPane.showMessageDialog(null,  "<html>Programme de gestion et creation d'horaire. <br><br>" +
 						"Réalisé dans le cadre du cour de <i>Langage avancé de programmation</i> de Mm. Vroman, <br>" +
 						"pour l'Ephec. <br><br>" +
@@ -116,14 +162,14 @@ public class MyMenuBar extends JMenuBar {
 						"Auteurs: xavier.dubruille@gmail.com et jonas.delange@gmail.com <br>" +
 						"N'hésitez pas à nous contacter! </html>", 
 						"About",JOptionPane.INFORMATION_MESSAGE); 
-				
+
 			}
 		});
 		// ** end of about
-		
+
 		help.add(about);
 		// * end of help
-		
+
 		add(file);
 		add(edit);
 		add(help);
@@ -136,57 +182,8 @@ public class MyMenuBar extends JMenuBar {
 	 * @param fSc
 	 */
 	public void setPanels(FrameSelection fSe,FrameSchedule fSc){
-		this.fSc=fSc;
-		this.fSe=fSe;
+		menuBarFunctions.setPanels(fSe,fSc);
 	}
 
-
-	/**
-	 * This listener will take care of the "new" item..
-	 */
-	private class CsvActionListener implements ActionListener{
-		StateFullSchedule state;
-
-
-		public CsvActionListener(StateFullSchedule state){
-			this.state=state;
-		}
-
-		@Override
-		public void actionPerformed(ActionEvent ae){
-			
-			boolean reset=state.isReady();
-
-			if(reset){	
-				state.filesPath=new String[4];
-				
-				System.out.println("et on recommence..");
-				
-				state.reset();
-				fSc.clear();
-				fSe.clear();
-			}
-			
-			//GetFilesDialog dialog=
-			new GetFilesDialog(state.getFilesPath());
-			
-			if(reset){	
-
-			}
-			
-			
-			boolean IsUpdatedWrite=state.update_from_files();
-			if(!IsUpdatedWrite && reset)
-				System.out.println("Strange state? .. we have to fix that ?..");
-			
-			if(IsUpdatedWrite){ //update the model; i.e. the internal data
-
-
-				
-				fSc.update_from_state(); //update the GUI
-				fSe.update_from_state(); //update the GUI
-			}
-		}
-	}
 
 }

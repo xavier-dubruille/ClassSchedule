@@ -4,6 +4,7 @@ import gui.GUI_properties;
 import gui_schedule.TimeBox;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -17,8 +18,13 @@ import main.Main_properties;
  * @author Delange Jonas
  *
  */
-public class Card {
-
+public class Card implements Serializable{
+	
+	static private final long serialVersionUID = Main_properties.serialVersionUID;
+	
+	private StateFullSchedule state;
+	
+	
 
 	// private String name;
 	private Teacher teacher;
@@ -26,13 +32,11 @@ public class Card {
 	//	private int happy; 
 	private int timePeriod; // representing the day and the period
 	private int cardId;
-	private Map<String,Room> all_rooms;
 	private Room classRoom;
 	private String mod;
 	private boolean info;
-	//private Map<String,Section> all_sections;
 	private ArrayList<Section> card_sections;
-	private StateFullSchedule state;
+
 
 
 	/**
@@ -48,8 +52,8 @@ public class Card {
 	 * @param mod 	the type of card (classe, groupe, ect)
 	 */
 	public Card(Lesson lesson, Teacher teacher,int cardId,Section s,StateFullSchedule state, String info, String mod){
-		this.all_rooms=state.getClassRoom();
-		//this.all_sections=state.getSections();
+
+
 		this.state=state;
 		this.mod=mod;
 		this.info=info.equalsIgnoreCase("1") ? true :false ;
@@ -124,7 +128,7 @@ public class Card {
 	public void setTimePeriod_and_Room(int timePeriod, Room selectedRoom) {
 		this.timePeriod=timePeriod;
 
-		for(Room r :all_rooms.values())
+		for(Room r :state.getClassRoom().values())
 			r.removeCard(this);
 
 		classRoom=selectedRoom;
@@ -226,7 +230,7 @@ public class Card {
 	 * @return a html representation of the card
 	 */
 	public String getHtmlRepresentation(){
-		return "<html>"+lesson.name+"<html>";
+		return "<html>"+lesson.getName()+"<html>";
 	}
 
 
@@ -297,14 +301,14 @@ public class Card {
 
 	@Override
 	public String toString(){
-		return lesson.name+" "+teacher.lastName;
+		return lesson.getName()+" "+teacher.getLastName();
 	}
 
 	public ArrayList<Room> findAllRoom(int atTimePeriod) {
 
 		//System.out.println("find all room for the card, info: "+this.info+", necessitant: "+this.getSeatsToProvide());
 		ArrayList<Room> possibleRooms=new ArrayList<Room>();
-		for (Room r:all_rooms.values()){
+		for (Room r:state.getClassRoom().values()){
 			if (!(this.classRoom==null) && this.classRoom==r){
 				possibleRooms.add(r);
 				//System.out.println("c'est la mem cart, donc on l'ajoute");

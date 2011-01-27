@@ -18,13 +18,14 @@ import gui_selection.*;
 public class FrameSchedule extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
-	OptionPanelSolo ops;
-
-	OptionPanelCompare opc;
+	private OptionPanelSolo ops;
+	private OptionPanelCompare opc;
 	
 	
 	final MainViewCompare mvc;
 	final MainViewSolo mvs;
+	
+	private StateFullSchedule state;
 	
 	/*
 	public FrameSchedule(){
@@ -41,6 +42,8 @@ public class FrameSchedule extends JFrame {
 	public FrameSchedule(StateFullSchedule state,MyMenuBar bar,FrameSelection fs){
 		super("Gestion Horraires");
 
+		this.state=state;
+		
 		setBounds( 100, 100, 800, 660);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
@@ -99,9 +102,10 @@ public class FrameSchedule extends JFrame {
 
 		// ... and the tabbedPane
 		JTabbedPane jt=new JTabbedPane();
-		jt.addTab("Mode Standard", soloTab); //faudrait prendre l'autre methode addTab(...), avec le parametre tip
+		jt.addTab("Mode Standard", soloTab); 
 		jt.addTab("Mode Comparaison", compareTab);
-
+		//TODO : faudrait prendre l'autre methode addTab(...), avec le parametre tip
+		
 		this.getContentPane().add(jt);
 
 		this.pack();
@@ -109,13 +113,23 @@ public class FrameSchedule extends JFrame {
 	}
 	
 	/**
+	 * Update the whole frame GUI ..
 	 * 
+	 *  used when we (re)create a new project
 	 */
 	public void update_from_state(){
+		System.out.println("FrameSchedule: nombre de carton: "+state.cards_size());
 		ops.update_from_state();
 		opc.update_from_state(); // not implemented yet.
+		
+		mvc.update_from_state();
+		mvs.update_from_state();
+		
 	}
 
+	/**
+	 * not used
+	 */
 	public void clear() {
 
 		mvc.clear();
@@ -125,4 +139,6 @@ public class FrameSchedule extends JFrame {
 		
 		
 	}
+
+
 }

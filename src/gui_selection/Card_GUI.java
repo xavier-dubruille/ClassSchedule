@@ -21,6 +21,12 @@ public class Card_GUI extends JPanel {
 	private Card card;
 	private DisplayPanel dp;
 	private JLabel classRoomLab;
+	
+	/**
+	 * 
+	 * @param card
+	 * @param dp
+	 */
 	public Card_GUI(Card card, final DisplayPanel dp){
 
 		super();

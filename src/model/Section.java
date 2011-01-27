@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 
 import main.Main_properties;
@@ -13,7 +14,10 @@ import main.Main_properties;
  * @author Delange Jonas
  * 
  */
-public class Section {
+public class Section implements Serializable{
+	
+	static private final long serialVersionUID = Main_properties.serialVersionUID;
+	
 	private String name,year,sectionType, groupNumber;
 	private ArrayList<Card> cards;
 	private int num_of_students;

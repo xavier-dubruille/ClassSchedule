@@ -20,10 +20,13 @@ import org.japura.gui.model.ListCheckModel;
 public class OptionPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
 	private StateFullSchedule state;
+	
+	
 	private DisplayPanel dp;
 	private JPanel choices_one_panel;
-//	private SortedMap<Integer,Card_GUI> gui_cards;
+//	private SortedMap<Integer,Card_GUI> gui_cards; // not used for now..
 	private boolean started;
 
 	public CheckComboBox choices_one_combo,choices_two_combo,choices_three_combo,choices_four_combo;
@@ -35,6 +38,18 @@ public class OptionPanel extends JPanel {
 		this.dp=dp;
 		this.state=state;
 //		this.gui_cards=gui_cards;
+		
+		
+		init();
+		
+		
+	}
+
+	
+	
+	private void init() {
+
+		
 		ListCheckModel model;
 		started=false;
 
@@ -120,14 +135,24 @@ public class OptionPanel extends JPanel {
 		this.add(choices_two_panel);
 		this.add(choices_three_panel);
 		this.add(choices_four_panel);
-
+		
+		this.revalidate();
+		this.repaint();
 		this.setVisible(true);
+		
 	}
 
+	
+	
 	/*
 	 * the files(with all the options) are not know at creation, so we deal with it now
 	 */
 	public void update_from_state(){
+		
+		this.removeAll();
+		init();
+		
+		
 		ListCheckModel model;
 
 		if(!state.isReady()){

@@ -9,6 +9,7 @@ public class TimeBoxCompare extends TimeBox {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	//private MainViewCompare mvc;
 	//private OptionPanelCompare opc;
 	private Section sectionConcerned;

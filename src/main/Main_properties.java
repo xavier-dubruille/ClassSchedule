@@ -6,6 +6,8 @@ package main;
  */
 public class Main_properties {
 	
+	public static final long serialVersionUID = 42L;
+	
 	public static int default_class_number_seats=25;
 	public static int default_informatic_number_seats=25;
 	public static int default_couloir_number_seats=0;

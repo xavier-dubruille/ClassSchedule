@@ -31,6 +31,7 @@ public class OptionPanelCompare extends JPanel {
 	private static final long serialVersionUID = 1L;
 
 	private StateFullSchedule state;
+	
 	private ArrayList<String> selectedDays;
 	private String compareOn;
 	private ArrayList<Teacher> teachersToCompare;
@@ -49,6 +50,14 @@ public class OptionPanelCompare extends JPanel {
 	public OptionPanelCompare(StateFullSchedule state,MainViewCompare mvc){
 		this.state=state;
 		this.mvc=mvc;
+		
+		init();
+	}
+
+	private void init() {
+
+		this.removeAll();
+		
 		ListCheckModel model;
 		selectedDays=new ArrayList<String>();
 		teachersToCompare = new ArrayList<Teacher>();
@@ -123,13 +132,15 @@ public class OptionPanelCompare extends JPanel {
 		model.addListCheckListener(new MyListCheckListener(2));
 
 		this.add(stuffPanel);
+		
 	}
 
 	/**
 	 * not implemented yet
 	 */
 	public void update_from_state(){
-
+		init();
+		compareOn=null;
 	}
 
 	/**

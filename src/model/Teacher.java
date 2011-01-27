@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
 import main.Main_properties;
 
@@ -11,14 +12,20 @@ import main.Main_properties;
  * @author Delange Jonas
  *
  */
-public class Teacher {
-	String firstName;
-	String lastName;
+public class Teacher implements Serializable{
+	
+	static private final long serialVersionUID = Main_properties.serialVersionUID;
+	
+	private StateFullSchedule state;
+	
+	
+	private String firstName;
+	private String lastName;
 
-	Map<String, Lesson> lessons; //inutil ?
-	ArrayList<Card> cards;
-	Map<Integer,Room> preferedClassRoom;
-	StateFullSchedule state;
+	private Map<String, Lesson> lessons; //inutil ?
+	private ArrayList<Card> cards;
+	private Map<Integer,Room> preferedClassRoom;
+
 	private int[] preferedTimeSlides;
 	int testi;
 	
@@ -33,6 +40,14 @@ public class Teacher {
 		lessons=new TreeMap<String, Lesson>();
 		preferedClassRoom =new TreeMap<Integer, Room>();
 	}
+
+	/**
+	 * Normal Constructor for a Teacher
+	 * 
+	 * @param firstName
+	 * @param lastName
+	 * @param state
+	 */
 	public Teacher(String firstName, String lastName, StateFullSchedule state){
 		this();
 		this.firstName=firstName;
@@ -40,6 +55,7 @@ public class Teacher {
 		this.state=state;
 	}
 
+	
 	
 	/**
 	 * 
@@ -63,6 +79,8 @@ public class Teacher {
 		preferedTimeSlides[timeSlideConverted]=pref;
 	}
 	
+	
+	
 	/**
 	 * Get all the preferences of the teacher
 	 * @return the int[] containing the teacher preference
@@ -72,6 +90,8 @@ public class Teacher {
 		return preferedTimeSlides;
 	}
 	
+	
+	
 	/**
 	 * Get all the cards the teacher has
 	 * @return all the teacher's cards
@@ -79,6 +99,8 @@ public class Teacher {
 	public ArrayList<Card> getCards(){
 		return cards;
 	}
+	
+	
 	
 	/**
 	 * 
@@ -94,6 +116,8 @@ public class Teacher {
 		preferedClassRoom.put(priority, room);
 	}
 	
+	
+	
 	/**
 	 * Set all the card of the teacher
 	 * Should be used.
@@ -104,6 +128,8 @@ public class Teacher {
 		cards.addAll(coll);
 	}
 	
+	
+	
 	/**
 	 * To add a card for that teacher
 	 * @param ca the card to be added
@@ -111,6 +137,8 @@ public class Teacher {
 	public void addCard(Card ca){
 		cards.add(ca);
 	}
+	
+	
 	
 	/**
 	 * Add a course that this teacher give. 
@@ -124,6 +152,8 @@ public class Teacher {
 		
 	}
 	
+	
+	
 	/**
 	 * Get the teacher first name
 	 * @return the teacher first name
@@ -131,6 +161,8 @@ public class Teacher {
 	public String getFirstName(){
 		return firstName;
 	}
+	
+	
 	
 	/**
 	 * Get the teacher last name

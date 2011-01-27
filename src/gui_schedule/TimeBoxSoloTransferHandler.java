@@ -15,7 +15,9 @@ import model.*;
 public class TimeBoxSoloTransferHandler extends TransferHandler {
 
 	private static final long serialVersionUID = 1L;
+	
 	private StateFullSchedule state;
+	
 	//private DisplayPanel dp;
 	private OptionPanelSolo ops;
 

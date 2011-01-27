@@ -21,10 +21,10 @@ public class Start {
     private static void createAndShowGUI() {
 
 		
-		StateFullSchedule state;
-		MyMenuBar bar;
-		FrameSchedule fSc;
-		FrameSelection fSe;
+		final StateFullSchedule state;
+		final MyMenuBar bar;
+		final FrameSchedule fSc;
+		final FrameSelection fSe;
 		
 		state=new StateFullSchedule();
 		

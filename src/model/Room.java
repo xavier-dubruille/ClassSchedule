@@ -1,6 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.*;
+
+import main.Main_properties;
 
 /**
  * 
@@ -10,7 +13,10 @@ import java.util.*;
  * @author Delange Jonas
  * 
  */
-public class Room {
+public class Room implements Serializable{
+	
+	static private final long serialVersionUID = Main_properties.serialVersionUID;
+	
 	private String name,type;
 	private int seats;
 	private boolean info; //if it's a computer class

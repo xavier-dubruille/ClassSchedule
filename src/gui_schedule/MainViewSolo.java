@@ -23,11 +23,12 @@ import model.Teacher;
 public class MainViewSolo extends JPanel{
 	private static final long serialVersionUID = 1L;
 
-	StateFullSchedule state;
-	TimeBox[] timeBoxes;
-	Teacher selectedTeacher;
-	Room selectedRoom;
-	Section selectedSection;
+	private StateFullSchedule state;
+	
+	private TimeBox[] timeBoxes;
+	private Teacher selectedTeacher;
+	private Room selectedRoom;
+	private Section selectedSection;
 	private DisplayPanel dp;
 	private OptionPanelSolo ops;
 	private int size;
@@ -139,6 +140,8 @@ public class MainViewSolo extends JPanel{
 	 */
 	public void setScheduleView(Teacher t){
 
+		
+		
 		selectedRoom=null;
 		selectedSection=null;
 		selectedTeacher=t;
@@ -319,9 +322,28 @@ public class MainViewSolo extends JPanel{
 		}
 	}
 
+	/**
+	 * not used.. and should not be (because it create new "TimeBoxes")
+	 */
 	public void clear() {
 		this.removeAll();
 		drawEmptySchedule();
+		
+	}
+
+	public void update_from_state() {
+		System.out.println("MainVueSolo1: nombre de cartons: "+state.cards_size());
+		cleanSchedule();
+		
+		selectedTeacher=null;
+		selectedRoom=null;
+		selectedSection=null;
+		
+		updateView(); // complitely useless.. but won't change a thing..
+		
+		System.out.println("MainVueSolo2: nombre de cartons: "+state.cards_size());
+
+		
 		
 	}
 

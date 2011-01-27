@@ -17,7 +17,11 @@ import java.awt.*;
 public class DisplayPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	SortedMap<Integer,Card_GUI> gui_cards;
+	
+	private StateFullSchedule state;
+	
+	
+	private SortedMap<Integer,Card_GUI> gui_cards;
 	// l'idee, c'est d'en avoir plusieurs, pour optimiser le temps de recherche.. on verra si c'est necessaire..
 
 	private String generalOptionChoosed;
@@ -26,9 +30,15 @@ public class DisplayPanel extends JPanel{
 	private String roomTypeChoosed;
 	
 	
-	private StateFullSchedule state;
 	private boolean teacherFull;
 	private MainViewSolo mvs;
+	
+	
+	/**
+	 * 
+	 * @param state
+	 * @param gui_cards
+	 */
 	public DisplayPanel(StateFullSchedule state,SortedMap<Integer,Card_GUI> gui_cards){
 
 		this.gui_cards=gui_cards;
@@ -78,6 +88,8 @@ public class DisplayPanel extends JPanel{
 	 */
 	public void update_default(){
 
+		gui_cards.clear();
+		
 		//this.setLayout(new GridLayout());
 		// First we create ours sortedMap..
 

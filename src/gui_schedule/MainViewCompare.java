@@ -44,9 +44,9 @@ public class MainViewCompare extends JPanel{
 		setLayout(new GridLayout(rows,cols));
 
 		//first line:
-		firstTimeBox=new TimeBoxCompare("*** Selectionnez un jour ***");
+		firstTimeBox=new TimeBoxCompare("*** Jour non selectionné ***");
 		add(firstTimeBox);
-		add(new TimeBoxCompare("Selectionnez une option"));
+		add(new TimeBoxCompare("Option non selectionné"));
 
 		for (int i=1;i<rows;i++){
 			add(new TimeBoxCompare(i,false));
@@ -276,6 +276,13 @@ public class MainViewCompare extends JPanel{
 	public void clear() {
 		constructDefaultView();
 		
+		
+	}
+
+
+	public void update_from_state() {
+		// Technically is not an update but a reset, but i don't care for now..
+		constructDefaultView();
 		
 	}
 }

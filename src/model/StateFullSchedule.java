@@ -1,13 +1,11 @@
 package model;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -28,8 +26,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 
 /**
- * This class is the most important of the wall program.
- * It contains all the data, it is really the model in a model-view-controler pattern
+ * This class is the most important of the whole program.
+ * It contains all the data, it is really the model in a model-view-controller pattern
  * 
  * This class has also everything to construct himself from a file, or save him to a file
  * 
@@ -37,14 +35,15 @@ import org.apache.poi.ss.usermodel.Sheet;
  * @author Delange Jonas
  *
  */
-public class StateFullSchedule {
+public class StateFullSchedule implements Serializable{
+	static private final long serialVersionUID = Main_properties.serialVersionUID;
 
 	private Map<String, Lesson> lessons;
 	private Map<Integer, Card> cards;
 	private Map<String, Room> rooms;   
 	private Map<String, Section> sections; 
 	private Map<String, Teacher> teachers;
-	 Map<String, Student> students;
+	private Map<String, Student> students;
 	private Map<String,Integer> indexLine;
 
 	public String filesPath[];
@@ -733,29 +732,6 @@ public class StateFullSchedule {
 	}
 
 
-	/**
-	 * Will save all the state in a csv file
-	 * @param path the path where the project will be saved
-	 */
-	public void saveProject(String path) {
-		String realPath= path+".csv";//path.split("\\.")[0]+".csv";
-		//System.out.println(realPath);
-		PrintWriter writer = null;
-
-		try{
-	    writer =  new PrintWriter(new BufferedWriter
-		   (new FileWriter(realPath)));
-		}catch (IOException io){
-			System.err.println("the file can't be saved");
-		}
-		
-		writer.println("Carton id; Nom du cour; Professeur; Local; Jour; Periode");
-		for(Card c: cards.values())
-			if(c.getTimePeriod()!=0)
-				writer.println(""+c.getCardId()+"; "+c.getLesson().name+"; "+c.getTeacher().lastName+"; "+c.getClassRoom().getName()+"; "+c.getDayName()+"; "+c.getPeriodName());
-		
-		writer.close();
-	}
 
 	/**
 	 * Get all the Cards.  (for the selected semester)
@@ -765,6 +741,7 @@ public class StateFullSchedule {
 		return cards;
 	}
 
+	
 	/**
 	 * Get all the teachers. (for the selected semester)
 	 * @return all the teachers
@@ -781,6 +758,7 @@ public class StateFullSchedule {
 		return rooms; 
 	}
 
+	
 	/**
 	 * Get all the sections existing
 	 * @return all the sections
@@ -789,6 +767,7 @@ public class StateFullSchedule {
 		return sections;
 	}
 
+	
 
 	/**
 	 * Set the path of the files that this class will 
@@ -799,6 +778,7 @@ public class StateFullSchedule {
 		this.filesPath=filesPath;
 	}
 
+	
 	/**
 	 * Get the path for the files containing all the information to build the internal state
 	 * @return the String table containing the file's path
@@ -806,9 +786,109 @@ public class StateFullSchedule {
 	public String[] getFilesPath(){
 		return filesPath;
 	}
+	
+	
 
 
-	public void reset() {
+	/**
+	 * @return the lessons
+	 */
+	public Map<String, Lesson> getLessons() {
+		return lessons;
+	}
+
+
+
+
+	/**
+	 * @param lessons the lessons to set
+	 */
+	public void setLessons(Map<String, Lesson> lessons) {
+		this.lessons = lessons;
+	}
+
+
+
+
+	/**
+	 * @return the rooms
+	 */
+	public Map<String, Room> getRooms() {
+		return rooms;
+	}
+
+
+
+
+	/**
+	 * @param rooms the rooms to set
+	 */
+	public void setRooms(Map<String, Room> rooms) {
+		this.rooms = rooms;
+	}
+
+
+
+
+	/**
+	 * @return the students
+	 */
+	public Map<String, Student> getStudents() {
+		return students;
+	}
+
+
+
+
+	/**
+	 * @param students the students to set
+	 */
+	public void setStudents(Map<String, Student> students) {
+		this.students = students;
+	}
+
+
+
+
+	/**
+	 * @param cards the cards to set
+	 */
+	public void setCards(Map<Integer, Card> cards) {
+		this.cards = cards;
+	}
+
+
+
+
+	/**
+	 * @param sections the sections to set
+	 */
+	public void setSections(Map<String, Section> sections) {
+		this.sections = sections;
+	}
+
+
+
+
+	/**
+	 * @param teachers the teachers to set
+	 */
+	public void setTeachers(Map<String, Teacher> teachers) {
+		this.teachers = teachers;
+	}
+
+
+	public int getChoice_sem(){
+		return choice_sem;
+	}
+
+
+	public int cards_size(){
+		return cards.size();
+	}
+
+
+	public void emptyMe() {
 		//filesPath =new String[4];
 		ready=false;
 
@@ -819,8 +899,33 @@ public class StateFullSchedule {
 		teachers.clear();
 		students.clear();
 		sections.clear();
+	
+		ready=true;
+		
+		System.out.println("StateFull: nombre de carton: "+cards_size());
 		
 	}
+
+
+
+
+	public void cloneSavedState(StateFullSchedule savedState) {
+		lessons=savedState.getLessons();
+		cards=savedState.getCards();
+		rooms=savedState.getClassRoom();   
+		sections=savedState.getSections(); 
+		teachers=savedState.getTeachers();
+		students=savedState.getStudents();
+
+		filesPath=savedState.getFilesPath(); //useless ?
+		choice_sem=savedState.getChoice_sem();  //useless ?
+		
+		ready=true; 
+		
+		
+	}
+
+
 
 
 

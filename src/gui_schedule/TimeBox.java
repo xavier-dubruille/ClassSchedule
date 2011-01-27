@@ -25,10 +25,13 @@ import model.StateFullSchedule;
  */
 public class TimeBox extends JPanel {
 	private static final long serialVersionUID = 1L;
+	
+	protected StateFullSchedule state;
 
 	protected JLabel staticLabel;
 	protected int timePeriod;
-	protected StateFullSchedule state;
+
+	
 	protected Card card;
 
 	private JLabel sectionLabel;

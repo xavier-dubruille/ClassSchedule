@@ -23,8 +23,11 @@ import javax.swing.*;
  *
  */
 public class OptionPanelSolo extends JPanel{
+	
 	private static final long serialVersionUID = 1L;
+	
 	private StateFullSchedule state;
+	
 	private JComboBox teacherCombo,roomCombo,sectionCombo;
 	private MainViewSolo mvs;
 	//private String comb[];
@@ -44,6 +47,8 @@ public class OptionPanelSolo extends JPanel{
 	}
 	
 	private void init(){
+		
+		this.removeAll();
 		
 		this.setBackground(GUI_properties.optionPanelSolo_color); 
 		this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
@@ -98,6 +103,10 @@ public class OptionPanelSolo extends JPanel{
 	 * 
 	 */
 	public void update_from_state(){
+		System.out.println("OptionPanelSolo: nombre de carton: "+state.cards_size());
+
+		init();
+		
 		if(!state.isReady()){
 			System.err.println("Something wrong happened in optionPanelSolo.update_from_state(), call a developper");
 			System.exit(-2);

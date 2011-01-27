@@ -6,7 +6,7 @@ import java.util.SortedMap;
 import java.util.TreeMap;
 
 import javax.swing.JFrame;
-import javax.swing.JList;
+//import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.ScrollPaneConstants;
@@ -16,16 +16,17 @@ import model.StateFullSchedule;
 public class FrameSelection extends JFrame {
 
 
-
+	private static final long serialVersionUID = 1L;
+	
+	private DisplayPanel dp;
+	private OptionPanel op;
+	private JScrollPane scroll_display;
+	//private JList jl;
+	
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	DisplayPanel dp;
-	OptionPanel op;
-	JScrollPane scroll_display;
-	JList jl;
 	public FrameSelection(){
 		//empty, not visible frame..
 
@@ -71,6 +72,8 @@ public class FrameSelection extends JFrame {
 
 	public void update_from_state(){
 
+		//clear();
+		
 		op.update_from_state(); // set the right options
 		dp.update_default(); // display all the cards
 		
@@ -103,6 +106,11 @@ public class FrameSelection extends JFrame {
 	public void clear() {
 		dp.clear();
 		op.clear();
+		
+	}
+
+	public void reBuild() {
+		update_from_state();
 		
 	}
 
