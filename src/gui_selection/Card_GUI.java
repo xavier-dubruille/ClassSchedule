@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
+import main.Start;
 import model.Card;
 import model.Section;
 
@@ -33,6 +34,8 @@ public class Card_GUI extends JPanel {
 	public Card_GUI(Card card, final DisplayPanel dp){
 
 		super();
+		
+		
 		this.card=card;
 		this.dp=dp;
 		
@@ -57,6 +60,7 @@ public class Card_GUI extends JPanel {
 				Card_GUI card_gui = (Card_GUI) me.getSource();
 				TransferHandler handler = card_gui.getTransferHandler();
 				dp.getMainViewSolo().showPossibilities(card_gui.getMyConstrainHandler());
+				Start.fSc.getMvc().showPossibilities(card_gui.getMyConstrainHandler());
 				
 				//	System.out.println("class name: "+handler.getClass());
 				//	System.out.println("handeler tostring: "+handler);

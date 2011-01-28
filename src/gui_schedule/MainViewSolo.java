@@ -161,12 +161,12 @@ public class MainViewSolo extends JPanel{
 			}
 
 		/* and then let's fix the preferance's Teacher */
-
+		/*
 		int pref[]=t.getPreferedTimeSlides();
 		for(int i=0;i<pref.length;i++)
 			if (pref[i]!=0)
 				timeBoxes[i].setPref(pref[i]);
-
+		*/
 
 	}
 

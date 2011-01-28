@@ -1,6 +1,7 @@
 package gui;
 
 import gui_schedule.TimeBox;
+import gui_schedule.TimeBoxCompare;
 import gui_schedule.TimeBoxSolo;
 import model.Card;
 import model.Room;
@@ -12,7 +13,8 @@ public class ConstrainHandler {
 	private int type;
 	// 0 is a Gui_card
 	// 1 is a TimeBox
-	
+	// 2 is a TimeBoxCompare
+
 	private Card card;
 
 	private int levelOfImpossibility;
@@ -36,7 +38,7 @@ public class ConstrainHandler {
 		this.card=card;
 	}
 
-	
+
 	public ConstrainHandler(int type, TimeBox timeBox) {
 		this.type=type;
 		this.timeBox=timeBox;
@@ -45,14 +47,14 @@ public class ConstrainHandler {
 	public boolean canI(TimeBox timeBox){
 		this.timeBox=timeBox;
 		return canI();
-		
+
 	}
-	
+
 	public boolean canI(Card card) {
 		this.card=card;
 		return canI();
 	}
-	
+
 	private boolean canI(){
 
 
@@ -62,26 +64,18 @@ public class ConstrainHandler {
 
 
 		// step 0: the card can no be placed at all on this selected view	
-		if(!(selectedTeacher==null) && card.getTeacher()!=selectedTeacher){
-			reasonOfImpossibility=0;
-			levelOfImpossibility=0;
-			return false;
-		}
+		boolean ret=true;
+		if (type != 2 )
+			ret=canI_selectedView_normal();
+		else
+			ret=canI_selectedView_compare();
 
-		if(!(selectedSection==null) && !(card.getCard_sections().contains(selectedSection)) ) {
-			reasonOfImpossibility=1;
-			levelOfImpossibility=0;
+		if(!ret)
 			return false;
-		}
+		// TODO ceci n'Žtait p-e pas le plus propre! mais je suis fatiguŽ.. faudrait voir si ya moyen de centraliser ses deux methodes
 
-		if(selectedRoom!=null && card.getSeatsToProvide()>selectedRoom.getCapacity()) {
-			reasonOfImpossibility=2;
-			levelOfImpossibility=0;
-			return false;
-		}
-		
 
-		
+
 
 		// step 1: set the teacher (from the card) 's preferences	
 		if (teacherPreferedMoments[currentTimePeriod]!=0){
@@ -143,6 +137,53 @@ public class ConstrainHandler {
 		else
 			return true;
 	}
+
+	private boolean canI_selectedView_compare() {	
+		TimeBoxCompare tbc=(TimeBoxCompare)timeBox; //TODO : ugly!! This can't stay!! but i'm too tired..
+		if(!(tbc.getTeacherConcerned()==null) && card.getTeacher()!=tbc.getTeacherConcerned()){
+			reasonOfImpossibility=0;
+			levelOfImpossibility=0;
+			return false;
+		}
+
+		if(!(tbc.getSectionConcerned()==null) && !(card.getCard_sections().contains(tbc.getSectionConcerned())) ) {
+			reasonOfImpossibility=1;
+			levelOfImpossibility=0;
+			return false;
+		}
+
+		if(tbc.getRoomConcerned()!=null && card.getSeatsToProvide()>tbc.getRoomConcerned().getCapacity()) {
+			reasonOfImpossibility=2;
+			levelOfImpossibility=0;
+			return false;
+		}
+		return true;
+
+	}
+
+
+	private boolean canI_selectedView_normal() {
+		if(!(selectedTeacher==null) && card.getTeacher()!=selectedTeacher){
+			reasonOfImpossibility=0;
+			levelOfImpossibility=0;
+			return false;
+		}
+
+		if(!(selectedSection==null) && !(card.getCard_sections().contains(selectedSection)) ) {
+			reasonOfImpossibility=1;
+			levelOfImpossibility=0;
+			return false;
+		}
+
+		if(selectedRoom!=null && card.getSeatsToProvide()>selectedRoom.getCapacity()) {
+			reasonOfImpossibility=2;
+			levelOfImpossibility=0;
+			return false;
+		}
+		return true;
+
+	}
+
 
 	/**
 	 * @return the type
@@ -207,8 +248,8 @@ public class ConstrainHandler {
 		this.selectedTeacher=selectedTeacher;
 		this.selectedSection=selectedSection;
 		this.selectedRoom=selectedRoom;
-		
-		
+
+
 	}
 
 

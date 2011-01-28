@@ -7,7 +7,8 @@ import model.StateFullSchedule;
 import javax.swing.*;
 
 public class Start {
-
+	public static FrameSchedule fSc;
+	public static FrameSelection fSe;
     
 	public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -23,8 +24,8 @@ public class Start {
 		
 		final StateFullSchedule state;
 		final MyMenuBar bar;
-		final FrameSchedule fSc;
-		final FrameSelection fSe;
+		
+		
 		
 		state=new StateFullSchedule();
 		

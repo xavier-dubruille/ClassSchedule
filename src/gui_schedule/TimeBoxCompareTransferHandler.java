@@ -9,6 +9,7 @@ import javax.swing.TransferHandler;
 
 import model.Card;
 import model.StateFullSchedule;
+import gui.ConstrainHandler;
 import gui_selection.DisplayPanel;
 
 /**
@@ -46,18 +47,37 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 	public boolean canImport(TransferHandler.TransferSupport suport) {
 
 		
+		//if(ops.getSelectedTeacher()==null && ops.getSelectedRoom()==null && ops.getSelectedSection()==null)
+		//	return false;
+
+		Card card;
+		TimeBox timeBox;
+
+		try{
+			timeBox=(TimeBox)suport.getComponent();
+			String transferable=(String)suport.getTransferable().getTransferData(DataFlavor.stringFlavor);
+			int cardId=Integer.parseInt(transferable.substring(1));
+			card=state.getCards().get(cardId);
+		}catch(Exception e){
+			System.out.println("ne peut être importé ici.  "+e);
+			return false;
+		}
+
+
+		ConstrainHandler consHand=timeBox.getMyConstrainHandler();
+		if (consHand==null)
+			return false;
+		
+		return consHand.canI(card);
 		
 		
-		
-		
-		
-		
-		return true; 
 	}
 	
 	@Override
 	public void exportDone(JComponent c, Transferable t, int action) { 
 		mvc.constructView();
+		mvc.revalidate();
+		mvc.repaint();
 	}
 
 
@@ -104,6 +124,8 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 			//tbc.getView().updateView();
 				//tbc.setCard(card);
 				mvc.constructView();
+				mvc.revalidate();
+				mvc.repaint();
 			dp.updateStatusCard();	
 			
 			

@@ -1,5 +1,6 @@
 package gui_schedule;
 
+import gui.ConstrainHandler;
 import gui.GUI_properties;
 
 import java.awt.GridLayout;
@@ -23,14 +24,25 @@ public class MainViewCompare extends JPanel{
 	private OptionPanelCompare opc;
 	private DisplayPanel dp;
 	private TimeBoxCompare firstTimeBox;
+	private ArrayList<TimeBox> timeBoxes;
 	
 	public MainViewCompare(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;
 		this.dp=dp;
+		timeBoxes=new ArrayList<TimeBox>();
 	    constructDefaultView();
 	}
 
 
+	public void removeAll(){
+		super.removeAll();
+		timeBoxes.clear();
+	}
+	
+	public void add(TimeBoxCompare tbx){
+		super.add(tbx);
+		timeBoxes.add(tbx);
+	}
 	/**
 	 * for now, it's ugly..
 	 * but it's supose to be the nice, default view, when nothing is selected..
@@ -41,6 +53,7 @@ public class MainViewCompare extends JPanel{
 		int cols=2;
 
 		this.removeAll();
+		
 		setLayout(new GridLayout(rows,cols));
 
 		//first line:
@@ -62,6 +75,7 @@ public class MainViewCompare extends JPanel{
 	 * 
 	 */
 	public void constructView(){
+		
 		String compareOn=opc.getCompareOn();
 		ArrayList<String> selectedDays=opc.getSelectedDays();
 		if(compareOn==null) return;
@@ -283,6 +297,22 @@ public class MainViewCompare extends JPanel{
 	public void update_from_state() {
 		// Technically is not an update but a reset, but i don't care for now..
 		constructDefaultView();
+		
+	}
+
+
+	public void showPossibilities(ConstrainHandler consHand) {
+
+		// for all the timeBoxes..
+		for(TimeBox t:timeBoxes){
+			if (!(t.getStaticLabel()==null)) continue;
+
+			if (!consHand.canI(t))
+				t.drawAdvised(consHand.getReasonOfImpossibility(), consHand.getLevelOfImpossibility());
+			else
+				t.drawAdvised(4, 2);
+			
+		}
 		
 	}
 }

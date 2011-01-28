@@ -22,9 +22,9 @@ public class FrameSchedule extends JFrame {
 	private OptionPanelCompare opc;
 	
 	
-	final MainViewCompare mvc;
-	final MainViewSolo mvs;
-	
+	private final MainViewCompare mvc;
+	private final MainViewSolo mvs;
+
 	private StateFullSchedule state;
 	
 	/*
@@ -125,6 +125,20 @@ public class FrameSchedule extends JFrame {
 		mvc.update_from_state();
 		mvs.update_from_state();
 		
+	}
+	
+	/**
+	 * @return the mvc
+	 */
+	public MainViewCompare getMvc() {
+		return mvc;
+	}
+
+	/**
+	 * @return the mvs
+	 */
+	public MainViewSolo getMvs() {
+		return mvs;
 	}
 
 	/**
