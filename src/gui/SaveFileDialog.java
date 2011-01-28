@@ -19,6 +19,9 @@ import javax.swing.JTextField;
  * @author Delange Jonas
  */
 
+/**
+ * Not used i think.  If so, i think it may be deleted..
+ */
 public class SaveFileDialog extends JDialog implements  ActionListener{
 
 	JTextField jt_constrain, jt_lesson, jt_classRoom;

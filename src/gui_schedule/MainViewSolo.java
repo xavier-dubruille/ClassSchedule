@@ -1,6 +1,8 @@
 package gui_schedule;
 
+import gui.ConstrainHandler;
 import gui.GUI_properties;
+import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;
 
 import java.awt.GridLayout;
@@ -227,82 +229,23 @@ public class MainViewSolo extends JPanel{
 
 	/**
 	 * will update the view by showing where the card c can or can not be placed
-	 * @param c the Card on witch we'll base the update showing
+	 * @param 
 	 */
-	public void showPossibilities(Card c){
+	public void showPossibilities(ConstrainHandler consHand){
 
 		//System.out.println("showPossiblilities: card="+c);
 		//System.out.println("options concerned:"+ ops.getSelectedRoom()+ops.getSelectedSection()+ops.getSelectedTeacher());
 		
-		// step 1: the card can no be placed at all on this selected view
-		if(!(ops.getSelectedTeacher()==null) && c.getTeacher()!=ops.getSelectedTeacher()){
-			disabiliseView(0);
-			return;
-		}
+		consHand.setViewParameters(ops.getSelectedTeacher(),ops.getSelectedSection(),ops.getSelectedRoom());
 
-		if(!(ops.getSelectedSection()==null) && !(c.getCard_sections().contains(ops.getSelectedSection())) ) {
-			disabiliseView(1);
-			return;
-		}
-/*
-		if(!(ops.getSelectedRoom()==null) && !(c.findAllRoom(atTimePeriod)ops.getSelectedRoom()) ) {
-			disabiliseView(2);
-			return;
-		}
-		*/
-
-		
 		// for all the timeBoxes..
-		lab:for(int i=0; i<timeBoxes.length; i++){
-			
-			if (!(timeBoxes[i].getStaticLabel()==null)) continue;
-			int currentTimePeriod=timeBoxes[i].getTimePeriod();
+		for(TimeBox t:timeBoxes){
+			if (!(t.getStaticLabel()==null)) continue;
 
-			// step 2: set the teacher (from the card) 's preferences
-			int [] teacherPreferedMoments = c.getTeacher().getPreferedTimeSlides();
-			if (teacherPreferedMoments[currentTimePeriod]!=0){
-				if (teacherPreferedMoments[currentTimePeriod]<=5)
-					timeBoxes[i].drawAdvised(0, 1);
-				else
-					timeBoxes[i].drawAdvised(0, 0 );
-				continue lab;
-			}
-
-			// step 3: let's check if the teacher is not giving already some courses
-			for (Card card :c.getTeacher().getCards() )
-			{
-				//System.out.println("showPossiblities() --> "+card.getTimePeriod()+" ("+currentTimePeriod+")");
-				if (card.getTimePeriod()==currentTimePeriod){
-					timeBoxes[i].drawAdvised(0, 0);
-					continue lab;
-				}
-			}
-			
-			
-			// step 4: let's see if one of the section is not busy
-
-			for (Section section: c.getCard_sections())
-				for (Card card: section.getCards()){
-					if (card.getTimePeriod()==currentTimePeriod){
-						timeBoxes[i].drawAdvised(1, 0);
-						continue lab; 
-					}
-				}
-			
-			
-			// step 5: let's see if the possible room are not busy ..
-			//if (c.getTimePeriod()==0) {
-				int nbRooms=c.findAllRoom(currentTimePeriod).size();
-				if (nbRooms==0){
-					timeBoxes[i].drawAdvised(2, 0);
-					continue lab;
-				}
-				else if(nbRooms <2 ){
-					timeBoxes[i].drawAdvised(2, 1);
-					continue lab;
-				}
-			//}
-				timeBoxes[i].drawAdvised(4, 2);
+			if (!consHand.canI(t))
+				t.drawAdvised(consHand.getReasonOfImpossibility(), consHand.getLevelOfImpossibility());
+			else
+				t.drawAdvised(4, 2);
 			
 		}
 

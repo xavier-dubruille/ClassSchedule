@@ -1,5 +1,6 @@
 package gui_selection;
 
+import gui.ConstrainHandler;
 import gui.GUI_properties;
 import gui_schedule.CardTransferHandler;
 
@@ -21,6 +22,8 @@ public class Card_GUI extends JPanel {
 	private Card card;
 	private DisplayPanel dp;
 	private JLabel classRoomLab;
+	private ConstrainHandler myConstrainHandler;
+	
 	
 	/**
 	 * 
@@ -32,6 +35,8 @@ public class Card_GUI extends JPanel {
 		super();
 		this.card=card;
 		this.dp=dp;
+		
+		myConstrainHandler=new ConstrainHandler(0,card);
 
 		this.drawMe();
 
@@ -51,7 +56,7 @@ public class Card_GUI extends JPanel {
 				
 				Card_GUI card_gui = (Card_GUI) me.getSource();
 				TransferHandler handler = card_gui.getTransferHandler();
-				dp.getMainViewSolo().showPossibilities(card_gui.getCard());
+				dp.getMainViewSolo().showPossibilities(card_gui.getMyConstrainHandler());
 				
 				//	System.out.println("class name: "+handler.getClass());
 				//	System.out.println("handeler tostring: "+handler);
@@ -86,6 +91,7 @@ public class Card_GUI extends JPanel {
 		//
 	}
 
+	
 	/**
 	 * construct the card.. should be called at the beginning only.. otherwise it may become to slow
 	 */
@@ -143,6 +149,11 @@ public class Card_GUI extends JPanel {
 		else
 			this.setBackground(GUI_properties.card_color_placed);
 	}
+	
+	
+	/**
+	 * 
+	 */
 	public void reDraw(){
 		//System.out.println("CardGui.redraw(): ");
 		
@@ -163,16 +174,39 @@ public class Card_GUI extends JPanel {
 			//System.out.println("redraw de la cart: "+card+", timePeriod: "+card.getTimePeriod());
 		}
 	}
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public Card getCard(){
 		return card;
 	}
 
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public DisplayPanel getDisplayPanel(){
 		return dp;
 	}
 
 	
 	
+	/**
+	 * @return the myConstrainHandler
+	 */
+	public ConstrainHandler getMyConstrainHandler() {
+		return myConstrainHandler;
+	}
+
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String toSrring(){
 		return card.toString();
 	}

@@ -3,6 +3,8 @@ package gui_schedule;
 
 
 
+import gui.ConstrainHandler;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -22,8 +24,10 @@ public class TimeBoxSolo extends TimeBox {
 	private static final long serialVersionUID = 1L;
 
 
-	protected MainViewSolo view;
-	protected OptionPanelSolo ops;
+	private MainViewSolo view;
+	private OptionPanelSolo ops;
+	
+
 
 
 	public TimeBoxSolo(int day_period, boolean day) {
@@ -43,14 +47,14 @@ public class TimeBoxSolo extends TimeBox {
 			@Override
 			public void mousePressed(MouseEvent me) {
 
-				TimeBox comp = (TimeBox) me.getSource();
+				TimeBoxSolo comp = (TimeBoxSolo) me.getSource();
 				if (comp==null) return;
 				TransferHandler handler = comp.getTransferHandler();
 				if (handler==null) return;
 				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
 
 				if(!(comp.getCard()==null))
-					view.showPossibilities(comp.getCard());
+					view.showPossibilities(comp.getMyConstrainHandler());
 
 			}
 

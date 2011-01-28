@@ -1,6 +1,7 @@
 package gui_schedule;
 
 
+import gui.ConstrainHandler;
 import gui.GUI_properties;
 
 import java.awt.Color;
@@ -30,6 +31,8 @@ public class TimeBox extends JPanel {
 
 	protected JLabel staticLabel;
 	protected int timePeriod;
+	
+	final protected ConstrainHandler myConstrainHandler;
 
 	
 	protected Card card;
@@ -54,8 +57,10 @@ public class TimeBox extends JPanel {
 	 * for static timeBox only!
 	 * @param s
 	 */
-	public TimeBox(String s){
+	protected TimeBox(String s){
 		String text=s;
+		myConstrainHandler=null;
+		
 		//setMaximumSize(GUI_Propreties.card_dimension);
 		//setMinimumSize(GUI_Propreties.card_dimension);
 		setPreferredSize(GUI_properties.card_dimension);
@@ -90,6 +95,8 @@ public class TimeBox extends JPanel {
 	protected TimeBox(){
 		super();
 
+		myConstrainHandler=new ConstrainHandler(1,this);
+		
 		//setMaximumSize(GUI_Propreties.card_dimension);
 		//setMinimumSize(GUI_Propreties.card_dimension);
 		setPreferredSize(GUI_properties.card_dimension);
@@ -167,7 +174,7 @@ public class TimeBox extends JPanel {
 	 * @param day_period
 	 * @param day
 	 */
-	public TimeBox(int day_period, boolean day){
+	protected TimeBox(int day_period, boolean day){
 
 		this("");
 
@@ -209,6 +216,9 @@ public class TimeBox extends JPanel {
 		// System.out.println("TimeBox.set Card :"+ c);
 		this.card=c;
 		String sec=null;
+		
+		myConstrainHandler.setCard(c);
+		
 		for(Section s:card.getCard_sections())
 			if(sec==null)
 				sec=s.getName();
@@ -299,6 +309,10 @@ public class TimeBox extends JPanel {
 		else //bad
 			drawAdvised(0,0);
 		
+	}
+	
+	public ConstrainHandler getMyConstrainHandler(){
+		return myConstrainHandler;
 	}
 
 	/**

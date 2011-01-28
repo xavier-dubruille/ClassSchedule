@@ -1,4 +1,5 @@
 package gui_schedule;
+import gui.ConstrainHandler;
 import gui_selection.DisplayPanel;
 
 import java.awt.datatransfer.DataFlavor;
@@ -8,8 +9,6 @@ import java.awt.datatransfer.Transferable;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
-import model.Card;
-import model.StateFullSchedule;
 import model.*;
 
 public class TimeBoxSoloTransferHandler extends TransferHandler {
@@ -60,58 +59,16 @@ public class TimeBoxSoloTransferHandler extends TransferHandler {
 		}
 
 
-		
-
-
-		// let's check if it's the right teacher selected
-		if(ops.getSelectedTeacher()!=null && ops.getSelectedTeacher()!=card.getTeacher()){
-			//System.out.println("pas sur la bonne vue. il s'agit de la vue du prof "+ops.getSelectedTeacher());
+		ConstrainHandler consHand=timeBoxSolo.getMyConstrainHandler();
+		if (consHand==null)
 			return false;
-		}
-
-		// let's check if it's the right section selected
-		if(ops.getSelectedSection()!=null && !card.getCard_sections().contains(ops.getSelectedSection())){
-			//System.out.println("pas sur la bonne vue. il s'agit de la vue de la section "+ops.getSelectedSection());
-			/*
-				System.out.println("----------");
-				System.out.println("faux -- selection");
-				if(ops.getSelectedSection()!=null){
-					System.out.println("slection affiché: "+ops.getSelectedSection());
-					System.out.println("slections contenu dans la cartes: "+c.getCard_sections());
-				}
-				System.out.println("----------");
-			 */
-			return false;
-		}
 		
-		// let's check if it's A right local selected
-		if(ops.getSelectedRoom()!=null && card.getSeatsToProvide()>ops.getSelectedRoom().getCapacity()){ //faut aussi s'occuper des sall info
-			//System.out.println("Ce local ne peut pas contenir ce cour. Il peut comptenir "+ops.getSelectedRoom().getCapacity()+" et on a besoin de "+card.getSeatsToProvide());
-			return false;
-		}
+		consHand.setViewParameters(ops.getSelectedTeacher(), ops.getSelectedSection(), ops.getSelectedRoom());
 		
-		// let's check if the teacher is not already buzy
-		for(Card c:card.getTeacher().getCards())
-			if(c.getTimePeriod()==timeBoxSolo.getTimePeriod()){
-				System.out.println("ce professeur donne un autre cour à ce moment là. C'est le cour "+c);
-				return false;
-			}
-
-		
-		// let's check if all the sections of the card are free
-		for (Section s: card.getCard_sections()){
-			for (Card c: s.getCards()){
-				if(c.getTimePeriod()==timeBoxSolo.getTimePeriod()){
-					System.out.println("une des section suit déja un autre cour à ce moment là. C'est le cour "+c);
-					return false;
-				}
-			}
-		}
-
-		return true;
-
+		return consHand.canI(card);
 	}
 
+	
 	/*
 	 * Effectué par timebox une fois que le carton a été laché
 	 */
