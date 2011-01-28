@@ -3,6 +3,7 @@ package gui_schedule;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
 
 import model.*;
@@ -58,7 +59,16 @@ public class TimeBoxCompare extends TimeBox {
 
 			@Override
 			public void mousePressed(MouseEvent me) {
+				
+				if (me.getButton()==MouseEvent.BUTTON3){
 
+					JOptionPane.showMessageDialog(null,  "<html>Bient™t on pourra modifier les infos de la carte.. </html>", 
+							"Edition",JOptionPane.INFORMATION_MESSAGE); 
+					return;
+				}
+				
+				System.out.println("mouse cliked!");
+				
 				TimeBox comp = (TimeBox) me.getSource();
 				if (comp==null) return;
 				TransferHandler handler = comp.getTransferHandler();
@@ -67,6 +77,17 @@ public class TimeBoxCompare extends TimeBox {
 
 				if(!(comp.getCard()==null))
 					mvc.showPossibilities(comp.getMyConstrainHandler());
+					
+
+			}
+			
+			public void mouseReleased(MouseEvent me){
+				System.out.println("mouse released!");
+				/*
+				mvc.constructView();
+				mvc.revalidate();
+				mvc.repaint();
+				*/
 
 			}
 

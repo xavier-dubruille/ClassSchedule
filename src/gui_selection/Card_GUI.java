@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.TransferHandler;
 
@@ -24,8 +25,8 @@ public class Card_GUI extends JPanel {
 	private DisplayPanel dp;
 	private JLabel classRoomLab;
 	private ConstrainHandler myConstrainHandler;
-	
-	
+
+
 	/**
 	 * 
 	 * @param card
@@ -34,11 +35,11 @@ public class Card_GUI extends JPanel {
 	public Card_GUI(Card card, final DisplayPanel dp){
 
 		super();
-		
-		
+
+
 		this.card=card;
 		this.dp=dp;
-		
+
 		myConstrainHandler=new ConstrainHandler(0,card);
 
 		this.drawMe();
@@ -49,24 +50,33 @@ public class Card_GUI extends JPanel {
 
 			@Override
 			public void mouseReleased(MouseEvent me){
-				System.out.println("mouse released");
-			//	dp.getMainViewSolo().updateView();
+				System.out.println("GUI_card: mouse released");
+
+				//	Start.fSc.getMvc().constructView();
+				//	dp.getMainViewSolo().updateView();
 			}
-			
+
 			@Override
 			public void mousePressed(MouseEvent me) {
 
-				
-				Card_GUI card_gui = (Card_GUI) me.getSource();
-				TransferHandler handler = card_gui.getTransferHandler();
-				dp.getMainViewSolo().showPossibilities(card_gui.getMyConstrainHandler());
-				Start.fSc.getMvc().showPossibilities(card_gui.getMyConstrainHandler());
-				
-				//	System.out.println("class name: "+handler.getClass());
-				//	System.out.println("handeler tostring: "+handler);
+
+				if (me.getButton()==MouseEvent.BUTTON3){
+					JOptionPane.showMessageDialog(null,  "<html>Bient™t on pourra modifier les infos de la carte.. </html>", 
+							"Edition",JOptionPane.INFORMATION_MESSAGE); 
+					return;
+				}
+
+				else{
+					Card_GUI card_gui = (Card_GUI) me.getSource();
+					TransferHandler handler = card_gui.getTransferHandler();
+					dp.getMainViewSolo().showPossibilities(card_gui.getMyConstrainHandler());
+					Start.fSc.getMvc().showPossibilities(card_gui.getMyConstrainHandler());
+
+					//	System.out.println("class name: "+handler.getClass());
+					//	System.out.println("handeler tostring: "+handler);
 
 
-				/*
+					/*
 				Toolkit toolkit=Toolkit.getDefaultToolkit();
 				Clipboard clip=toolkit.getSystemClipboard();
 
@@ -84,18 +94,19 @@ public class Card_GUI extends JPanel {
 					}
 					//}
 				}*/
-				handler.exportAsDrag(card_gui, me, TransferHandler.MOVE);
+					handler.exportAsDrag(card_gui, me, TransferHandler.MOVE);
+				}
 
 			}
-			
-	
+
+
 		});
 
 		//System.out.println("la carte "+card.getHtmlRepresentation()+" a ete cree");
 		//
 	}
 
-	
+
 	/**
 	 * construct the card.. should be called at the beginning only.. otherwise it may become to slow
 	 */
@@ -122,7 +133,7 @@ public class Card_GUI extends JPanel {
 		secLab.setFont(GUI_properties.card_default_font_1);
 		firstLine.add(secLab);
 		firstLine.add(Box.createHorizontalGlue());
-		
+
 		JPanel secondLine=new JPanel();
 		secondLine.setLayout(new BoxLayout(secondLine,BoxLayout.X_AXIS));
 		secondLine.add(Box.createHorizontalGlue());
@@ -133,13 +144,13 @@ public class Card_GUI extends JPanel {
 		JLabel midle=new JLabel(card.getHtmlRepresentation());
 		midle.setFont(GUI_properties.card_default_font_2);
 		midle.setBackground(card.findBackgroundColor());
-		
+
 		JPanel lastLine=new JPanel();
 		lastLine.setLayout(new BoxLayout(lastLine,BoxLayout.X_AXIS));
 		classRoomLab=new JLabel(".");
 		lastLine.add(classRoomLab);
 		lastLine.add(Box.createHorizontalGlue());
-		
+
 		this.add(firstLine);
 		this.add(secondLine);
 		this.add(Box.createVerticalGlue());
@@ -153,14 +164,14 @@ public class Card_GUI extends JPanel {
 		else
 			this.setBackground(GUI_properties.card_color_placed);
 	}
-	
-	
+
+
 	/**
 	 * 
 	 */
 	public void reDraw(){
 		//System.out.println("CardGui.redraw(): ");
-		
+
 		// classRoom
 		if (card.getClassRoom()==null || card.getClassRoom().getName()==null) {
 			classRoomLab.setText(".");
@@ -168,7 +179,7 @@ public class Card_GUI extends JPanel {
 		else {
 			classRoomLab.setText(card.getClassRoom().getName());
 			System.out.println("redraw de la cart: "+card+", class room: "+card.getClassRoom().getName());
-		
+
 		}
 		// timePeriod (i.e placed or not placed)
 		if(card.getTimePeriod()!=0)
@@ -178,8 +189,8 @@ public class Card_GUI extends JPanel {
 			//System.out.println("redraw de la cart: "+card+", timePeriod: "+card.getTimePeriod());
 		}
 	}
-	
-	
+
+
 	/**
 	 * 
 	 * @return
@@ -188,7 +199,7 @@ public class Card_GUI extends JPanel {
 		return card;
 	}
 
-	
+
 	/**
 	 * 
 	 * @return
@@ -197,8 +208,8 @@ public class Card_GUI extends JPanel {
 		return dp;
 	}
 
-	
-	
+
+
 	/**
 	 * @return the myConstrainHandler
 	 */
@@ -206,7 +217,7 @@ public class Card_GUI extends JPanel {
 		return myConstrainHandler;
 	}
 
-	
+
 	/**
 	 * 
 	 * @return

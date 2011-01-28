@@ -303,6 +303,8 @@ public class MainViewCompare extends JPanel{
 
 	public void showPossibilities(ConstrainHandler consHand) {
 
+		
+		
 		// for all the timeBoxes..
 		for(TimeBox t:timeBoxes){
 			if (!(t.getStaticLabel()==null)) continue;
@@ -313,6 +315,7 @@ public class MainViewCompare extends JPanel{
 				t.drawAdvised(4, 2);
 			
 		}
+		
 		
 	}
 }

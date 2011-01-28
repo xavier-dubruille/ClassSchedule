@@ -10,6 +10,7 @@ import java.awt.datatransfer.Transferable;
 import javax.swing.JComponent;
 import javax.swing.TransferHandler;
 
+import main.Start;
 import model.Card;
 import model.StateFullSchedule;
 
@@ -72,6 +73,10 @@ public class CardTransferHandler extends TransferHandler{
 		System.out.println("CardGui: export done");
 		dp.updateStatusCard();
 		dp.getMainViewSolo().updateView();
+		
+		Start.fSc.getMvc().constructView();
+		Start.fSc.getMvc().revalidate();
+		Start.fSc.getMvc().repaint();
 	}
 
 
@@ -85,6 +90,8 @@ public class CardTransferHandler extends TransferHandler{
 		return new StringSelection("C"+((Card_GUI)comp).getCard().getCardId());
 	}
 
+
+	
 	/*
 	 *  card_GUI recoit les info (de timeBox) !
 	 */
@@ -97,8 +104,8 @@ public class CardTransferHandler extends TransferHandler{
 			if (trans == null) return false;
 			if (trans.equals("")) return false;
 
-
-
+			
+			
 			int cardId=Integer.parseInt(trans.substring(1));
 			Card c=state.getCards().get(cardId);
 			//System.out.println("card="+c);

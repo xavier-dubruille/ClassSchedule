@@ -5,11 +5,16 @@ package gui_schedule;
 
 import gui.ConstrainHandler;
 
+import java.awt.MouseInfo;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
+import javax.swing.event.MouseInputAdapter;
 
+import main.Start;
 import model.StateFullSchedule;
 
 /**
@@ -26,8 +31,8 @@ public class TimeBoxSolo extends TimeBox {
 
 	private MainViewSolo view;
 	private OptionPanelSolo ops;
-	
 
+	private boolean dragging=false;
 
 
 	public TimeBoxSolo(int day_period, boolean day) {
@@ -42,23 +47,63 @@ public class TimeBoxSolo extends TimeBox {
 		this.view=view;
 		this.ops=view.getOptionPanelSolo();
 		this.setTransferHandler(new TimeBoxSoloTransferHandler(state,view.getDisplayPanel(),ops));
-		this.addMouseListener(new MouseAdapter() {
+		MouseInputAdapter listener=new MouseInputAdapter() {
 
+			
+			
+
+			
 			@Override
 			public void mousePressed(MouseEvent me) {
 
-				TimeBoxSolo comp = (TimeBoxSolo) me.getSource();
-				if (comp==null) return;
-				TransferHandler handler = comp.getTransferHandler();
-				if (handler==null) return;
-				handler.exportAsDrag(comp, me, TransferHandler.MOVE);
+				//Toolkit.getDefaultToolkit().getScreenSize()
+				
+				//MouseInfo.getPointerInfo().
+				//System.out.println("mouse event= "+ me);
+				if (me.getButton()==MouseEvent.BUTTON3){
 
-				if(!(comp.getCard()==null))
-					view.showPossibilities(comp.getMyConstrainHandler());
+					JOptionPane.showMessageDialog(null,  "<html>Bient™t on pourra modifier les infos de la carte.. </html>", 
+							"Edition",JOptionPane.INFORMATION_MESSAGE); 
+					return;
+				}
+
+				else {
+
+					TimeBoxSolo comp = (TimeBoxSolo) me.getSource();
+					if (comp==null) return;
+					TransferHandler handler = comp.getTransferHandler();
+					if (handler==null) return;
+					//handler.exportAsDrag(comp, me, TransferHandler.MOVE);
+					
+				
+					
+					if(!(comp.getCard()==null))
+						view.showPossibilities(comp.getMyConstrainHandler());
+						
+				}
 
 			}
+			
+			
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if (!dragging) {
+                    dragging = true;
+                    System.out.println("mouse draged ");
+                    TimeBoxSolo comp = (TimeBoxSolo) e.getSource();
+                    getTransferHandler().exportAsDrag(comp, e, TransferHandler.MOVE);
+                }
+            }
+ 
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                dragging = false;
+                System.out.println("mouse released");
+            }
 
-		});
+		};
+		this.addMouseListener(listener);
+        this.addMouseMotionListener(listener);
 	}
 
 	/**
