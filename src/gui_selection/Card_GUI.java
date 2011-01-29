@@ -4,14 +4,18 @@ import gui.ConstrainHandler;
 import gui.GUI_properties;
 import gui_schedule.CardTransferHandler;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.TransferHandler;
 
 import main.Start;
@@ -25,6 +29,7 @@ public class Card_GUI extends JPanel {
 	private DisplayPanel dp;
 	private JLabel classRoomLab;
 	private ConstrainHandler myConstrainHandler;
+	private JPopupMenu popup;
 
 
 	/**
@@ -45,12 +50,28 @@ public class Card_GUI extends JPanel {
 		this.drawMe();
 
 		//this.setDropTarget(new DropTarget());
+		
+		popup = new JPopupMenu("Popup");
+		JMenuItem menuItem;
+		menuItem = new JMenuItem("Modifier");
+		menuItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,  "<html>Bient™t, Bient™t,.. ;-) </html>", 
+								"Edition",JOptionPane.INFORMATION_MESSAGE); 
+			}});
+		popup.add(menuItem);
+		menuItem = new JMenuItem("Faire autre chose..");
+		//menuItem.addActionListener(this);
+		popup.add(menuItem);
+		
 		this.setTransferHandler(new CardTransferHandler(card.getState(),dp));
 		this.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseReleased(MouseEvent me){
-				System.out.println("GUI_card: mouse released");
+				if (me.isPopupTrigger()) {
+					popup.show(me.getComponent(), me.getX(), me.getY());
+				}
 
 				//	Start.fSc.getMvc().constructView();
 				//	dp.getMainViewSolo().updateView();
@@ -61,8 +82,9 @@ public class Card_GUI extends JPanel {
 
 
 				if (me.getButton()==MouseEvent.BUTTON3){
-					JOptionPane.showMessageDialog(null,  "<html>Bient™t on pourra modifier les infos de la carte.. </html>", 
-							"Edition",JOptionPane.INFORMATION_MESSAGE); 
+					if (me.isPopupTrigger()) {
+						popup.show(me.getComponent(), me.getX(), me.getY());
+					}
 					return;
 				}
 

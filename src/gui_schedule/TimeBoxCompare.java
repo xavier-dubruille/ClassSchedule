@@ -1,9 +1,13 @@
 package gui_schedule;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.TransferHandler;
 
 import model.*;
@@ -21,6 +25,8 @@ public class TimeBoxCompare extends TimeBox {
 	private Section sectionConcerned;
 	private Room roomConcerned;
 	private Teacher teacherConcerned;
+
+	private JPopupMenu popup;
 	//private  DisplayPanel dp;
 
 	/**
@@ -54,6 +60,20 @@ public class TimeBoxCompare extends TimeBox {
 			//reDraw(); // necessaire ??
 		}
 
+		popup = new JPopupMenu("Popup");
+		JMenuItem menuItem;
+		menuItem = new JMenuItem("Modifier");
+		menuItem.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null,  "<html>Bient™t, Bient™t,.. ;-) </html>", 
+								"Edition",JOptionPane.INFORMATION_MESSAGE); 
+			}});
+		popup.add(menuItem);
+		menuItem = new JMenuItem("Faire autre chose..");
+		//menuItem.addActionListener(this);
+		popup.add(menuItem);
+		
+		
 		this.setTransferHandler(new TimeBoxCompareTransferHandler(state,mvc,opc, dp));
 		this.addMouseListener(new MouseAdapter() {
 
@@ -62,12 +82,13 @@ public class TimeBoxCompare extends TimeBox {
 				
 				if (me.getButton()==MouseEvent.BUTTON3){
 
-					JOptionPane.showMessageDialog(null,  "<html>Bient™t on pourra modifier les infos de la carte.. </html>", 
-							"Edition",JOptionPane.INFORMATION_MESSAGE); 
+					if (me.isPopupTrigger()) {
+						popup.show(me.getComponent(), me.getX(), me.getY());
+					}
 					return;
 				}
 				
-				System.out.println("mouse cliked!");
+				//System.out.println("mouse cliked!");
 				
 				TimeBox comp = (TimeBox) me.getSource();
 				if (comp==null) return;
@@ -82,7 +103,10 @@ public class TimeBoxCompare extends TimeBox {
 			}
 			
 			public void mouseReleased(MouseEvent me){
-				System.out.println("mouse released!");
+				//System.out.println("mouse released!");
+				if (me.isPopupTrigger()) {
+					popup.show(me.getComponent(), me.getX(), me.getY());
+				}
 				/*
 				mvc.constructView();
 				mvc.revalidate();
