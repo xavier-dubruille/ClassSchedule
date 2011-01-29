@@ -6,6 +6,8 @@ import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;
 
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -27,7 +29,7 @@ public class MainViewSolo extends JPanel{
 
 	private StateFullSchedule state;
 	
-	private TimeBox[] timeBoxes;
+	private TimeBoxSolo[] timeBoxes;
 	private Teacher selectedTeacher;
 	private Room selectedRoom;
 	private Section selectedSection;
@@ -62,7 +64,7 @@ public class MainViewSolo extends JPanel{
 
 		this.setLayout(new GridLayout(Main_properties.period_per_day+1,Main_properties.day_per_week+1));
 		size=(Main_properties.period_per_day+1)*(Main_properties.day_per_week+1);
-		timeBoxes=new TimeBox[size];
+		timeBoxes=new TimeBoxSolo[size];
 
 		dp.setMainViewSolo(this);
 		//drawEmptySchedule();
@@ -239,7 +241,7 @@ public class MainViewSolo extends JPanel{
 		consHand.setViewParameters(ops.getSelectedTeacher(),ops.getSelectedSection(),ops.getSelectedRoom());
 
 		// for all the timeBoxes..
-		for(TimeBox t:timeBoxes){
+		for(TimeBoxSolo t:timeBoxes){
 			if (!(t.getStaticLabel()==null)) continue;
 
 			if (!consHand.canI(t))

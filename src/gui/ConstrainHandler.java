@@ -44,8 +44,19 @@ public class ConstrainHandler {
 		this.timeBox=timeBox;
 	}
 
-	public boolean canI(TimeBox timeBox){
-		this.timeBox=timeBox;
+	public boolean canI(TimeBoxSolo t) {
+		this.timeBox=t;
+		
+		return canI();
+	}
+
+	
+	public boolean canI(TimeBoxCompare timeBoxComp){
+		this.timeBox=timeBoxComp;
+		selectedSection=timeBoxComp.getSectionConcerned();
+		selectedTeacher=timeBoxComp.getTeacherConcerned();
+		selectedRoom=timeBoxComp.getRoomConcerned();
+		
 		return canI();
 
 	}
@@ -63,16 +74,24 @@ public class ConstrainHandler {
 		levelOfImpossibility=2;
 
 
-		// step 0: the card can no be placed at all on this selected view	
-		boolean ret=true;
-		if (type != 2 )
-			ret=canI_selectedView_normal();
-		else
-			ret=canI_selectedView_compare();
-
-		if(!ret)
+		// step 0: let's check if the card can be placed at all on the selected view	
+		if(!(selectedTeacher==null) && card.getTeacher()!=selectedTeacher){
+			reasonOfImpossibility=0;
+			levelOfImpossibility=0;
 			return false;
-		// TODO ceci n'Žtait p-e pas le plus propre! mais je suis fatiguŽ.. faudrait voir si ya moyen de centraliser ses deux methodes
+		}
+
+		if(!(selectedSection==null) && !(card.getCard_sections().contains(selectedSection)) ) {
+			reasonOfImpossibility=1;
+			levelOfImpossibility=0;
+			return false;
+		}
+
+		if(selectedRoom!=null && card.getSeatsToProvide()>selectedRoom.getCapacity()) {
+			reasonOfImpossibility=2;
+			levelOfImpossibility=0;
+			return false;
+		}
 
 
 
@@ -138,51 +157,7 @@ public class ConstrainHandler {
 			return true;
 	}
 
-	private boolean canI_selectedView_compare() {	
-		TimeBoxCompare tbc=(TimeBoxCompare)timeBox; //TODO : ugly!! This can't stay!! but i'm too tired..
-		if(!(tbc.getTeacherConcerned()==null) && card.getTeacher()!=tbc.getTeacherConcerned()){
-			reasonOfImpossibility=0;
-			levelOfImpossibility=0;
-			return false;
-		}
 
-		if(!(tbc.getSectionConcerned()==null) && !(card.getCard_sections().contains(tbc.getSectionConcerned())) ) {
-			reasonOfImpossibility=1;
-			levelOfImpossibility=0;
-			return false;
-		}
-
-		if(tbc.getRoomConcerned()!=null && card.getSeatsToProvide()>tbc.getRoomConcerned().getCapacity()) {
-			reasonOfImpossibility=2;
-			levelOfImpossibility=0;
-			return false;
-		}
-		return true;
-
-	}
-
-
-	private boolean canI_selectedView_normal() {
-		if(!(selectedTeacher==null) && card.getTeacher()!=selectedTeacher){
-			reasonOfImpossibility=0;
-			levelOfImpossibility=0;
-			return false;
-		}
-
-		if(!(selectedSection==null) && !(card.getCard_sections().contains(selectedSection)) ) {
-			reasonOfImpossibility=1;
-			levelOfImpossibility=0;
-			return false;
-		}
-
-		if(selectedRoom!=null && card.getSeatsToProvide()>selectedRoom.getCapacity()) {
-			reasonOfImpossibility=2;
-			levelOfImpossibility=0;
-			return false;
-		}
-		return true;
-
-	}
 
 
 	/**
@@ -252,6 +227,8 @@ public class ConstrainHandler {
 
 	}
 
+
+	
 
 
 

@@ -24,12 +24,12 @@ public class MainViewCompare extends JPanel{
 	private OptionPanelCompare opc;
 	private DisplayPanel dp;
 	private TimeBoxCompare firstTimeBox;
-	private ArrayList<TimeBox> timeBoxes;
+	private ArrayList<TimeBoxCompare> timeBoxes;
 	
 	public MainViewCompare(StateFullSchedule state, DisplayPanel dp){
 		this.state=state;
 		this.dp=dp;
-		timeBoxes=new ArrayList<TimeBox>();
+		timeBoxes=new ArrayList<TimeBoxCompare>();
 	    constructDefaultView();
 	}
 
@@ -306,7 +306,7 @@ public class MainViewCompare extends JPanel{
 		
 		
 		// for all the timeBoxes..
-		for(TimeBox t:timeBoxes){
+		for(TimeBoxCompare t:timeBoxes){
 			if (!(t.getStaticLabel()==null)) continue;
 
 			if (!consHand.canI(t))

@@ -4,8 +4,13 @@ package gui_schedule;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import model.StateFullSchedule;
 import gui.MyMenuBar;
 import gui_selection.*;
@@ -50,6 +55,7 @@ public class FrameSchedule extends JFrame {
 		
 		setJMenuBar(bar);
 
+		
 
 		// first Tab: the solo/normal selection
 		JPanel soloTab=new JPanel(new BorderLayout());
@@ -112,6 +118,8 @@ public class FrameSchedule extends JFrame {
 		setVisible(true);
 	}
 	
+
+
 	/**
 	 * Update the whole frame GUI ..
 	 * 
