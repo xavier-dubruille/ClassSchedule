@@ -129,7 +129,7 @@ public class CardTransferHandler extends TransferHandler{
 		}
 		
 		if (GUI_properties.playSound)
-			Player.playPig();
+			Player.playNormal();
 		
 		return true;
 	}

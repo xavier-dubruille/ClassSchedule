@@ -142,7 +142,7 @@ public class TimeBoxSoloTransferHandler extends TransferHandler {
 			return false;
 		}
 		if (GUI_properties.playSound)
-			Player.playPig();
+			Player.playNormal();
 		
 		return true;
 	}

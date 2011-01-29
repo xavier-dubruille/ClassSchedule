@@ -1,20 +1,14 @@
 package main;
 
 
-import java.io.File;
-import java.io.InputStream;
 
+import gui.GUI_properties;
 import gui.MyMenuBar;
 import gui.Player;
 import gui_schedule.*;
 import gui_selection.*;
 import model.StateFullSchedule;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.DataLine;
 import javax.swing.*;
 
 public class Start {
@@ -36,8 +30,9 @@ public class Start {
 		final StateFullSchedule state;
 		final MyMenuBar bar;
 
-			
-		Player.playPig();
+
+		if (GUI_properties.playSound)
+			Player.playIntro();
 
 		state=new StateFullSchedule();
 
