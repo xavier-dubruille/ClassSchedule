@@ -14,6 +14,7 @@ import javax.swing.border.Border;
  */
 public class GUI_properties {
 	
+	public static boolean playSound=true;
 
 	private static int size=132;
 	private static double ratio=0.62;

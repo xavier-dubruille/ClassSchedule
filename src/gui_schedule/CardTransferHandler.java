@@ -1,8 +1,11 @@
 package gui_schedule;
 
+import gui.GUI_properties;
+import gui.Player;
 import gui_selection.Card_GUI;
 import gui_selection.DisplayPanel;
 
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -13,6 +16,8 @@ import javax.swing.TransferHandler;
 import main.Start;
 import model.Card;
 import model.StateFullSchedule;
+
+
 
 /**
  * 
@@ -122,6 +127,10 @@ public class CardTransferHandler extends TransferHandler{
 			//e.printStackTrace();
 			return false;
 		}
+		
+		if (GUI_properties.playSound)
+			Player.playPig();
+		
 		return true;
 	}
 

@@ -1,5 +1,6 @@
 package gui_schedule;
 
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -13,6 +14,8 @@ import main.Start;
 import model.Card;
 import model.StateFullSchedule;
 import gui.ConstrainHandler;
+import gui.GUI_properties;
+import gui.Player;
 import gui_selection.DisplayPanel;
 
 /**
@@ -140,6 +143,9 @@ public class TimeBoxCompareTransferHandler extends TransferHandler {
 			e.printStackTrace();
 			return false;
 		}
+		if (GUI_properties.playSound)
+			Player.playPig();
+		
 		return true;
 	}
 	
