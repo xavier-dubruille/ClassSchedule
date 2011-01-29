@@ -57,8 +57,9 @@ public class MyMenuBar extends JMenuBar {
 		JMenuItem export = new JMenuItem ("Exporter en csv");
 		JMenuItem quit = new JMenuItem ("Quitter");
 		JMenuItem about = new JMenuItem ("About");
+		JMenuItem doc = new JMenuItem ("Documentation");
 		// ** end of declarations
-
+		
 		// ** save
 		saveProject.addActionListener(new ActionListener(){
 			@Override
@@ -167,7 +168,19 @@ public class MyMenuBar extends JMenuBar {
 		});
 		// ** end of about
 
+		// ** doc
+		doc.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				new DocumentationFrame();
+
+			}
+		});
+
+		// ** end of doc
+		
 		help.add(about);
+		help.add(doc);
 		// * end of help
 
 		add(file);
