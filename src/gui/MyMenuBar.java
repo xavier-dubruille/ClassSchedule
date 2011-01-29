@@ -9,6 +9,7 @@ import gui_selection.FrameSelection;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -16,6 +17,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 import model.NotSuportedFileException;
 import model.StateFullSchedule;
@@ -60,6 +62,22 @@ public class MyMenuBar extends JMenuBar {
 		JMenuItem doc = new JMenuItem ("Documentation");
 		// ** end of declarations
 		
+	
+
+		// ** new_project
+		new_project.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e){
+				menuBarFunctions.newProject();
+
+			}
+		});
+		new_project.setMnemonic(KeyEvent.VK_N);
+		new_project.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_N, ActionEvent.ALT_MASK));
+		// ** end of new_project
+
+		
 		// ** save
 		saveProject.addActionListener(new ActionListener(){
 			@Override
@@ -74,6 +92,9 @@ public class MyMenuBar extends JMenuBar {
 
 			}
 		});
+		saveProject.setMnemonic(KeyEvent.VK_S);
+		saveProject.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_S, ActionEvent.ALT_MASK));
 		// ** end of save
 
 		// ** export
@@ -90,18 +111,12 @@ public class MyMenuBar extends JMenuBar {
 
 			}
 		});
+		export.setMnemonic(KeyEvent.VK_D);
+		export.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_D, ActionEvent.ALT_MASK));
 		// ** end of export
-
-		// ** new_project
-		new_project.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e){
-				menuBarFunctions.newProject();
-
-			}
-		});
-		// ** end of new_project
-
+		
+		
 		// ** quit
 		quit.addActionListener(new ActionListener(){
 			@Override
@@ -110,6 +125,9 @@ public class MyMenuBar extends JMenuBar {
 				System.exit(0);
 			}
 		});
+		quit.setMnemonic(KeyEvent.VK_Q);
+		quit.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_Q, ActionEvent.ALT_MASK));
 		// ** end of quit
 
 		// ** open
@@ -135,9 +153,10 @@ public class MyMenuBar extends JMenuBar {
 				}
 
 			}
-
-
 		});
+		open.setMnemonic(KeyEvent.VK_O);
+		open.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_O, ActionEvent.ALT_MASK));
 		// ** end of open
 
 		file.add(new_project);
@@ -176,6 +195,9 @@ public class MyMenuBar extends JMenuBar {
 
 			}
 		});
+		doc.setMnemonic(KeyEvent.VK_H);
+		doc.setAccelerator(KeyStroke.getKeyStroke(
+		        KeyEvent.VK_H, ActionEvent.ALT_MASK));
 
 		// ** end of doc
 		
